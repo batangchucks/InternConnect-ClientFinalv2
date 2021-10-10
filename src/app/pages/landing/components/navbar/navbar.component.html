@@ -8,7 +8,7 @@
           </a>
         </div>
         <div class="-mr-2 -my-2 md:hidden">
-          <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500" aria-expanded="false">
+          <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-expanded="false">
             <span class="sr-only">Open menu</span>
             <!-- Heroicon name: outline/menu -->
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -19,7 +19,7 @@
         <nav class="hidden md:flex space-x-10">
           <div class="relative">
             <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-            <a type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" aria-expanded="false">
+            <a type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" aria-expanded="false">
               <span>Internship Application</span>
             </a>
   
@@ -34,17 +34,17 @@
   
           <div class="relative">
             <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-            <button type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" aria-expanded="false">
+            <button type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" aria-expanded="false">
               <span>Opportunities</span>
             </button>
           </div>
         </nav>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <a *ngIf="!user" routerLink="login" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700">
-            login
+          <a *ngIf="!user" routerLink="login" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-red-500 hover:bg-red-600">
+            Login
           </a>
-          <a *ngIf="user" (click)="logout()" routerLink="login" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700" >
-            logout
+          <a *ngIf="user" (click)="logout()" routerLink="login" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600" >
+            Logout
           </a>
           
         </div>
@@ -69,7 +69,7 @@
               <img class="h-8 w-auto" src="./assets/img/nav-logo.png" alt="Workflow">
             </div>
             <div class="-mr-2">
-              <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+              <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
                 <span class="sr-only">Close menu</span> -->
                 <!-- Heroicon name: outline/x -->
                 <!-- <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
