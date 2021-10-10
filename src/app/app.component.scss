@@ -1,0 +1,64 @@
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.heading__container {
+    text-align: center;
+
+}
+.heading__container h1 {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+}
+
+
+.hero__container {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    column-gap: 100px;
+}
+.student-info__container {
+    margin-top:20px;
+}
+
+.padding-alter {
+    padding: 10px;
+}
+
+
+.change-company__btn {
+    padding:5px;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin:10px 0;
+}
+.updateForm__btn {
+    padding:5px;
+    background-color: rgb(221, 221, 221);
+    color: black;
+    border-radius: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top:10px;
+}
+
+.legend-container {
+    margin-top: 40px;
+}
+
+.statuses-container {
+    margin-top: 10px;
+}

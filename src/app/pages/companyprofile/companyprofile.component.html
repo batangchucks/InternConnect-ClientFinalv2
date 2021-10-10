@@ -1,0 +1,60 @@
+  
+<app-navbar></app-navbar>
+<main class="profile-page">
+    <section class="relative block" style="height:500px">
+      <div class="absolute top-0 w-full h-full bg-center bg-cover"
+        style="background-image:url(&#x27;https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80&#x27;)">
+        <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span></div>
+      <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+        style="height:70px"><svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+          <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
+        </svg></div>
+    </section>
+    <section class="relative py-16 bg-blueGray-200">
+      <div class="md:w-9/12 mx-auto">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+          <div class="px-6">
+            <div class="absolute left-2/4"><img alt="..."
+                src="./../../../assets/img/logo-2.png"
+                class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                style="max-width:150px" />
+            </div>
+            <div class="text-center mt-28">
+              <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">{{companyProfile.name}}</h3>
+              <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase"><i
+                  class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i> {{companyProfile.city}}
+              </div>
+              <a class="py-2 px-4 text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-md"  href="{{companyProfile.link}}">Visit Website</a>
+            </div>
+            <div class="mt-10 py-10 border-t border-blueGray-200">
+              <h3 class="text-2xl font-bold mb-6">Company Overview</h3>
+              <p class="pr-20 mb-8"> {{companyProfile.description}}</p>
+              <p class="pr-20"><span class="font-semibold">Company Address One:</span>  {{companyProfile.addressOne}}</p>
+              <p class="pr-20"><span class="font-semibold">Company Address Two:</span> {{companyProfile.addressTwo}}</p>
+              <p class="pr-20"><span class="font-semibold">Company Address Three:</span> {{companyProfile.addressThree}}</p>
+              <h3 class="text-2xl font-bold mt-6 mb-6">Contact Person</h3>
+              <p class="pr-20"><span class="font-semibold">Name:</span>  {{companyProfile.contactPersonName}}</p>
+              <p class="pr-20"> <span class="font-semibold">Email:</span>  {{companyProfile.contactPersonEmail}}</p>
+              <p class="pr-20"> <span class="font-semibold">Position:</span>  {{companyProfile.contactPersonDesignation}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <div class="flex flex-wrap -m-4 md:w-9/12 mx-auto" >
+        <div class="xl:w-1/4 md:w-1/2 p-4" *ngFor="let eachOp of opportunity">
+          <div class="bg-gray-100 p-6 rounded-lg ">
+            <img class="h-40 rounded w-full object-cover object-center mb-6" src="./../../../assets/img/company-pic.png"
+              alt="content">
+                <div class="">
+                  <h1>{{eachOp.title}}</h1>
+                </div>
+                <h3 class="tracking-widest text-green-500 text-xl font-medium">{{eachOp.position}}</h3>
+                <h2 class="text-xl text-gray-900 font-medium mt-6">{{eachOp.introduction}}</h2>
+          </div>
+        </div>
+      </div>
+

@@ -1,0 +1,529 @@
+<app-navbar></app-navbar>
+
+<div class="status-page__container bg-gray-50">
+  <div class="heading__container">
+    <h1 class="text-4xl leading-8 text-center font-extrabold text-gray-900 py-12">
+        Status
+      </h1>
+  </div>
+  <div class="hero__container">
+    <div class="student-container">
+      <div class="student-info__container">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+          <div class="padding-alter">
+            <h3 class="text-lg leading-6 font-bold text-gray-900">
+              Applicant Information
+            </h3>
+            <p class=" text-gray-500">
+              Your personal details can be found here.
+            </p>
+          </div>
+          <div class="border-t border-gray-200">
+            <dl>
+              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  Full name
+                </dt>
+                <dd class="mt-1 padding-alter break-words text-sm text-gray-900 sm:mt-0 sm:col-span-2"*ngFor="let stud of student" >
+                  {{stud.firstName+" "+stud.middleInitial+" "+stud.lastName}}
+                </dd>
+              </div>
+              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  Email Address
+                </dt>
+                <dd class="padding-alter break-words mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" *ngFor="let stud of student">
+                  {{stud.student.account.email.toLowerCase()}}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="change-company__contianer" *ngFor="let stud of student">
+        <button class="change-company__btn rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" (click)="toChange()" >
+          Change Company</button>
+      </div>
+      <div class="update-form__container" *ngFor="let stud of student">
+        <button [disabled]="!comments" class="disabled:cursor-not-allowed updateForm__btn rounded-md border border-gray-300 shadow-sm bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer" (click)="toUpdate()">
+          Update Form</button>
+      </div>
+      <div class="legend-container">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+          <div class="padding-alter">
+            <h3 class="text-lg leading-6 font-bold text-gray-900">
+              Legend
+            </h3>
+          </div>
+          <div class="border-t border-gray-200">
+            <dl>
+              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+                  </svg>
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  Acknowledged
+                </dd>
+              </div>
+              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  Signed
+                </dd>
+              </div>
+              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  Sent to Company
+                </dd>
+              </div>
+              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  Accepted
+                </dd>
+              </div>
+              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                  </svg>
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  Rejected
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="acknowledged-container statuses-container" *ngFor="let stud of student">
+      <div class="acknowledged-container statuses-container"*ngIf="responseType == 'acknowledged'" >
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
+            <!--Acknowledged-->
+            <div class="p-3">
+              <div class="inline-flex justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+                </svg>
+                <p class="text-2xl font-bold pl-3">Your request is acknowledged.</p>
+              </div>
+              <p class=" text-gray-700">
+                The practicum coordinator received your request and will now be verifying your form details.
+                <br><br>
+                After verifying, the practicum coordinator will forward the form to the IGAARP and Dean for signing.
+              </p>
+            </div>
+          <div class="border-t border-gray-200">
+            <dl>
+              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  Remarks
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  None
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="signed-container statuses-container"  *ngIf="responseType == 'dean'">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
+          <!-- Signed -->
+          <div class="p-3">
+            <div class="inline-flex justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+              <p class="text-2xl font-bold pl-3">Your endorsement letter is signed.</p>
+            </div>
+            <p class=" text-gray-700">
+              The CICS dean, IGAARP coordinator, and practicum coordinator have finalized your request and signed your endorsement letter.
+              <br><br>
+              Thanks for being patient. Just a few more steps and you're good to go.
+            </p>
+          </div>
+          <div class="border-t border-gray-200 " >
+            <dl>
+              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  Remarks
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  None
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="sentTo-Company-container statuses-container"  *ngIf="responseType == 'emailed'">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
+          <!-- Sent to company -->
+          <div class="p-3">
+            <div class="inline-flex justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              <p class="text-2xl font-bold pl-3">Your endorsement letter has been sent to the company.</p>
+            </div>
+            <p class=" text-gray-700">
+              The practicum coordinator successfully sent the endorsement letter to the email address of the company representative indicated in the form.
+              <br><br>
+              Just one more step and you're ready to start your internship!
+            </p>
+          </div>
+          <div class="border-t border-gray-200 ">
+            <dl>
+              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  Remarks
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  None
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="accepted-container statuses-container" *ngIf="responseType== 'agrees'">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
+          <!-- Accepted -->
+          <div class="p-3">
+            <div class="inline-flex justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 fill-current text-green-600" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd" />
+              </svg>
+              <p class="text-2xl font-bold pl-3">Congrats! Your endorsement is accepted.</p>
+            </div>
+            <p class=" text-gray-700">
+              The company successfully claimed the endorsement letter.
+              <br><br>
+              You are now ready to start your internship and proceed with other practicum requirements.
+            </p>
+          </div>
+          <div class="border-t border-gray-200 ">
+            <dl>
+              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  Remarks
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  None
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="rejected-container statuses-container" *ngIf="comments">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
+          <!-- Rejected -->
+          <div class="p-3">
+            <div class="inline-flex justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 fill-current text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+              <p class="text-2xl font-bold pl-3">Sorry, your request was disapproved.</p>
+            </div>
+            <p class=" text-gray-700">
+              You probably missed out something or entered incorrect data required in the form.
+            </p>
+          </div>
+          <div class="border-t border-gray-200 ">
+            <dl>
+              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="padding-alter text-sm font-medium text-gray-500">
+                  Remarks
+                </dt>
+                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{comments}}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>  
+
+<!-- This is the Update FormEntry -->
+<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="FormEntry">
+  <form [formGroup]="updateSubmission" (ngSubmit)="updateFormSubmit()">
+    <div class="flex items-end justify-center min-h-screen pt-4 pb-24 text-center sm:block sm:p-0">
+      <!--
+        Background overlay, show/hide based on modal state.
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+      <!--
+        Modal panel, show/hide based on modal state.
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title">
+                Update Form Submission
+              </h3> 
+              <div class="mt-6">
+                  <div class=" bg-white">
+                    
+                    <div class="grid grid-cols-6 gap-6">     
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Prefix: </label>
+                        <select id="specialization" formControlName="studentTitle" 
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                          <option value="Mr.">Mr.</option>
+                          <option value="Ms.">Ms.</option>
+                        </select>
+                      </div>
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Last name</label>
+                        <input formControlName="lastName" type="text" name="street-address" id="street-address"  placeholder="dela Cruz"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+            
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input formControlName="firstName" type="text" name="street-address" id="street-address"  placeholder="Juan"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Middle Initial</label> 
+                        <input formControlName="middleInitial" type="text" name="street-address" id="street-address"  placeholder="A."
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Student Number </label>
+                        <input formControlName="studentNumber" type="number" name="street-address" id="street-address"  placeholder="2021123456"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                        <label for="specialization" class="block text-sm font-medium text-gray-700">Specialization</label>
+                        <select id="specialization" formControlName="trackId"  
+                          class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"*ngFor="let prog of program">
+                          <option *ngFor="let tracks of prog.tracks" [ngValue]="tracks.id">{{tracks.name}}</option>
+                          
+                        </select>
+                      </div>
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Email Address of Contact Person (Company Representative)</label>
+                        <input type="text" name="street-address" id="street-address" placeholder="companyrep@mail.com" formControlName="contactPersonEmail"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+            
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                        <label for="country" class="block text-sm font-medium text-gray-700">Title of Contact Person</label>
+                        <select id="country" name="country" formControlName="contactPersonTitle" 
+                          class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                          <option>Mr.</option>
+                          <option>Ms.</option>
+                          <option>Engr.</option>
+                          <option>Atty.</option>
+                        </select>
+                      </div>
+            
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Last Name of Contact Person</label>
+                        <input type="text" name="street-address" id="street-address" placeholder="Santos" formControlName="contactPersonLastName"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+            
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">First Name of Contact Person</label>
+                        <input type="text" name="street-address" id="street-address" placeholder="Thomasnino" formControlName="contactPersonFirstName" 
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+            
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Official Designation</label>
+                        <input type="text" name="street-address" id="street-address" placeholder="Managing Director" formControlName="contactPersonPosition"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+                      <div class="col-span-6">
+                        <label for="street-address" class="block text-sm font-medium text-gray-700">Internship Description</label>
+                        <input formControlName="jobDescription" type="text" name="street-address" id="street-address" placeholder="Managing Director"
+                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      </div>
+            
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                        <label for="country" class="block text-sm font-medium text-gray-700">Company: </label>
+                        <select id="country" name="country" formControlName="companyId" 
+                          class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                          <option *ngFor="let c of company" [ngValue]="c.id">{{c.name}}</option>
+                        </select>
+                      </div>
+
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                        <label for="country" class="block text-sm font-medium text-gray-700">Upload company profile</label>
+                        <input type="file" id="myFile" name="filename" (change)="imgCompanyProfile($event)">
+                     </div>
+
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label for="country" class="block text-sm font-medium text-gray-700">Upload acceptance letter</label>
+                      <input type="file" id="myFile" name="filename" (change)="imgAcceptanceL($event)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+            Submit
+          </button>
+          <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toClose()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- This is the ChangeCompany -->
+<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="CompanyEntry">
+  <div class="flex items-end justify-center min-h-screen pt-4 pb-24 text-center sm:block sm:p-0">
+    <!--
+      Background overlay, show/hide based on modal state.
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+    <!--
+      Modal panel, show/hide based on modal state.
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <form [formGroup]="companyForm" (ngSubmit)="companySubmit()">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title">
+              Change company details
+            </h3> 
+            <div class="mt-6">
+                <div class=" bg-white">
+                  <div class="grid grid-cols-6 gap-6">          
+                    <div class="col-span-6">
+                      <label for="street-address" class="block text-sm font-medium text-gray-700">Email Address of Contact Person (Company Representative)</label>
+                      <input type="text" name="street-address" id="street-address" placeholder="companyrep@mail.com" formControlName="contactPersonEmail"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+          
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label for="country" class="block text-sm font-medium text-gray-700">Title of Contact Person</label>
+                      <select id="country" name="country" formControlName="contactPersonTitle" 
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option>Mr.</option>
+                        <option>Ms.</option>
+                        <option>Engr.</option>
+                        <option>Atty.</option>
+                      </select>
+                    </div>
+          
+                    <div class="col-span-6">
+                      <label for="street-address" class="block text-sm font-medium text-gray-700">Last Name of Contact Person</label>
+                      <input type="text" name="street-address" id="street-address" placeholder="Santos" formControlName="contactPersonLastName"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+          
+                    <div class="col-span-6">
+                      <label for="street-address" class="block text-sm font-medium text-gray-700">First Name of Contact Person</label>
+                      <input type="text" name="street-address" id="street-address" placeholder="Thomasnino"  formControlName="contactPersonFirstName"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+          
+                    <div class="col-span-6">
+                      <label for="street-address" class="block text-sm font-medium text-gray-700">Official Designation</label>
+                      <input type="text" name="street-address" id="street-address" placeholder="Managing Director" formControlName="contactPersonPosition"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+          
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label for="country" class="block text-sm font-medium text-gray-700">Name of Company Or Institution: </label>
+                      <select id="country" name="country" formControlName="companyId" 
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option *ngFor="let c of company" [ngValue]="c.id">{{c.name}}</option>
+                      </select>
+                    </div>
+          
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label for="country" class="block text-sm font-medium text-gray-700">Upload company profile</label>
+                      <input type="file" id="myFile" name="filename" (change)="imgCompanyProfile($event)">
+                   </div>
+
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                    <label for="country" class="block text-sm font-medium text-gray-700">Upload acceptance letter</label>
+                    <input type="file" id="myFile" name="filename" (change)="imgAcceptanceL($event)">
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+          Submit
+        </button>
+        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toCloseSecond()">
+          Cancel
+        </button>
+      </div>
+    </form>
+    </div>
+  
+  </div>
+</div>

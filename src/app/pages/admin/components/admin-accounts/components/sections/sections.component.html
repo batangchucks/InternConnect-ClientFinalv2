@@ -1,0 +1,179 @@
+<div class="pt-6 sm:px-6 lg:px-8 pb-10">
+    <div>
+      <h1 class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight">Sections</h1>
+    </div>
+    <p class="mt-1 text-lg text-gray-500">This is where you can create programs where department chair accounts will be
+      assigned to.</p>
+  </div>
+  
+  <!-- Table -->
+  <div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <button type="button"
+          class="bg-green-600 mb-8 py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:px-6 lg:px-8"
+          (click)="toCreate()">
+          Create
+        </button>
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Section
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                </th>
+              </tr>
+            </thead>
+            <!-- Person 1 -->
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr *ngFor="let section of Section">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                 {{section.name}}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button class="h-8 px-4 text-white transition-colors duration-150 bg-green-600 
+                          rounded-full focus:shadow-outline hover:bg-green-700" (click)="toUpdate(section)">Update</button>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button class="h-8 px-4 text-black transition-colors duration-150 bg-gray-200
+                          rounded-full focus:shadow-outline hover:bg-gray-300"(click)="deleteSection(section)">Delete</button>
+                </td>
+              </tr>
+  
+              <!-- More people... -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- This is the CreateIndicator -->
+  <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="CreateIndicator">
+  
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <form [formGroup] = "createForm" (ngSubmit) = createFormSubmit()>
+    
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+  
+
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+  
+          <div
+          class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title">
+                Section
+              </h3>
+              <div class="mt-6">
+                <div class="mt-4">
+                  <label for="email-address" class="text-base">Title</label>
+                  <input type="text" name="name" id="price"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:text-sm border-gray-300 rounded-md"
+                    placeholder="0.00" formControlName="name">
+                </div>
+                <div class="" style="display: none;">
+                  
+                  <input type="hidden" formControlName="programId"> 
+
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse">
+              <button 
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                Create
+              </button>
+              <button 
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                (click)="toCancelOne()">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  
+  <!-- This is the UpdateIndicator -->
+  <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="UpdateIndicator">
+    <form action="" [formGroup]="updateForm" (ngSubmit)="updateFormS()">
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!--
+          Background overlay, show/hide based on modal state.
+          Entering: "ease-out duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    
+        <!--
+          Modal panel, show/hide based on modal state.
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            To: "opacity-100 translate-y-0 sm:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 sm:scale-100"
+            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        -->
+        <div
+          class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title">
+                Section
+              </h3>
+              <div class="mt-6">
+                <div class="mt-4">
+                  <label for="email-address" class="text-base">Section</label>
+                  <input type="text"  id="price"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:text-sm border-gray-300 rounded-md"
+                    placeholder="0.00" formControlName="name">
+                </div>
+              </div>
+              <div class="mt-6" style="display: none;">
+                <div class="mt-4">
+                  <label for="email-address" class="text-base">Section</label>
+                  <input type="text"  id="price"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:text-sm border-gray-300 rounded-md"
+                    placeholder="0.00" formControlName="programId">
+                </div>
+              </div>
+              <div class="mt-6" style="display: none;">
+                <div class="mt-4">
+                  <label for="email-address" class="text-base">Section</label>
+                  <input type="text"  id="price"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:text-sm border-gray-300 rounded-md"
+                    placeholder="0.00" formControlName="id">
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse">
+              <button type="submit"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                Update
+              </button>
+              <button type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                (click)="toCancelTwo()">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

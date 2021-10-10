@@ -1,0 +1,142 @@
+<app-navbar></app-navbar>
+
+<div class="min-h-screen flex justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <form action="#" method="POST" [formGroup]="EndorsementF" (ngSubmit)="endorseS()">
+    <div class="place-self-center p-4">
+      <h1 class="text-2xl text-center font-medium text-gray-900">
+        Fill out Endorsement Form
+      </h1>
+    </div>
+
+    <div class="shadow overflow sm:rounded-md">
+      <div class="px-4 py-5 bg-white sm:p-6">
+        <!-- <h2 class="flex my-8 text-base font-medium text-gray-700">
+          - Eligible practicum students who would like to request for recommendation letter should properly accomplish this form. 
+          - Contact your Practicum Coordinator to seek for approval if you need to request for more than two (2) letters.
+          - Status of your request will be posted by the Practicum 2  Coordinator at your Blackboard course site.
+        </h2> -->
+        <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+          <label for="specialization" class="block text-sm font-medium text-gray-700">Prefix: </label>
+          <select id="specialization" formControlName="studentTitle" 
+            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" *ngFor="let program of Program">
+            <option value="Mr.">Mr.</option>
+            <option value="Ms.">Ms.</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Last name</label>
+            <input formControlName="lastName" type="text" name="street-address" id="street-address"  placeholder="dela Cruz"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">First Name</label>
+            <input formControlName="firstName" type="text" name="street-address" id="street-address"  placeholder="Juan"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Middle Initial</label> 
+            <input formControlName="middleInitial" type="text" name="street-address" id="street-address"  placeholder="A."
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Student Number </label>
+            <input formControlName="studentNumber" type="number" name="street-address" id="street-address"  placeholder="2021123456"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+            <label for="specialization" class="block text-sm font-medium text-gray-700">Specialization</label>
+            <select id="specialization" formControlName="trackId"  
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"*ngFor="let program of Program">
+              <option *ngFor="let tracks of program.tracks" [ngValue]="tracks.id">{{tracks.name}}</option>
+              
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+            <label for="country" class="block text-sm font-medium text-gray-700">Company</label>
+            <select id="country" formControlName="companyId" [(ngModel)]="selectCompany" (change)="selectedC()" type="number"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option *ngFor="let company of Company" [ngValue]="company.id">{{company.name}}</option>
+            </select>
+          </div>
+
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Email Address of Contact Person</label>
+            <input formControlName="contactPersonEmail" type="text" name="street-address" id="street-address" placeholder="companyrep@mail.com"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+            <label for="country" class="block text-sm font-medium text-gray-700">Title of Contact Person</label>
+            <select id="country" formControlName="contactPersonTitle" 
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option>Mr.</option>
+              <option>Ms.</option>
+              <option>Engr.</option>
+              <option>Atty.</option>
+            </select>
+          </div>
+
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Last Name of Contact Person</label>
+            <input type="text" name="street-address" id="street-address" placeholder="Santos"
+            formControlName="contactPersonLastName" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">First Name of Contact Person</label>
+            <input type="text" name="street-address" id="street-address" placeholder="Thomasnino" 
+            formControlName="contactPersonFirstName" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Contact Person's Designation</label>
+            <input formControlName="contactPersonPosition" type="text" name="street-address" id="street-address" placeholder="Managing Director"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="col-span-6">
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Internship Description</label>
+            <input formControlName="jobDescription" type="text" name="street-address" id="street-address" placeholder="Managing Director"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+            <label for="country" class="block text-sm font-medium text-gray-700">Upload company profile</label>
+            <input type="file" id="myFile" name="filename" (change)="imgCompanyProfile($event)">
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+            <label for="country" class="block text-sm font-medium text-gray-700">Upload acceptance letter</label>
+            <input type="file" id="myFile" name="filename" (change)="imgAcceptanceL($event)">
+          </div>
+
+
+
+          <!-- <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+            <label for="city" class="block text-sm font-medium text-gray-700">No. o</label>
+            <input type="text" name="city" id="city"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label for="state" class="block text-sm font-medium text-gray-700">State / Province</label>
+            <input type="text" name="state" id="state"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal</label>
+            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div> -->
+        </div>
+      </div>
+      <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+        <button type="submit"
+          class="inline-flex justify-center py-2 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

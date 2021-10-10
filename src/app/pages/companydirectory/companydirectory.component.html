@@ -1,0 +1,116 @@
+<app-navbar></app-navbar>
+<!-- <input type="text"[(ngModel)]="companySearch"> -->
+<section
+  class="
+    relative
+    w-3/4
+    md:w-auto
+    ml-24
+    mr-16
+    px-4
+    sm:px-6
+    lg:px-8
+    rounded-md
+    mb-12
+    mt-12
+  "
+>
+  <div class="relative">
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+      <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </span>
+
+    <input
+      type="text"
+      class="
+        w-full
+        py-3
+        pl-10
+        pr-4
+        text-gray-700
+        bg-white
+        border border-black-400
+        rounded-md
+        focus:border-
+        red-500
+        focus:outline-none focus:ring
+        w-full
+      "
+      placeholder="Search"
+      [(ngModel)]="companySearch"
+    />
+  </div>
+</section>
+<div class="container mx-auto px-5">
+  <div class="grid gap-6 lg:gap-10 xl:grid-cols-4">
+    <div class="grid gap-6 sm:grid-cols-3 lg:gap-10 xl:col-span-4">
+      <div
+        *ngFor="
+          let foundCompany of searchedCompany | searchfilter: companySearch
+        "
+      >
+        <a routerLink="/companyprofile/{{ foundCompany.id }}">
+          <div
+            class="
+              relative
+              bg-white
+              p-5
+              rounded-xl
+              shadow
+              space-y-2
+              transition-shadow
+              duration-200
+              hover:shadow-lg
+              md:p-8
+              cursor-pointer
+            "
+          >
+            <!-- Logo -->
+            <dt>
+              <div
+                class="
+                  absolute
+                  flex
+                  items-center
+                  justify-center
+                  h-12
+                  w-12
+                  rounded-full
+                  bg-red-400
+                  text-white
+                "
+              >
+                <img
+                  class="h-12 w-12"
+                  src="http://localhost:5000/images/company/2021-12-9--20-53-35b92666ea-7ad7-4a78-9658-576351ae018c.png"
+                />
+              </div>
+              <p class="ml-16 text-xl font-medium">{{ foundCompany.name }}</p>
+            </dt>
+            <dd class="ml-16 text-gray-500 truncate overflow-hidden">
+              {{ foundCompany.description }}
+            </dd>
+            <!-- <a routerLink="/companyprofile/{{foundCompany.id}}" >Visit profile page</a> -->
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+        <div class="row" *ngFor="let foundCompany of searchedCompany | searchfilter:companySearch">
+            <h1>{{foundCompany.name}}</h1>
+            <a routerLink="/companyprofile/{{foundCompany.id}}" >Visit profile page</a>
+        </div>
+</div> -->
+
+<app-footer></app-footer>
