@@ -11,47 +11,64 @@
     <div class="shadow overflow sm:rounded-md">
       <div class="px-4 py-5 bg-white sm:p-6">
         <!-- <h2 class="flex my-8 text-base font-medium text-gray-700">
-          - Eligible practicum students who would like to request for recommendation letter should properly accomplish this form. 
+          - Eligible practicum students who would like to request for recommendation letter should properly accomplish this form.
           - Contact your Practicum Coordinator to seek for approval if you need to request for more than two (2) letters.
           - Status of your request will be posted by the Practicum 2  Coordinator at your Blackboard course site.
         </h2> -->
         <div class="col-span-6 sm:col-span-3 lg:col-span-3">
           <label for="specialization" class="block text-sm font-medium text-gray-700">Prefix: </label>
           <select id="specialization" formControlName="studentTitle" required
-            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" *ngFor="let program of Program">
+            class="mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 border-blue-500 sm:text-sm" *ngFor="let program of Program">
             <option value="Mr.">Mr.</option>
             <option value="Ms.">Ms.</option>
           </select>
+          <span *ngIf="EndorsementF.get('studentTitle').invalid && (EndorsementF.get('studentTitle').dirty || EndorsementF.get('studentTitle').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {{EndorsementF.get('studentTitle').invalid ? 'Required' : 'Invalid field'}}
+          </span>
         </div>
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">Last name</label>
             <input formControlName="lastName" type="text" placeholder="dela Cruz" required
-              class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              class="mt-1 block w-full shadow-sm sm:text-sm border-blue-500 focus:border-blue-500 rounded-md">
+              <span *ngIf="EndorsementF.get('lastName').invalid && (EndorsementF.get('lastName').dirty || EndorsementF.get('lastName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {{EndorsementF.get('lastName').invalid ? 'Required' : 'Invalid field'}}
+              </span>
           </div>
 
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">First Name</label>
             <input formControlName="firstName" type="text" placeholder="Juan" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <span *ngIf="EndorsementF.get('firstName').invalid && (EndorsementF.get('firstName').dirty || EndorsementF.get('firstName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {{EndorsementF.get('firstName').invalid ? 'Required' : 'Invalid field'}}
+              </span>
           </div>
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Middle Initial</label> 
+            <label for="street-address" class="block text-sm font-medium text-gray-700">Middle Initial</label>
             <input formControlName="middleInitial" type="text" placeholder="A." required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <span *ngIf="EndorsementF.get('middleInitial').invalid && (EndorsementF.get('middleInitial').dirty || EndorsementF.get('middleInitial').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {{EndorsementF.get('middleInitial').invalid ? 'Required' : 'Invalid field'}}
+              </span>
           </div>
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">Student Number </label>
             <input formControlName="studentNumber" type="number" placeholder="2021123456" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <span *ngIf="EndorsementF.get('studentNumber').invalid && (EndorsementF.get('studentNumber').dirty || EndorsementF.get('studentNumber').touched)"  class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {{EndorsementF.get('studentNumber').invalid ? 'Required' : 'Invalid field'}}
+              </span>
           </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
             <label for="specialization" class="block text-sm font-medium text-gray-700">Specialization</label>
             <select id="specialization" formControlName="trackId" required
               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"*ngFor="let program of Program">
               <option *ngFor="let tracks of program.tracks" [ngValue]="tracks.id">{{tracks.name}}</option>
-              
             </select>
+            <span *ngIf="EndorsementF.get('trackId').invalid && (EndorsementF.get('trackId').dirty || EndorsementF.get('trackId').touched)"  class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{EndorsementF.get('trackId').invalid ? 'Required' : 'Invalid field'}}
+            </span>
           </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
             <label for="country" class="block text-sm font-medium text-gray-700">Company</label>
@@ -59,12 +76,18 @@
               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
               <option *ngFor="let company of Company" [ngValue]="company.id">{{company.name}}</option>
             </select>
+            <span *ngIf="EndorsementF.get('companyId').invalid && (EndorsementF.get('companyId').dirty || EndorsementF.get('companyId').touched)"  class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{EndorsementF.get('companyId').invalid ? 'Required' : 'Invalid field'}}
+            </span>
           </div>
 
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">Email Address of Contact Person</label>
-            <input formControlName="contactPersonEmail" type="text"  placeholder="companyrep@mail.com" required
+            <input formControlName="contactPersonEmail" type="email"  placeholder="companyrep@mail.com" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <span *ngIf="EndorsementF.get('contactPersonEmail').invalid && (EndorsementF.get('contactPersonEmail').dirty || EndorsementF.get('contactPersonEmail').touched)"  class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {{EndorsementF.get('contactPersonEmail').invalid ? 'Required' : 'Invalid field'}}
+              </span>
           </div>
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
@@ -76,38 +99,59 @@
               <option>Engr.</option>
               <option>Atty.</option>
             </select>
+            <span *ngIf="EndorsementF.get('contactPersonTitle').invalid && (EndorsementF.get('contactPersonTitle').dirty || EndorsementF.get('contactPersonTitle').touched)"  class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{EndorsementF.get('contactPersonTitle').invalid ? 'Required' : 'Invalid field'}}
+            </span>
           </div>
 
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">Last Name of Contact Person</label>
             <input type="text"  placeholder="Santos" required
             formControlName="contactPersonLastName" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <span *ngIf="EndorsementF.get('contactPersonLastName').invalid && (EndorsementF.get('contactPersonLastName').dirty || EndorsementF.get('contactPersonLastName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{EndorsementF.get('contactPersonLastName').invalid ? 'Required' : 'Invalid field'}}
+            </span>
           </div>
 
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">First Name of Contact Person</label>
             <input type="text"  placeholder="Thomasnino" required
             formControlName="contactPersonFirstName" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <span *ngIf="EndorsementF.get('contactPersonLastName').invalid && (EndorsementF.get('contactPersonLastName').dirty || EndorsementF.get('contactPersonLastName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{EndorsementF.get('contactPersonFirstName').invalid ? 'Required' : 'Invalid field'}}
+            </span>
           </div>
 
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">Contact Person's Designation</label>
             <input formControlName="contactPersonPosition" type="text"  placeholder="Managing Director" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <span *ngIf="EndorsementF.get('contactPersonPosition').invalid && (EndorsementF.get('contactPersonPosition').dirty || EndorsementF.get('contactPersonPosition').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {{EndorsementF.get('contactPersonPosition').invalid ? 'Required' : 'Invalid field'}}
+              </span>
           </div>
           <div class="col-span-6">
             <label for="street-address" class="block text-sm font-medium text-gray-700">Internship Description</label>
             <input formControlName="jobDescription" type="text"  placeholder="Managing Director" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <span *ngIf="EndorsementF.get('jobDescription').invalid && (EndorsementF.get('jobDescription').dirty || EndorsementF.get('jobDescription').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {{EndorsementF.get('jobDescription').invalid ? 'Required' : 'Invalid field'}}
+              </span>
           </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
             <label for="country" class="block text-sm font-medium text-gray-700">Upload company profile</label>
             <input type="file" id="myFile" name="filename" (change)="imgCompanyProfile($event)" required>
+            <span *ngIf="EndorsementF.get('imgCompanyProfile').invalid && (EndorsementF.get('imgCompanyProfile').dirty || EndorsementF.get('imgCompanyProfile').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{EndorsementF.get('imgCompanyProfile').invalid ? 'Required' : 'Invalid field'}}
+            </span>
           </div>
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
             <label for="country" class="block text-sm font-medium text-gray-700">Upload acceptance letter</label>
             <input type="file" id="myFile" name="filename" (change)="imgAcceptanceL($event)" required>
+            <span *ngIf="EndorsementF.get('imgAcceptanceL').invalid && (EndorsementF.get('imgAcceptanceL').dirty || EndorsementF.get('imgAcceptanceL').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{EndorsementF.get('imgAcceptanceL').invalid ? 'Required' : 'Invalid field'}}
+            </span>
           </div>
 
 
@@ -130,8 +174,8 @@
         </div>
       </div>
       <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-        <button type="submit" 
-          class="inline-flex justify-center py-2 px-8 border border-transparent shadow-sm text-sm font-semibold rounded-md  text-red-500 border-red-500 hover:bg-red-500 hover:text-white bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <button type="submit"
+          class="inline-flex justify-center py-2 px-8 border border-transparent shadow-sm text-sm font-semibold rounded-md  text-red-500 border-red-500 hover:bg-red-500 hover:text-white bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
           Submit
         </button>
       </div>

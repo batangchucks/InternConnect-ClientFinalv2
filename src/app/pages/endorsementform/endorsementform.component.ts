@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CompanyModel } from 'src/app/shared/models/company.model';
 import { programModel } from 'src/app/shared/models/programs.model';
 import { CompanyService } from 'src/app/shared/services/company.service';
@@ -15,7 +15,7 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 export class EndorsementformComponent implements OnInit {
   
 
-  
+
 
   myDate = new Date();
   user = JSON.parse(localStorage.getItem('user'));
@@ -57,19 +57,19 @@ export class EndorsementformComponent implements OnInit {
 
   initForm() {
     this.EndorsementF =  new FormGroup({
-      'lastName' :  new FormControl(null),
-      'firstName' :  new FormControl(null),
-      'middleInitial' :  new FormControl(null),
-      'trackId' :  new FormControl(null),
-      'studentNumber' :  new FormControl(null),
-      'contactPersonEmail' :  new FormControl(null),
-      'contactPersonTitle' :  new FormControl(null),
-      'contactPersonLastName' :  new FormControl(null),
-      'contactPersonFirstName' :  new FormControl(null),
-      'contactPersonPosition' :  new FormControl(null),
-      'companyId' :  new FormControl(null),
-      'studentTitle':new FormControl(null),
-      'jobDescription': new FormControl(null)
+      'lastName' :  new FormControl(null, [Validators.required]),
+      'firstName' :  new FormControl(null, [Validators.required]),
+      'middleInitial' :  new FormControl(null, [Validators.required]),
+      'trackId' :  new FormControl(null, [Validators.required]),
+      'studentNumber' :  new FormControl(null, [Validators.required]),
+      'contactPersonEmail' :  new FormControl(null, [Validators.required]),
+      'contactPersonTitle' :  new FormControl(null, [Validators.required]),
+      'contactPersonLastName' :  new FormControl(null, [Validators.required]),
+      'contactPersonFirstName' :  new FormControl(null, [Validators.required]),
+      'contactPersonPosition' :  new FormControl(null, [Validators.required]),
+      'companyId' :  new FormControl(null, [Validators.required]),
+      'studentTitle':new FormControl(null, [Validators.required]),
+      'jobDescription': new FormControl(null, [Validators.required])
     });
 
   }
