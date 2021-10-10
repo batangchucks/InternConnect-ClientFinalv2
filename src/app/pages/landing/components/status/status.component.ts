@@ -8,6 +8,7 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 
+
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -19,7 +20,7 @@ export class StatusComponent implements OnInit {
   CompanyEntry: boolean = false;
 
   user = JSON.parse(localStorage.getItem('user'));
-  student: submissionModel[] = [];
+  student: submissionModel;
   companyForm:FormGroup;
   responseType :string = '';
   comments :string = '';
@@ -45,7 +46,7 @@ export class StatusComponent implements OnInit {
     this.Company.getCompany().subscribe(c=> {
       this.company = c;
     })
-    
+    console.log(this.user);
     this.Acc.getSubmissionStudent(this.user.student.id).subscribe(student=> {
       this.student = student;
       this.initStatus();
@@ -60,23 +61,23 @@ export class StatusComponent implements OnInit {
   
   toUpdate() {
     this.FormEntry = true;
-    this.student.map(stud=> {
+   
       this.updateSubmission = new FormGroup({
-        'lastName': new FormControl(stud.lastName),
-        'firstName': new FormControl(stud.firstName),
-        'middleInitial': new FormControl(stud.middleInitial),
-        'studentNumber': new FormControl(stud.studentNumber),
-        'contactPersonTitle': new FormControl(stud.contactPersonTitle),
-        'contactPersonFirstName': new FormControl(stud.contactPersonFirstName),
-        'contactPersonLastName': new FormControl(stud.contactPersonLastName),
-        'contactPersonEmail': new FormControl(stud.contactPersonEmail),
-        'contactPersonPosition': new FormControl(stud.contactPersonPosition),
-        'jobDescription': new FormControl(stud.jobDescription),
-        'studentTitle':new FormControl(stud.studentTitle),
+        'lastName': new FormControl(this.student.lastName),
+        'firstName': new FormControl(this.student.firstName),
+        'middleInitial': new FormControl(this.student.middleInitial),
+        'studentNumber': new FormControl(this.student.studentNumber),
+        'contactPersonTitle': new FormControl(this.student.contactPersonTitle),
+        'contactPersonFirstName': new FormControl(this.student.contactPersonFirstName),
+        'contactPersonLastName': new FormControl(this.student.contactPersonLastName),
+        'contactPersonEmail': new FormControl(this.student.contactPersonEmail),
+        'contactPersonPosition': new FormControl(this.student.contactPersonPosition),
+        'jobDescription': new FormControl(this.student.jobDescription),
+        'studentTitle':new FormControl(this.student.studentTitle),
         'companyId': new FormControl(''),
         'trackId': new FormControl(''),
       });
-    })
+
    
 
   }
@@ -109,38 +110,37 @@ export class StatusComponent implements OnInit {
     let companyAgrees: boolean;
     let comments: boolean;
 
-    this.student.map(eacS=> {
-       acceptedByCoordinator   = eacS.adminResponse.acceptedByCoordinator;
-       acceptedByChair  = eacS.adminResponse.acceptedByCoordinator;
-       acceptedByDean   = eacS.adminResponse.acceptedByCoordinator;
-       emailSentByCoordinator  = eacS.adminResponse.acceptedByCoordinator;
-       companyAgrees   = eacS.adminResponse.acceptedByCoordinator;
-       comments   = eacS.adminResponse.acceptedByCoordinator;
+  
+       acceptedByCoordinator   = this.student.adminResponse.acceptedByCoordinator;
+       acceptedByChair  = this.student.adminResponse.acceptedByCoordinator;
+       acceptedByDean   = this.student.adminResponse.acceptedByCoordinator;
+       emailSentByCoordinator  = this.student.adminResponse.acceptedByCoordinator;
+       companyAgrees   = this.student.adminResponse.acceptedByCoordinator;
+       comments   = this.student.adminResponse.acceptedByCoordinator;
       
-    })
+  
     
     let id;
 
-    this.student.map(eachS=> {
-      id = eachS.id;
-    })
+    id = this.student.id;
+
     if(!this.PhotoFileNameA &&  !this.PhotoFileNameC ) {
-      this.student.map(eacS=> {
-          this.PhotoFileNameA = eacS.acceptanceLetterFileName;
-          this.PhotoFileNameC = eacS.companyProfileFileName;
-      })
+    
+          this.PhotoFileNameA = this.student.acceptanceLetterFileName;
+          this.PhotoFileNameC = this.student.companyProfileFileName;
+    
     }
     else if(!this.PhotoFileNameA) {
-        this.student.map(eacS=> {
-          this.PhotoFileNameA = eacS.acceptanceLetterFileName;
+       
+          this.PhotoFileNameA = this.student.acceptanceLetterFileName;
         
-      })
+     
     }
     else if(!this.PhotoFileNameC) {
-      this.student.map(eacS=> {
-        this.PhotoFileNameC = eacS.companyProfileFileName;
+    
+        this.PhotoFileNameC = this.student.companyProfileFileName;
       
-      })
+   
     }
     
     var form_payload = {
@@ -182,22 +182,22 @@ export class StatusComponent implements OnInit {
   toChange() {
     this.CompanyEntry = true;
    
-    this.student.map(stud=> {
+  
       this.companyForm = new FormGroup({
-        'lastName': new FormControl(stud.lastName),
-        'firstName': new FormControl(stud.firstName),
-        'middleInitial': new FormControl(stud.middleInitial),
-        'studentNumber': new FormControl(stud.studentNumber),
-        'contactPersonTitle': new FormControl(stud.contactPersonTitle),
-        'contactPersonFirstName': new FormControl(stud.contactPersonFirstName),
-        'contactPersonLastName': new FormControl(stud.contactPersonLastName),
-        'contactPersonEmail': new FormControl(stud.contactPersonEmail),
-        'contactPersonPosition': new FormControl(stud.contactPersonPosition),
-        'jobDescription': new FormControl(stud.jobDescription),
-        'studentTitle':new FormControl(stud.studentTitle),
+        'lastName': new FormControl(this.student.lastName),
+        'firstName': new FormControl(this.student.firstName),
+        'middleInitial': new FormControl(this.student.middleInitial),
+        'studentNumber': new FormControl(this.student.studentNumber),
+        'contactPersonTitle': new FormControl(''),
+        'contactPersonFirstName': new FormControl(''),
+        'contactPersonLastName': new FormControl(''),
+        'contactPersonEmail': new FormControl(''),
+        'contactPersonPosition': new FormControl(''),
+        'jobDescription': new FormControl(''),
+        'studentTitle':new FormControl(this.student.studentTitle),
         'companyId': new FormControl(''),
-        'trackId': new FormControl(stud.trackId),
-      });
+        'trackId': new FormControl(this.student.trackId),
+    
     })
 
   }
@@ -232,38 +232,44 @@ export class StatusComponent implements OnInit {
     let companyAgrees: boolean;
     let comments: boolean;
 
-    this.student.map(eacS=> {
-       acceptedByCoordinator   = eacS.adminResponse.acceptedByCoordinator;
-       acceptedByChair  = eacS.adminResponse.acceptedByCoordinator;
-       acceptedByDean   = eacS.adminResponse.acceptedByCoordinator;
-       emailSentByCoordinator  = eacS.adminResponse.acceptedByCoordinator;
-       companyAgrees   = eacS.adminResponse.acceptedByCoordinator;
-       comments   = eacS.adminResponse.acceptedByCoordinator;
+    
+       acceptedByCoordinator   = this.student.adminResponse.acceptedByCoordinator;
+       acceptedByChair  = this.student.adminResponse.acceptedByCoordinator;
+       acceptedByDean   = this.student.adminResponse.acceptedByCoordinator;
+       emailSentByCoordinator  = this.student.adminResponse.acceptedByCoordinator;
+       companyAgrees   = this.student.adminResponse.acceptedByCoordinator;
+       comments   = this.student.adminResponse.acceptedByCoordinator;
       
-    })
+    
     
     let id;
 
-    this.student.map(eachS=> {
-      id = eachS.id;
-    })
-    if(!this.PhotoFileNameA &&  !this.PhotoFileNameC ) {
-      this.student.map(eacS=> {
-          this.PhotoFileNameA = eacS.acceptanceLetterFileName;
-          this.PhotoFileNameC = eacS.companyProfileFileName;
-      })
-    }
-    else if(!this.PhotoFileNameA) {
-        this.student.map(eacS=> {
-          this.PhotoFileNameA = eacS.acceptanceLetterFileName;
-        
-      })
-    }
-    else if(!this.PhotoFileNameC) {
-      this.student.map(eacS=> {
-        this.PhotoFileNameC = eacS.companyProfileFileName;
+   
+    id = this.student.id;
+ 
+    // if(!this.PhotoFileNameA &&  !this.PhotoFileNameC ) {
       
-      })
+    //       this.PhotoFileNameA = this.student.acceptanceLetterFileName;
+    //      this.PhotoFileNameA = this.student.acceptanceLetterFileName;
+     
+    // }
+    // else if(!this.PhotoFileNameA) {
+      
+    //       this.PhotoFileNameA = this.student.acceptanceLetterFileName;
+        
+
+    // }
+    // else if(!this.PhotoFileNameC) {
+  
+    //     this.PhotoFileNameC = this.student.companyProfileFileName;
+      
+    // }
+    if(this.PhotoFileNameA && this.PhotoFileNameC) {
+      this.PhotoFileNameA = this.student.acceptanceLetterFileName;
+      this.PhotoFileNameC = this.student.companyProfileFileName;
+    }
+    else {
+      // error message
     }
     
     var form_payload = {
@@ -284,11 +290,12 @@ export class StatusComponent implements OnInit {
       trackId: trackId,
       companyId: companyId,
       acceptedByCoordinator: acceptedByCoordinator,
-      id: id,
+     
       studentId: studentId
     };
+    console.log(form_payload);
     
-    this.Acc.UPDATEsubmission(form_payload).subscribe(submission=> {
+    this.Acc.POSTsubmission(this.user.student.sectionId,this.user.student.programId,form_payload).subscribe(submission=> {
       console.log(submission);
       this.CompanyEntry = false;
       this.ngOnInit();
@@ -300,29 +307,27 @@ export class StatusComponent implements OnInit {
   }
 
   initStatus() {
-    
- 
-      this.student.map(value=> {
-        if(value.adminResponse.comments) {
+         
+        if(this.student.adminResponse.comments) {
           this.responseType="";
-          this.comments = value.adminResponse.comments;
+          this.comments = this.student.adminResponse.comments;
         }
-        else if(value.adminResponse.companyAgrees) {
+        else if(this.student.adminResponse.companyAgrees) {
           this.responseType="agrees";
          
         }
-        else if(value.adminResponse.emailSentByCoordinator) {
+        else if(this.student.adminResponse.emailSentByCoordinator) {
           this.responseType="emailed";
          
         }
-        else if(value.adminResponse.acceptedByDean) {
+        else if(this.student.adminResponse.acceptedByDean) {
           this.responseType="dean";
          
         }
         else {
           this.responseType="acknowledged";
         }
-    });
+  
 
 
   }

@@ -24,27 +24,27 @@
                 <dt class="padding-alter text-sm font-medium text-gray-500">
                   Full name
                 </dt>
-                <dd class="mt-1 padding-alter break-words text-sm text-gray-900 sm:mt-0 sm:col-span-2"*ngFor="let stud of student" >
-                  {{stud.firstName+" "+stud.middleInitial+" "+stud.lastName}}
+                <dd class="mt-1 padding-alter break-words text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{student.firstName+" "+student.middleInitial+" "+student.lastName}}
                 </dd>
               </div>
               <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt class="padding-alter text-sm font-medium text-gray-500">
                   Email Address
                 </dt>
-                <dd class="padding-alter break-words mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" *ngFor="let stud of student">
-                  {{stud.student.account.email.toLowerCase()}}
+                <dd class="padding-alter break-words mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{student.student.account.email.toLowerCase()}}
                 </dd>
               </div>
             </dl>
           </div>
         </div>
       </div>
-      <div class="change-company__contianer" *ngFor="let stud of student">
-        <button class="change-company__btn rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" (click)="toChange()" >
+      <div class="change-company__contianer">
+        <button *ngIf="student.adminResponse.companyAgrees" class="change-company__btn rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" (click)="toChange()" >
           Change Company</button>
       </div>
-      <div class="update-form__container" *ngFor="let stud of student">
+      <div class="update-form__container" >
         <button [disabled]="!comments" class="disabled:cursor-not-allowed updateForm__btn rounded-md border border-gray-300 shadow-sm bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer" (click)="toUpdate()">
           Update Form</button>
       </div>
@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-    <div class="acknowledged-container statuses-container" *ngFor="let stud of student">
+    <div class="acknowledged-container statuses-container">
       <div class="acknowledged-container statuses-container"*ngIf="responseType == 'acknowledged'" >
         <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
             <!--Acknowledged-->
@@ -515,7 +515,7 @@
         </div>
       </div>
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-        <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+        <button [disabled]="!PhotoFileNameA || !PhotoFileNameC" type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm  disabled:cursor-not-allowed">
           Submit
         </button>
         <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toCloseSecond()">

@@ -23,7 +23,7 @@ export class OpportunitiesComponent implements OnInit{
      
     this.company.getOpportunity().subscribe(eO=>{
       this.opportunity = eO;
-     
+      console.log(this.opportunity);
     });
   
     

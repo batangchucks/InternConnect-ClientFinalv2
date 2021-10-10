@@ -108,12 +108,9 @@ export class createAccount {
     return this.http.post(this.apiUrl + 'api/techcoordinator', postVal);
   }
 
-  getSubmissionStudent(studId:number) : Observable<submissionModel[]> {
-    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission').pipe(
-      map((eachS) =>
-        eachS.filter((eachS) => eachS.student.id == studId)
-      )
-    );
+  getSubmissionStudent(studId:number) : Observable<submissionModel> {
+    return this.http.get<submissionModel>(this.apiUrl + 'api/Submission/'+studId);
+    // wrong
   }
 
   newSubmission(sectionId: number): Observable<submissionModel[]> {
@@ -227,6 +224,6 @@ export class createAccount {
     return this.http.put(this.apiUrl+'api/Webstate',postVal);
     
   }
-
+  
 
 }
