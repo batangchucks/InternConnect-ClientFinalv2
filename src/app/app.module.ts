@@ -51,6 +51,8 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ResetpassComponent } from './pages/resetpass/resetpass.component';
 import { AdminReturnisoComponent } from './pages/admin/components/admin-iso/components/admin-returniso/admin-returniso.component';
 import { sectionFilter } from './sectionFilter.pipe';
+import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
+import { PolicyComponent } from './pages/landing/components/policy/policy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +99,9 @@ import { sectionFilter } from './sectionFilter.pipe';
     SearchfilterPipe,
     ResetpassComponent,
     AdminReturnisoComponent,
-    sectionFilter
+    sectionFilter,
+    FaqsComponent,
+    PolicyComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,9 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 })
 export class EndorsementformComponent implements OnInit {
   
+
+  
+
   myDate = new Date();
   user = JSON.parse(localStorage.getItem('user'));
   constructor(private program: ProgramService, private company: CompanyService,private File: fileUpload,private Account: createAccount) { }
