@@ -21,6 +21,9 @@ export class NewSubmissionsComponent implements OnInit {
   isStamp: boolean = true;
   DisapproveIndicator: boolean = false;
 
+  selectForm:FormGroup;
+
+
   RejectForm: FormGroup;
 
 
@@ -46,9 +49,11 @@ export class NewSubmissionsComponent implements OnInit {
      this.isoCodeValue = eachIso;
       console.log(this.isoCodeValue);
     });
+   
+   
 
   }
- 
+  
 
   approve(adminResponseId: number) {
     var PostVal = {
@@ -56,11 +61,12 @@ export class NewSubmissionsComponent implements OnInit {
       acceptedByCoordinator: true,
       comments: '',
     };
-
+    console.log(this.assignIso);  
     this.Acc.coordinatorApprove(this.user.admin.id,this.assignIso ,PostVal).subscribe(
       (updatedVal) => {
         console.log(updatedVal);
         this.ngOnInit();
+        this.assignIso = null;
       }
     );
   }
@@ -78,7 +84,14 @@ export class NewSubmissionsComponent implements OnInit {
 
   }
   rejectedSubmit() {
-    
+    this.Acc.coordinatorApprove(this.user.admin.id,this.assignIso,this.RejectForm.value).subscribe(
+          (updatedVal) => {
+            console.log(updatedVal);
+            this.ngOnInit();
+            this.assignIso = null;
+          }
+      );
+      this.DisapproveIndicator = false;
   }
   // rejectedSubmit() {
   //   this.Acc.coordinatorDisapprove(this.user.admin.id ,this.RejectForm.value).subscribe(

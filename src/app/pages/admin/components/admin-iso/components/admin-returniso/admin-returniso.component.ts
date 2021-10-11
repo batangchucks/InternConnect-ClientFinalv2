@@ -19,6 +19,8 @@ export class AdminReturnisoComponent implements OnInit {
   section:sectionModel[] = [];
   sectionId:number;
   isoCodeListM: isoCodeListModel[] = [];
+  indicator:boolean = null;
+  returnedIso:isoCodeListModel[] = [];
 
   constructor(
     private Auth: AuthenticationService,
@@ -28,25 +30,42 @@ export class AdminReturnisoComponent implements OnInit {
   coordinatorListTransfer:any[];
   coordinatorList:any[];
   isoCodeList: any[]
+  isoCoordinator:isoCodeListModel[] = [];
 
   ngOnInit(): void {
-    this.isoCode.getCoordinatorData(this.user.admin.programId).subscribe((val:[any])=>{
-      this.coordinatorList = val
-      console.log(val);
-    })
+   
+    if(this.user.admin.authId == 2) {
+      // this.isoCode.getCoordinatorData(this.user.admin.programId).subscribe((val:[any])=>{
+      //   this.coordinatorList = val
+      //   console.log(val);
+      // })
+      
+      // get iso per program
+      console.log(this.user.admin.id);
+      this.isoCode.getReturnIso(this.user.admin.id).subscribe(returnedIso=> {
+      
+       this.returnedIso = returnedIso;
 
-    // this.isoCode.getIsoCode(this.user.admin.programId).subscribe(val)=>{
-    //   this.isoCodeList = val
-    //   console.log(val)
-    // });
-    this.isoCode.getIsoCode(this.user.admin.programId).subscribe(eachIso=>{
+      })
+      this.isoCode.getIsoCode(this.user.admin.programId).subscribe(eachIso=>{
       this.isoCodeListM = eachIso;
-      console.log(this.isoCodeListM);
-    })
-    this.program.getSection(this.user.admin.programId).subscribe(eachS=> {
-      this.section = eachS;
+      
+        console.log(eachIso);
+      })
+      this.program.getSection(this.user.admin.programId).subscribe(eachS=> {
+        this.section = eachS;
+        
+      })
+    }
+    else if (this.user.admin.authId == 3) {
+      this.isoCode.getISObyCoord(this.user.admin.id).subscribe(eachIso=> {
+       this.isoCoordinator = eachIso;
 
-    })
+      });
+
+    }
+    
+    
   }
 
   toTransfer(isoCodeId:number,code:number) {
@@ -63,8 +82,22 @@ export class AdminReturnisoComponent implements OnInit {
     this.isoCode.getCoordinatorData(this.user.admin.programId).subscribe((val:[any])=> {
       this.coordinatorListTransfer = val;
      
-    })
+    });
+  }
 
+  returnIso(id:number,code:number) {
+    var Payload= [{
+      id:id,
+      code:code,
+      programId:this.user.admin.programId
+    }]
+    console.log(Payload);    
+
+    this.isoCode.returnToChair(this.user.admin.programId,Payload).subscribe(eachS=> {
+      console.log(eachS);
+      this.ngOnInit();
+    });
+   
   }
 
   submit() {

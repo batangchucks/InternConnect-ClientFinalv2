@@ -77,8 +77,10 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <a href="{{photoUrl+eachS.companyProfileFileName}}" target="blank"  style="color: green; " >View File</a>
               </td>
+            
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <span *ngIf="eachS.isoCode">* All ready have an iso code *</span>
+              
                <select name="" id="" *ngIf="!eachS.isoCode" [(ngModel)]="assignIso">
                  <option [value]="eachIso.code" *ngFor="let eachIso of isoCodeValue">{{eachIso.code}}</option>
                </select>
@@ -86,11 +88,11 @@
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
                 <button   class="h-8 px-4 text-white transition-colors duration-150 bg-green-600 
-                rounded-full focus:shadow-outline hover:bg-green-500  disabled:cursor-not-allowed"  [disabled]="!isStamp"(click)="approve(eachS.adminResponse.id)">Approve</button>
+                rounded-full focus:shadow-outline hover:bg-green-500  disabled:cursor-not-allowed"  [disabled]="!isStamp || (!eachS.isoCode &&  !assignIso)"(click)="approve(eachS.adminResponse.id)">Approve</button>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button class="h-8 px-4  text-black transition-colors duration-150 bg-gray-200
-                rounded-full focus:shadow-outline hover:bg-gray-300"(click)="toDisapprove(eachS.adminResponse.id)">Disapprove</button>
+                <button class="h-8 px-4  text-black transition-colors duration-150 bg-gray-200 disabled:cursor-not-allowed
+                rounded-full focus:shadow-outline hover:bg-gray-300"(click)="toDisapprove(eachS.adminResponse.id)" [disabled]="!eachS.isoCode && !assignIso">Disapprove</button>
               </td>
             </tr>
             

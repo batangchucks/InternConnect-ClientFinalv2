@@ -43,7 +43,7 @@ import { RouteGuardStudent } from './helpers/route-guardStudent.service';
 import {ResetpassComponent} from './pages/resetpass/resetpass.component';
 import {StatusComponent} from './pages/landing/components/status/status.component';
 import { AdminReturnisoComponent } from './pages/admin/components/admin-iso/components/admin-returniso/admin-returniso.component';
-
+import { RouteGuardEndorsement } from './helpers/route-guardEndorsement.service';
 const routes: Routes = [
   {
     path: '',
@@ -58,7 +58,7 @@ const routes: Routes = [
   {
     path: 'endorsementform',
     component: EndorsementformComponent,
-    canActivate: [RouteGuardStudent],
+    canActivate: [RouteGuardEndorsement],
   },
   {
     path: 'companydirectory',

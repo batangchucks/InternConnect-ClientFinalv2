@@ -27,34 +27,18 @@
     >
       Return ISO Codes
     </h1>
+    <select [(ngModel)]="indicator">
+     
+      <option [ngValue]="true">Used</option>
+      <option [ngValue]="false">Unused</option>
+    </select>
+  
     <div class="pb-6 flex flex-col">
+      
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <!-- Filter by section:-->
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-700"
-              >Filter by section:</label
-            >
-            <select
-              id="country"
-              formControlName="contactPersonTitle"
-              class="
-                mt-1
-                mb-6
-                block
-                w-24
-                py-2
-                px-3
-                border border-gray-300
-                bg-white
-                rounded-md
-                shadow-sm
-                focus:outline-none focus:ring-green-500 focus:border-green-500
-                sm:text-sm
-              "
-            >
-              <option>4-ITH</option>
-            </select>
           </div>
           <div
             class="
@@ -67,34 +51,7 @@
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
-                  <th
-                    scope="col"
-                    class="
-                      px-6
-                      py-3
-                      text-left text-xs
-                      font-medium
-                      text-gray-500
-                      uppercase
-                      tracking-wider
-                    "
-                  >
-                    Practicum coordinator
-                  </th>
-                  <th
-                    scope="col"
-                    class="
-                      px-6
-                      py-3
-                      text-left text-xs
-                      font-medium
-                      text-gray-500
-                      uppercase
-                      tracking-wider
-                    "
-                  >
-                    Section
-                  </th>
+                 
                   <th
                     scope="col"
                     class="
@@ -139,27 +96,12 @@
               </thead>
               <!-- Person 1 -->
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
+                <tr *ngFor="let  coordIso of isoCoordinator | isoCodeFilter: indicator">
+            
                   <td class="px-2 py-4 whitespace-nowrap">
                     <div class="flex items-center">
                       <div class="ml-4">
-                        <div class="text-sm text-gray-500">
-                          coordinator.cics@ust.edu.ph
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="px-2 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="ml-4">
-                        <div class="text-sm text-gray-500">4-ITH</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="px-2 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="ml-4">
-                        <div class="text-sm text-gray-500">1</div>
+                        <div class="text-sm text-gray-500">{{coordIso.code}}</div>
                       </div>
                     </div>
                   </td>
@@ -176,7 +118,7 @@
                         text-gray-700
                       "
                     >
-                      Unused
+                    {{coordIso.used != false ? "Used": "Unused"}}
                     </span>
                   </td>
                   <td
@@ -188,7 +130,7 @@
                       font-medium
                     "
                   >
-                    <button
+                    <button (click)="returnIso(coordIso.id,coordIso.code)"*ngIf="!coordIso.used"
                       class="
                         block
                         h-8
@@ -200,7 +142,9 @@
                         rounded-full
                         focus:shadow-outline
                         hover:bg-green-700
+                        disabled:cursor-not-allowed
                       "
+                      
                     >
                       Return
                     </button>
@@ -208,75 +152,7 @@
                 </tr>
               </tbody>
               <!-- Person 2 -->
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td class="px-2 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="ml-4">
-                        <div class="text-sm text-gray-500">
-                          coordinator.cics@ust.edu.ph
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="px-2 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="ml-4">
-                        <div class="text-sm text-gray-500">4-ITH</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="px-2 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="ml-4">
-                        <div class="text-sm text-gray-500">2</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <span
-                      class="
-                        px-2
-                        inline-flex
-                        text-xs
-                        leading-5
-                        font-semibold
-                        rounded-full
-                        bg-gray-100
-                        text-gray-700
-                      "
-                    >
-                      Used
-                    </span>
-                  </td>
-                  <td
-                    class="
-                      px-6
-                      py-4
-                      whitespace-nowrap
-                      text-right text-sm
-                      font-medium
-                    "
-                  >
-                    <button
-                      class="
-                        block
-                        h-8
-                        px-4
-                        text-white
-                        transition-colors
-                        duration-150
-                        bg-green-600
-                        rounded-full
-                        focus:shadow-outline
-                        hover:bg-green-700
-                      "
-                    >
-                      Return
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
+             
             </table>
           </div>
         </div>
@@ -305,29 +181,7 @@
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <!-- Filter by section:-->
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-700"
-              >Filter by section:</label
-            >
-            <select
-              id="country"
-              [(ngModel)]="sectionId"
-              class="
-                mt-1
-                mb-6
-                block
-                w-24
-                py-2
-                px-3
-                border border-gray-300
-                bg-white
-                rounded-md
-                shadow-sm
-                focus:outline-none focus:ring-green-500 focus:border-green-500
-                sm:text-sm
-              "
-            >
-              <option [value]="sections.id" *ngFor="let sections of section">{{sections.name}}</option>
-            </select>
+           
           </div>
           <div
             class="
@@ -352,71 +206,17 @@
                       tracking-wider
                     "
                   >
-                    Practicum coordinator
+                  Iso Code Number
                   </th>
-                  <th
-                    scope="col"
-                    class="
-                      px-6
-                      py-3
-                      text-left text-xs
-                      font-medium
-                      text-gray-500
-                      uppercase
-                      tracking-wider
-                    "
-                  >
-                    Section
-                  </th>
-                  <th
-                    scope="col"
-                    class="
-                      px-6
-                      py-3
-                      text-left text-xs
-                      font-medium
-                      text-gray-500
-                      uppercase
-                      tracking-wider
-                    "
-                  >
-                    ISO Code
-                  </th>
-                  <th
-                    scope="col"
-                    class="
-                      px-6
-                      py-3
-                      text-left text-xs
-                      font-medium
-                      text-gray-500
-                      uppercase
-                      tracking-wider
-                    "
-                  >
-                    Status
-                  </th>
+                  
+                  
+                 
                 </tr>
               </thead>
               <!-- Person 1 -->
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr *ngFor="let isoCode of isoCodeListM | sectionFilter:sectionId">
-                  <td class="px-2 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="ml-4">
-                        <div class="text-sm text-gray-500">
-                          {{isoCode.adminEmail}}
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="px-2 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="ml-4">
-                        <div class="text-sm text-gray-500">{{isoCode.admin.section.name}}</div>
-                      </div>
-                    </div>
-                  </td>
+                <tr *ngFor="let isoCode of returnedIso">
+              
                   <td class="px-2 py-4 whitespace-nowrap">
                     <div class="flex items-center">
                       <div class="ml-4">
@@ -424,22 +224,7 @@
                       </div>
                     </div>
                   </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <span
-                      class="
-                        px-2
-                        inline-flex
-                        text-xs
-                        leading-5
-                        font-semibold
-                        rounded-full
-                        bg-yellow-100
-                        text-gray-700
-                      "
-                    >
-                      {{isoCode.used != false ? "Used": "Unused"}}
-                    </span>
-                  </td>
+                 
                   <td
                     class="
                       px-6
@@ -501,6 +286,160 @@
         </div>
       </div>
     </div>
+
+
+    <h1
+    class="
+      inline-block
+      text-xl
+      font-semibold
+      text-gray-900
+      tracking-tight
+      sm:px-6
+      lg:px-8
+      pb-5
+    "
+  >
+    Summary of ISO codes
+  </h1>
+  <select name="" id=""[(ngModel)]="selectedOption">
+    <option [ngValue]="eachS.id" *ngFor="let eachS of section">{{eachS.name}}</option>
+
+  </select>
+  <div class="pb-6 flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <!-- Filter by section:-->
+        <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+         
+        </div>
+        <div
+          class="
+            shadow
+            overflow-hidden
+            border-b border-gray-200
+            sm:rounded-lg
+          "
+        >
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                  <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                Practicum Coordinator
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Section
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                Iso Code Number
+                </th>
+                <th
+                scope="col"
+                class="
+                  px-6
+                  py-3
+                  text-left text-xs
+                  font-medium
+                  text-gray-500
+                  uppercase
+                  tracking-wider
+                "
+              >
+                Status
+              </th>
+                
+                
+               
+              </tr>
+            </thead>
+            <!-- Person 1 -->
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr *ngFor="let isoCode of isoCodeListM | sectionFilter:selectedOption">
+            
+                <td class="px-2 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm text-gray-500">{{isoCode.adminEmail}}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-2 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm text-gray-500">{{isoCode.admin.section.name}}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-2 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm text-gray-500">{{isoCode.code}}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-2 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm text-gray-500"> {{isoCode.used != false ? "Used": "Unused"}}</div>
+                    </div>
+                  </div>
+                </td>
+               
+                <td
+                  class="
+                    px-6
+                    py-4
+                    whitespace-nowrap
+                    text-right text-sm
+                    font-medium
+                  "
+                >
+                 
+                </td>
+              </tr>
+            </tbody>
+            <!-- Person 1 -->
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   </section>
 
   <!-- This is the TransferIndicator -->

@@ -51,6 +51,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ResetpassComponent } from './pages/resetpass/resetpass.component';
 import { AdminReturnisoComponent } from './pages/admin/components/admin-iso/components/admin-returniso/admin-returniso.component';
 import { sectionFilter } from './sectionFilter.pipe';
+import { isoCodeFilter } from './isoCodeFilter.pipe';
 import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
 import { PolicyComponent } from './pages/landing/components/policy/policy.component';
 @NgModule({
@@ -101,7 +102,8 @@ import { PolicyComponent } from './pages/landing/components/policy/policy.compon
     AdminReturnisoComponent,
     sectionFilter,
     FaqsComponent,
-    PolicyComponent
+    PolicyComponent,
+    isoCodeFilter
   ],
   imports: [
     BrowserModule,

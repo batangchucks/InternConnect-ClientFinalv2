@@ -3,6 +3,7 @@ import { CompanyService } from 'src/app/shared/services/company.service';
 import { CompanyModel } from 'src/app/shared/models/company.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {NgForm} from '@angular/forms';
+import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 @Component({
   selector: 'app-companydirectory-update',
   templateUrl: './companydirectory-update.component.html',
@@ -14,9 +15,16 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   updateCompany! :FormGroup;
   createCompany!:FormGroup;
 
+  selectedFileLogo: File = null;
+  imageSrc: string;
+  LogoFileName:string;
+
+  selectedCoverPhoto: File = null;
+  coverPhotoFileName:string;
+
   Companies: CompanyModel[] = [];
 
-  constructor(private company: CompanyService) { }
+  constructor(private company: CompanyService,private File:fileUpload) { }
 
   ngOnInit(): void {
     this.company.getCompany().subscribe(eC=>{
@@ -72,8 +80,25 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   } 
   onSubmitCreate(f:NgForm) {
-   
-    this.company.createCompany(f.value).subscribe(createdC=> {
+    console.log(this.LogoFileName);
+    console.log(this.coverPhotoFileName);
+
+    var payload= {
+      name: f.controls.name.value,
+      link: f.controls.link.value,
+      addressOne: f.controls.addressOne.value,
+      addressTwo:f.controls.addressTwo.value,
+      addressThree:f.controls.addressThree.value,
+      city:f.controls.city.value,
+      headerFileName:this.coverPhotoFileName,
+      logoFileName:this.LogoFileName,
+      description:f.controls.description.value,
+      contactPersonName:f.controls.contactPersonName.value,
+      contactPersonEmail:f.controls.contactPersonEmail.value,
+      contactPersonDesignation:f.controls.contactPersonDesignation.value
+    }
+ 
+    this.company.createCompany(payload).subscribe(createdC=> {
       console.log(createdC);
       this.ngOnInit();
       this.toCancelOne();
@@ -86,6 +111,43 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       this.ngOnInit();
     });
 
+  }
+
+  uploadLogo(event) {
+    this.selectedFileLogo = <File>event.target.files[0];
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [image] = event.target.files;
+      reader.readAsDataURL(image);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+      };
+    }
+    const formData: FormData = new FormData();
+    formData.append('files', this.selectedFileLogo, this.selectedFileLogo.name);
+   
+    this.File.uploadEndorsement(formData).subscribe((data:any)=>{
+      this.LogoFileName = data.toString();
+    
+    });
+  }
+
+  uploadCoverPhoto(event) {
+    this.selectedCoverPhoto = <File>event.target.files[0];
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [image] = event.target.files;
+      reader.readAsDataURL(image);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+      };
+    }
+    const formData: FormData = new FormData();
+    formData.append('files', this.selectedCoverPhoto, this.selectedCoverPhoto.name);
+   
+    this.File.uploadEndorsement(formData).subscribe((data:any)=>{
+      this.coverPhotoFileName = data.toString();
+    });
   }
 
  

@@ -3,6 +3,7 @@ import { Router,Params,ActivatedRoute } from '@angular/router';
 import { CompanyModel } from 'src/app/shared/models/company.model';
 import { opportunityModel } from 'src/app/shared/models/opportunity.model';
 import { CompanyService } from 'src/app/shared/services/company.service';
+import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 
 
 
@@ -16,9 +17,16 @@ export class CompanyprofileComponent implements OnInit {
   public Companies:CompanyModel [] = [];
   opportunity: opportunityModel [] = [];
   companyProfile!:CompanyModel;
-  constructor(private router:Router,  private route: ActivatedRoute,private company:CompanyService) { }
+
+  photoUrl:string;
+
+  constructor(private router:Router,  private route: ActivatedRoute,private company:CompanyService,private File: fileUpload) { }
 
   ngOnInit(): void {
+
+
+    window.scrollTo(0, 0);
+    this.photoUrl = this.File.photoUrl;
     
     this.route.params
     .subscribe(

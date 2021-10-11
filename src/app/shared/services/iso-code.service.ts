@@ -12,6 +12,10 @@ export class IsoCodeService {
 
   constructor(private http: HttpClient) {}
 
+
+  getReturnIso(adminId:number):Observable<isoCodeListModel[]> {
+    return this.http.get<isoCodeListModel[]>(this.apiUrl + 'api/IsoCode/admin/' + adminId);
+  }
   getCoordinatorData(programId: number) {
     return this.http.get(this.apiUrl + 'api/Admin/coordinators/' + programId);
   }
@@ -36,5 +40,14 @@ export class IsoCodeService {
     return this.http
       .get<isoCodeListModel[]>(this.apiUrl + 'api/IsoCode/admin/'+adminId)
       .pipe(map((eachIso) => eachIso.filter((eachIso) => eachIso.used === false)));
+  }
+
+  getISObyCoord(adminId:number):Observable<isoCodeListModel[]> {
+
+    return this.http.get<isoCodeListModel[]>(this.apiUrl+'api/IsoCode/admin/'+adminId);
+  }
+
+  returnToChair(programId:number,payload:any[]) {
+    return this.http.put(this.apiUrl+'api/IsoCode/transfertochair/'+programId,payload);
   }
 }

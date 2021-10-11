@@ -264,6 +264,14 @@
                   <label for="email-address" class="sr-only" class="text-base">Contact Person Designation (optional)</label>
                   <input type="text" ngModel  name="contactPersonDesignation" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
                 </div>
+                <div class="mt-4">
+                 
+                  <input type="file" (change)="uploadLogo($event)">
+                </div>
+                <div class="mt-4">
+                 
+                  <input type="file" (change)="uploadCoverPhoto($event)">
+                </div>
                
             </div>
             <div class="px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse">

@@ -9,6 +9,7 @@ import { sectionModel } from './shared/models/section.model';
 export class sectionFilter implements PipeTransform {
 
   transform(isoCodeList:isoCodeListModel[],sectionId:number): isoCodeListModel[] {
+    
     if(!isoCodeList || !sectionId) {
       return isoCodeList;
     }

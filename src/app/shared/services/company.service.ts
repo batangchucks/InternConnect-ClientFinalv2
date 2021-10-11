@@ -69,7 +69,7 @@ export class CompanyService {
       upCompany
     );
   }
-  createCompany(crCompany: NgForm): Observable<CompanyModel[]> {
+  createCompany(crCompany: any): Observable<CompanyModel[]> {
     return this.http.post<CompanyModel[]>(
       this.apiUrl + 'api/Company',
       crCompany
