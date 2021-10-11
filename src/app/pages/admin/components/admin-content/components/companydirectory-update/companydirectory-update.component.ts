@@ -2,52 +2,52 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/shared/services/company.service';
 import { CompanyModel } from 'src/app/shared/models/company.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 @Component({
   selector: 'app-companydirectory-update',
   templateUrl: './companydirectory-update.component.html',
-  styleUrls: ['./companydirectory-update.component.scss']
+  styleUrls: ['./companydirectory-update.component.scss'],
 })
 export class CompanydirectoryUpdateComponent implements OnInit {
   CreateIndicator: boolean = false;
   UpdateIndicator: boolean = false;
-  updateCompany! :FormGroup;
-  createCompany!:FormGroup;
+  updateCompany!: FormGroup;
+  createCompany!: FormGroup;
 
   selectedFileLogo: File = null;
   imageSrc: string;
-  LogoFileName:string;
+  LogoFileName: string;
 
   selectedCoverPhoto: File = null;
-  coverPhotoFileName:string;
+  coverPhotoFileName: string;
 
   Companies: CompanyModel[] = [];
 
-  constructor(private company: CompanyService,private File:fileUpload) { }
+  constructor(private company: CompanyService, private File: fileUpload) {}
 
   ngOnInit(): void {
-    this.company.getCompany().subscribe(eC=>{
+    this.company.getCompany().subscribe((eC) => {
       this.Companies = eC;
-    })
+    });
   }
-  deleteCompany(eachCid:number) {
-    this.company.deleteCompany(eachCid).subscribe(response=>{
+  deleteCompany(eachCid: number) {
+    this.company.deleteCompany(eachCid).subscribe((response) => {
       this.ngOnInit();
     });
   }
-  toCreate() { 
+  toCreate() {
     this.CreateIndicator = true;
-  } 
+  }
 
-  toCancelOne() { 
+  toCancelOne() {
     this.CreateIndicator = false;
-  } 
+  }
   toCancelTwo() {
     this.UpdateIndicator = false;
-  } 
+  }
 
-  toUpdate(toUpdateCompany:CompanyModel) { 
+  toUpdate(toUpdateCompany: CompanyModel) {
     this.UpdateIndicator = true;
     const name = toUpdateCompany.name;
     const description = toUpdateCompany.description;
@@ -61,56 +61,58 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     const contactPersonDesignation = toUpdateCompany.contactPersonDesignation;
     const contactPersonEmail = toUpdateCompany.contactPersonEmail;
     const link = toUpdateCompany.link;
-    const id =toUpdateCompany.id;
+    const id = toUpdateCompany.id;
 
     this.updateCompany = new FormGroup({
-      'name': new FormControl(name, Validators.required),
-      'description': new FormControl(description, Validators.required),
-      'addressOne':new FormControl(addressOne,Validators.required),
-      'addressTwo':new FormControl(addressTwo,Validators.required),
-      'addressThree':new FormControl(addressThree,Validators.required),
-      'city':new FormControl(city,Validators.required),
-     
-      'contactPersonName':new FormControl(contactPersonName,Validators.required),
-      'contactPersonDesignation':new FormControl(contactPersonDesignation,Validators.required),
-      'contactPersonEmail':new FormControl(contactPersonEmail,Validators.required),
-      'link':new FormControl(link,Validators.required),
-      'id':new FormControl(id,Validators.required),
-    
-    });
-  } 
-  onSubmitCreate(f:NgForm) {
-    console.log(this.LogoFileName);
-    console.log(this.coverPhotoFileName);
+      name: new FormControl(name, Validators.required),
+      description: new FormControl(description, Validators.required),
+      addressOne: new FormControl(addressOne, Validators.required),
+      addressTwo: new FormControl(addressTwo, Validators.required),
+      addressThree: new FormControl(addressThree, Validators.required),
+      city: new FormControl(city, Validators.required),
 
-    var payload= {
+      contactPersonName: new FormControl(
+        contactPersonName,
+        Validators.required
+      ),
+      contactPersonDesignation: new FormControl(
+        contactPersonDesignation,
+        Validators.required
+      ),
+      contactPersonEmail: new FormControl(
+        contactPersonEmail,
+        Validators.required
+      ),
+      link: new FormControl(link, Validators.required),
+      id: new FormControl(id, Validators.required),
+    });
+  }
+  onSubmitCreate(f: NgForm) {
+    var payload = {
       name: f.controls.name.value,
       link: f.controls.link.value,
       addressOne: f.controls.addressOne.value,
-      addressTwo:f.controls.addressTwo.value,
-      addressThree:f.controls.addressThree.value,
-      city:f.controls.city.value,
-      headerFileName:this.coverPhotoFileName,
-      logoFileName:this.LogoFileName,
-      description:f.controls.description.value,
-      contactPersonName:f.controls.contactPersonName.value,
-      contactPersonEmail:f.controls.contactPersonEmail.value,
-      contactPersonDesignation:f.controls.contactPersonDesignation.value
-    }
- 
-    this.company.createCompany(payload).subscribe(createdC=> {
-      console.log(createdC);
+      addressTwo: f.controls.addressTwo.value,
+      addressThree: f.controls.addressThree.value,
+      city: f.controls.city.value,
+      headerFileName: this.coverPhotoFileName,
+      logoFileName: this.LogoFileName,
+      description: f.controls.description.value,
+      contactPersonName: f.controls.contactPersonName.value,
+      contactPersonEmail: f.controls.contactPersonEmail.value,
+      contactPersonDesignation: f.controls.contactPersonDesignation.value,
+    };
+
+    this.company.createCompany(payload).subscribe((createdC) => {
       this.ngOnInit();
       this.toCancelOne();
-    })
+    });
   }
   updateSubmit() {
-    
-    this.company.updateCompany(this.updateCompany.value).subscribe(change=> {
+    this.company.updateCompany(this.updateCompany.value).subscribe((change) => {
       this.toCancelTwo();
       this.ngOnInit();
     });
-
   }
 
   uploadLogo(event) {
@@ -125,10 +127,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     }
     const formData: FormData = new FormData();
     formData.append('files', this.selectedFileLogo, this.selectedFileLogo.name);
-   
-    this.File.uploadEndorsement(formData).subscribe((data:any)=>{
+
+    this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.LogoFileName = data.toString();
-    
     });
   }
 
@@ -143,13 +144,14 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       };
     }
     const formData: FormData = new FormData();
-    formData.append('files', this.selectedCoverPhoto, this.selectedCoverPhoto.name);
-   
-    this.File.uploadEndorsement(formData).subscribe((data:any)=>{
+    formData.append(
+      'files',
+      this.selectedCoverPhoto,
+      this.selectedCoverPhoto.name
+    );
+
+    this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.coverPhotoFileName = data.toString();
     });
   }
-
- 
-
 }

@@ -43,7 +43,6 @@ export class CompanyService {
       .get<opportunityModel[]>(this.apiUrl + 'api/Opportunity')
       .subscribe((eachO) => {
         this.showCaseOpportunity(eachO);
-        // console.log(this.Opportunity);
       });
   }
   showCaseOpportunity(eachO: opportunityModel[]) {

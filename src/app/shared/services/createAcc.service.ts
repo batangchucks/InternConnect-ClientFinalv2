@@ -62,7 +62,6 @@ export class createAccount {
   }
 
   POSTstudent(postVal: FormGroup) {
-    console.log(postVal);
     return this.http.post(this.apiUrl + 'api/Accounts/student', postVal);
   }
   deleteStudent(id: number) {
@@ -108,8 +107,10 @@ export class createAccount {
     return this.http.post(this.apiUrl + 'api/techcoordinator', postVal);
   }
 
-  getSubmissionStudent(studId:number) : Observable<submissionModel> {
-    return this.http.get<submissionModel>(this.apiUrl + 'api/Submission/'+studId);
+  getSubmissionStudent(studId: number): Observable<submissionModel> {
+    return this.http.get<submissionModel>(
+      this.apiUrl + 'api/Submission/' + studId
+    );
     // wrong
   }
 
@@ -124,9 +125,6 @@ export class createAccount {
   }
 
   POSTsubmission(sectionId: number, programId: number, postVal) {
-    // console.log(sectionId);
-    // console.log(programId);
-
     return this.http.post(
       this.apiUrl +
         'api/Submission?sectionId=' +
@@ -138,19 +136,20 @@ export class createAccount {
   }
 
   UPDATEsubmission(postVal) {
-    return this.http.put(
-      this.apiUrl +
-        'api/Submission',postVal
-    );
+    return this.http.put(this.apiUrl + 'api/Submission', postVal);
   }
 
   updateAdminSignature(id: number, postVal) {
     return this.http.put(this.apiUrl + 'api/Admin/signature/' + id, postVal);
   }
 
-  coordinatorApprove(adminId: number,assignIso:number, postVal) {
+  coordinatorApprove(adminId: number, assignIso: number, postVal) {
     return this.http.put(
-      this.apiUrl + 'api/AdminResponse/coordinator/' + adminId+'/'+assignIso,
+      this.apiUrl +
+        'api/AdminResponse/coordinator/' +
+        adminId +
+        '/' +
+        assignIso,
       postVal
     );
   }
@@ -160,7 +159,7 @@ export class createAccount {
   //     postVal
   //   );
   // }
-  submissionStep2(programId:number): Observable<submissionModel[]> {
+  submissionStep2(programId: number): Observable<submissionModel[]> {
     return this.http
       .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/2')
       .pipe(
@@ -171,59 +170,70 @@ export class createAccount {
   }
 
   approvedByChair(Payload) {
-    return this.http.put(this.apiUrl+'api/AdminResponse/chair',Payload);
+    return this.http.put(this.apiUrl + 'api/AdminResponse/chair', Payload);
   }
 
   submissionStep3() {
-    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/3');
+    return this.http.get<submissionModel[]>(
+      this.apiUrl + 'api/Submission/byStep/3'
+    );
   }
-  approvedbyDean(adminId,Payload) {
-    return this.http.put(this.apiUrl+'api/AdminResponse/dean/'+adminId,Payload);
+  approvedbyDean(adminId, Payload) {
+    return this.http.put(
+      this.apiUrl + 'api/AdminResponse/dean/' + adminId,
+      Payload
+    );
   }
 
-  submissionStep4(sectionId:number): Observable<submissionModel[]> {
+  submissionStep4(sectionId: number): Observable<submissionModel[]> {
     return this.http
-    .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/4')
-    .pipe(
-      map((eachS) =>
-        eachS.filter((eachS) => eachS.student.section.id == sectionId)
-      )
-    );
+      .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/4')
+      .pipe(
+        map((eachS) =>
+          eachS.filter((eachS) => eachS.student.section.id == sectionId)
+        )
+      );
   }
-  approvedPending(submissionId:number) {
+  approvedPending(submissionId: number) {
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/pdf');
-    return this.http.get(this.apiUrl+'api/File/pdf/'+submissionId, { headers: headers, responseType: 'blob' });
+    return this.http.get(this.apiUrl + 'api/File/pdf/' + submissionId, {
+      headers: headers,
+      responseType: 'blob',
+    });
   }
   emailSent(payload) {
-    return this.http.put(this.apiUrl+'api/AdminResponse/coordinator/email',payload);
-  }
-  submissionStep5(sectionId:number): Observable<submissionModel[]> {
-    return this.http
-    .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/5')
-    .pipe(
-      map((eachS) =>
-        eachS.filter((eachS) => eachS.student.section.id == sectionId)
-      )
+    return this.http.put(
+      this.apiUrl + 'api/AdminResponse/coordinator/email',
+      payload
     );
+  }
+  submissionStep5(sectionId: number): Observable<submissionModel[]> {
+    return this.http
+      .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/5')
+      .pipe(
+        map((eachS) =>
+          eachS.filter((eachS) => eachS.student.section.id == sectionId)
+        )
+      );
   }
 
   approvedCompany(payload) {
-    return this.http.put(this.apiUrl+'api/AdminResponse/coordinator/company',payload);
-
+    return this.http.put(
+      this.apiUrl + 'api/AdminResponse/coordinator/company',
+      payload
+    );
   }
 
-  getLogs(adminId:number): Observable<logsModel[]> {
-
-    return this.http.get< logsModel[]>(this.apiUrl+'api/Logs/adminId?adminId='+adminId);
+  getLogs(adminId: number): Observable<logsModel[]> {
+    return this.http.get<logsModel[]>(
+      this.apiUrl + 'api/Logs/adminId?adminId=' + adminId
+    );
   }
   getWebstate(): Observable<webState> {
-    return this.http.get<webState>(this.apiUrl+'api/Webstate/1');
+    return this.http.get<webState>(this.apiUrl + 'api/Webstate/1');
   }
   updateWebstate(postVal) {
-    return this.http.put(this.apiUrl+'api/Webstate',postVal);
-    
+    return this.http.put(this.apiUrl + 'api/Webstate', postVal);
   }
-  
-
 }

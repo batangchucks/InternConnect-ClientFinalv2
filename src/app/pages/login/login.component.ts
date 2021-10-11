@@ -7,47 +7,40 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  isLoggedIn: boolean = true;
 
-  isLoggedIn:boolean = true;
-
-  constructor(private router:Router,  private route: ActivatedRoute, private auth:AuthenticationService) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private auth: AuthenticationService
+  ) {}
   @ViewChild('errContainer') divC;
 
-  ngOnInit(): void {
-   
-  }
-  onSubmit(form:NgForm) {
-    this.auth.login(form.value).subscribe(val=>{
-      
-        if(val.admin) {
+  ngOnInit(): void {}
+  onSubmit(form: NgForm) {
+    this.auth.login(form.value).subscribe(
+      (val) => {
+        if (val.admin) {
           this.isLoggedIn = true;
-          console.log(this.isLoggedIn);
+
           this.router.navigate(['/admin']);
-          
-        }
-        else if(val.student) {
+        } else if (val.student) {
           this.isLoggedIn = true;
-          console.log(this.isLoggedIn);
+
           this.router.navigate(['/']);
-          
         }
-      
-    },(error:HttpErrorResponse)=> {
-       if(error.status == 400) {
-        this.isLoggedIn = false;
-       }
-    
-    })
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status == 400) {
+          this.isLoggedIn = false;
+        }
+      }
+    );
   }
   onClick() {
-    this.isLoggedIn = ! this.isLoggedIn;
+    this.isLoggedIn = !this.isLoggedIn;
   }
-
- 
-
-  
-
 }

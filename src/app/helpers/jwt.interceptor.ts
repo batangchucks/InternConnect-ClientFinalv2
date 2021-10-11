@@ -18,21 +18,19 @@ export class JwtInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('added bearer token');
     // add auth header with jwt if user is logged in and request is to api url
     const user = this.authenticationService.userValue;
     const isLoggedIn = user && user.token;
-    console.log(isLoggedIn);
+
     const isApiUrl = request.url.startsWith(this.apiUrl);
     if (isLoggedIn && isApiUrl) {
-      console.log('setting');
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${user.token}`,
         },
       });
     }
-    console.log(request);
+
     return next.handle(request);
   }
 }

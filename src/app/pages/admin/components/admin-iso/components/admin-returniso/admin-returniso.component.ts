@@ -14,104 +14,95 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 export class AdminReturnisoComponent implements OnInit {
   TransferIndicator: boolean = false;
   user = JSON.parse(localStorage.getItem('user'));
-  selectedOption:number;
+  selectedOption: number;
   assignForm: FormGroup;
-  section:sectionModel[] = [];
-  sectionId:number;
+  section: sectionModel[] = [];
+  sectionId: number;
   isoCodeListM: isoCodeListModel[] = [];
-  indicator:boolean = null;
-  returnedIso:isoCodeListModel[] = [];
+  indicator: boolean = null;
+  returnedIso: isoCodeListModel[] = [];
 
   constructor(
     private Auth: AuthenticationService,
     private isoCode: IsoCodeService,
     private program: ProgramService
   ) {}
-  coordinatorListTransfer:any[];
-  coordinatorList:any[];
-  isoCodeList: any[]
-  isoCoordinator:isoCodeListModel[] = [];
+  coordinatorListTransfer: any[];
+  coordinatorList: any[];
+  isoCodeList: any[];
+  isoCoordinator: isoCodeListModel[] = [];
 
   ngOnInit(): void {
-   
-    if(this.user.admin.authId == 2) {
+    if (this.user.admin.authId == 2) {
       // this.isoCode.getCoordinatorData(this.user.admin.programId).subscribe((val:[any])=>{
       //   this.coordinatorList = val
-      //   console.log(val);
+
       // })
-      
+
       // get iso per program
-      console.log(this.user.admin.id);
-      this.isoCode.getReturnIso(this.user.admin.id).subscribe(returnedIso=> {
-      
-       this.returnedIso = returnedIso;
 
-      })
-      this.isoCode.getIsoCode(this.user.admin.programId).subscribe(eachIso=>{
-      this.isoCodeListM = eachIso;
-      
-        console.log(eachIso);
-      })
-      this.program.getSection(this.user.admin.programId).subscribe(eachS=> {
-        this.section = eachS;
-        
-      })
-    }
-    else if (this.user.admin.authId == 3) {
-      this.isoCode.getISObyCoord(this.user.admin.id).subscribe(eachIso=> {
-       this.isoCoordinator = eachIso;
-
+      this.isoCode.getReturnIso(this.user.admin.id).subscribe((returnedIso) => {
+        this.returnedIso = returnedIso;
       });
-
+      this.isoCode
+        .getIsoCode(this.user.admin.programId)
+        .subscribe((eachIso) => {
+          this.isoCodeListM = eachIso;
+        });
+      this.program.getSection(this.user.admin.programId).subscribe((eachS) => {
+        this.section = eachS;
+      });
+    } else if (this.user.admin.authId == 3) {
+      this.isoCode.getISObyCoord(this.user.admin.id).subscribe((eachIso) => {
+        this.isoCoordinator = eachIso;
+      });
     }
-    
-    
   }
 
-  toTransfer(isoCodeId:number,code:number) {
-
+  toTransfer(isoCodeId: number, code: number) {
     this.TransferIndicator = true;
 
     this.assignForm = new FormGroup({
-      'id': new FormControl(isoCodeId),
-      'code': new FormControl(code),
-      'programId':new FormControl(this.user.admin.programId),
-     
+      id: new FormControl(isoCodeId),
+      code: new FormControl(code),
+      programId: new FormControl(this.user.admin.programId),
     });
 
-    this.isoCode.getCoordinatorData(this.user.admin.programId).subscribe((val:[any])=> {
-      this.coordinatorListTransfer = val;
-     
-    });
+    this.isoCode
+      .getCoordinatorData(this.user.admin.programId)
+      .subscribe((val: [any]) => {
+        this.coordinatorListTransfer = val;
+      });
   }
 
-  returnIso(id:number,code:number) {
-    var Payload= [{
-      id:id,
-      code:code,
-      programId:this.user.admin.programId
-    }]
-    console.log(Payload);    
+  returnIso(id: number, code: number) {
+    var Payload = [
+      {
+        id: id,
+        code: code,
+        programId: this.user.admin.programId,
+      },
+    ];
 
-    this.isoCode.returnToChair(this.user.admin.programId,Payload).subscribe(eachS=> {
-      console.log(eachS);
-      this.ngOnInit();
-    });
-   
+    this.isoCode
+      .returnToChair(this.user.admin.programId, Payload)
+      .subscribe((eachS) => {
+        this.ngOnInit();
+      });
   }
 
   submit() {
     this.TransferIndicator = false;
-    this.isoCode.transferIso(this.assignForm.value, this.selectedOption).subscribe(isoC=> {
-      console.log(isoC);
-      this.ngOnInit();
-    })
+    this.isoCode
+      .transferIso(this.assignForm.value, this.selectedOption)
+      .subscribe((isoC) => {
+        this.ngOnInit();
+      });
   }
 
-  deleteIso(id:number) {
-    this.isoCode.deleteIsoCode(id).subscribe(deletedIso=> {
+  deleteIso(id: number) {
+    this.isoCode.deleteIsoCode(id).subscribe((deletedIso) => {
       this.ngOnInit();
-      console.log(deletedIso);
     });
   }
 
@@ -119,13 +110,9 @@ export class AdminReturnisoComponent implements OnInit {
     this.TransferIndicator = false;
   }
 
-
-
   logout() {
     this.Auth.logout();
   }
 
-  changeCoordinator(event) {
-    console.log(event.targetValue);
-  }
+  changeCoordinator(event) {}
 }

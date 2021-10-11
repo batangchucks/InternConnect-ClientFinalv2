@@ -13,7 +13,7 @@ export class OnboardingComponent implements OnInit {
   resetKey: string;
   onboardForm: FormGroup;
   confirmpassword: string;
-  isLoggedIn:boolean = true;
+  isLoggedIn: boolean = true;
   constructor(
     private account: createAccount,
     private router: Router,
@@ -24,8 +24,7 @@ export class OnboardingComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.email = params['email'];
       this.resetKey = params['resetkey'];
-      console.log(this.email);
-      console.log(this.resetKey);
+
       this.initalizeForm();
     });
   }
@@ -37,24 +36,20 @@ export class OnboardingComponent implements OnInit {
     });
   }
   onSubmit() {
-    // console.log(f.value);
     //   this.account.resetPassword(f.value).subscribe(newUser=> {
-    //     console.log(newUser);
+
     //   })
     const password = this.onboardForm.get('password').value;
-    console.log(this.confirmpassword);
+
     if (password === this.confirmpassword) {
       this.isLoggedIn = true;
       this.account
         .resetPassword(this.onboardForm.value)
         .subscribe((resettedU) => {
-        
           this.router.navigate(['/login']);
         });
-
-    }
-    else {
-      this.isLoggedIn = false
+    } else {
+      this.isLoggedIn = false;
     }
   }
   onClick() {

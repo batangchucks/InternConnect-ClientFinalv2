@@ -6,126 +6,114 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
 @Component({
   selector: 'app-final-submissions',
   templateUrl: './final-submissions.component.html',
-  styleUrls: ['./final-submissions.component.scss']
+  styleUrls: ['./final-submissions.component.scss'],
 })
 export class FinalSubmissionsComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user'));
   Submissions: submissionModel[] = [];
   deanSubmissions: submissionModel[] = [];
   DisapproveIndicatorChair: boolean = false;
-  DisapproveIndicatorDean:boolean = false;
+  DisapproveIndicatorDean: boolean = false;
   RejectForm: FormGroup;
 
-  constructor(private Acc: createAccount) { }
+  constructor(private Acc: createAccount) {}
 
-  stampFileName:string="file";
+  stampFileName: string = 'file';
 
   ngOnInit(): void {
-
-    
-
-    if(this.user.admin.authId==2 ){
+    if (this.user.admin.authId == 2) {
       this.deptChairSubmissionList();
-    }
-    else if(this.user.admin.authId == 1){
+    } else if (this.user.admin.authId == 1) {
       this.deanSubmissionList();
       this.deanAcc();
     }
-    
-
   }
 
   deanAcc() {
-    this.Acc.getByAccount(this.user.admin.id).subscribe(admin=> {
+    this.Acc.getByAccount(this.user.admin.id).subscribe((admin) => {
       this.stampFileName = admin.stampFileName;
-      console.log(this.stampFileName);
     });
   }
   deptChairSubmissionList() {
-    this.Acc.submissionStep2(this.user.admin.programId).subscribe(appByCoord=> {
-      this.Submissions = appByCoord;
-    })
+    this.Acc.submissionStep2(this.user.admin.programId).subscribe(
+      (appByCoord) => {
+        this.Submissions = appByCoord;
+      }
+    );
   }
 
   deanSubmissionList() {
-    this.Acc.submissionStep3().subscribe(eachS=> {
-      console.log(eachS);
-      this.deanSubmissions =eachS;
+    this.Acc.submissionStep3().subscribe((eachS) => {
+      this.deanSubmissions = eachS;
     });
   }
-  decision(adminResponseId:number,acceptedByChair:boolean,comments:string) {
-    
-     
+  decision(
+    adminResponseId: number,
+    acceptedByChair: boolean,
+    comments: string
+  ) {
     var Payload = {
-        id:adminResponseId,
-        acceptedByChair:acceptedByChair,
-        comments:comments
-    } 
-    this.Acc.approvedByChair(Payload).subscribe(approvedS=>{
+      id: adminResponseId,
+      acceptedByChair: acceptedByChair,
+      comments: comments,
+    };
+    this.Acc.approvedByChair(Payload).subscribe((approvedS) => {
       this.ngOnInit();
     });
-  
   }
-  deanDecision(adminResponseId:number,acceptedByDean:boolean,comments:string) {
+  deanDecision(
+    adminResponseId: number,
+    acceptedByDean: boolean,
+    comments: string
+  ) {
     var Payload = {
-      id:adminResponseId,
-      acceptedByDean:acceptedByDean,
-      comments:comments
-    }
-    console.log(Payload);
-    console.log(this.user.admin.id);
-    this.Acc.approvedbyDean(this.user.admin.id,Payload).subscribe(approved=>{
-      this.ngOnInit();
-    })
+      id: adminResponseId,
+      acceptedByDean: acceptedByDean,
+      comments: comments,
+    };
 
-  }
-
-  toDisapproveChair(responseId:number) {
-    this.DisapproveIndicatorChair = true;
-  
-     
-
-      this.RejectForm = new FormGroup({
-        'comments': new FormControl(''),
-        'id': new FormControl(responseId),
-        'acceptedByChair': new FormControl(false)
-      });
-  }
-  toDisapproveDean(responseId:number) {
-    console.log("calling");
-    this.DisapproveIndicatorDean = true;
-  
-     
-
-      this.RejectForm = new FormGroup({
-        'comments': new FormControl(''),
-        'id': new FormControl(responseId),
-        'acceptedByDean': new FormControl(false)
-      });
-  
-  }
-
-  rejectedSubmitChair() {
-    this.Acc.approvedByChair(this.RejectForm.value).subscribe(
-      (updatedVal) => {
-        console.log(updatedVal);
+    this.Acc.approvedbyDean(this.user.admin.id, Payload).subscribe(
+      (approved) => {
         this.ngOnInit();
       }
     );
+  }
+
+  toDisapproveChair(responseId: number) {
+    this.DisapproveIndicatorChair = true;
+
+    this.RejectForm = new FormGroup({
+      comments: new FormControl(''),
+      id: new FormControl(responseId),
+      acceptedByChair: new FormControl(false),
+    });
+  }
+  toDisapproveDean(responseId: number) {
+    this.DisapproveIndicatorDean = true;
+
+    this.RejectForm = new FormGroup({
+      comments: new FormControl(''),
+      id: new FormControl(responseId),
+      acceptedByDean: new FormControl(false),
+    });
+  }
+
+  rejectedSubmitChair() {
+    this.Acc.approvedByChair(this.RejectForm.value).subscribe((updatedVal) => {
+      this.ngOnInit();
+    });
     this.DisapproveIndicatorChair = false;
   }
 
   rejectedSubmitDean() {
-    console.log("rejected by dean");
-    this.Acc.approvedbyDean(this.user.admin.id,this.RejectForm.value).subscribe(
-      (updatedVal) => {
-        console.log(updatedVal);
-        this.ngOnInit();
-      }
-    );
+    this.Acc.approvedbyDean(
+      this.user.admin.id,
+      this.RejectForm.value
+    ).subscribe((updatedVal) => {
+      this.ngOnInit();
+    });
     this.DisapproveIndicatorDean = false;
   }
- 
 
   toCancelChair() {
     this.DisapproveIndicatorChair = false;
@@ -133,5 +121,4 @@ export class FinalSubmissionsComponent implements OnInit {
   toCancelDean() {
     this.DisapproveIndicatorDean = false;
   }
-
 }

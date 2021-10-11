@@ -4,16 +4,10 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+  constructor(private auth: AuthenticationService) {}
 
-  constructor(private auth: AuthenticationService) { }
-
-  ngOnInit(): void {
-  //  this.auth.getAccounts().subscribe(eachVal=> {
-  //    console.log(eachVal);
-  //  })
-  }
-
+  ngOnInit(): void {}
 }

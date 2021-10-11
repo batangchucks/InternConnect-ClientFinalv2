@@ -7,23 +7,20 @@ import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
-  styleUrls: ['./company.component.scss']
+  styleUrls: ['./company.component.scss'],
 })
 export class CompanyComponent implements OnInit {
   photoUrl: string;
 
-  companies:CompanyModel[] = [];
+  companies: CompanyModel[] = [];
 
-  constructor(private company:CompanyService,private File: fileUpload) { }
-  
+  constructor(private company: CompanyService, private File: fileUpload) {}
+
   ngOnInit(): void {
     this.photoUrl = this.File.photoUrl;
 
-    this.company.getCompany().subscribe(eachC => {
+    this.company.getCompany().subscribe((eachC) => {
       this.companies = eachC;
-       console.log(this.companies);
     });
-  
   }
-
 }

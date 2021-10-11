@@ -7,80 +7,72 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 @Component({
   selector: 'app-sections',
   templateUrl: './sections.component.html',
-  styleUrls: ['./sections.component.scss']
+  styleUrls: ['./sections.component.scss'],
 })
 export class SectionsComponent implements OnInit {
-    CreateIndicator: boolean = false;
-    UpdateIndicator: boolean = false;
-    createForm:FormGroup;
-    updateForm:FormGroup;
+  CreateIndicator: boolean = false;
+  UpdateIndicator: boolean = false;
+  createForm: FormGroup;
+  updateForm: FormGroup;
 
-    Section: sectionModel[] = [];
-    
-    user = JSON.parse(localStorage.getItem("user"));
-    constructor(private account: createAccount,private program: ProgramService) { }
+  Section: sectionModel[] = [];
 
-    ngOnInit(): void {
-      this.showSection();
-    }
+  user = JSON.parse(localStorage.getItem('user'));
+  constructor(
+    private account: createAccount,
+    private program: ProgramService
+  ) {}
 
-    toCreate() { 
-      this.CreateIndicator = true;
+  ngOnInit(): void {
+    this.showSection();
+  }
 
-      this.createForm = new FormGroup({
-        "name":new FormControl(""),
-        "programId": new FormControl(this.user.admin.programId)
-      });
-    } 
+  toCreate() {
+    this.CreateIndicator = true;
 
-    createFormSubmit() {
-     this.account.POSTsection(this.createForm.value).subscribe(newSection=> {
-        this.ngOnInit();
-        this.CreateIndicator = false;
-     });
-    
-    }
+    this.createForm = new FormGroup({
+      name: new FormControl(''),
+      programId: new FormControl(this.user.admin.programId),
+    });
+  }
 
-    toUpdate(section:sectionModel) { 
-
-      this.updateForm =  new FormGroup({
-        "id":new FormControl(section.id),
-        "name":new FormControl(section.name),
-        "programId": new FormControl(this.user.admin.programId)
-      
-        
-      })
-      this.UpdateIndicator = true;
-
-    } 
-    updateFormS(){
-        this.program.PUTsection(this.updateForm.value).subscribe(upSec=> {
-         
-          this.ngOnInit();
-          this.UpdateIndicator = false;
-
-        });
-       
-    }
-    // for deleting a section
-    deleteSection(section:sectionModel) {
-      this.program.deleteSection(section.id).subscribe(delS=> {
-        console.log(delS);
-        this.ngOnInit();
-      })
-    }
-
-    toCancelTwo() {
-      this.UpdateIndicator = false;
-    } 
-    toCancelOne() { 
+  createFormSubmit() {
+    this.account.POSTsection(this.createForm.value).subscribe((newSection) => {
+      this.ngOnInit();
       this.CreateIndicator = false;
-    } 
-    showSection() {
-     
-      this.account.getSection(this.user.admin.programId).subscribe(eachS=> {
-        this.Section = eachS;
-      });
-    }
+    });
+  }
 
+  toUpdate(section: sectionModel) {
+    this.updateForm = new FormGroup({
+      id: new FormControl(section.id),
+      name: new FormControl(section.name),
+      programId: new FormControl(this.user.admin.programId),
+    });
+    this.UpdateIndicator = true;
+  }
+  updateFormS() {
+    this.program.PUTsection(this.updateForm.value).subscribe((upSec) => {
+      this.ngOnInit();
+      this.UpdateIndicator = false;
+    });
+  }
+  // for deleting a section
+  deleteSection(section: sectionModel) {
+    this.program.deleteSection(section.id).subscribe((delS) => {
+      this.ngOnInit();
+    });
+  }
+
+  toCancelTwo() {
+    this.UpdateIndicator = false;
+  }
+  toCancelOne() {
+    this.CreateIndicator = false;
+  }
+  showSection() {
+    this.account.getSection(this.user.admin.programId).subscribe((eachS) => {
+      this.Section = eachS;
+    });
+  }
 }

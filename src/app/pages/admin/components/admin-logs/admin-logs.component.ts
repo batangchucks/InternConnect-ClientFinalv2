@@ -5,20 +5,16 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
 @Component({
   selector: 'app-admin-logs',
   templateUrl: './admin-logs.component.html',
-  styleUrls: ['./admin-logs.component.scss']
+  styleUrls: ['./admin-logs.component.scss'],
 })
 export class AdminLogsComponent implements OnInit {
-
-  constructor(private Acc: createAccount) { }
+  constructor(private Acc: createAccount) {}
   user = JSON.parse(localStorage.getItem('user'));
   logs: logsModel[] = [];
 
   ngOnInit(): void {
-
-      this.Acc.getLogs(this.user.admin.id).subscribe(profile=> {
-        this.logs = profile;
-        console.log(this.logs);
-      });
+    this.Acc.getLogs(this.user.admin.id).subscribe((profile) => {
+      this.logs = profile;
+    });
   }
-
 }

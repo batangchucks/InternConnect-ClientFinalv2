@@ -5,20 +5,18 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 @Component({
   selector: 'app-admin-esignature',
   templateUrl: './admin-esignature.component.html',
-  styleUrls: ['./admin-esignature.component.scss']
+  styleUrls: ['./admin-esignature.component.scss'],
 })
 export class AdminEsignatureComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user'));
 
   selectedFileUp: File = null;
   imageSrc: string;
-  PhotoFileNameEsig:string;
+  PhotoFileNameEsig: string;
 
-  constructor(private File:fileUpload,private Acc: createAccount) { }
+  constructor(private File: fileUpload, private Acc: createAccount) {}
 
-  ngOnInit(): void {
-    console.log(this.user);
-  }
+  ngOnInit(): void {}
   eSignatureUp(event) {
     this.selectedFileUp = <File>event.target.files[0];
     const reader = new FileReader();
@@ -31,20 +29,18 @@ export class AdminEsignatureComponent implements OnInit {
     }
     const formData: FormData = new FormData();
     formData.append('files', this.selectedFileUp, this.selectedFileUp.name);
-   
-    this.File.uploadEsign(formData).subscribe((data:any)=>{
+
+    this.File.uploadEsign(formData).subscribe((data: any) => {
       this.PhotoFileNameEsig = data.toString();
       this.updateEsig();
     });
   }
   updateEsig() {
-    console.log(this.PhotoFileNameEsig);
     var PostVal = {
-      stampFileName:this.PhotoFileNameEsig
-    }
-    this.Acc.updateAdminSignature(this.user.admin.id,PostVal).subscribe(createdVal=> {
-      console.log(createdVal);
-    });
+      stampFileName: this.PhotoFileNameEsig,
+    };
+    this.Acc.updateAdminSignature(this.user.admin.id, PostVal).subscribe(
+      (createdVal) => {}
+    );
   }
-
 }

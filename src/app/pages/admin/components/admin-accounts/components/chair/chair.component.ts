@@ -9,48 +9,42 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 @Component({
   selector: 'app-chair',
   templateUrl: './chair.component.html',
-  styleUrls: ['./chair.component.scss']
+  styleUrls: ['./chair.component.scss'],
 })
 export class ChairComponent implements OnInit {
-
   UpdateIndicator: boolean = false;
-  Program:programModel[] = [];
+  Program: programModel[] = [];
   Chair: chairModel[] = [];
 
-  constructor(private program:ProgramService, private Account: createAccount) { }
+  constructor(
+    private program: ProgramService,
+    private Account: createAccount
+  ) {}
 
   ngOnInit(): void {
-    this.program.getProgram().subscribe(eachP=> {
+    this.program.getProgram().subscribe((eachP) => {
       this.Program = eachP;
-
     });
     this.showChair();
- 
-    
   }
 
-  toDelete(chairId:number) {
-    this.Account.deleteChair(chairId).subscribe(deletedCh=> {
-     
+  toDelete(chairId: number) {
+    this.Account.deleteChair(chairId).subscribe((deletedCh) => {
       this.ngOnInit();
     });
   }
 
   toCancel() {
     this.UpdateIndicator = false;
-  } 
-  submitNewChair(f:NgForm) {
-    this.Account.POSTChair(f.value).subscribe(newChair=> {
+  }
+  submitNewChair(f: NgForm) {
+    this.Account.POSTChair(f.value).subscribe((newChair) => {
       this.ngOnInit();
-
-    })
+    });
   }
   showChair() {
-    this.Account.getChairs().subscribe(eachC=>{
+    this.Account.getChairs().subscribe((eachC) => {
       this.Chair = eachC;
-      console.log(this.Chair);
-     
     });
- 
   }
 }

@@ -7,25 +7,25 @@ import { userModel } from 'src/app/shared/models/user.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
 
-
 @Component({
   selector: 'app-coordinator',
   templateUrl: './coordinator.component.html',
-  styleUrls: ['./coordinator.component.scss']
+  styleUrls: ['./coordinator.component.scss'],
 })
 export class CoordinatorComponent implements OnInit {
   UpdateIndicator: boolean = false;
-  user  = JSON.parse(localStorage.getItem("user"));
- 
+  user = JSON.parse(localStorage.getItem('user'));
 
-  coordinatorF!:FormGroup;
-  Section:sectionModel[] =[];
+  coordinatorF!: FormGroup;
+  Section: sectionModel[] = [];
   // create an adminModel
   Coordinator: coordinatorModel[] = [];
-  updateCoordinatorF:FormGroup;
+  updateCoordinatorF: FormGroup;
 
-
-  constructor(private accounts:createAccount,private program : ProgramService) { }
+  constructor(
+    private accounts: createAccount,
+    private program: ProgramService
+  ) {}
 
   ngOnInit(): void {
     this.addFormval();
@@ -34,52 +34,45 @@ export class CoordinatorComponent implements OnInit {
   }
   addFormval() {
     this.coordinatorF = new FormGroup({
-      'programId': new FormControl(this.user.admin.programId),
-      'email': new FormControl(""),
-      'sectionId': new FormControl("")
+      programId: new FormControl(this.user.admin.programId),
+      email: new FormControl(''),
+      sectionId: new FormControl(''),
     });
-  
   }
 
   showSection() {
-
-    this.program.getSection(this.user.admin.programId).subscribe(sections=> {
-     this.Section = sections;
+    this.program.getSection(this.user.admin.programId).subscribe((sections) => {
+      this.Section = sections;
     });
   }
 
-  updateCoordinatorS() {
-    console.log(this.updateCoordinatorF.value);
-  }
+  updateCoordinatorS() {}
 
   showCoordinator() {
     // should use the admin routes only
- 
-    this.accounts.getCoordinator(this.user.admin.programId).subscribe(coordinator=> {
-     
-      this.Coordinator = coordinator;
-    });
+
+    this.accounts
+      .getCoordinator(this.user.admin.programId)
+      .subscribe((coordinator) => {
+        this.Coordinator = coordinator;
+      });
   }
- 
+
   createCoordinator() {
-    this.accounts.POSTcoordinator(this.coordinatorF.value).subscribe(createdCoord=> {
-     this.ngOnInit();
-    });
-
+    this.accounts
+      .POSTcoordinator(this.coordinatorF.value)
+      .subscribe((createdCoord) => {
+        this.ngOnInit();
+      });
   }
 
-  
-
-  toDelete(id:number) {
-    console.log(id);
-    this.accounts.deleteCoordinator(id).subscribe(delC=> {
+  toDelete(id: number) {
+    this.accounts.deleteCoordinator(id).subscribe((delC) => {
       this.ngOnInit();
-      console.log(delC);
-    })
+    });
   }
 
   toCancel() {
     this.UpdateIndicator = false;
-  } 
-
+  }
 }

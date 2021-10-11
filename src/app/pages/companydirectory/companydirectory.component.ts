@@ -6,30 +6,26 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 @Component({
   selector: 'app-companydirectory',
   templateUrl: './companydirectory.component.html',
-  styleUrls: ['./companydirectory.component.scss']
+  styleUrls: ['./companydirectory.component.scss'],
 })
 export class CompanydirectoryComponent implements OnInit {
+  companySearch!: string;
+  companyFound!: boolean;
+  searchedCompany: CompanyModel[] = [];
+  newelySearched: CompanyModel[] = [];
+  photoUrl: string;
 
-  companySearch!:string;
-  companyFound!:boolean;
-  searchedCompany:CompanyModel[] = [];
-  newelySearched:CompanyModel[] = [];
-  photoUrl:string;
-
-  constructor(private company: CompanyService,private router:Router,private File: fileUpload) { }
+  constructor(
+    private company: CompanyService,
+    private router: Router,
+    private File: fileUpload
+  ) {}
 
   ngOnInit(): void {
     this.photoUrl = this.File.photoUrl;
-    
-    this.company.getCompany().subscribe(eachC=> {   
+
+    this.company.getCompany().subscribe((eachC) => {
       this.searchedCompany = eachC;
-      
-      console.log(this.searchedCompany);
     });
-
-
   }
- 
-
-
 }
