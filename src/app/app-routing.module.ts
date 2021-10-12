@@ -6,6 +6,7 @@ import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
 import { EndorsementformComponent } from './pages/endorsementform/endorsementform.component';
 import { CompanydirectoryComponent } from './pages/companydirectory/companydirectory.component';
 import { CompanyprofileComponent } from './pages/companyprofile/companyprofile.component';
+import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminDashboardComponent } from './pages/admin/components/admin-dashboard/admin-dashboard.component';
 import { AdminEsignatureComponent } from './pages/admin/components/admin-esignature/admin-esignature.component';
@@ -70,6 +71,10 @@ const routes: Routes = [
     path: 'onboard',
     component: OnboardingComponent,
     canActivate: [RouteGuardLogin],
+  },
+  {
+    path: 'faqs',
+    component: FaqsComponent,
   },
   {
     path: 'forgotpassword',

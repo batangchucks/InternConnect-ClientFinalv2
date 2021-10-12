@@ -9,6 +9,10 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+
+  //Mobile navigation
+  mobileNav: boolean = false;
+
   user = JSON.parse(localStorage.getItem('user'));
 
   logo: string;
@@ -33,4 +37,13 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.Auth.logout();
   }
+
+  toOpen() {
+    this.mobileNav = true;
+  }
+
+  toClose() {
+    this.mobileNav = false;
+  }
+
 }

@@ -50,7 +50,7 @@
         rounded-md
         focus:border-red-500
         red-500
-        focus:outline-none focus:ring-red-500
+        focus:outline-none focus:ring-blue-500
         w-full
       "
       placeholder="Search"
@@ -90,21 +90,20 @@
                   flex
                   items-center
                   justify-center
-                  h-12
-                  w-12
+                  h-16
+                  w-16
                   rounded-full
-                  bg-red-400
                   text-white
                 "
               >
                 <img
-                  class="h-12 w-12"
+                  class="h-16 w-16"
                   [src]="photoUrl+foundCompany.logoFileName"
                 />
               </div>
-              <p class="ml-16 text-xl font-medium">{{ foundCompany.name }}</p>
+              <p class="ml-24 text-xl font-medium">{{ foundCompany.name }}</p>
             </dt>
-            <dd class="ml-16 text-gray-500 truncate overflow-hidden">
+            <dd class="ml-24 text-gray-500 truncate overflow-hidden">
               {{ foundCompany.description }}
             </dd>
             <!-- <a routerLink="/companyprofile/{{foundCompany.id}}" >Visit profile page</a> -->
