@@ -10,6 +10,7 @@ import { studentModel } from 'src/app/shared/models/students.model';
   styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent implements OnInit {
+  p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Section: sectionModel[] = [];
   studentForms: FormGroup;

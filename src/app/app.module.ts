@@ -54,6 +54,7 @@ import { sectionFilter } from './sectionFilter.pipe';
 import { isoCodeFilter } from './isoCodeFilter.pipe';
 import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
 import { PolicyComponent } from './pages/landing/components/policy/policy.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,7 +104,7 @@ import { PolicyComponent } from './pages/landing/components/policy/policy.compon
     sectionFilter,
     FaqsComponent,
     PolicyComponent,
-    isoCodeFilter
+    isoCodeFilter,
   ],
   imports: [
     BrowserModule,
@@ -111,6 +112,7 @@ import { PolicyComponent } from './pages/landing/components/policy/policy.compon
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

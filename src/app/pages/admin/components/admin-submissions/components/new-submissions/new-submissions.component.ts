@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./new-submissions.component.scss'],
 })
 export class NewSubmissionsComponent implements OnInit {
+  p: number = 1;
   submission: submissionModel[] = [];
   user = JSON.parse(localStorage.getItem('user'));
   assignIso: number;

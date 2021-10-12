@@ -9,6 +9,7 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./approved-submissions.component.scss'],
 })
 export class ApprovedSubmissionsComponent implements OnInit {
+  p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Submission: submissionModel[] = [];
   DisapproveIndicator: boolean = false;

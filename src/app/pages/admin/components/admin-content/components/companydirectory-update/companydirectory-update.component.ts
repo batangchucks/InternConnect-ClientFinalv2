@@ -10,6 +10,7 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
   styleUrls: ['./companydirectory-update.component.scss'],
 })
 export class CompanydirectoryUpdateComponent implements OnInit {
+  p: number = 1;
   CreateIndicator: boolean = false;
   UpdateIndicator: boolean = false;
   updateCompany!: FormGroup;
@@ -67,8 +68,8 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       name: new FormControl(name, Validators.required),
       description: new FormControl(description, Validators.required),
       addressOne: new FormControl(addressOne, Validators.required),
-      addressTwo: new FormControl(addressTwo, Validators.required),
-      addressThree: new FormControl(addressThree, Validators.required),
+      addressTwo: new FormControl(addressTwo),
+      addressThree: new FormControl(addressThree),
       city: new FormControl(city, Validators.required),
 
       contactPersonName: new FormControl(

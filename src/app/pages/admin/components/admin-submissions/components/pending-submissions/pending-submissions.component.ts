@@ -8,6 +8,7 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./pending-submissions.component.scss'],
 })
 export class PendingSubmissionsComponent implements OnInit {
+  p: number = 1;
   Submission: submissionModel[] = [];
 
   constructor(private Acc: createAccount) {}

@@ -1,15 +1,38 @@
 <!-- ISO Code -->
 
-<h1 class="pt-6 flex items-center sm:px-6 lg:px-8 text-3xl font-extrabold">Manage ISO code</h1>
-<div class="pt-5 align-middle inline-block min-w-full ">
+<h1 class="pt-6 flex items-center sm:px-6 lg:px-8 text-3xl font-extrabold">
+  Manage ISO code
+</h1>
+<div class="pt-5 align-middle inline-block min-w-full">
   <div class="grid grid-cols-2 my-12 sm:px-6 lg:px-8">
     <section class="range">
-      <h1 class="inline-block text-xl font-semibold text-gray-900 tracking-tight sm:px-6 lg:px-8 pb-5">Assign a
-        range of ISO codes</h1>
+      <h1
+        class="
+          inline-block
+          text-xl
+          font-semibold
+          text-gray-900
+          tracking-tight
+          sm:px-6
+          lg:px-8
+          pb-5
+        "
+      >
+        Assign a range of ISO codes
+      </h1>
       <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
-          <div class="py-6 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div
+            class="py-6 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+          >
+            <div
+              class="
+                shadow
+                overflow-hidden
+                border-b border-gray-200
+                sm:rounded-lg
+              "
+            >
               <form [formGroup]="isoFormRange" (ngSubmit)="isoSubmitRange()">
                 <table class="min-w-full divide-y divide-gray-200">
                   <!-- User Assignment -->
@@ -31,33 +54,123 @@
 
                       <td class="px-2 py-4 whitespace-nowrap">
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                          <label for="assign" class="block text-sm font-medium text-gray-700">Email of practicum
-                            coordinator</label>
-                            <select
+                          <label
+                            for="assign"
+                            class="block text-sm font-medium text-gray-700"
+                            >Email of practicum coordinator</label
+                          >
+                          <select
                             id="coordinatorId"
                             formControlName="coordinatorId"
                             name="coordinatorId"
                             class="
-                            mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                              mt-1
+                              focus:ring-green-500 focus:border-green-500
+                              block
+                              w-full
+                              shadow-sm
+                              sm:text-sm
+                              border-gray-300
+                              rounded-md
                             "
                           >
-                            <option [value]="coordinator.id" *ngFor="let coordinator of coordinatorList">{{coordinator.account.email}}</option>
+                            <option
+                              [value]="coordinator.id"
+                              *ngFor="let coordinator of coordinatorList"
+                            >
+                              {{ coordinator.account.email }}
+                            </option>
                           </select>
                         </div>
                       </td>
-                      <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <label for="start" class="block text-sm font-medium text-gray-700">Start</label>
-                        <input type="number" name="startvalue" id="startvalue" formControlName="startvalue"
-                          class="mt-1 focus:ring-green-500 focus:border-green-500 block w-20 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      <td
+                        class="
+                          px-2
+                          py-4
+                          whitespace-nowrap
+                          text-sm text-gray-500
+                        "
+                      >
+                        <label
+                          for="start"
+                          class="block text-sm font-medium text-gray-700"
+                          >Start</label
+                        >
+                        <input
+                          type="number"
+                          name="startvalue"
+                          id="startvalue"
+                          placeholder="1"
+                          formControlName="startvalue"
+                          class="
+                            mt-1
+                            focus:ring-green-500 focus:border-green-500
+                            block
+                            w-20
+                            shadow-sm
+                            sm:text-sm
+                            border-gray-300
+                            rounded-md
+                          "
+                        />
                       </td>
-                      <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <label for="end" class="block text-sm font-medium text-gray-700">End</label>
-                        <input type="number" name="endvalue" id="endvalue" formControlName="endvalue"
-                          class="mt-1 focus:ring-green-500 focus:border-green-500 block w-20 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      <td
+                        class="
+                          px-2
+                          py-4
+                          whitespace-nowrap
+                          text-sm text-gray-500
+                        "
+                      >
+                        <label
+                          for="end"
+                          class="block text-sm font-medium text-gray-700"
+                          >End</label
+                        >
+                        <input
+                          type="number"
+                          name="endvalue"
+                          id="endvalue"
+                          placeholder="40"
+                          formControlName="endvalue"
+                          class="
+                            mt-1
+                            focus:ring-green-500 focus:border-green-500
+                            block
+                            w-20
+                            shadow-sm
+                            sm:text-sm
+                            border-gray-300
+                            rounded-md
+                          "
+                        />
                       </td>
-                      <td class="pt-9 px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button class="block h-8 px-4 text-white transition-colors duration-150 bg-green-600
-                        rounded-full focus:shadow-outline hover:bg-green-700" >Assign</button>
+                      <td
+                        class="
+                          pt-9
+                          px-6
+                          py-4
+                          whitespace-nowrap
+                          text-right text-sm
+                          font-medium
+                        "
+                      >
+                        <button
+                          class="
+                            block
+                            h-8
+                            px-4
+                            text-white
+                            transition-colors
+                            duration-150
+                            bg-green-600
+                            rounded-full
+                            focus:shadow-outline
+                            hover:bg-green-700
+                          "
+                        >
+                          Assign
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -67,15 +180,36 @@
           </div>
         </div>
       </div>
-
     </section>
 
     <section class="range">
-      <h1 class="inline-block text-xl font-semibold text-gray-900 tracking-tight sm:px-6 lg:px-8 pb-5">Assign a specific ISO code</h1>
+      <h1
+        class="
+          inline-block
+          text-xl
+          font-semibold
+          text-gray-900
+          tracking-tight
+          sm:px-6
+          lg:px-8
+          pb-5
+        "
+      >
+        Assign a specific ISO code
+      </h1>
       <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
-          <div class="py-6 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div
+            class="py-6 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+          >
+            <div
+              class="
+                shadow
+                overflow-hidden
+                border-b border-gray-200
+                sm:rounded-lg
+              "
+            >
               <form [formGroup]="isoFormSingle" (ngSubmit)="isoSubmitSingle()">
                 <table class="min-w-full divide-y divide-gray-200">
                   <!-- User Assignment -->
@@ -97,28 +231,92 @@
 
                       <td class="px-2 py-4 whitespace-nowrap">
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                          <label for="assign" class="block text-sm font-medium text-gray-700">Email of practicum
-                            coordinator</label>
-                            <select
+                          <label
+                            for="assign"
+                            class="block text-sm font-medium text-gray-700"
+                            >Email of practicum coordinator</label
+                          >
+                          <select
                             id="coordinatorId"
                             formControlName="coordinatorId"
                             name="coordinatorId"
                             class="
-                            mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                              mt-1
+                              focus:ring-green-500 focus:border-green-500
+                              block
+                              w-full
+                              shadow-sm
+                              sm:text-sm
+                              border-gray-300
+                              rounded-md
                             "
                           >
-                            <option [value]="coordinator.id" *ngFor="let coordinator of coordinatorList">{{coordinator.account.email}}</option>
+                            <option
+                              [value]="coordinator.id"
+                              *ngFor="let coordinator of coordinatorList"
+                            >
+                              {{ coordinator.account.email }}
+                            </option>
                           </select>
                         </div>
                       </td>
-                      <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <label for="start" class="block text-sm font-medium text-gray-700">Iso Code</label>
-                        <input type="number" name="startvalue" id="startvalue" formControlName="isoCode"
-                          class="mt-1 focus:ring-green-500 focus:border-green-500 block w-20 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      <td
+                        class="
+                          px-2
+                          py-4
+                          whitespace-nowrap
+                          text-sm text-gray-500
+                        "
+                      >
+                        <label
+                          for="start"
+                          class="block text-sm font-medium text-gray-700"
+                          >Iso Code</label
+                        >
+                        <input
+                          type="number"
+                          name="startvalue"
+                          id="startvalue"
+                          formControlName="isoCode"
+                          placeholder="1"
+                          class="
+                            mt-1
+                            focus:ring-green-500 focus:border-green-500
+                            block
+                            w-20
+                            shadow-sm
+                            sm:text-sm
+                            border-gray-300
+                            rounded-md
+                          "
+                        />
                       </td>
-                      <td class="pt-9 px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button class="block h-8 px-4 text-white transition-colors duration-150 bg-green-600
-                        rounded-full focus:shadow-outline hover:bg-green-700" >Assign</button>
+                      <td
+                        class="
+                          pt-9
+                          px-6
+                          py-4
+                          whitespace-nowrap
+                          text-right text-sm
+                          font-medium
+                        "
+                      >
+                        <button
+                          class="
+                            block
+                            h-8
+                            px-4
+                            text-white
+                            transition-colors
+                            duration-150
+                            bg-green-600
+                            rounded-full
+                            focus:shadow-outline
+                            hover:bg-green-700
+                          "
+                        >
+                          Assign
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -128,7 +326,6 @@
           </div>
         </div>
       </div>
-
     </section>
   </div>
 </div>

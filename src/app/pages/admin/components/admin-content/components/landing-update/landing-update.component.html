@@ -1,15 +1,23 @@
-<h1 class="p-0.5 flex items-center sm:px-6 lg:px-8">Manage Landing Page</h1>
-<p class="p-0.5 text-lg text-gray-500 font-normal sm:px-6 lg:px-8">This is where the logo and coverphoto can be changed from the
-  landing page.</p>
+<div class="pt-6 sm:px-6 lg:px-8 pb-10">
+  <div>
+    <h1
+      class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight"
+    >
+      Manage Landing Page
+    </h1>
+  </div>
+  <p class="mt-1 text-lg text-gray-500">
+    This is where the logo and coverphoto can be changed from the landing page.
+  </p>
+</div>
 
 <!-- Landing Page Management -->
 <div>
   <div class="p-0.5 sm:px-6">
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form >
+      <form>
         <div class="shadow sm:rounded-md sm:overflow-hidden sm:px-6 lg:px-8">
           <div class="px-4 py-5 bg-white sm:px-6 lg:px-8">
-
             <div>
               <label class="block text-sm font-medium text-gray-700">
                 Logo
@@ -17,14 +25,43 @@
               <div class="mt-1 flex items-center">
                 <div class="justify-left">
                   <div class="h-20 w-20">
-                    <img *ngIf="logoPhoto"
-                      src="{{logoPath}}"
+                    <img
+                      *ngIf="logoPhoto"
+                      src="{{ logoPath }}"
                       alt="..."
-                      class="shadow md:object-scale-down rounded-full max-w-full h-auto align-middle border-none" />
+                      class="
+                        shadow
+                        md:object-scale-down
+                        rounded-full
+                        max-w-full
+                        h-auto
+                        align-middle
+                        border-none
+                      "
+                    />
                   </div>
                 </div>
-                <input type="file" (change)="updateLogo($event)"
-                  class="ml-5 bg-green-600 py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                <input
+                  type="file"
+                  (change)="updateLogo($event)"
+                  class="
+                    ml-5
+                    bg-green-600
+                    py-2
+                    px-3
+                    rounded-md
+                    shadow-sm
+                    text-sm
+                    leading-4
+                    font-medium
+                    text-white
+                    hover:bg-green-700
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-offset-2
+                    focus:ring-green-500
+                  "
+                />
               </div>
             </div>
             <div>
@@ -34,17 +71,71 @@
               <div class="mt-1 flex items-center">
                 <div class="justify-left">
                   <div class="h-20 w-20">
-                    <img *ngIf="landingPagePhoto"
-                      src="{{landingPagePath}}"
+                    <img
+                      *ngIf="landingPagePhoto"
+                      src="{{ landingPagePath }}"
                       alt="..."
-                      class="shadow md:object-scale-down rounded-full max-w-full h-auto align-middle border-none" />
+                      class="
+                        shadow
+                        md:object-scale-down
+                        rounded-full
+                        max-w-full
+                        h-auto
+                        align-middle
+                        border-none
+                      "
+                    />
                   </div>
                 </div>
-                <input type="file"  (change)="updateLanding($event)"
-                  class="ml-5 bg-green-600 py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                <input
+                  type="file"
+                  (change)="updateLanding($event)"
+                  class="
+                    ml-5
+                    bg-green-600
+                    py-2
+                    px-3
+                    rounded-md
+                    shadow-sm
+                    text-sm
+                    leading-4
+                    font-medium
+                    text-white
+                    hover:bg-green-700
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-offset-2
+                    focus:ring-green-500
+                  "
+                />
               </div>
             </div>
-            <input type="submit" (click)="uploadImages()">
+            <button
+              class="
+                w-full
+                inline-flex
+                justify-center
+                rounded-md
+                border border-transparent
+                shadow-sm
+                px-4
+                py-2
+                bg-green-600
+                text-base
+                font-medium
+                text-white
+                hover:bg-green-700
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-green-500
+                sm:ml-3 sm:w-auto sm:text-sm
+              "
+              type="submit"
+              (click)="uploadImages()"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </form>

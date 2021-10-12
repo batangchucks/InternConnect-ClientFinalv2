@@ -12,6 +12,9 @@ import { ProgramService } from 'src/app/shared/services/program.service';
   styleUrls: ['./admin-returniso.component.scss'],
 })
 export class AdminReturnisoComponent implements OnInit {
+  p: number = 1;
+  pIso: number = 1;
+  pSummary: number = 1;
   TransferIndicator: boolean = false;
   user = JSON.parse(localStorage.getItem('user'));
   selectedOption: number;

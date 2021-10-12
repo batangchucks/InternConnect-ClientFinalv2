@@ -12,6 +12,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
   styleUrls: ['./opportunities-update.component.scss'],
 })
 export class OpportunitiesUpdateComponent implements OnInit {
+  p: number = 1;
   Opportunities: opportunityModel[] = [];
   CreateIndicator: boolean = false;
   UpdateIndicator: boolean = false;
@@ -62,6 +63,7 @@ export class OpportunitiesUpdateComponent implements OnInit {
     this.UpdateIndicator = true;
 
     const title = eO.title;
+    console.log(eO.title, eO.position);
     const position = eO.position;
     const introduction = eO.introduction;
     const id = eO.id;

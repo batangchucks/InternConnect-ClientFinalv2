@@ -9,6 +9,7 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./final-submissions.component.scss'],
 })
 export class FinalSubmissionsComponent implements OnInit {
+  p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Submissions: submissionModel[] = [];
   deanSubmissions: submissionModel[] = [];

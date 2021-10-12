@@ -8,6 +8,7 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./admin-logs.component.scss'],
 })
 export class AdminLogsComponent implements OnInit {
+  p: number = 1;
   constructor(private Acc: createAccount) {}
   user = JSON.parse(localStorage.getItem('user'));
   logs: logsModel[] = [];

@@ -15,16 +15,26 @@
     mt-12
   "
 >
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="lg:text-center pb-16">
-    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-      Company Directory
-    </p>
-    <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-       Find various companies from CICS right here.
-    </p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:text-center pb-16">
+      <p
+        class="
+          mt-2
+          text-3xl
+          leading-8
+          font-extrabold
+          tracking-tight
+          text-gray-900
+          sm:text-4xl
+        "
+      >
+        Company Directory
+      </p>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+        Find various companies from CICS right here.
+      </p>
+    </div>
   </div>
-</div>
   <div class="relative">
     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
       <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
@@ -98,7 +108,7 @@
               >
                 <img
                   class="h-16 w-16"
-                  [src]="photoUrl+foundCompany.logoFileName"
+                  [src]="photoUrl + foundCompany.logoFileName"
                 />
               </div>
               <p class="ml-24 text-xl font-medium">{{ foundCompany.name }}</p>
