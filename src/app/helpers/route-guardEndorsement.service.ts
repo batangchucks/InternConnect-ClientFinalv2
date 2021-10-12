@@ -12,14 +12,13 @@ export class RouteGuardEndorsement implements CanActivate {
 
   public canActivate(route: ActivatedRouteSnapshot) {
     const user = JSON.parse(localStorage.getItem('user'));
-
-    this.Acc.getSubmissionStudent(user.student.id).subscribe((submi) => {
-      this.submit = submi;
-    });
     if (user == null) {
       this.router.navigate(['/login']);
       return false;
     }
+    this.Acc.getSubmissionStudent(user.student.id).subscribe((submi) => {
+      this.submit = submi;
+    });
 
     if (this.submit == null) {
       return true;
