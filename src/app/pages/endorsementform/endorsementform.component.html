@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="min-h-screen flex justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
   <form action="#" method="POST" [formGroup]="EndorsementF" (ngSubmit)="endorseS()">
     <div class="place-self-center p-4">
       <h1 class="text-3xl text-center font-extrabold text-gray-900">
@@ -16,7 +16,8 @@
           - Status of your request will be posted by the Practicum 2  Coordinator at your Blackboard course site.
         </h2> -->
         <div class="col-span-6 sm:col-span-3 lg:col-span-3 mb-6">
-          <label for="specialization" class="block text-sm font-medium text-gray-700">Prefix: </label>
+          <label for="specialization" class="block text-sm font-medium text-gray-700">
+            <span class="text-red-500">*</span>Prefix: </label>
           <select id="specialization" formControlName="studentTitle" required
             class="mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 border-blue-500 sm:text-sm" *ngFor="let program of Program">
             <option value="Mr.">Mr.</option>
@@ -28,7 +29,8 @@
         </div>
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Last name</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Last name: </label>
             <input formControlName="lastName" type="text" placeholder="dela Cruz" required
               class="mt-1 block w-full shadow-sm sm:text-sm border-blue-500 focus:border-blue-500 rounded-md">
               <span *ngIf="EndorsementF.get('lastName').invalid && (EndorsementF.get('lastName').dirty || EndorsementF.get('lastName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -37,7 +39,8 @@
           </div>
 
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">First Name</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>First Name: </label>
             <input formControlName="firstName" type="text" placeholder="Juan" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               <span *ngIf="EndorsementF.get('firstName').invalid && (EndorsementF.get('firstName').dirty || EndorsementF.get('firstName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -45,7 +48,8 @@
               </span>
           </div>
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Middle Initial</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Middle initial: </label>
             <input formControlName="middleInitial" type="text" placeholder="A." required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               <span *ngIf="EndorsementF.get('middleInitial').invalid && (EndorsementF.get('middleInitial').dirty || EndorsementF.get('middleInitial').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -53,15 +57,17 @@
               </span>
           </div>
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Student Number </label>
-            <input formControlName="studentNumber" type="number" placeholder="2021123456" required
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Student number: </label>
+            <input formControlName="studentNumber" type="number" min="2000000000" max="2999999999" placeholder="2021123456" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               <span *ngIf="EndorsementF.get('studentNumber').invalid && (EndorsementF.get('studentNumber').dirty || EndorsementF.get('studentNumber').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
-                {{EndorsementF.get('studentNumber').invalid ? 'Required' : 'Invalid field'}}
+                Input must have 10 numerical digits.
               </span>
           </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-            <label for="specialization" class="block text-sm font-medium text-gray-700">Specialization</label>
+            <label for="specialization" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Specialization: </label>
             <select id="specialization" formControlName="trackId" required
               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"*ngFor="let program of Program">
               <option *ngFor="let tracks of program.tracks" [value]="tracks.id">{{tracks.name}}</option>
@@ -71,7 +77,8 @@
             </span>
           </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-700">Company</label>
+            <label for="country" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Company name: </label>
             <select id="country" formControlName="companyId" [(ngModel)]="selectCompany" (change)="selectedC()" type="number" required
               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
               <option *ngFor="let company of Company" [ngValue]="company.id">{{company.name}}</option>
@@ -82,7 +89,8 @@
           </div>
 
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Email Address of Contact Person</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Email address of Contact Person: </label>
             <input formControlName="contactPersonEmail" type="email"  placeholder="companyrep@mail.com" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               <span *ngIf="EndorsementF.get('contactPersonEmail').invalid && (EndorsementF.get('contactPersonEmail').dirty || EndorsementF.get('contactPersonEmail').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -91,7 +99,8 @@
           </div>
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-700">Title of Contact Person</label>
+            <label for="country" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Title of Contact Person: </label>
             <select id="country" formControlName="contactPersonTitle" required
               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
               <option>Mr.</option>
@@ -105,7 +114,8 @@
           </div>
 
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Last Name of Contact Person</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Last Name of Contact Person: </label>
             <input type="text"  placeholder="Santos" required
             formControlName="contactPersonLastName" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             <span *ngIf="EndorsementF.get('contactPersonLastName').invalid && (EndorsementF.get('contactPersonLastName').dirty || EndorsementF.get('contactPersonLastName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -114,7 +124,8 @@
           </div>
 
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">First Name of Contact Person</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>First Name of Contact Person: </label>
             <input type="text"  placeholder="Thomasnino" required
             formControlName="contactPersonFirstName" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             <span *ngIf="EndorsementF.get('contactPersonFirstName').invalid && (EndorsementF.get('contactPersonFirstName').dirty || EndorsementF.get('contactPersonFirstName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -123,7 +134,8 @@
           </div>
 
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Contact Person's Designation</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Designation of Contact Person: </label>
             <input formControlName="contactPersonPosition" type="text"  placeholder="Managing Director" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               <span *ngIf="EndorsementF.get('contactPersonPosition').invalid && (EndorsementF.get('contactPersonPosition').dirty || EndorsementF.get('contactPersonPosition').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -131,7 +143,8 @@
               </span>
           </div>
           <div class="col-span-6">
-            <label for="street-address" class="block text-sm font-medium text-gray-700">Internship Description</label>
+            <label for="street-address" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Job Description: </label>
             <input formControlName="jobDescription" type="text"  placeholder="Managing Director" required
               class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               <span *ngIf="EndorsementF.get('jobDescription').invalid && (EndorsementF.get('jobDescription').dirty || EndorsementF.get('jobDescription').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -139,12 +152,14 @@
               </span>
           </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-700">Upload company profile</label>
+            <label for="country" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Upload company profile: </label>
             <input type="file" id="myFile" name="filename" (change)="imgCompanyProfile($event)" required>
           </div>
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-700">Upload acceptance letter</label>
+            <label for="country" class="block text-sm font-medium text-gray-700">
+              <span class="text-red-500">*</span>Upload acceptance letter: </label>
             <input type="file" id="myFile" name="filename" (change)="imgAcceptanceL($event)" required>
           </div>
 
@@ -169,7 +184,9 @@
       </div>
       <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
         <button type="submit"
-          class="inline-flex justify-center py-2 px-8 border border-transparent shadow-sm text-sm font-semibold rounded-md  text-white bg-red-600 hover:bg-red-500 bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+          class="inline-flex justify-center py-2 px-8 border border-transparent shadow-sm text-sm font-semibold rounded-md
+          text-white bg-red-600 hover:bg-red-500 bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2
+          focus:ring-red-500" [disabled]="modalAppear || !EndorsementF.valid">
           Submit
         </button>
       </div>
@@ -178,33 +195,20 @@
 </div>
 
 <!--modal content-->
-<div
-class="fixed z-10 inset-0 mx-auto p-8 border mt-12 w-96 h-96 shadow-lg rounded-md bg-white"
->
+<div class="fixed z-10 inset-0 mx-auto p-8 border mt-12 w-96 h-72 shadow-lg rounded-md bg-white" *ngIf="modalAppear">
 	<div class="text-center">
 		<div class="mx-auto flex items-center justify-center h-40 w-40 rounded-full">
 			<img src="https://res.cloudinary.com/daljbo1q0/image/upload/v1634090673/Landing/mail_eexlbl.gif">
 		</div>
-		<h3 class="pt-4 text-xl leading-6 font-semibold text-gray-900">Thanks for submitting the form!</h3>
-		<div class="px-7 py-3">
-			<p class="text-sm text-gray-500">
-				Check your e-mail or visit our status page for updates on your endorsement request.
-			</p>
-		</div>
-		<div class="items-center px-4 py-3">
-			<button
-				id="for *ngIf command toOpen()"
-				class="px-4 py-2 bg-red-600 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-300 bg-opacity-80">
-				OK
-			</button>
-		</div>
+		<h3 class="pt-4 text-xl leading-6 font-semibold text-gray-900">Submitting the form...</h3>
 	</div>
 </div>
 
 <!--Overlay Effect-->
 <div
 	class="fixed inset-0 overflow-hidden bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
-	id="for *ngIf command isActive()"></div>
+	*ngIf="modalAppear">
+</div>
 
 
 <app-footer></app-footer>

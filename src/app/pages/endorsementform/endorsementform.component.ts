@@ -13,6 +13,9 @@ import { ProgramService } from 'src/app/shared/services/program.service';
   styleUrls: ['./endorsementform.component.scss'],
 })
 export class EndorsementformComponent implements OnInit {
+
+  modalAppear: boolean = false;
+
   myDate = new Date();
   user = JSON.parse(localStorage.getItem('user'));
   constructor(
@@ -55,9 +58,9 @@ export class EndorsementformComponent implements OnInit {
     this.EndorsementF = new FormGroup({
       lastName: new FormControl(null, [Validators.required]),
       firstName: new FormControl(null, [Validators.required]),
-      middleInitial: new FormControl(null, [Validators.required]),
+      middleInitial: new FormControl(null, [Validators.required],),
       trackId: new FormControl(null, [Validators.required]),
-      studentNumber: new FormControl(null, [Validators.required]),
+      studentNumber: new FormControl(null, [Validators.required, Validators.minLength(10)]),
       contactPersonEmail: new FormControl(null, [Validators.required]),
       contactPersonTitle: new FormControl(null, [Validators.required]),
       contactPersonLastName: new FormControl(null, [Validators.required]),
@@ -69,6 +72,9 @@ export class EndorsementformComponent implements OnInit {
     });
   }
   endorseS() {
+
+    this.modalAppear = true;
+
     const studentTitle: string = this.EndorsementF.get('studentTitle').value;
 
     const lastName: string = this.EndorsementF.get('lastName').value;
@@ -118,6 +124,8 @@ export class EndorsementformComponent implements OnInit {
       this.user.student.programId,
       form_payload
     ).subscribe((submission) => {
+      this.modalAppear = false;
+
       this.ngOnInit();
     });
   }
