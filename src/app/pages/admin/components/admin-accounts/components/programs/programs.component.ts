@@ -46,6 +46,7 @@ export class ProgramsComponent implements OnInit {
       id: new FormControl(eachP.id),
       name: new FormControl(eachP.name),
       isoCodeProgramNumber: new FormControl(eachP.isoCodeProgramNumber),
+      numberOfHours: new FormControl(eachP.numberOfHours)
     });
     this.UpdateProgramIndicator = true;
   }

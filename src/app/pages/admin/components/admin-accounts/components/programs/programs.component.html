@@ -230,226 +230,7 @@
       Next
     </a>
   </div>
-  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        to
-        <span class="font-medium">10</span>
-        of
-        <span class="font-medium">97</span>
-        results
-      </p>
-    </div>
-    <div>
-      <nav
-        class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-        aria-label="Pagination"
-      >
-        <a
-          href="#"
-          class="
-            relative
-            inline-flex
-            items-center
-            px-2
-            py-2
-            rounded-l-md
-            border border-gray-300
-            bg-white
-            text-sm
-            font-medium
-            text-gray-500
-            hover:bg-gray-50
-          "
-        >
-          <span class="sr-only">Previous</span>
-          <!-- Heroicon name: solid/chevron-left -->
-          <svg
-            class="h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-        <a
-          href="#"
-          aria-current="page"
-          class="
-            z-10
-            bg-indigo-50
-            border-indigo-500
-            text-indigo-600
-            relative
-            inline-flex
-            items-center
-            px-4
-            py-2
-            border
-            text-sm
-            font-medium
-          "
-        >
-          1
-        </a>
-        <a
-          href="#"
-          class="
-            bg-white
-            border-gray-300
-            text-gray-500
-            hover:bg-gray-50
-            relative
-            inline-flex
-            items-center
-            px-4
-            py-2
-            border
-            text-sm
-            font-medium
-          "
-        >
-          2
-        </a>
-        <a
-          href="#"
-          class="
-            bg-white
-            border-gray-300
-            text-gray-500
-            hover:bg-gray-50
-            hidden
-            md:inline-flex
-            relative
-            items-center
-            px-4
-            py-2
-            border
-            text-sm
-            font-medium
-          "
-        >
-          3
-        </a>
-        <span
-          class="
-            relative
-            inline-flex
-            items-center
-            px-4
-            py-2
-            border border-gray-300
-            bg-white
-            text-sm
-            font-medium
-            text-gray-700
-          "
-        >
-          ...
-        </span>
-        <a
-          href="#"
-          class="
-            bg-white
-            border-gray-300
-            text-gray-500
-            hover:bg-gray-50
-            hidden
-            md:inline-flex
-            relative
-            items-center
-            px-4
-            py-2
-            border
-            text-sm
-            font-medium
-          "
-        >
-          8
-        </a>
-        <a
-          href="#"
-          class="
-            bg-white
-            border-gray-300
-            text-gray-500
-            hover:bg-gray-50
-            relative
-            inline-flex
-            items-center
-            px-4
-            py-2
-            border
-            text-sm
-            font-medium
-          "
-        >
-          9
-        </a>
-        <a
-          href="#"
-          class="
-            bg-white
-            border-gray-300
-            text-gray-500
-            hover:bg-gray-50
-            relative
-            inline-flex
-            items-center
-            px-4
-            py-2
-            border
-            text-sm
-            font-medium
-          "
-        >
-          10
-        </a>
-        <a
-          href="#"
-          class="
-            relative
-            inline-flex
-            items-center
-            px-2
-            py-2
-            rounded-r-md
-            border border-gray-300
-            bg-white
-            text-sm
-            font-medium
-            text-gray-500
-            hover:bg-gray-50
-          "
-        >
-          <span class="sr-only">Next</span>
-          <!-- Heroicon name: solid/chevron-right -->
-          <svg
-            class="h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </div>
+
 </div>
 
 <!-- Tracks -->
@@ -945,6 +726,7 @@
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
 
+    <!--Adding Programs-->
       <div
         class="
           inline-block
@@ -987,8 +769,29 @@
                 />
               </div>
             </div>
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Number of Internship Hours</label>
+                <input
+                  type="number"
+                  ngModel
+                  name="numberOfHours"
+                  id="price"
+                  class="
+                    focus:ring-indigo-500 focus:border-indigo-500
+                    block
+                    w-1/6
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                  placeholder="300"
+                />
+              </div>
+            </div>
             <!-- still wrong -->
             <div class="mt-6">
+              <label for="email-address" class="text-base">Department Code: </label>
               <select name="isoCodeProgramNumber" id="" ngModel>
                 <option value="{{ Program.length + 1 }}">
                   {{ Program.length + 1 }}
@@ -1023,6 +826,8 @@
             >
               Create
             </button>
+
+
             <button
               type="button"
               class="
@@ -1133,7 +938,7 @@
             </h3>
             <div class="mt-6">
               <div class="mt-4">
-                <label for="email-address" class="text-base">Title</label>
+                <label for="email-address" class="text-base">Name</label>
                 <input
                   type="text"
                   name="price"
@@ -1151,6 +956,28 @@
                 />
               </div>
             </div>
+
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Number of Internship Hours</label>
+                <input
+                  type="number"
+                  name="numberOfHours"
+                  id="numberOfHours"
+                  class="
+                    focus:ring-indigo-500 focus:border-indigo-500
+                    block
+                    w-1/6
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                  placeholder="Information Technology"
+                  formControlName="numberOfHours"
+                />
+              </div>
+            </div>
+
             <div class="mt-6" style="display: none">
               <div class="mt-4">
                 <label for="email-address" class="text-base">Title</label>
