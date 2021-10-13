@@ -9,11 +9,12 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./onboarding.component.scss'],
 })
 export class OnboardingComponent implements OnInit {
-  email: string;
+  email: string = '1';
   resetKey: string;
   onboardForm: FormGroup;
   confirmpassword: string;
   isLoggedIn: boolean = true;
+  disabled: boolean = true;
   constructor(
     private account: createAccount,
     private router: Router,
@@ -24,7 +25,6 @@ export class OnboardingComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.email = params['email'];
       this.resetKey = params['resetkey'];
-
       this.initalizeForm();
     });
   }

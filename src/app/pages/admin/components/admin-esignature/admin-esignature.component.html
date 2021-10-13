@@ -17,6 +17,23 @@
 <div>
   <div class="flex flex-col">
     <div class="m-8 md:col-span-2 sm:px-6">
+      <button
+        class="
+          block
+          h-8
+          px-4
+          text-white
+          transition-colors
+          duration-150
+          bg-green-600
+          rounded-full
+          focus:shadow-outline
+          hover:bg-green-700
+        "
+        (click)="previewPdf()"
+      >
+        Preview Pdf
+      </button>
       <form action="#" method="POST">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6">

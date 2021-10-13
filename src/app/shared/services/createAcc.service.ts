@@ -202,6 +202,16 @@ export class createAccount {
       responseType: 'blob',
     });
   }
+
+  previewPdf(adminId: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get(this.apiUrl + 'api/file/' + adminId + '/previewPdf', {
+      headers: headers,
+      responseType: 'blob',
+    });
+  }
+
   emailSent(payload) {
     return this.http.put(
       this.apiUrl + 'api/AdminResponse/coordinator/email',

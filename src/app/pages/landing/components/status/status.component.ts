@@ -173,6 +173,7 @@ export class StatusComponent implements OnInit {
     this.Acc.UPDATEsubmission(form_payload).subscribe((submission) => {
       this.FormEntry = false;
       this.ngOnInit();
+      location.reload();
     });
   }
 

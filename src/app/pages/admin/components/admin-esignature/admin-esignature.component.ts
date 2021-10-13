@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-admin-esignature',
@@ -9,7 +10,7 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 })
 export class AdminEsignatureComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user'));
-
+  _env = environment.apiUrl;
   selectedFileUp: File = null;
   imageSrc: string;
   PhotoFileNameEsig: string;
@@ -33,6 +34,13 @@ export class AdminEsignatureComponent implements OnInit {
     this.File.uploadEsign(formData).subscribe((data: any) => {
       this.PhotoFileNameEsig = data.toString();
       this.updateEsig();
+    });
+  }
+  previewPdf() {
+    this.Acc.previewPdf(this.user.admin.id).subscribe((pdfGeneration) => {
+      var blob = new Blob([pdfGeneration], { type: 'application/pdf' });
+      let url = window.URL.createObjectURL(blob);
+      window.open(url);
     });
   }
   updateEsig() {

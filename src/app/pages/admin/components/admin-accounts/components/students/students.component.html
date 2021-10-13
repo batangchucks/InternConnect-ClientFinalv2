@@ -331,7 +331,12 @@
               class="bg-white divide-y divide-gray-200"
               *ngIf="user.admin.authId === 3"
             >
-              <tr *ngFor="let students of Students">
+              <tr
+                *ngFor="
+                  let students of Students
+                    | paginate: { itemsPerPage: 10, currentPage: p }
+                "
+              >
                 <td class="px-2 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
@@ -447,7 +452,7 @@
           results
         </p>
       </div>
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
