@@ -14,6 +14,7 @@ export class AdminEsignatureComponent implements OnInit {
   selectedFileUp: File = null;
   imageSrc: string;
   PhotoFileNameEsig: string;
+  dataPrivacyModal: boolean = true;
 
   constructor(private File: fileUpload, private Acc: createAccount) {}
 
@@ -51,4 +52,9 @@ export class AdminEsignatureComponent implements OnInit {
       (createdVal) => {}
     );
   }
+
+  toAccept(){
+    this.dataPrivacyModal = false;
+  }
+
 }

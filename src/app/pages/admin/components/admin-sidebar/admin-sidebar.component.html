@@ -1,50 +1,6 @@
 <div class="relative min-h-screen md:flex bg-white shadow">
-  <!-- mobile menu bar -->
-  <div class="text-black-100 flex justify-between md:hidden">
-    <!-- logo -->
-    <a href="#" class="block p-4 text-black font-bold">Menu</a>
-
-    <!-- mobile menu button -->
-    <button
-      class="mobile-menu-button p-4 focus:outline-none focus:bg-green-700"
-    >
-      <svg
-        class="h-5 w-5"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        />
-      </svg>
-    </button>
-  </div>
-
   <!-- sidebar -->
-  <div
-    class="
-      sidebar
-      text-grey-100
-      w-64
-      space-y-6
-      py-7
-      px-2
-      absolute
-      inset-y-0
-      left-0
-      transform
-      -translate-x-full
-      md:relative md:translate-x-0
-      transition
-      duration-200
-      ease-in-out
-    "
-  >
+  <div class="sidebar text-grey-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
     <section class="" *ngIf="this.user.admin.authId == 3">
       <!-- Coordinator -->
       <a href="#" class="text-black flex items-center space-x-2 px-12">
@@ -422,39 +378,9 @@
           </a>
         </li>
         <li>
-          <a
-            (click)="logout()"
-            class="
-              relative
-              flex flex-row
-              items-center
-              h-11
-              focus:outline-none
-              hover:bg-gray-50
-              text-gray-600
-              hover:text-gray-800
-              border-l-4 border-transparent
-              hover:border-green-500
-              pr-6
-            "
-          >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </span>
-            <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
+          <a (click)="logout()" class="relative flex flex-row items-center h-11 focus:outline-none p-2">
+            <button class=" bg-green-600 hover:bg-green-700 text-white font-semibold w-full py-2 rounded-lg first-letter:text-sm
+            tracking-wide">Logout</button>
           </a>
         </li>
       </ul>
@@ -958,43 +884,11 @@
             >
           </a>
         </li>
-        <li>
-          <a
-            (click)="logout()"
-            class="
-              relative
-              flex flex-row
-              items-center
-              h-11
-              focus:outline-none
-              hover:bg-gray-50
-              text-gray-600
-              hover:text-gray-800
-              border-l-4 border-transparent
-              hover:border-green-500
-              pr-6
-            "
-          >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </span>
-            <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
-          </a>
-        </li>
       </ul>
+        <a (click)="logout()" class="relative flex flex-row items-center h-11 focus:outline-none p-2">
+          <button class=" bg-green-600 hover:bg-green-700 text-white font-semibold w-full py-2 rounded-lg first-letter:text-sm
+          tracking-wide">Logout</button>
+        </a>
     </section>
     <div *ngIf="user.admin.authId === 1">
       <a href="#" class="text-black flex items-center space-x-2 px-12">
@@ -1039,22 +933,12 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+        <span class="inline-flex justify-center items-center ml-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </span>
             <span class="ml-2 text-sm tracking-wide truncate">Dashboard</span>
           </a>
         </li>
@@ -1096,6 +980,11 @@
             >
           </a>
         </li>
+        <li class="px-5">
+          <div class="flex flex-row items-center h-8">
+            <div class="text-sm font-bold tracking-wide text-gray-500">Submissions</div>
+          </div>
+        </li>
         <li>
           <a
             [routerLink]="['final-submissions']"
@@ -1113,27 +1002,23 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
-              >Finalize Submission</span
+              >Final Submission</span
             >
           </a>
         </li>
+        <li class="px-5">
+          <div class="flex flex-row items-center h-8">
+            <div class="text-sm font-bold tracking-wide text-gray-500">Content Management</div>
+          </div>
+        </li>
+        <li>
         <li>
           <a
             [routerLink]="['update-landing']"
@@ -1151,24 +1036,14 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
-              >Update Landing Page</span
+              >Landing Page</span
             >
           </a>
         </li>
@@ -1189,24 +1064,14 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
-              >Update Company Directory</span
+              >Company Directory</span
             >
           </a>
         </li>
@@ -1227,26 +1092,21 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
-              >Update Opportunities</span
+              >Opportunities</span
             >
           </a>
+        </li>
+        <li class="px-5">
+          <div class="flex flex-row items-center h-8">
+            <div class="text-sm font-bold tracking-wide text-gray-500">Accounts</div>
+          </div>
         </li>
         <li>
           <a
@@ -1265,23 +1125,42 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate">Chair</span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            [routerLink]="['techprogram']"
+            class="
+              relative
+              flex flex-row
+              items-center
+              h-11
+              focus:outline-none
+              hover:bg-gray-50
+              text-gray-600
+              hover:text-gray-800
+              border-l-4 border-transparent
+              hover:border-green-500
+              pr-6
+            "
+          >
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+            <span class="ml-2 text-sm tracking-wide truncate"
+              >Tech Coordinator</span
+            >
           </a>
         </li>
         <li>
@@ -1301,61 +1180,13 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate">Dean</span>
-          </a>
-        </li>
-        <li>
-          <a
-            [routerLink]="['techprogram']"
-            class="
-              relative
-              flex flex-row
-              items-center
-              h-11
-              focus:outline-none
-              hover:bg-gray-50
-              text-gray-600
-              hover:text-gray-800
-              border-l-4 border-transparent
-              hover:border-green-500
-              pr-6
-            "
-          >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
-            <span class="ml-2 text-sm tracking-wide truncate"
-              >Tech Coordinator</span
-            >
           </a>
         </li>
         <li>
@@ -1375,25 +1206,21 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate">Programs</span>
           </a>
         </li>
+        <li class="px-5">
+          <div class="flex flex-row items-center h-8">
+            <div class="text-sm font-bold tracking-wide text-gray-500">Others</div>
+          </div>
+        </li>
+        <li>
         <li>
           <a
             [routerLink]="['reports']"
@@ -1411,22 +1238,12 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate">Reports</span>
           </a>
         </li>
@@ -1447,22 +1264,12 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
               >Academic Year</span
             >
@@ -1485,59 +1292,19 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate">Logs</span>
           </a>
         </li>
         <li>
-          <a
-            (click)="logout()"
-            class="
-              relative
-              flex flex-row
-              items-center
-              h-11
-              focus:outline-none
-              hover:bg-gray-50
-              text-gray-600
-              hover:text-gray-800
-              border-l-4 border-transparent
-              hover:border-green-500
-              pr-6
-            "
-          >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </span>
-            <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
+          <a (click)="logout()" class="relative flex flex-row items-center h-11 focus:outline-none p-2">
+            <button class=" bg-green-600 hover:bg-green-700 text-white font-semibold w-full py-2 rounded-lg first-letter:text-sm
+            tracking-wide">Logout</button>
           </a>
         </li>
       </ul>
@@ -1586,24 +1353,19 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate">Dashboard</span>
           </a>
+        </li>
+        <li class="px-5">
+          <div class="flex flex-row items-center h-8">
+            <div class="text-sm font-bold tracking-wide text-gray-500">Content Management</div>
+          </div>
         </li>
         <li>
           <a
@@ -1622,24 +1384,14 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
-              >Update Landing Page</span
+              >Landing Page</span
             >
           </a>
         </li>
@@ -1660,24 +1412,14 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
-              >Update Company Directory</span
+              >Company List</span
             >
           </a>
         </li>
@@ -1698,27 +1440,23 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate"
-              >Update Opportunities</span
+              >Opportunities</span
             >
           </a>
         </li>
+        <li class="px-5">
+          <div class="flex flex-row items-center h-8">
+            <div class="text-sm font-bold tracking-wide text-gray-500">Others</div>
+          </div>
+        </li>
+        <li>
         <li>
           <a
             [routerLink]="['reports']"
@@ -1736,270 +1474,16 @@
               pr-6
             "
           >
-            <span class="inline-flex justify-center items-center ml-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+            </svg>
+          </span>
             <span class="ml-2 text-sm tracking-wide truncate">Reports</span>
           </a>
         </li>
       </ul>
     </div>
   </div>
-  <!-- <li>
-      <a routerLink="final-submissions"
-        class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-        <span class="inline-flex justify-center items-center ml-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
-          </svg>
-        </span>
-        <span class="ml-2 text-sm tracking-wide truncate">Final Submissions</span>
-      </a>
-    </li> -->
-  <!-- logo -->
-  <!-- <li class="px-5">
-      <div class="flex flex-row items-center h-8">
-        <div class="text-sm font-bold tracking-wide text-gray-500">Content Management</div>
-      </div>
-    </li>
-    <li> -->
-
-  <!-- nav -->
-
-  <!-- <a routerLink = "update-landing"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Landing Page</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "update-companydirectory"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Company List</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "update-opportunities"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Opportunities</span>
-        </a>
-      </li>
-      <li class="px-5">
-        <div class="flex flex-row items-center h-8">
-          <div class="text-sm font-bold tracking-wide text-gray-500">Accounts</div>
-        </div>
-      </li>
-
-      <li>
-        <a routerLink = "programs"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Programs</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "students"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Students</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "coordinators"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Practicum Coordinators</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "chair"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Dept. Chair</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "techprogram"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Tech Program Coordinator</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "dean"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Dean</span>
-        </a>
-      </li> -->
-  <!-- <li class="px-5">
-        <div class="flex flex-row items-center h-8">
-          <div class="text-sm font-bold tracking-wide text-gray-500">Others</div>
-        </div>
-      </li>
-      <li>
-        <a routerLink = "reports"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Reports</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "events"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Events</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "iso"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">ISO Code</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "acadyear"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Academic Year</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink = "logs"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Logs</span>
-        </a>
-      </li>
-      <li>
-        <a (click)= "logout()"
-          class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-          <span class="inline-flex justify-center items-center ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </span>
-          <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
-        </a>
-      </li>
-    </ul> -->
-  <!-- <li>
-      <a routerLink = "events"
-        class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-        <span class="inline-flex justify-center items-center ml-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-          </svg>
-        </span>
-        <span class="ml-2 text-sm tracking-wide truncate">Events</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink = "iso"
-        class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-        <span class="inline-flex justify-center items-center ml-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-          </svg>
-        </span>
-        <span class="ml-2 text-sm tracking-wide truncate">ISO Code</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink = "acadyear"
-        class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-500 pr-6">
-        <span class="inline-flex justify-center items-center ml-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-          </svg>
-        </span>
-        <span class="ml-2 text-sm tracking-wide truncate">Academic Year</span>
-      </a>
-    </li> -->
-
-  <!-- Content of each page selected -->
-  <!-- <div class="p-5 text-2xl font-bold"> -->
-  <!-- <app-admin-dashboard></app-admin-dashboard> -->
-  <!-- <app-admin-submissions></app-admin-submissions> -->
-  <!-- <app-admin-esignature></app-admin-esignature> -->
-  <!-- <app-admin-content></app-admin-content> -->
-  <!-- <app-admin-accounts></app-admin-accounts> -->
-  <!-- <app-admin-iso></app-admin-iso> -->
-  <!-- <app-admin-reports></app-admin-reports> -->
-  <!-- <app-admin-events></app-admin-events> -->
-  <!-- <app-admin-logs></app-admin-logs> -->
-  <!-- <app-admin-acadyear></app-admin-acadyear> -->
-  <!-- </div>  -->
 </div>

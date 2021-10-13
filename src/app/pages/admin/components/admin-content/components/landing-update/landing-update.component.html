@@ -16,7 +16,7 @@
   <div class="p-0.5 sm:px-6">
     <div class="mt-5 md:mt-0 md:col-span-2">
       <form>
-        <div class="shadow sm:rounded-md sm:overflow-hidden sm:px-6 lg:px-8">
+        <div class="shadow sm:rounded-md sm:overflow-hidden sm:px-4 lg:px-6">
           <div class="px-4 py-5 bg-white sm:px-6 lg:px-8">
             <div>
               <label class="block text-sm font-medium text-gray-700">
@@ -46,7 +46,6 @@
                   (change)="updateLogo($event)"
                   class="
                     ml-5
-                    bg-green-600
                     py-2
                     px-3
                     rounded-md
@@ -54,8 +53,6 @@
                     text-sm
                     leading-4
                     font-medium
-                    text-white
-                    hover:bg-green-700
                     focus:outline-none
                     focus:ring-2
                     focus:ring-offset-2
@@ -92,7 +89,6 @@
                   (change)="updateLanding($event)"
                   class="
                     ml-5
-                    bg-green-600
                     py-2
                     px-3
                     rounded-md
@@ -100,8 +96,6 @@
                     text-sm
                     leading-4
                     font-medium
-                    text-white
-                    hover:bg-green-700
                     focus:outline-none
                     focus:ring-2
                     focus:ring-offset-2
@@ -109,33 +103,18 @@
                   "
                 />
               </div>
+              <div class="py-12">
+              <button
+              class=" w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2
+               bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2
+                focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm "
+                type="submit"
+                (click)="uploadImages()"
+              >
+                Submit
+              </button>
             </div>
-            <button
-              class="
-                w-full
-                inline-flex
-                justify-center
-                rounded-md
-                border border-transparent
-                shadow-sm
-                px-4
-                py-2
-                bg-green-600
-                text-base
-                font-medium
-                text-white
-                hover:bg-green-700
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-green-500
-                sm:ml-3 sm:w-auto sm:text-sm
-              "
-              type="submit"
-              (click)="uploadImages()"
-            >
-              Submit
-            </button>
+            </div>
           </div>
         </div>
       </form>

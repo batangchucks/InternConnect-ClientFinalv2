@@ -13,7 +13,7 @@
 </div>
 
 <!-- Table -->
-<div class="flex flex-col">
+<div class="flex flex-col w-3/5">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
       <button
@@ -61,30 +61,12 @@
               >
                 Section
               </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              ></th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              ></th>
+              <th scope="col" class=" py-3 text-xs font-medium text-gray-500 uppercase">
+              </th>
+              <th scope="col" class="py-3 text-xs font-medium text-gray-500 uppercase">
+              </th>
+              <th scope="col" class="py-3 text-xs font-medium text-gray-500 uppercase">
+              </th>
             </tr>
           </thead>
           <!-- Person 1 -->
@@ -95,53 +77,24 @@
               </td>
               <td
                 class="
-                  px-6
+                  px-2
                   py-4
+                  w-4
                   whitespace-nowrap
                   text-right text-sm
                   font-medium
-                "
-              >
-                <button
-                  class="
-                    h-8
-                    px-4
-                    text-white
-                    transition-colors
-                    duration-150
-                    bg-green-600
-                    rounded-full
-                    focus:shadow-outline
-                    hover:bg-green-700
-                  "
-                  (click)="toUpdate(section)"
-                >
+                ">
+                <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
+                  <button class="h-8 px-4 text-white transition-colors duration-150 bg-green-600
+                          rounded-full focus:shadow-outline hover:bg-green-700"
+                  (click)="toUpdate(section)">
                   Update
                 </button>
               </td>
-              <td
-                class="
-                  px-6
-                  py-4
-                  whitespace-nowrap
-                  text-right text-sm
-                  font-medium
-                "
-              >
-                <button
-                  class="
-                    h-8
-                    px-4
-                    text-black
-                    transition-colors
-                    duration-150
-                    bg-gray-200
-                    rounded-full
-                    focus:shadow-outline
-                    hover:bg-gray-300
-                  "
-                  (click)="deleteSection(section)"
-                >
+              <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
+                <button class="h-8 px-4 text-black transition-colors duration-150 bg-gray-200
+                        rounded-full focus:shadow-outline hover:bg-gray-300"
+                  (click)="deleteSection(section)">
                   Delete
                 </button>
               </td>

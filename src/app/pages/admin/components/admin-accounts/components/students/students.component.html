@@ -2,8 +2,7 @@
 <div class="pt-6 sm:px-6 lg:px-8 pb-10">
   <div>
     <h1
-      class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight"
-    >
+      class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight">
       Manual Enrollment of Student Accounts
     </h1>
   </div>
@@ -13,13 +12,102 @@
 </div>
 
 <div class="py-2 align-middle inline-block min-w-full">
+
   <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div
-          class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
-        >
-          <h2 class="p-0.5 flex text-xl items-center">Manual Enrollment</h2>
+        <h2 class="py-3 flex text-xl font-bold items-center">Batch upload</h2>
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <hr />
+          <form action="" [formGroup]="studentForms" (ngSubmit)="formSubmit()">
+            <table
+              class="min-w-full divide-y divide-gray-200"
+              *ngIf="user.admin.authId === 2"
+            >
+              <!-- Batch upload -->
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><label
+                      class="block text-sm font-medium text-gray-700">Assign a section</label><select
+                      formcontrolname="sectionId" name="sectionId"
+                      class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                      <option *ngfor="let section of Section" value="{{ section.id }}">{{ section.name }}</option>
+                    </select></td>
+                  <td class="px-4 w-2 pt-5 whitespace-nowrap text-sm text-gray-500">
+                    <label class="block text-sm font-medium text-gray-700"></label>
+                 <input type="file">
+                  </td>
+                  <div class="" style="display:none"><input type="hidden" formcontrolname="programId"></div>
+                  <td class="pt-9 px-2 py-4 whitespace-nowrap text-right text-sm font-medium"><button
+                      class="block h-8 px-4 text-white transition-colors duration-150 bg-green-600 rounded-full focus:shadow-outline hover:bg-green-700">Assign</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+          <form
+            action=""
+            [formGroup]="studentFormsCoord"
+            (ngSubmit)="formSubmitforCoord()"
+          >
+            <table
+              class="min-w-full divide-y divide-gray-200"
+              *ngIf="user.admin.authId === 3"
+            >
+              <!-- User Assignment -->
+<!--
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-2 py-4 whitespace-nowrap">
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label for="state" class="block text-sm font-medium text-gray-700">Input a student's email</label>
+                      <input type="text" name="email" id="state" formControlName="email" class="mt-1
+                          focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                    </div>
+                  </td>
+                  <div class="" style="display: none">
+                    <input type="hidden" formControlName="adminEmail" name="adminEmail" />
+                  </div>
+                  <div class="" style="display: none">
+                    <input type="hidden" formControlName="programId" />
+                  </div>
+                  <td class="
+                      pt-9
+                      px-6
+                      py-4
+                      whitespace-nowrap
+                      text-right text-sm
+                      font-medium
+                    ">
+                    <button class="
+                        block
+                        h-8
+                        px-4
+                        text-white
+                        transition-colors
+                        duration-150
+                        bg-green-600
+                        rounded-full
+                        focus:shadow-outline
+                        hover:bg-green-700
+                      ">
+                      Assign
+                    </button>
+                  </td>
+                </tr>
+              </tbody> -->
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-12 flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <h2 class="py-3 flex text-xl font-bold items-center">Manual Enrollment</h2>
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <hr />
           <form action="" [formGroup]="studentForms" (ngSubmit)="formSubmit()">
             <table
@@ -35,8 +123,7 @@
                       <label
                         for="state"
                         class="block text-sm font-medium text-gray-700"
-                        >Input a student's email</label
-                      >
+                        >Input a student's email</label>
                       <input
                         type="email"
                         name="email"
@@ -57,9 +144,7 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <label class="block text-sm font-medium text-gray-700"
-                      >Assign a section</label
-                    >
+                    <label class="block text-sm font-medium text-gray-700">Assign a section</label>
                     <select
                       formControlName="sectionId"
                       name="sectionId"
@@ -213,7 +298,7 @@
   </div>
 
   <!-- Table -->
-  <h2 class="p-0.5 flex text-xl items-center sm:px-6 lg:px-8">
+  <h2 class="pt-12 py-3 flex text-xl font-bold items-center sm:px-6 lg:px-8">
     Enrolled Students
   </h2>
   <div class="flex flex-col">
