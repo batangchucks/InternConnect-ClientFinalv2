@@ -1,12 +1,14 @@
 <div class="pt-6 sm:px-6 lg:px-8 pb-10">
   <div>
     <h1
-      class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight">
+      class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight"
+    >
       Manage Academic Year
     </h1>
   </div>
   <p class="mt-1 text-lg text-gray-500">
-    Information in the current academic year can be updated. Resetting it would mean deleting all the data.
+    Information in the current academic year can be updated. Resetting it would
+    mean deleting all the data.
   </p>
 </div>
 <!-- This example requires Tailwind CSS v2.0+
@@ -16,24 +18,84 @@
 <div class="flex flex-col">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <div
+        class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+      >
         <table class="min-w-32 divide-y divide-gray-200">
           <!-- User Assignment -->
           <tbody class="bg-white divide-y divide-gray-200">
             <tr>
               <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
-                <label for="start" class="block text-sm font-medium text-gray-700">Start</label>
-                <input id="about" name="about" [(ngModel)]="_ayStartDate" type="date"
-                class="mt-1 focus:ring-green-500 focus:border-green-500 block w-42 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <label
+                  for="start"
+                  class="block text-sm font-medium text-gray-700"
+                  >Start</label
+                >
+                <input
+                  id="about"
+                  name="about"
+                  [(ngModel)]="_ayStartDate"
+                  type="date"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-42
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                />
               </td>
               <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
-                <label for="end" class="block text-sm font-medium text-gray-700">End</label>
-                <input id="about" name="about" [(ngModel)]="_ayEndDate" type="date"
-                class="mt-1 focus:ring-green-500 focus:border-green-500 block w-42 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <label for="end" class="block text-sm font-medium text-gray-700"
+                  >End</label
+                >
+                <input
+                  id="about"
+                  name="about"
+                  [(ngModel)]="_ayEndDate"
+                  type="date"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-42
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                />
               </td>
-              <td class="pt-9 px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button class="block h-8 px-4 text-white transition-colors duration-150 bg-green-600
-                rounded-full focus:shadow-outline hover:bg-green-700" (click)="toConfirm()">Reset Acad Year</button>
+              <td
+                class="
+                  pt-9
+                  px-6
+                  py-4
+                  whitespace-nowrap
+                  text-right text-sm
+                  font-medium
+                "
+              >
+                <button
+                  class="
+                    block
+                    h-8
+                    px-4
+                    text-white
+                    transition-colors
+                    duration-150
+                    bg-green-600
+                    rounded-full
+                    focus:shadow-outline
+                    hover:bg-green-700
+                  "
+                  (click)="toReset()"
+                >
+                  Reset Acad Year
+                </button>
               </td>
             </tr>
           </tbody>
@@ -42,7 +104,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="pt-12 sm:px-6 lg:px-8">
@@ -54,11 +115,15 @@
           Academic Information
         </h3>
         <p class="mt-1 text-base text-gray-500">
-          This sets the name of the university and college name in the letterhead of the generated endorsement PDF.</p>
+          This sets the name of the college in the letterhead of the generated
+          endorsement PDF.
+        </p>
         <hr class="my-4 sm:px-6 lg:px-8" />
 
-        <label for="about" class="block text-sm font-medium text-gray-700">
-          <label for="about" class="block text-sm font-medium text-gray-700">University Name</label>
+        <!-- <label for="about" class="block text-sm font-medium text-gray-700">
+          <label for="about" class="block text-sm font-medium text-gray-700"
+            >University Name</label
+          >
           <input
             id="about"
             name="about"
@@ -74,7 +139,7 @@
             "
             placeholder="University Of Santo Tomas"
           />
-        </label>
+        </label> -->
 
         <div class="mt-4">
           <label for="about" class="block text-sm font-medium text-gray-700"
@@ -100,13 +165,18 @@
         </div>
 
         <h3 class="mt-8 text-2xl font-semibold leading-6 text-gray-900">
-          Endorsement Letter Information</h3>
+          Endorsement Letter Information
+        </h3>
         <p class="mt-1 text-base text-gray-500">
-          This sets the credentials of the IGAARP coordinator and the dean which will be visible in generated endorsement PDF.</p>
+          This sets the credentials of the IGAARP coordinator and the dean which
+          will be visible in generated endorsement PDF.
+        </p>
         <hr class="my-4 sm:px-6 lg:px-8" />
 
         <div class="mt-4">
-          <label for="about" class="block text-sm font-medium text-gray-700">IGAARP Coordinator Name</label>
+          <label for="about" class="block text-sm font-medium text-gray-700"
+            >IGAARP Coordinator Name</label
+          >
           <input
             id="about"
             name="about"
@@ -176,7 +246,9 @@
           Asset Uploads
         </h3>
         <p class="mt-1 text-base text-gray-500">
-          This sets the logos in the letterhead of the generated endorsement PDF.</p>
+          This sets the logos in the letterhead of the generated endorsement
+          PDF.
+        </p>
         <hr class="my-4 sm:px-6 lg:px-8" />
 
         <div>
@@ -233,10 +305,11 @@
                     name="file-upload"
                     type="file"
                     class="sr-only"
+                    (change)="CollegeLogoUp($event)"
                   />
                 </label>
               </div>
-              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+              <p class="text-xs text-gray-500">PNG up to 10MB</p>
             </div>
           </div>
         </div>
@@ -273,7 +346,7 @@
               </svg>
               <div class="flex text-sm text-gray-600">
                 <label
-                  for="file-upload"
+                  for="file-uploads"
                   class="
                     relative
                     cursor-pointer
@@ -290,14 +363,15 @@
                 >
                   <span>Upload a file</span>
                   <input
-                    id="file-upload"
-                    name="file-upload"
+                    id="file-uploads"
+                    name="file-uploads"
                     type="file"
                     class="sr-only"
+                    (change)="UnivLogoUp($event)"
                   />
                 </label>
               </div>
-              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+              <p class="text-xs text-gray-500">PNG up to 10MB</p>
             </div>
           </div>
         </div>
@@ -305,10 +379,29 @@
     </div>
 
     <div class="px-4 py-3 text-right sm:px-6">
-      <button type="submit" class=" inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm
-      font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2
-      focus:ring-offset-2 focus:ring-green-500" (click)="toConfirm()">
-      Update
+      <button
+        type="submit"
+        class="
+          inline-flex
+          justify-center
+          py-2
+          px-4
+          border border-transparent
+          shadow-sm
+          text-sm
+          font-medium
+          rounded-md
+          text-white
+          bg-green-600
+          hover:bg-green-700
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-green-500
+        "
+        (click)="toUpdate()"
+      >
+        Update
       </button>
     </div>
   </div>
@@ -434,6 +527,7 @@
                 <input
                   type="password"
                   name="password"
+                  [(ngModel)]="_deanPassword"
                   class="
                     mt-1
                     focus:ring-green-500 focus:border-green-500
@@ -453,6 +547,7 @@
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <button
           type="button"
+          (click)="toConfirmReset()"
           class="
             w-full
             inline-flex
