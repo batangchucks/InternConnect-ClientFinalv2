@@ -102,7 +102,8 @@
           >
             <tr
               *ngFor="
-                let log of logs | paginate: { itemsPerPage: 10, currentPage: p }
+                let log of logs.reverse()
+                  | paginate: { itemsPerPage: 10, currentPage: p }
               "
             >
               <td
@@ -142,14 +143,7 @@
                 </div>
               </td>
 
-              <td
-                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                *ngIf="
-                  log.submission.adminResponse.acceptedByCoordinator ||
-                  log.submission.adminResponse.companyAgrees ||
-                  log.submission.adminResponse.emailSentByCoordinator
-                "
-              >
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <span
                   class="
                     px-2
@@ -162,26 +156,7 @@
                     text-green-800
                   "
                 >
-                  Approved
-                </span>
-              </td>
-              <td
-                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                *ngIf="log.submission.adminResponse.comments"
-              >
-                <span
-                  class="
-                    px-2
-                    inline-flex
-                    text-xs
-                    leading-5
-                    font-semibold
-                    rounded-full
-                    bg-green-100
-                    text-green-800
-                  "
-                >
-                  Disapproved
+                  {{ log.status == "Rejected" ? "Disapproved" : "Accepted" }}
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -195,7 +170,7 @@
                     rounded-full
                   "
                 >
-                {{ log.dateStamped }}
+                  {{ log.dateStamped | date: "medium" }}
                 </span>
               </td>
             </tr>
@@ -208,7 +183,8 @@
           >
             <tr
               *ngFor="
-                let log of logs | paginate: { itemsPerPage: 10, currentPage: p }
+                let log of logs.reverse()
+                  | paginate: { itemsPerPage: 10, currentPage: p }
               "
             >
               <td
@@ -239,11 +215,7 @@
                   {{ log.submission.student.account.email.toLowerCase() }}
                 </div>
               </td>
-
-              <td
-                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                *ngIf="log.submission.adminResponse.acceptedByDean"
-              >
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <span
                   class="
                     px-2
@@ -256,26 +228,7 @@
                     text-green-800
                   "
                 >
-                  Approved
-                </span>
-              </td>
-              <td
-                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                *ngIf="log.submission.adminResponse.comments"
-              >
-                <span
-                  class="
-                    px-2
-                    inline-flex
-                    text-xs
-                    leading-5
-                    font-semibold
-                    rounded-full
-                    bg-green-100
-                    text-green-800
-                  "
-                >
-                  Disapproved
+                  {{ log.status == "Rejected" ? "Disapproved" : "Accepted" }}
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -289,7 +242,7 @@
                     rounded-full
                   "
                 >
-                  {{ log.dateStamped }}
+                  {{ log.dateStamped | date: "medium" }}
                 </span>
               </td>
             </tr>
