@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { fakeAsync } from '@angular/core/testing';
 import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { submissionModel } from '../shared/models/submission.model';
 import { createAccount } from '../shared/services/createAcc.service';
 
@@ -16,13 +18,6 @@ export class RouteGuardEndorsement implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
-    this.Acc.getSubmissionStudent(user.student.id).subscribe((submi) => {
-      this.submit = submi;
-    });
-
-    if (this.submit == null) {
-      return true;
-    }
-    return false;
+    return true;
   }
 }

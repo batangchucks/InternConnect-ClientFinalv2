@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CompanyModel } from 'src/app/shared/models/company.model';
 import { programModel } from 'src/app/shared/models/programs.model';
 import { CompanyService } from 'src/app/shared/services/company.service';
@@ -13,7 +14,6 @@ import { ProgramService } from 'src/app/shared/services/program.service';
   styleUrls: ['./endorsementform.component.scss'],
 })
 export class EndorsementformComponent implements OnInit {
-
   modalAppear: boolean = false;
 
   myDate = new Date();
@@ -22,7 +22,8 @@ export class EndorsementformComponent implements OnInit {
     private program: ProgramService,
     private company: CompanyService,
     private File: fileUpload,
-    private Account: createAccount
+    private Account: createAccount,
+    private router: Router
   ) {}
   Program: programModel[] = [];
   Company: CompanyModel[] = [];
@@ -43,6 +44,14 @@ export class EndorsementformComponent implements OnInit {
   companyS: CompanyModel;
 
   ngOnInit(): void {
+    this.Account.getSubmissionStudent(this.user.student.id).subscribe(
+      (resp) => {
+        if (resp != null) {
+          this.router.navigate(['/login']);
+        }
+      },
+      (err) => {}
+    );
     this.program
       .getSingleProgram(this.user.student.programId)
       .subscribe((eachV) => {
@@ -58,9 +67,12 @@ export class EndorsementformComponent implements OnInit {
     this.EndorsementF = new FormGroup({
       lastName: new FormControl(null, [Validators.required]),
       firstName: new FormControl(null, [Validators.required]),
-      middleInitial: new FormControl(null, [Validators.required],),
+      middleInitial: new FormControl(null, [Validators.required]),
       trackId: new FormControl(null, [Validators.required]),
-      studentNumber: new FormControl(null, [Validators.required, Validators.minLength(10)]),
+      studentNumber: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
       contactPersonEmail: new FormControl(null, [Validators.required]),
       contactPersonTitle: new FormControl(null, [Validators.required]),
       contactPersonLastName: new FormControl(null, [Validators.required]),
@@ -72,7 +84,6 @@ export class EndorsementformComponent implements OnInit {
     });
   }
   endorseS() {
-
     this.modalAppear = true;
 
     const studentTitle: string = this.EndorsementF.get('studentTitle').value;
@@ -125,8 +136,7 @@ export class EndorsementformComponent implements OnInit {
       form_payload
     ).subscribe((submission) => {
       this.modalAppear = false;
-
-      this.ngOnInit();
+      this.router.navigate(['/status']);
     });
   }
 
