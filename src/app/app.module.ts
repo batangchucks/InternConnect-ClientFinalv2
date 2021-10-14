@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -118,6 +119,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     CompanyService,
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

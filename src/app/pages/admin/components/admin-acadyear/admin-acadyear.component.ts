@@ -35,8 +35,6 @@ export class AdminAcadyearComponent implements OnInit {
       this._ayStartDate = this.date.transform(resp.startDate, 'yyyy-MM-dd');
       this._ayEndDate = this.date.transform(resp.endDate, 'yyyy-MM-dd');
     });
-
-    this.
   }
   toConfirm() {
     var ayPayload = {
