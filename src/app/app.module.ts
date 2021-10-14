@@ -55,6 +55,7 @@ import { isoCodeFilter } from './isoCodeFilter.pipe';
 import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
 import { PolicyComponent } from './pages/landing/components/policy/policy.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-
+import { studentModel } from 'src/app/shared/models/students.model';
+import { DashboardService } from 'src/app/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss']
+  styleUrls: ['./admin-dashboard.component.scss'],
 })
 export class AdminDashboardComponent implements OnInit {
-  chart:any;
+  chart: any;
+  user = JSON.parse(localStorage.getItem('user'));
+  studentList: studentModel[] = [];
 
-  constructor() { }
+  constructor(private dashboard: DashboardService) {}
 
   ngOnInit(): void {
+    this.dashboard.getStudentList().subscribe((resp) => {
+      this.studentList = resp;
+    });
+
     this.chart = document.getElementById('status_chart');
     Chart.register(...registerables);
     this.loadStudentsChart();
@@ -20,7 +27,6 @@ export class AdminDashboardComponent implements OnInit {
     this.chart = document.getElementById('company_chart');
     Chart.register(...registerables);
     this.loadCompanyChart();
-
   }
 
   loadStudentsChart(): void {
@@ -28,9 +34,9 @@ export class AdminDashboardComponent implements OnInit {
       type: 'doughnut',
       data: {
         labels: ['Students with Company', 'Students without company'],
-        datasets:[
+        datasets: [
           {
-            data: [50, 28],
+            data: [174, 28],
             backgroundColor: ['#F4D35E', '#73A580'],
           },
         ],
@@ -38,8 +44,8 @@ export class AdminDashboardComponent implements OnInit {
       options: {
         responsive: true,
         maintainAspectRatio: true,
-      }
-    })
+      },
+    });
   }
 
   loadCompanyChart(): void {
@@ -47,7 +53,7 @@ export class AdminDashboardComponent implements OnInit {
       type: 'bar',
       data: {
         labels: ['Company A', 'Company B', 'Company C', 'Company D'],
-        datasets:[
+        datasets: [
           {
             data: [100, 28, 25, 34],
             backgroundColor: ['#FFE6E8', '#F2CCC3', '#E78F8E'],
@@ -65,7 +71,7 @@ export class AdminDashboardComponent implements OnInit {
             borderWidth: 2,
           },
         },
-      }
-    })
+      },
+    });
   }
 }
