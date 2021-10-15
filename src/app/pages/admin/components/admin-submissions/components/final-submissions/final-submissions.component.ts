@@ -19,7 +19,6 @@ export class FinalSubmissionsComponent implements OnInit {
 
   constructor(private Acc: createAccount) {}
 
-  modalGener
   stampFileName: string = 'file';
 
   ngOnInit(): void {

@@ -108,28 +108,8 @@
                 rounded-md
               "
             />
-            <span
-              *ngIf="
-                EndorsementF.get('lastName').invalid &&
-                (EndorsementF.get('lastName').dirty ||
-                  EndorsementF.get('lastName').touched)
-              "
-              class="
-                flex
-                items-center
-                font-bold
-                tracking-wide
-                text-red-500 text-xs
-                mt-1
-                ml-1
-              "
-            >
-              {{
-                EndorsementF.get("lastName").invalid
-                  ? "Required"
-                  : "Invalid field"
-              }}
-            </span>
+            <span *ngif="EndorsementF.get('lastName').invalid && (EndorsementF.get('lastName').dirty || EndorsementF.get('lastName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {{ EndorsementF.get("lastName").invalid ? "Required" : "Invalid field" }}</span>
           </div>
 
           <div class="col-span-6">
