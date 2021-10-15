@@ -12,6 +12,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Submission: submissionModel[] = [];
+  ApproveIndicator: boolean = false;
   DisapproveIndicator: boolean = false;
 
   rejectedForm: FormGroup;
@@ -49,6 +50,10 @@ export class ApprovedSubmissionsComponent implements OnInit {
 
     this.ngOnInit();
     this.DisapproveIndicator = false;
+  }
+
+  toCancelOne() {
+    this.ApproveIndicator = false;
   }
   toCancelTwo() {
     this.DisapproveIndicator = false;

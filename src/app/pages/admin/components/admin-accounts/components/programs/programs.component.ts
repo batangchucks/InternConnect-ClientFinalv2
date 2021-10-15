@@ -13,9 +13,11 @@ export class ProgramsComponent implements OnInit {
   Program: programModel[] = [];
   CreateProgramIndicator: boolean = false;
   UpdateProgramIndicator: boolean = false;
+  DeleteProgramIndicator: boolean = true;
 
   CreateTrackIndicator: boolean = false;
   UpdateTrackIndicator: boolean = false;
+  DeleteTrackIndicator: boolean = false;
 
   createForm: FormGroup;
   updateProgramF: FormGroup;
@@ -67,6 +69,14 @@ export class ProgramsComponent implements OnInit {
 
   toCancelThree() {
     this.CreateTrackIndicator = false;
+  }
+
+  toCancelDP() {
+    this.DeleteProgramIndicator = false;
+  }
+
+  toCancelDT() {
+    this.DeleteTrackIndicator = false;
   }
 
   toUpdateTrack(id: number, programId: number) {

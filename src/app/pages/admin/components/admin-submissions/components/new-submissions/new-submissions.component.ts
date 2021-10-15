@@ -20,6 +20,7 @@ export class NewSubmissionsComponent implements OnInit {
 
   esig: string;
   isStamp: boolean = true;
+  ApproveIndicator: boolean = false;
   DisapproveIndicator: boolean = false;
 
   disapprovedStudentIso: number;
@@ -104,7 +105,14 @@ export class NewSubmissionsComponent implements OnInit {
   //   this.DisapproveIndicator = false;
   // }
 
+  // Cancelling approval modal
+  toCancelOne(){
+    this.ApproveIndicator = false;
+  }
+
+  // Cancelling disapproval modal
   toCancelTwo() {
     this.DisapproveIndicator = false;
   }
+
 }

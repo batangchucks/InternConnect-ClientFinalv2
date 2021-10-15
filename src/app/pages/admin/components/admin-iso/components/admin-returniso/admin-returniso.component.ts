@@ -12,6 +12,9 @@ import { ProgramService } from 'src/app/shared/services/program.service';
   styleUrls: ['./admin-returniso.component.scss'],
 })
 export class AdminReturnisoComponent implements OnInit {
+
+  DeleteIndicator: boolean = false;
+
   p: number = 1;
   pIso: number = 1;
   pSummary: number = 1;
@@ -111,6 +114,10 @@ export class AdminReturnisoComponent implements OnInit {
 
   toCancel() {
     this.TransferIndicator = false;
+  }
+
+  toCancelTwo(){
+    this.DeleteIndicator = false;
   }
 
   logout() {

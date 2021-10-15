@@ -12,6 +12,7 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 export class AdminAcadyearComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user'));
   AcadYearIndicator: boolean = false;
+  ResetYearIndicator: boolean = false;
   constructor(
     private date: DatePipe,
     private academicyear: AcademicyearService,
@@ -77,6 +78,10 @@ export class AdminAcadyearComponent implements OnInit {
 
   toCancel() {
     this.AcadYearIndicator = false;
+  }
+
+  toCancelTwo() {
+    this.ResetYearIndicator = false;
   }
 
   toUpdate() {

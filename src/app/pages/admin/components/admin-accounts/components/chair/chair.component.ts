@@ -13,6 +13,7 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 })
 export class ChairComponent implements OnInit {
   UpdateIndicator: boolean = false;
+  DeleteIndicator: boolean = false;
   Program: programModel[] = [];
   Chair: chairModel[] = [];
 
@@ -36,6 +37,10 @@ export class ChairComponent implements OnInit {
 
   toCancel() {
     this.UpdateIndicator = false;
+  }
+
+  toCancelTwo() {
+    this.DeleteIndicator = false;
   }
   submitNewChair(f: NgForm) {
     this.Account.POSTChair(f.value).subscribe((newChair) => {

@@ -8,6 +8,9 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./techprogram.component.scss'],
 })
 export class TechprogramComponent implements OnInit {
+
+  DeleteIndicator: boolean = false;
+
   constructor(private Account: createAccount) {}
 
   ngOnInit(): void {}
@@ -15,5 +18,9 @@ export class TechprogramComponent implements OnInit {
     this.Account.POSTtechCoord(f.value).subscribe((cTechCoord) => {
       this.ngOnInit();
     });
+  }
+
+  toCancel(){
+    this.DeleteIndicator = false;
   }
 }

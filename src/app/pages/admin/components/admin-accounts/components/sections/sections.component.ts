@@ -12,6 +12,7 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 export class SectionsComponent implements OnInit {
   CreateIndicator: boolean = false;
   UpdateIndicator: boolean = false;
+  DeleteIndicator: boolean = false;
   createForm: FormGroup;
   updateForm: FormGroup;
 
@@ -70,6 +71,11 @@ export class SectionsComponent implements OnInit {
   toCancelOne() {
     this.CreateIndicator = false;
   }
+
+  toCancel() {
+    this.DeleteIndicator = false;
+  }
+
   showSection() {
     this.account.getSection(this.user.admin.programId).subscribe((eachS) => {
       this.Section = eachS;

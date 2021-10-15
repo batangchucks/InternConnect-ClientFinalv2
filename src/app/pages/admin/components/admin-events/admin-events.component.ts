@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminEventsComponent implements OnInit {
 
+  DeleteIndicator: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toCancel(){
+    this.DeleteIndicator = false;
   }
 
 }

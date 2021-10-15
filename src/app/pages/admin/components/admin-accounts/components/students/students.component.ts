@@ -10,6 +10,8 @@ import { studentModel } from 'src/app/shared/models/students.model';
   styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent implements OnInit {
+
+  DeleteIndicator: boolean = false;
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Section: sectionModel[] = [];
@@ -91,5 +93,9 @@ export class StudentsComponent implements OnInit {
           this.Students = eachS;
         });
     }
+  }
+
+  toCancel(){
+    this.DeleteIndicator = false;
   }
 }

@@ -14,6 +14,7 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 })
 export class CoordinatorComponent implements OnInit {
   UpdateIndicator: boolean = false;
+  DeleteIndicator: boolean = false;
   user = JSON.parse(localStorage.getItem('user'));
 
   coordinatorF!: FormGroup;
@@ -74,5 +75,9 @@ export class CoordinatorComponent implements OnInit {
 
   toCancel() {
     this.UpdateIndicator = false;
+  }
+
+  toCancelTwo(){
+    this.DeleteIndicator = false;
   }
 }

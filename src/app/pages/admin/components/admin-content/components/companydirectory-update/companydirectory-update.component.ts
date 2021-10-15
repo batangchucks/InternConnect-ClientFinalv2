@@ -13,6 +13,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   p: number = 1;
   CreateIndicator: boolean = false;
   UpdateIndicator: boolean = false;
+  DeleteIndicator: boolean = false;
   updateCompany!: FormGroup;
   createCompany!: FormGroup;
 
@@ -38,7 +39,11 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   }
   toCreate() {
-    this.CreateIndicator = true;
+    this.CreateIndicator = false;
+  }
+
+  toCancel(){
+    this.DeleteIndicator = false;
   }
 
   toCancelOne() {
@@ -155,4 +160,5 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       this.coverPhotoFileName = data.toString();
     });
   }
+
 }

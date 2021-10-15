@@ -16,6 +16,7 @@ export class OpportunitiesUpdateComponent implements OnInit {
   Opportunities: opportunityModel[] = [];
   CreateIndicator: boolean = false;
   UpdateIndicator: boolean = false;
+  DeleteIndicator: boolean = false;
   updateOpportunity!: FormGroup;
   Company: CompanyModel[] = [];
 
@@ -53,6 +54,10 @@ export class OpportunitiesUpdateComponent implements OnInit {
   }
   toCreate() {
     this.CreateIndicator = true;
+  }
+
+  toCancel() {
+    this.DeleteIndicator = false;
   }
 
   toCancelOne() {

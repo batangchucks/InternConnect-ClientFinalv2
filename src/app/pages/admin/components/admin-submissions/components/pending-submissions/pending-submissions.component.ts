@@ -8,6 +8,9 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./pending-submissions.component.scss'],
 })
 export class PendingSubmissionsComponent implements OnInit {
+
+  confirmSend: boolean = false;
+
   p: number = 1;
   Submission: submissionModel[] = [];
 
@@ -36,5 +39,9 @@ export class PendingSubmissionsComponent implements OnInit {
     this.Acc.emailSent(Payload).subscribe((response) => {
       this.ngOnInit();
     });
+  }
+
+  toCancel(){
+    this.confirmSend = false;
   }
 }
