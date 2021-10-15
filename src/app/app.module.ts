@@ -26,6 +26,7 @@ import { AdminAcadyearComponent } from './pages/admin/components/admin-acadyear/
 import { AdminDashboardComponent } from './pages/admin/components/admin-dashboard/admin-dashboard.component';
 import { NavbarComponent } from './pages/landing/components/navbar/navbar.component';
 import { FooterComponent } from './pages/landing/components/footer/footer.component';
+import { FeaturesComponent } from './pages/landing/components/features/features.component';
 import { OpportunitiesComponent } from './pages/companyprofile/components/opportunities/opportunities.component';
 import { ApplicationComponent } from './pages/landing/components/application/application.component';
 import { TransactionComponent } from './pages/landing/components/transaction/transaction.component';
@@ -82,6 +83,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AdminDashboardComponent,
     NavbarComponent,
     FooterComponent,
+    FeaturesComponent,
     OpportunitiesComponent,
     ApplicationComponent,
     TransactionComponent,
