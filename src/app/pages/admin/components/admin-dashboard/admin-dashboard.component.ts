@@ -26,16 +26,27 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.dashboard.getStudentList().subscribe((resp) => {
       this.studentList = resp;
-      this.studentsWithCompany = resp.filter((student) => {
+
+      var studentsWithSubmissions = resp.filter((student) => {
+        return student.submissions.length > 0;
+      });
+      console.log(studentsWithSubmissions);
+
+      this.studentsWithCompany = studentsWithSubmissions.filter((student) => {
         return (
           student.submissions.slice(-1)[0].adminResponse.companyAgrees == true
         );
       }).length;
       this.studentsWithoutCompany = resp.filter((student) => {
-        return student.submissions == null;
+        return (
+          student.submissions.length <= 0 ||
+          (student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+            false &&
+            student.submissions.slice(-1)[0].adminResponse.comments != null)
+        );
       }).length;
 
-      this.studentsWithRequests = resp.filter((student) => {
+      this.studentsWithRequests = studentsWithSubmissions.filter((student) => {
         return (
           student.submissions.slice(-1)[0].adminResponse.companyAgrees == false
         );
