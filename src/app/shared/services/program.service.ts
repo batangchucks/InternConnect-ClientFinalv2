@@ -28,7 +28,9 @@ export class ProgramService {
   putProgram(formVal: FormGroup) {
     return this.http.put(this.apiUrl + 'api/Program/program', formVal);
   }
- 
+  getAllsection() {
+    return this.http.get<sectionModel[]>(this.apiUrl+'api/Section');
+  }
   getSection(id: number): Observable<sectionModel[]> {
     // return this.http.get<sectionModel[]>(this.apiUrl+"Sections").pipe(
     //     map(o => o.map((sp): sectionModel => (sp.programId)))

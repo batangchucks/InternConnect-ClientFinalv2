@@ -57,6 +57,7 @@ import { isoCodeFilter } from './isoCodeFilter.pipe';
 import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
 import { PolicyComponent } from './pages/landing/components/policy/policy.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { reportFilter } from './generateReportFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FaqsComponent,
     PolicyComponent,
     isoCodeFilter,
+    reportFilter
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@ export class NewSubmissionsComponent implements OnInit {
   submission: submissionModel[] = [];
   user = JSON.parse(localStorage.getItem('user'));
   assignIso: number;
-
+  iso:string;
   esig: string;
   isStamp: boolean = true;
   ApproveIndicator: boolean = false;
@@ -27,6 +27,12 @@ export class NewSubmissionsComponent implements OnInit {
   selectForm: FormGroup;
 
   RejectForm: FormGroup;
+
+  AcceptForm:FormGroup;
+
+  rejectModal:boolean;
+
+  rejectedForm:FormGroup;
 
   isoCodeValue: isoCodeListModel[] = [];
 
@@ -49,15 +55,24 @@ export class NewSubmissionsComponent implements OnInit {
     this.isoCode.getIsoById(this.user.admin.id).subscribe((eachIso) => {
       this.isoCodeValue = eachIso;
     });
-  }
 
+   
+    
+    
+  }
+  isoChange() {
+    this.iso = (<HTMLInputElement>document.getElementById("isoCode")).value;
+
+    console.log(this.iso);
+  }
   approve(adminResponseId: number, isoCode: number) {
     var PostVal = {
       id: adminResponseId,
       acceptedByCoordinator: true,
       comments: '',
     };
-
+    
+   
     this.Acc.coordinatorApprove(
       this.user.admin.id,
       this.assignIso == null || this.assignIso == undefined
@@ -68,6 +83,28 @@ export class NewSubmissionsComponent implements OnInit {
       this.ngOnInit();
       this.assignIso = null;
     });
+  }
+
+  approveAssign() {
+    var PostVal = {
+      id: this.AcceptForm.get('id').value,
+      acceptedByCoordinator: true,
+      comments: '',
+    };
+    
+    
+
+    this.Acc.coordinatorApprove(
+      this.user.admin.id,
+     this.assignIso,
+      PostVal
+    ).subscribe((updatedVal) => {
+      this.ApproveIndicator = false;
+      this.ngOnInit();
+      this.assignIso = null;
+     
+    });
+  
   }
   onNavigate(path: string) {
     var url = this.photoUrl + path;
@@ -82,6 +119,15 @@ export class NewSubmissionsComponent implements OnInit {
       acceptedByCoordinator: new FormControl(false),
     });
   }
+
+  approveModal(id:number) {
+    this.ApproveIndicator = true;
+    this.AcceptForm = new FormGroup({
+      'id':new FormControl(id),
+      acceptedByCoordinator:new FormControl(true),
+      comments: new FormControl('')
+    })
+  }
   rejectedSubmit() {
     this.Acc.coordinatorApprove(
       this.user.admin.id,
@@ -94,6 +140,31 @@ export class NewSubmissionsComponent implements OnInit {
       this.assignIso = null;
     });
     this.DisapproveIndicator = false;
+  }
+
+  toDisapproveModal(id:number) {
+    this.rejectModal = true;
+    this.rejectedForm = new FormGroup({
+      'comments': new FormControl(''),
+      'assignIso':new FormControl(''),
+      'acceptedByCoordinator': new FormControl(false),
+      id: new FormControl(id)
+    })
+  }
+
+  rejectSubmit() {
+  
+    var payload = {
+      comments:this.rejectedForm.get('comments').value,
+      acceptedByCoordinator:this.rejectedForm.get('acceptedByCoordinator').value,
+      id: this.rejectedForm.get('id').value
+    }
+
+
+   this.Acc.coordinatorApprove(this.user.admin.id,this.rejectedForm.get('assignIso').value,payload).subscribe(newVal=> {
+    this.rejectModal = false; 
+    this.ngOnInit();
+   })
   }
   // rejectedSubmit() {
   //   this.Acc.coordinatorDisapprove(this.user.admin.id ,this.RejectForm.value).subscribe(
@@ -115,4 +186,5 @@ export class NewSubmissionsComponent implements OnInit {
     this.DisapproveIndicator = false;
   }
 
+  
 }

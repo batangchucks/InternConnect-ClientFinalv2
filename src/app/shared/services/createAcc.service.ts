@@ -106,7 +106,53 @@ export class createAccount {
   POSTtechCoord(postVal: NgForm) {
     return this.http.post(this.apiUrl + 'api/techcoordinator', postVal);
   }
+  getAllSubmission() {
+    return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission');
 
+  }
+  filterSubmission(sectionId:number,status:string) {
+
+    if (!sectionId) {
+      return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission');
+    }
+    else if (status == null && sectionId) {
+        console.log("when only section");
+       
+        return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId == sectionId)))));
+       
+     
+       
+    }
+    else if(status !=null && sectionId) {
+      if(status) {
+        if(status == 'Acknowledged') {
+
+            return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=> eachS.student.sectionId && eachS.adminResponse.acceptedByCoordinator == true)))));
+        }
+        else if(status == 'approvedbyC') {
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.acceptedByChair == true)))));
+        }
+        else if(status == 'approvedD') {
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.acceptedByDean == true)))));
+        }
+        else if(status == 'sentToCompany') {
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.emailSentByCoordinator == true)))));
+        }
+        else if(status == 'approvedByCompany') {
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.companyAgrees == true)))));
+        }
+        else {
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.comments)))));
+        }
+        
+
+       
+    }
+      
+      
+    }
+     return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission');
+  }
   getSubmissionStudent(studId: number): Observable<submissionModel> {
     return this.http.get<submissionModel>(
       this.apiUrl + 'api/Submission/' + studId
@@ -246,4 +292,13 @@ export class createAccount {
   updateWebstate(postVal) {
     return this.http.put(this.apiUrl + 'api/Webstate', postVal);
   }
+
+  getFileUpload(ids:string) {
+    let headers = new HttpHeaders();
+   
+    return this.http.get(this.apiUrl+'api/File/excel?'+ids,{ responseType:'blob'});
+
+   
+  }
+ 
 }
