@@ -39,7 +39,8 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   }
   toCreate() {
-    this.CreateIndicator = false;
+    console.log("here")
+    this.CreateIndicator = true;
   }
 
   toCancel(){

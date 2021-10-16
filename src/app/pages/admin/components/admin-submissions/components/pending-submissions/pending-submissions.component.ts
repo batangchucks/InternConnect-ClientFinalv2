@@ -8,6 +8,7 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./pending-submissions.component.scss'],
 })
 export class PendingSubmissionsComponent implements OnInit {
+  transactionLoader:boolean = false
 
   confirmSend: boolean = false;
 
@@ -31,12 +32,14 @@ export class PendingSubmissionsComponent implements OnInit {
     });
   }
   sendToCompany(responseId: number) {
+    this.transactionLoader = true;
     var Payload = {
       id: responseId,
       emailSentByCoordinator: true,
       comments: '',
     };
     this.Acc.emailSent(Payload).subscribe((response) => {
+      this.transactionLoader = false
       this.ngOnInit();
     });
   }

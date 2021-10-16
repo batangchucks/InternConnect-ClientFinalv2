@@ -9,7 +9,16 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./final-submissions.component.scss'],
 })
 export class FinalSubmissionsComponent implements OnInit {
+  //loaderPhases
+  loadPhaseOne: boolean = false;
+  loadPhaseTwo: boolean = false;
+  loadPhaseThree: boolean = false;
+  loadPhaseFour: boolean = false;
+  loadPhaseFive: boolean = false;
 
+  onDeanSubmit: boolean = false;
+
+  onAcceptLoader: boolean = false;
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Submissions: submissionModel[] = [];
@@ -70,17 +79,34 @@ export class FinalSubmissionsComponent implements OnInit {
     acceptedByDean: boolean,
     comments: string
   ) {
+    this.onDeanSubmit = true;
     var Payload = {
       id: adminResponseId,
       acceptedByDean: acceptedByDean,
       comments: comments,
     };
 
+    this.loadPhaseOne = true;
+
+
+
     this.Acc.approvedbyDean(this.user.admin.id, Payload).subscribe(
       (approved) => {
+        this.onDeanSubmit = false;
+        this.loadPhaseFour = false;
         this.ngOnInit();
       }
     );
+
+
+
+
+    // setTimeout(function () {
+    //   this.loadPhaseThree = true;
+    // }, 2000);
+    // setTimeout(function () {
+    //   this.loadPhaseFour = true;
+    // }, 2000);
   }
 
   toDisapproveChair(responseId: number) {

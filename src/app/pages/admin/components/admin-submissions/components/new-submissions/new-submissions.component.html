@@ -156,9 +156,7 @@
                 uppercase
                 tracking-wider
               "
-            >
-             
-            </th>
+            ></th>
           </tr>
         </thead>
         <!-- Person 1 -->
@@ -236,13 +234,12 @@
 
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
               <span *ngIf="eachS.isoCode">* Existing code *</span>
-              
-             
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
             >
-              <button *ngIf="eachS.isoCode"
+              <button
+                *ngIf="eachS.isoCode"
                 class="
                   h-8
                   px-4
@@ -260,29 +257,30 @@
               >
                 Approve
               </button>
-              <button *ngIf="!eachS.isoCode"
-              class="
-                h-8
-                px-4
-                text-white
-                transition-colors
-                duration-150
-                bg-green-600
-                rounded-full
-                focus:shadow-outline
-                hover:bg-green-500
-                disabled:cursor-not-allowed
-              "
-             
-              (click)="approveModal(eachS.adminResponse.id)"
-            >
-              Approve
-            </button>
+              <button
+                *ngIf="!eachS.isoCode"
+                class="
+                  h-8
+                  px-4
+                  text-white
+                  transition-colors
+                  duration-150
+                  bg-green-600
+                  rounded-full
+                  focus:shadow-outline
+                  hover:bg-green-500
+                  disabled:cursor-not-allowed
+                "
+                (click)="approveModal(eachS.adminResponse.id)"
+              >
+                Approve
+              </button>
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
             >
-              <button *ngIf="eachS.isoCode"
+              <button
+                *ngIf="eachS.isoCode"
                 class="
                   h-8
                   px-4
@@ -296,28 +294,27 @@
                   hover:bg-gray-300
                 "
                 (click)="toDisapprove(eachS.adminResponse.id, eachS.isoCode)"
-                
               >
                 Disapprove
               </button>
-              <button *ngIf="!eachS.isoCode"
-              class="
-                h-8
-                px-4
-                text-black
-                transition-colors
-                duration-150
-                bg-gray-200
-                disabled:cursor-not-allowed
-                rounded-full
-                focus:shadow-outline
-                hover:bg-gray-300
-              "
-              (click)="toDisapproveModal(eachS.adminResponse.id)"
-              
-            >
-              Disapprove
-            </button>
+              <button
+                *ngIf="!eachS.isoCode"
+                class="
+                  h-8
+                  px-4
+                  text-black
+                  transition-colors
+                  duration-150
+                  bg-gray-200
+                  disabled:cursor-not-allowed
+                  rounded-full
+                  focus:shadow-outline
+                  hover:bg-gray-300
+                "
+                (click)="toDisapproveModal(eachS.adminResponse.id)"
+              >
+                Disapprove
+              </button>
             </td>
           </tr>
 
@@ -401,8 +398,26 @@
 </div>
 
 <!-- This is the ApproveIndicator -->
-<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="ApproveIndicator">
-  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div
+  class="fixed z-10 inset-0 overflow-y-auto"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  *ngIf="ApproveIndicator"
+>
+  <div
+    class="
+      flex
+      items-end
+      justify-center
+      min-h-screen
+      pt-4
+      px-4
+      pb-20
+      text-center
+      sm:block sm:p-0
+    "
+  >
     <!--
       Background overlay, show/hide based on modal state.
 
@@ -413,10 +428,17 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    <div
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      aria-hidden="true"
+    ></div>
 
     <!-- This element is to trick the browser into centering the modal contents. -->
-    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    <span
+      class="hidden sm:inline-block sm:align-middle sm:h-screen"
+      aria-hidden="true"
+      >&#8203;</span
+    >
 
     <!--
       Modal panel, show/hide based on modal state.
@@ -428,34 +450,140 @@
         From: "opacity-100 translate-y-0 sm:scale-100"
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
-    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+    <div
+      class="
+        inline-block
+        align-bottom
+        bg-white
+        rounded-lg
+        text-left
+        overflow-hidden
+        shadow-xl
+        transform
+        transition-all
+        sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+      "
+    >
       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start">
-          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
+          <div
+            class="
+              mx-auto
+              flex-shrink-0 flex
+              items-center
+              justify-center
+              h-12
+              w-12
+              rounded-full
+              bg-gray-100
+              sm:mx-0 sm:h-10 sm:w-10
+            "
+          >
             <!-- Heroicon name: outline/exclamation -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
           </div>
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+            <h3
+              class="text-lg leading-6 font-medium text-gray-900"
+              id="modal-title"
+            >
               Assign Iso code
             </h3>
             <div class="mt-2">
-                <select #s class="block w-24 py-2 px-3 border border-gray-300 
-                 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" id="isoCode" [(ngModel)]="assignIso">
-              
-                  <option [value]="eachIso.code" *ngFor="let eachIso of isoCodeValue">{{ eachIso.code }}</option>
-             </select>
+              <select
+                #s
+                class="
+                  block
+                  w-24
+                  py-2
+                  px-3
+                  border border-gray-300
+                  bg-white
+                  rounded-md
+                  shadow-sm
+                  focus:outline-none focus:ring-green-500 focus:border-green-500
+                  sm:text-sm
+                "
+                id="isoCode"
+                [(ngModel)]="assignIso"
+              >
+                <option
+                  [value]="eachIso.code"
+                  *ngFor="let eachIso of isoCodeValue"
+                >
+                  {{ eachIso.code }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
       </div>
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-        <button type="button" (click)="approveAssign()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-          Stamp e-signature
+        <button
+          type="button"
+          (click)="approveAssign()"
+          class="
+            w-full
+            inline-flex
+            justify-center
+            rounded-md
+            border border-transparent
+            shadow-sm
+            px-4
+            py-2
+            bg-green-600
+            text-base
+            font-medium
+            text-white
+            hover:bg-green-700
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-green-500
+            sm:ml-3 sm:w-auto sm:text-sm
+          "
+        >
+          Disapprove
         </button>
-        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toCancelOne()">
+        <button
+          type="button"
+          (click)="toCancelOne()"
+          class="
+            mt-3
+            w-full
+            inline-flex
+            justify-center
+            rounded-md
+            border border-gray-300
+            shadow-sm
+            px-4
+            py-2
+            bg-white
+            text-base
+            font-medium
+            text-gray-700
+            hover:bg-gray-50
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-green-500
+            sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
+          "
+          (click)="toCancelOne()"
+        >
           Cancel
         </button>
       </div>
@@ -463,6 +591,208 @@
   </div>
 </div>
 
+<!-- This is the DisapproveIndicator -->
+
+<div
+  class="fixed z-10 inset-0 overflow-y-auto"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  *ngIf="DisapproveIndicator"
+>
+  <div
+    class="
+      flex
+      items-end
+      justify-center
+      min-h-screen
+      pt-4
+      px-4
+      pb-20
+      text-center
+      sm:block sm:p-0
+    "
+  >
+    <!--
+      Background overlay, show/hide based on modal state.
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      aria-hidden="true"
+    ></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span
+      class="hidden sm:inline-block sm:align-middle sm:h-screen"
+      aria-hidden="true"
+      >&#8203;</span
+    >
+
+    <!--
+      Modal panel, show/hide based on modal state.
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+    <div
+      class="
+        inline-block
+        align-bottom
+        bg-white
+        rounded-lg
+        text-left
+        overflow-hidden
+        shadow-xl
+        transform
+        transition-all
+        sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+      "
+    >
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div
+            class="
+              mx-auto
+              flex-shrink-0 flex
+              items-center
+              justify-center
+              h-12
+              w-12
+              rounded-full
+              bg-gray-100
+              sm:mx-0 sm:h-10 sm:w-10
+            "
+          >
+            <!-- Heroicon name: outline/exclamation -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <form [formGroup]="RejectForm" (ngSubmit)="rejectedSubmit()">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3
+                class="text-lg leading-6 font-medium text-gray-900"
+                id="modal-title"
+              >
+                Provide Feedback
+              </h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">
+                  Please indicate the reason as to why the endorsement was
+                  rejected in the textbox below.
+                </p>
+                <div class="mt-4 col-span-6">
+                  <label
+                    for="street-address"
+                    class="block text-sm font-medium text-gray-700"
+                    >Description</label
+                  >
+                  <textarea
+                    type="text"
+                    name="street-address"
+                    id="street-address"
+                    placeholder="Lorem Ipsum Dolor sit amet"
+                    formControlName="comments"
+                    class="
+                      mt-1
+                      focus:ring-green-500 focus:border-green-500
+                      block
+                      w-full
+                      shadow-sm
+                      sm:text-sm
+                      border-gray-300
+                      rounded-md
+                    "
+                    rows="4"
+                  ></textarea>
+                </div>
+                <div style="display: none">
+                  <input type="text" formControlName="acceptedByCoordinator" />
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+            >
+              <button
+                type="submit"
+                class="
+                  w-full
+                  inline-flex
+                  justify-center
+                  rounded-md
+                  border border-transparent
+                  shadow-sm
+                  px-4
+                  py-2
+                  bg-green-600
+                  text-base
+                  font-medium
+                  text-white
+                  hover:bg-green-700
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-offset-2
+                  focus:ring-green-500
+                  sm:ml-3 sm:w-auto sm:text-sm
+                "
+              >
+                Send
+              </button>
+              <button
+                type="button"
+                class="
+                  mt-3
+                  w-full
+                  inline-flex
+                  justify-center
+                  rounded-md
+                  border border-gray-300
+                  shadow-sm
+                  px-4
+                  py-2
+                  bg-white
+                  text-base
+                  font-medium
+                  text-gray-700
+                  hover:bg-gray-50
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-offset-2
+                  focus:ring-green-500
+                  sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
+                "
+                (click)="toCancelTwo()"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- This is the DisapproveIndicator -->
 <div
   class="fixed z-10 inset-0 overflow-y-auto"
@@ -660,271 +990,6 @@
             </div>
           </form>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div
-  class="fixed z-10 inset-0 overflow-y-auto"
-  aria-labelledby="modal-title"
-  role="dialog"
-  aria-modal="true"
-  *ngIf="DisapproveIndicator"
->
-  <div
-    class="
-      flex
-      items-end
-      justify-center
-      min-h-screen
-      pt-4
-      px-4
-      pb-20
-      text-center
-      sm:block sm:p-0
-    "
-  >
-    <!--
-      Background overlay, show/hide based on modal state.
-      Entering: "ease-out duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
-    <div
-      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-      aria-hidden="true"
-    ></div>
-
-    <!-- This element is to trick the browser into centering the modal contents. -->
-    <span
-      class="hidden sm:inline-block sm:align-middle sm:h-screen"
-      aria-hidden="true"
-      >&#8203;</span
-    >
-
-    <!--
-      Modal panel, show/hide based on modal state.
-      Entering: "ease-out duration-300"
-        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        To: "opacity-100 translate-y-0 sm:scale-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100 translate-y-0 sm:scale-100"
-        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-    -->
-    <div
-      class="
-        inline-block
-        align-bottom
-        bg-white
-        rounded-lg
-        text-left
-        overflow-hidden
-        shadow-xl
-        transform
-        transition-all
-        sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
-      "
-    >
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <div class="sm:flex sm:items-start">
-          <div
-            class="
-              mx-auto
-              flex-shrink-0 flex
-              items-center
-              justify-center
-              h-12
-              w-12
-              rounded-full
-              bg-gray-100
-              sm:mx-0 sm:h-10 sm:w-10
-            "
-          >
-            <!-- Heroicon name: outline/exclamation -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <form [formGroup]="RejectForm" (ngSubmit)="rejectedSubmit()">
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3
-                class="text-lg leading-6 font-medium text-gray-900"
-                id="modal-title"
-              >
-                Provide Feedback
-              </h3>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                  Please indicate the reason as to why the endorsement was
-                  rejected in the textbox below.
-                </p>
-                <div class="mt-4 col-span-6">
-                  <label
-                    for="street-address"
-                    class="block text-sm font-medium text-gray-700"
-                    >Description</label
-                  >
-                  <textarea
-                    type="text"
-                    name="street-address"
-                    id="street-address"
-                    placeholder="Lorem Ipsum Dolor sit amet"
-                    formControlName="comments"
-                    class="
-                      mt-1
-                      focus:ring-green-500 focus:border-green-500
-                      block
-                      w-full
-                      shadow-sm
-                      sm:text-sm
-                      border-gray-300
-                      rounded-md
-                    "
-                    rows="4"
-                  ></textarea>
-                </div>
-                <div style="display: none">
-                  <input type="text" formControlName="acceptedByCoordinator" />
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
-            >
-              <button
-                type="submit"
-                class="
-                  w-full
-                  inline-flex
-                  justify-center
-                  rounded-md
-                  border border-transparent
-                  shadow-sm
-                  px-4
-                  py-2
-                  bg-green-600
-                  text-base
-                  font-medium
-                  text-white
-                  hover:bg-green-700
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-offset-2
-                  focus:ring-green-500
-                  sm:ml-3 sm:w-auto sm:text-sm
-                "
-              >
-                Send
-              </button>
-              <button
-                type="button"
-                class="
-                  mt-3
-                  w-full
-                  inline-flex
-                  justify-center
-                  rounded-md
-                  border border-gray-300
-                  shadow-sm
-                  px-4
-                  py-2
-                  bg-white
-                  text-base
-                  font-medium
-                  text-gray-700
-                  hover:bg-gray-50
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-offset-2
-                  focus:ring-green-500
-                  sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
-                "
-                (click)="toCancelTwo()"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="ApproveIndicator">
-  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-    <!--
-      Background overlay, show/hide based on modal state.
-
-      Entering: "ease-out duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-
-    <!-- This element is to trick the browser into centering the modal contents. -->
-    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-    <!--
-      Modal panel, show/hide based on modal state.
-
-      Entering: "ease-out duration-300"
-        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        To: "opacity-100 translate-y-0 sm:scale-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100 translate-y-0 sm:scale-100"
-        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-    -->
-    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <div class="sm:flex sm:items-start">
-          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
-            <!-- Heroicon name: outline/exclamation -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-              Assign Iso code
-            </h3>
-            <div class="mt-2">
-                <select #s class="block w-24 py-2 px-3 border border-gray-300 
-                 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" id="isoCode" [(ngModel)]="assignIso">
-              
-                  <option [value]="eachIso.code" *ngFor="let eachIso of isoCodeValue">{{ eachIso.code }}</option>
-             </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-        <button type="button" (click)="approveAssign()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-          Stamp e-signature
-        </button>
-        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toCancelOne()">
-          Cancel
-        </button>
       </div>
     </div>
   </div>
@@ -938,6 +1003,7 @@
   aria-modal="true"
   *ngIf="rejectModal"
 >
+  <!--  *ngIf="rejectModal"-->
   <div
     class="
       flex
@@ -981,6 +1047,7 @@
         From: "opacity-100 translate-y-0 sm:scale-100"
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
+
     <div
       class="
         inline-block
@@ -1044,7 +1111,7 @@
                     for="street-address"
                     class="block text-sm font-medium text-gray-700"
                     >Description</label
-                  > 
+                  >
                   <textarea
                     type="text"
                     name="street-address"
@@ -1063,25 +1130,48 @@
                     "
                     rows="4"
                   ></textarea>
-                  
-                  <select #s class="block w-24 py-2 px-3 border border-gray-300 
-                  bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" id="isoCode" formControlName="assignIso">
-               
-                   <option [value]="eachIso.code" *ngFor="let eachIso of isoCodeValue">{{ eachIso.code }}</option>
-                   
+
+                  <select
+                    #s
+                    class="
+                      block
+                      w-24
+                      py-2
+                      px-3
+                      border border-gray-300
+                      bg-white
+                      rounded-md
+                      shadow-sm
+                      focus:outline-none
+                      focus:ring-green-500
+                      focus:border-green-500
+                      sm:text-sm
+                    "
+                    id="isoCode"
+                    formControlName="assignIso"
+                  >
+                    <option
+                      [value]="eachIso.code"
+                      *ngFor="let eachIso of isoCodeValue"
+                    >
+                      {{ eachIso.code }}
+                    </option>
                   </select>
-                  
-                  
                 </div>
-               
-             
               </div>
             </div>
             <div
-              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse mt-4"
+              class="
+                bg-gray-50
+                px-4
+                py-3
+                sm:px-6 sm:flex sm:flex-row-reverse
+                mt-4
+              "
             >
               <button
-                type="submit" (click)="rejectSubmit()"
+                type="submit"
+                (click)="rejectSubmit()"
                 class="
                   w-full
                   inline-flex
@@ -1128,7 +1218,7 @@
                   focus:ring-green-500
                   sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
                 "
-                (click)="toCancelTwo()"
+                (click)="toCancelThree()"
               >
                 Cancel
               </button>
@@ -1140,3 +1230,240 @@
   </div>
 </div>
 
+<!-- This is the End disapprove -->
+
+<div
+  class="fixed z-10 inset-0 overflow-y-auto"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  *ngIf="ApproveIndicator"
+>
+  <div
+    class="
+      flex
+      items-end
+      justify-center
+      min-h-screen
+      pt-4
+      px-4
+      pb-20
+      text-center
+      sm:block sm:p-0
+    "
+  >
+    <!--
+      Background overlay, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      aria-hidden="true"
+    ></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span
+      class="hidden sm:inline-block sm:align-middle sm:h-screen"
+      aria-hidden="true"
+      >&#8203;</span
+    >
+
+    <!--
+      Modal panel, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+    <div
+      class="
+        inline-block
+        align-bottom
+        bg-white
+        rounded-lg
+        text-left
+        overflow-hidden
+        shadow-xl
+        transform
+        transition-all
+        sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+      "
+    >
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div
+            class="
+              mx-auto
+              flex-shrink-0 flex
+              items-center
+              justify-center
+              h-12
+              w-12
+              rounded-full
+              bg-gray-100
+              sm:mx-0 sm:h-10 sm:w-10
+            "
+          >
+            <!-- Heroicon name: outline/exclamation -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3
+              class="text-lg leading-6 font-medium text-gray-900"
+              id="modal-title"
+            >
+              Assign Iso code
+            </h3>
+            <div class="mt-2">
+              <select
+                #s
+                class="
+                  block
+                  w-24
+                  py-2
+                  px-3
+                  border border-gray-300
+                  bg-white
+                  rounded-md
+                  shadow-sm
+                  focus:outline-none focus:ring-green-500 focus:border-green-500
+                  sm:text-sm
+                "
+                id="isoCode"
+                [(ngModel)]="assignIso"
+              >
+                <option
+                  [value]="eachIso.code"
+                  *ngFor="let eachIso of isoCodeValue"
+                >
+                  {{ eachIso.code }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button
+          type="button"
+          (click)="approveAssign()"
+          class="
+            w-full
+            inline-flex
+            justify-center
+            rounded-md
+            border border-transparent
+            shadow-sm
+            px-4
+            py-2
+            bg-green-600
+            text-base
+            font-medium
+            text-white
+            hover:bg-green-700
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-green-500
+            sm:ml-3 sm:w-auto sm:text-sm
+          "
+        >
+          Approve
+        </button>
+        <button
+          type="button"
+          class="
+            mt-3
+            w-full
+            inline-flex
+            justify-center
+            rounded-md
+            border border-gray-300
+            shadow-sm
+            px-4
+            py-2
+            bg-white
+            text-base
+            font-medium
+            text-gray-700
+            hover:bg-gray-50
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-green-500
+            sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
+          "
+          (click)="toCancelOne()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="onAcceptLoading"
+  class="
+    fixed
+    z-10
+    inset-0
+    mx-auto
+    p-8
+    border
+    mt-12
+    w-96
+    h-72
+    shadow-lg
+    rounded-md
+    bg-white
+  "
+>
+  <div class="text-center">
+    <div
+      class="mx-auto flex items-center justify-center h-40 w-40 rounded-full"
+    >
+      <img
+        src="https://res.cloudinary.com/daljbo1q0/image/upload/v1634090673/Landing/mail_eexlbl.gif"
+      />
+    </div>
+    <h3 class="pt-4 text-xl leading-6 font-semibold text-gray-900">
+      Submitting the form...
+    </h3>
+  </div>
+</div>
+
+<div
+  class="
+    fixed
+    inset-0
+    overflow-hidden
+    bg-gray-600 bg-opacity-50
+    overflow-y-auto
+    h-full
+    w-full
+  "
+  *ngIf="onAcceptLoading"
+></div>

@@ -134,10 +134,16 @@ export class EndorsementformComponent implements OnInit {
       this.user.student.sectionId,
       this.user.student.programId,
       form_payload
-    ).subscribe((submission) => {
-      this.modalAppear = false;
-      this.router.navigate(['/status']);
-    });
+    ).subscribe(
+      (submission) => {
+        this.modalAppear = false;
+        this.router.navigate(['/status']);
+        this.ngOnInit();
+      },
+      (err) => {
+        this.ngOnInit();
+      }
+    );
   }
 
   selectedC() {

@@ -16,6 +16,7 @@ export class CoordinatorComponent implements OnInit {
   UpdateIndicator: boolean = false;
   DeleteIndicator: boolean = false;
   user = JSON.parse(localStorage.getItem('user'));
+  idSection:number;
 
   coordinatorF!: FormGroup;
   Section: sectionModel[] = [];
@@ -60,6 +61,8 @@ export class CoordinatorComponent implements OnInit {
   }
 
   createCoordinator() {
+    this.coordinatorF.get('sectionId').setValue(this.idSection)
+    console.log(this.coordinatorF.value)
     this.accounts
       .POSTcoordinator(this.coordinatorF.value)
       .subscribe((createdCoord) => {
