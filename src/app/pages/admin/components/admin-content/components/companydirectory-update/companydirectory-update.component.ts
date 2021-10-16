@@ -111,12 +111,15 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       contactPersonEmail: f.controls.contactPersonEmail.value,
       contactPersonDesignation: f.controls.contactPersonDesignation.value,
     };
+    console.log(payload);
 
+    
 
-    this.company.createCompany(payload).subscribe((createdC) => {
+     this.company.createCompany(payload).subscribe((createdC) => {
       this.ngOnInit();
       this.toCancelOne();
     });
+   
   }
   updateSubmit() {
     this.company.updateCompany(this.updateCompany.value).subscribe((change) => {
@@ -140,6 +143,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.LogoFileName = data.toString();
+      console.log(this.LogoFileName);
     });
   }
 
@@ -162,6 +166,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.coverPhotoFileName = data.toString();
+      console.log(this.coverPhotoFileName);
     });
   }
 
