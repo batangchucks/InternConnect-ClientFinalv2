@@ -95,6 +95,8 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   }
   onSubmitCreate(f: NgForm) {
+
+   
     var payload = {
       name: f.controls.name.value,
       link: f.controls.link.value,
@@ -109,6 +111,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       contactPersonEmail: f.controls.contactPersonEmail.value,
       contactPersonDesignation: f.controls.contactPersonDesignation.value,
     };
+
 
     this.company.createCompany(payload).subscribe((createdC) => {
       this.ngOnInit();
