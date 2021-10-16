@@ -40,7 +40,7 @@ export class OnboardingComponent implements OnInit {
 
     //   })
     const password = this.onboardForm.get('password').value;
-
+   
     if (password === this.confirmpassword) {
       this.isLoggedIn = true;
       this.account

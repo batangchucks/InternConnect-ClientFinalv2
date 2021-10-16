@@ -13,6 +13,7 @@ export class ForgotpassComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(f: NgForm) {
     this.Acc.ForgotPassword(f.controls.email.value).subscribe((email) => {
+      console.log(email);
       f.resetForm();
     });
 

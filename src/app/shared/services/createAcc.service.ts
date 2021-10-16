@@ -37,6 +37,12 @@ export class createAccount {
       this.apiUrl + 'api/Admin/coordinators/' + programId
     );
   }
+
+  getTechCoord() {
+    return this.http.get<coordinatorModel[]>(
+      this.apiUrl + 'api/Admin/admins/').pipe(map((eachV)=>eachV.filter((eachV)=>eachV.authId ===4)));
+    
+  }
   deleteCoordinator(id: number) {
     return this.http.delete(this.apiUrl + 'api/Accounts/' + id);
   }
@@ -104,7 +110,7 @@ export class createAccount {
       );
   }
   POSTtechCoord(postVal: NgForm) {
-    return this.http.post(this.apiUrl + 'api/techcoordinator', postVal);
+    return this.http.post(this.apiUrl + 'api/Accounts/techcoordinator', postVal);
   }
   getAllSubmission() {
     return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission');

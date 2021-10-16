@@ -13,10 +13,19 @@ export class TechprogramComponent implements OnInit {
 
   constructor(private Account: createAccount) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.Account.getTechCoord().subscribe(techC=> {
+      console.log(techC);
+    })
+  }
+
+
   submitTechCoord(f: NgForm) {
     this.Account.POSTtechCoord(f.value).subscribe((cTechCoord) => {
+      console.log(cTechCoord);
+      f.reset();
       this.ngOnInit();
+      
     });
   }
 
