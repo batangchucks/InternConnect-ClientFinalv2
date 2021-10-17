@@ -13,7 +13,7 @@ export class ProgramsComponent implements OnInit {
   Program: programModel[] = [];
   CreateProgramIndicator: boolean = false;
   UpdateProgramIndicator: boolean = false;
-  DeleteProgramIndicator: boolean = true;
+  DeleteProgramIndicator: boolean = false;
 
   CreateTrackIndicator: boolean = false;
   UpdateTrackIndicator: boolean = false;

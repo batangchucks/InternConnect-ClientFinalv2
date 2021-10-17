@@ -34,10 +34,14 @@ export class CompanyprofileComponent implements OnInit {
     });
     this.company.getCompanyById(this.index).subscribe((eachC) => {
       this.companyProfile = eachC;
+      if(this.companyProfile.isActive == false) {
+        this.router.navigate(["/"]);
+      }
     });
 
     this.company.getOpportunityByCompany(this.index).subscribe((eachValue) => {
       this.opportunity = eachValue;
     });
+
   }
 }

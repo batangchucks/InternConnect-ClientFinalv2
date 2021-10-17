@@ -13,6 +13,7 @@ export interface CompanyModel {
    contactPersonDesignation:string;
    contactPersonEmail:string;
    link:string;
+   isActive:boolean;
 
-  
+
 }

@@ -28,7 +28,9 @@ export class OpportunitiesUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.company.getOpportunity().subscribe((eO) => {
-      this.Opportunities = eO;
+      this.Opportunities = eO.filter((opp)=>{
+        return opp.company.isActive == true
+      });
     });
     this.company.getCompany().subscribe((eC) => {
       this.Company = eC;
@@ -82,6 +84,8 @@ export class OpportunitiesUpdateComponent implements OnInit {
       companyId: new FormControl(companyId),
     });
   }
+
+
   updateSubmit() {
     this.company
       .updateOpportunity(this.updateOpportunity.value)

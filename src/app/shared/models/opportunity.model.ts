@@ -1,5 +1,5 @@
 export interface opportunityModel {
-  
+
       id:number,
       title:string,
       position:string,
@@ -14,6 +14,7 @@ export interface opportunityModel {
       city:string,
       headerFileName:string,
       logoFileName:string,
-      description:string
+      description:string,
+      isActive: boolean
       }
 }

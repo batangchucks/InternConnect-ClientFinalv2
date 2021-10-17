@@ -25,7 +25,10 @@ export class CompanydirectoryComponent implements OnInit {
     this.photoUrl = this.File.photoUrl;
 
     this.company.getCompany().subscribe((eachC) => {
-      this.searchedCompany = eachC;
+      console.log(eachC)
+      this.searchedCompany = eachC.filter(company=>{
+        return company.isActive == true;
+      });
     });
   }
 }

@@ -58,7 +58,9 @@ export class EndorsementformComponent implements OnInit {
         this.Program = eachV;
       });
     this.company.getCompany().subscribe((eachC) => {
-      this.Company = eachC;
+      this.Company = eachC.filter((company)=>{
+        return company.isActive == true
+      });
     });
     this.initForm();
   }
