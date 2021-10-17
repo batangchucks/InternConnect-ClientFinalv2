@@ -18,6 +18,12 @@ export class RouteGuardEndorsement implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
+
+    if (user.admin) {
+      this.router.navigate(['/']);
+      return false;
+    }
+
     return true;
   }
 }

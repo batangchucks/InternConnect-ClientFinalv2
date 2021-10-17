@@ -46,10 +46,19 @@ export class AdminEventsComponent implements OnInit {
     });
 
     this.academicyearService.getAcademicYear().subscribe((aydata) => {
+      console.log(this.date.transform(aydata.startDate, 'yyyy-MM-dd'));
       this.academicYearStart = this.date.transform(
         aydata.startDate,
         'yyyy-MM-dd'
       );
+      var dateGen = new Date();
+      var today =
+        dateGen.getFullYear() +
+        '-' +
+        (dateGen.getMonth() + 1) +
+        '-' +
+        dateGen.getDate();
+      this.academicYearStart = today;
       this.academicYearEnd = this.date.transform(aydata.endDate, 'yyyy-MM-dd');
     });
   }

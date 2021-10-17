@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { CompanyOccurence } from 'src/app/shared/models/dashboard.model';
 import {
   studentDashboardModel,
   studentModel,
@@ -21,9 +22,17 @@ export class AdminDashboardComponent implements OnInit {
   studentsWithoutCompany: number;
   studentsWithRequests: number;
 
+  companyNameWithOccurence: CompanyOccurence[];
+
   constructor(private dashboard: DashboardService) {}
 
   ngOnInit(): void {
+    this.dashboard.getCompanyWithHighestOccurence().subscribe((resp) => {
+      this.chart = document.getElementById('company_chart');
+      Chart.register(...registerables);
+      this.loadCompanyChart(resp);
+    });
+
     this.dashboard.getStudentList().subscribe((resp) => {
       this.studentList = resp;
 
@@ -51,7 +60,6 @@ export class AdminDashboardComponent implements OnInit {
           student.submissions.slice(-1)[0].adminResponse.companyAgrees == false
         );
       }).length;
-
       this.chart = document.getElementById('status_chart');
       Chart.register(...registerables);
       this.loadStudentsChart(
@@ -59,10 +67,6 @@ export class AdminDashboardComponent implements OnInit {
         this.studentsWithoutCompany
       );
     });
-
-    this.chart = document.getElementById('company_chart');
-    Chart.register(...registerables);
-    this.loadCompanyChart();
   }
 
   loadStudentsChart(withCompany: number, withoutCompany: number): void {
@@ -84,14 +88,25 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  loadCompanyChart(): void {
+  loadCompanyChart(companyNameWithOccurence: CompanyOccurence[]): void {
     new Chart(this.chart, {
       type: 'bar',
       data: {
-        labels: ['Company A', 'Company B', 'Company C', 'Company D'],
+        labels: [
+          companyNameWithOccurence[0].companyName,
+          companyNameWithOccurence[1].companyName,
+          companyNameWithOccurence[2].companyName,
+          companyNameWithOccurence[3].companyName,
+        ],
         datasets: [
           {
-            data: [100, 28, 25, 34],
+            data: [
+              companyNameWithOccurence[0].numberOfOccurence,
+              companyNameWithOccurence[1].numberOfOccurence,
+              companyNameWithOccurence[2].numberOfOccurence,
+              companyNameWithOccurence[3].numberOfOccurence,
+            ],
+            label: 'Number of submissions',
             backgroundColor: ['#FFE6E8', '#F2CCC3', '#E78F8E'],
           },
         ],
