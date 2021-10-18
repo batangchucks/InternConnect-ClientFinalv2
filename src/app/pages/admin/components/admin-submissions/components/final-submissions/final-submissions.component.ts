@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { interval } from 'rxjs';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 
@@ -60,53 +61,77 @@ export class FinalSubmissionsComponent implements OnInit {
       this.deanSubmissions = eachS;
     });
   }
+
   decision(
     adminResponseId: number,
     acceptedByChair: boolean,
     comments: string
   ) {
+    this.ApproveIndicatorChair = true;
     var Payload = {
       id: adminResponseId,
       acceptedByChair: acceptedByChair,
       comments: comments,
     };
     this.Acc.approvedByChair(Payload).subscribe((approvedS) => {
+      this.ApproveIndicatorChair = false;
       this.ngOnInit();
     });
   }
+
   deanDecision(
     adminResponseId: number,
     acceptedByDean: boolean,
     comments: string
   ) {
-    this.onDeanSubmit = true;
+    const obs$ = interval(2000);
     var Payload = {
       id: adminResponseId,
       acceptedByDean: acceptedByDean,
       comments: comments,
     };
-
     this.loadPhaseOne = true;
-
-
+    this.onDeanSubmit = true;
+    obs$.subscribe((d) => {
+      if (d == 0) {
+        this.loadPhaseOne = false;
+        this.loadPhaseTwo = true;
+      }
+      if (d == 1) {
+        this.loadPhaseTwo = false;
+        this.loadPhaseThree = true;
+      }
+      if (d == 2) {
+        this.loadPhaseThree = false;
+        this.loadPhaseFour = true;
+      }
+    });
 
     this.Acc.approvedbyDean(this.user.admin.id, Payload).subscribe(
       (approved) => {
         this.onDeanSubmit = false;
-        this.loadPhaseFour = false;
+        this.ngOnInit();
+      },
+      (err) => {
+        this.onDeanSubmit = false;
         this.ngOnInit();
       }
     );
+  }
 
-
-
-
-    // setTimeout(function () {
-    //   this.loadPhaseThree = true;
-    // }, 2000);
-    // setTimeout(function () {
-    //   this.loadPhaseFour = true;
-    // }, 2000);
+  deanTimer(id: number): void {
+    if (id == 2) {
+      this.loadPhaseTwo = false;
+      this.loadPhaseThree = true;
+    }
+    if (id == 3) {
+      this.loadPhaseTwo = false;
+      this.loadPhaseThree = true;
+    }
+    if (id == 4) {
+      this.loadPhaseTwo = false;
+      this.loadPhaseThree = true;
+    }
   }
 
   toDisapproveChair(responseId: number) {

@@ -12,7 +12,6 @@ import { ProgramService } from 'src/app/shared/services/program.service';
   styleUrls: ['./admin-returniso.component.scss'],
 })
 export class AdminReturnisoComponent implements OnInit {
-
   DeleteIndicator: boolean = false;
 
   p: number = 1;
@@ -63,6 +62,14 @@ export class AdminReturnisoComponent implements OnInit {
         this.isoCoordinator = eachIso;
       });
     }
+  }
+
+  onFilterChange(value) {
+    this.pSummary = 1;
+  }
+
+  onStatusChange(value) {
+    this.p = 1;
   }
 
   toTransfer(isoCodeId: number, code: number) {
@@ -116,7 +123,7 @@ export class AdminReturnisoComponent implements OnInit {
     this.TransferIndicator = false;
   }
 
-  toCancelTwo(){
+  toCancelTwo() {
     this.DeleteIndicator = false;
   }
 

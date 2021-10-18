@@ -11,43 +11,52 @@
      Table -->
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="" >
-<div
-  class="pt-12 grid grid-cols-4 gap-x-8 sm:px-6 lg:px-8"
- 
->
-  <!-- Filter 1  -->
-  <div>
-    <div class="relative px-8 inline-block text-left">
-      <div *ngIf="user.admin.authId == 1">
-        <label for="">Programs: </label>
-        <select [(ngModel)]="selectedProg" (change)="Status()">
-          <option value="" selected disabled hidden>Section</option>
-          <option *ngFor="let program of programs" [ngValue]="program.id">
-            {{ program.name }}
-          </option>
-        </select>
-        <label for="">Section: </label>
-        <select [(ngModel)]="selectedSec" (change)="Status()" [disabled]="!selectedProg" class="disabled:cursor-not-allowed">
-          <option value="" selected disabled hidden>Section</option>
-          <option *ngFor="let section of Section" [ngValue]="section.id">
-            {{ section.name }}
-          </option>
-        </select>
-      </div>
-      <div *ngIf="user.admin.authId == 2">
-        <label for="">Section: </label>
-        <select [(ngModel)]="selectedSec" (change)="Status()">
-          <option value="" selected disabled hidden>Section</option>
-          <option *ngFor="let section of Section" [ngValue]="section.id">
-            {{ section.name }}
-          </option>
-        </select>
-      </div>
-      
-     
+<div class="">
+  <div class="pt-12 grid grid-cols-4 gap-x-8 sm:px-6 lg:px-8">
+    <!-- Filter 1  -->
+    <div>
+      <div class="relative px-8 inline-block text-left">
+        <div *ngIf="user.admin.authId == 1">
+          <label for="">Programs: </label>
+          <select
+            [(ngModel)]="selectedProg"
+            (change)="Status()"
+            (ngModelChange)="onFilterChange($event)"
+          >
+            <option value="" selected disabled hidden>Section</option>
+            <option *ngFor="let program of programs" [ngValue]="program.id">
+              {{ program.name }}
+            </option>
+          </select>
+          <label for="">Section: </label>
+          <select
+            [(ngModel)]="selectedSec"
+            (change)="Status()"
+            (ngModelChange)="onFilterChange($event)"
+            [disabled]="!selectedProg"
+            class="disabled:cursor-not-allowed"
+          >
+            <option value="" selected disabled hidden>Section</option>
+            <option *ngFor="let section of Section" [ngValue]="section.id">
+              {{ section.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="user.admin.authId == 2">
+          <label for="">Section: </label>
+          <select
+            [(ngModel)]="selectedSec"
+            (change)="Status()"
+            (ngModelChange)="onFilterChange($event)"
+          >
+            <option value="" selected disabled hidden>Section</option>
+            <option *ngFor="let section of Section" [ngValue]="section.id">
+              {{ section.name }}
+            </option>
+          </select>
+        </div>
 
-      <!--
+        <!--
           Dropdown menu, show/hide based on menu state.
 
           Entering: "transition ease-out duration-100"
@@ -57,44 +66,45 @@
             From: "transform opacity-100 scale-100"
             To: "transform opacity-0 scale-95"
         -->
-      <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+        <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
           <div class="py-1" role="none"> -->
-      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-      <!-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Without company</a>
+        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+        <!-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Without company</a>
             <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">With company</a>
             <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">With requests</a>
           </div>
         </div> -->
-    </div>
-  </div>
-  <!-- Filter 2 -->
-  <div>
-    <div class="relative inline-block text-left">
-      <div>
-        <label for="">Status: </label>
-        <select
-          class="
-            form-select
-            block
-            w-full
-            mt-1
-            disabled:cursor-not-allowed disabled:opacity-50
-          "
-          [disabled]="!selectedSec && user.admin.authId!=3"
-          [(ngModel)]="status"
-          (change)="Status()"
-        >
-          <option value="" selected disabled hidden>Status</option>
-          <option [ngValue]="'Acknowledged'">Acknowledged</option>
-          <option [ngValue]="'approvedbyC'">Approved by Coordinator</option>
-          <option [ngValue]="'approvedD'">Approved by Dean</option>
-          <option [ngValue]="'sentToCompany'">Sent to Company</option>
-          <option [ngValue]="'approvedByCompany'">Approved by Company</option>
-          <option [ngValue]="'disapproved'">Disapproved</option>
-        </select>
       </div>
+    </div>
+    <!-- Filter 2 -->
+    <div>
+      <div class="relative inline-block text-left">
+        <div>
+          <label for="">Status: </label>
+          <select
+            class="
+              form-select
+              block
+              w-full
+              mt-1
+              disabled:cursor-not-allowed disabled:opacity-50
+            "
+            [disabled]="!selectedSec && user.admin.authId != 3"
+            [(ngModel)]="status"
+            (change)="Status()"
+            (ngModelChange)="onFilterChange($event)"
+          >
+            <option value="" selected disabled hidden>Status</option>
+            <option [ngValue]="'Acknowledged'">Acknowledged</option>
+            <option [ngValue]="'approvedbyC'">Approved by Coordinator</option>
+            <option [ngValue]="'approvedD'">Approved by Dean</option>
+            <option [ngValue]="'sentToCompany'">Sent to Company</option>
+            <option [ngValue]="'approvedByCompany'">Approved by Company</option>
+            <option [ngValue]="'disapproved'">Disapproved</option>
+          </select>
+        </div>
 
-      <!--
+        <!--
       Dropdown menu, show/hide based on menu state.
 
       Entering: "transition ease-out duration-100"
@@ -104,129 +114,128 @@
         From: "transform opacity-100 scale-100"
         To: "transform opacity-0 scale-95"
     -->
-      <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+        <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
       <div class="py-1" role="none"> -->
-      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-      <!-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Without company</a>
+        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+        <!-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Without company</a>
         <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">With company</a>
         <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">With requests</a>
       </div>
     </div> -->
+      </div>
     </div>
+    <!-- Filter 3 -->
   </div>
-  <!-- Filter 3 -->
-</div>
 
-<div class="pt-12 flex flex-col">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div
-        class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
-      >
-        <h1 class="py-3 flex font-bold items-center">With requests</h1>
-        <p class="py-1 text-base text-gray-500 font-normal">
-          This contains a list of subsmissions that were approved or disapproved
-          by the practicum coordinator.
-        </p>
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
+  <div class="pt-12 flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div
+          class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+        >
+          <h1 class="py-3 flex font-bold items-center">With requests</h1>
+          <p class="py-1 text-base text-gray-500 font-normal">
+            This contains a list of subsmissions that were approved or
+            disapproved by the practicum coordinator.
+          </p>
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Student Name
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Company Name
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  HR Email
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Job Description
+                </th>
+              </tr>
+            </thead>
+            <!-- Person 1 -->
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr
+                *ngFor="
+                  let submissions of submission
+                    | generateReportFilter: selectedSec:status
+                    | paginate: { itemsPerPage: 10, currentPage: p }
                 "
               >
-                Student Name
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Company Name
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                HR Email
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Job Description
-              </th>
-            </tr>
-          </thead>
-          <!-- Person 1 -->
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr
-              *ngFor="
-                let submissions of submission
-                  | generateReportFilter: selectedSec:status
-                  | paginate: { itemsPerPage: 10, currentPage: p }
-              "
-            >
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">
-                  {{ submissions.student.account.email.toLowerCase() }}
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-500">
-                  {{ submissions.company.name }}
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <div class="text-sm text-gray-500">
-                  {{ submissions.contactPersonEmail }}
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{ submissions.jobDescription }}
-              </td>
-            </tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">
+                    {{ submissions.student.account.email.toLowerCase() }}
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-500">
+                    {{ submissions.company.name }}
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <div class="text-sm text-gray-500">
+                    {{ submissions.contactPersonEmail }}
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{ submissions.jobDescription }}
+                </td>
+              </tr>
 
-            <!-- More people... -->
-          </tbody>
-        </table>
+              <!-- More people... -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
 
 <!-- This example requires Tailwind CSS v2.0+
      Pagination -->
@@ -322,4 +331,3 @@
     Download Report
   </button>
 </div>
-

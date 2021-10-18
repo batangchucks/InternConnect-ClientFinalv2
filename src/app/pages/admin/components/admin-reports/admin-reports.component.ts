@@ -21,40 +21,37 @@ export class AdminReportsComponent implements OnInit {
   submission: submissionModel[] = [];
   id: string = '';
   filteredSubmit: submissionModel[] = [];
-  selectedProg:number;
-  programs:programModel[] = [];
-  changeSec:string;
+  selectedProg: number;
+  programs: programModel[] = [];
+  changeSec: string;
 
-  
-  constructor(private section: ProgramService, private Acc: createAccount,private Program:ProgramService) {}
+  constructor(
+    private section: ProgramService,
+    private Acc: createAccount,
+    private Program: ProgramService
+  ) {}
 
   ngOnInit(): void {
-    if(this.user.admin.authId == 1) {
-     
-      this.Program.getProgram().subscribe(eachP=> {
+    if (this.user.admin.authId == 1) {
+      this.Program.getProgram().subscribe((eachP) => {
         this.programs = eachP;
-      })
+      });
     }
-    if(this.user.admin.authId == 2) {
+    if (this.user.admin.authId == 2) {
       this.section.getSection(this.user.admin.programId).subscribe((eachS) => {
         console.log(eachS);
         this.Section = eachS;
       });
     }
 
-    if(this.user.admin.authId== 3) {
-     
+    if (this.user.admin.authId == 3) {
       this.section.getSection(this.user.admin.programId).subscribe((eachS) => {
         console.log(eachS);
         this.Section = eachS;
       });
 
-     this.selectedSec = this.user.admin.sectionId;
+      this.selectedSec = this.user.admin.sectionId;
     }
-    
-    
-
-   
 
     this.Acc.getAllSubmission().subscribe((eachS) => {
       this.submission = eachS;
@@ -66,12 +63,10 @@ export class AdminReportsComponent implements OnInit {
     });
   }
   Status() {
-
-    if(this.user.admin.authId == 1) {
-      this.Program.getSection(this.selectedProg).subscribe(eachS=> {
+    if (this.user.admin.authId == 1) {
+      this.Program.getSection(this.selectedProg).subscribe((eachS) => {
         this.Section = eachS;
-      })
-
+      });
     }
     this.Acc.filterSubmission(this.selectedSec, this.status).subscribe(
       (eachS) => {
@@ -87,6 +82,11 @@ export class AdminReportsComponent implements OnInit {
       }
     );
   }
+
+  onFilterChange(value) {
+    this.p = 1;
+  }
+
   download() {
     this.id = this.id.substring(0, this.id.length - 1);
     console.log(this.id);
