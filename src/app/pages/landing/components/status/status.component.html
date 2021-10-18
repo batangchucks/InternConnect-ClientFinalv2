@@ -119,20 +119,12 @@
             </div>
             <div class="border-t border-gray-200">
               <dl>
-                <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6" *ngFor="let event of eventList">
                   <dt class="padding-alter text-sm font-medium text-gray-500">
-                    Event name
+                  {{event.endDate| date}}
                   </dt>
                   <dd class="mt-1 padding-alter break-words text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Due date
-                  </dd>
-                </div>
-                <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="padding-alter text-sm font-medium text-gray-500">
-                    Event name
-                  </dt>
-                  <dd class="padding-alter break-words mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                   Event date
+                    <b>{{event.name}}</b>
                   </dd>
                 </div>
               </dl>

@@ -38,4 +38,10 @@ export class EventsService {
   deleteEvent(id: number): Observable<any> {
     return this.http.delete<any>(this.apiUrl + 'api/Event/' + id);
   }
+
+  getAllEventsByProgramId(programId: number): Observable<ReadEventModel[]> {
+    return this.http.get<ReadEventModel[]>(
+      this.apiUrl + 'api/Event/student/' + programId
+    );
+  }
 }

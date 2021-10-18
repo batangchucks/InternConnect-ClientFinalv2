@@ -7,6 +7,8 @@ import { CompanyService } from 'src/app/shared/services/company.service';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
+import { ReadEventModel } from 'src/app/shared/models/event.model';
+import { EventsService } from 'src/app/shared/services/events.service';
 
 @Component({
   selector: 'app-status',
@@ -36,19 +38,32 @@ export class StatusComponent implements OnInit {
   PhotoFileNameA: string;
   PhotoFilePathA: string;
 
+  eventList: ReadEventModel[] = [{
+    endDate: 'sfasdf',
+    name: 'fadsfa',
+    id: 1,
+    adminId: 2
+  }]
+
   program: programModel[] = [];
 
   constructor(
     private File: fileUpload,
     private Acc: createAccount,
     private Company: CompanyService,
-    private Program: ProgramService
+    private Program: ProgramService,
+    private eventService: EventsService
   ) {}
 
   ngOnInit(): void {
     this.Company.getCompany().subscribe((c) => {
       this.company = c;
     });
+    this.eventService
+      .getAllEventsByProgramId(this.user.student.programId)
+      .subscribe((resp) => {
+        this.eventList = resp;
+      });
 
     this.Acc.getSubmissionStudent(this.user.student.id).subscribe((student) => {
       this.student = student;
