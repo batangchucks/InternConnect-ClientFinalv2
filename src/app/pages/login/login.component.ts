@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
   onSubmit(form: NgForm) {
+    console.log(form)
     this.auth.login(form.value).subscribe(
       (val) => {
         if (val.admin) {

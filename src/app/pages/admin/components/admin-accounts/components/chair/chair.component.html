@@ -461,3 +461,48 @@
     </div>
   </div>
 </div>
+
+<div
+  class="
+    fixed
+    z-10
+    inset-0
+    mx-auto
+    p-8
+    border
+    mt-12
+    w-96
+    h-72
+    shadow-lg
+    rounded-md
+    bg-white
+  "
+  *ngIf="modalAppear"
+>
+  <div class="text-center">
+    <div
+      class="mx-auto flex items-center justify-center h-40 w-40 rounded-full"
+    >
+      <img
+        src="https://res.cloudinary.com/daljbo1q0/image/upload/v1634090673/Landing/mail_eexlbl.gif"
+      />
+    </div>
+    <h3 class="pt-4 text-xl leading-6 font-semibold text-gray-900">
+      Onboarding Chair...
+    </h3>
+  </div>
+</div>
+
+<!--Overlay Effect-->
+<div
+  class="
+    fixed
+    inset-0
+    overflow-hidden
+    bg-gray-600 bg-opacity-50
+    overflow-y-auto
+    h-full
+    w-full
+  "
+  *ngIf="modalAppear"
+></div>

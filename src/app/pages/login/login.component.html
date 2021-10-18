@@ -16,18 +16,18 @@
         <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
       </span>
     </div>
-    <form class="mt-8 space-y-6" #f="ngForm" (ngSubmit) = onSubmit(f)>
+    <form class="mt-8 space-y-6" #f="ngForm" (ngSubmit) ="onSubmit(f)">
       <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
           <label for="email-address" class="sr-only">Email address</label>
-          <input id="email-address" ngModel="email"  type="email" autocomplete="email" required name="email"
+          <input id="email-address" ngModel type="email"  required name="email"
             class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:z-10 sm:text-sm" placeholder="email"
            >
         </div>
         <div>
           <label for="password" class="sr-only">Password</label>
-          <input id="password"  ngModel="password" name="password"  type="password" autocomplete="current-password" required
+          <input id="password"  ngModel name="password"  type="password"  required
             class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:z-10 sm:text-sm" placeholder="password"
            >
         </div>

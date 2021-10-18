@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { adminModel } from 'src/app/shared/models/admin.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 import { environment } from 'src/environments/environment.prod';
@@ -15,10 +17,15 @@ export class AdminEsignatureComponent implements OnInit {
   imageSrc: string;
   PhotoFileNameEsig: string;
   dataPrivacyModal: boolean = true;
+  adminData: adminModel;
 
-  constructor(private File: fileUpload, private Acc: createAccount) {}
+  constructor(private File: fileUpload, private Acc: createAccount, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.Acc.getByAccount(this.user.admin.id).subscribe(resp => {
+      this.adminData = resp;
+    })
+  }
   eSignatureUp(event) {
     this.selectedFileUp = <File>event.target.files[0];
     const reader = new FileReader();
@@ -53,8 +60,10 @@ export class AdminEsignatureComponent implements OnInit {
     );
   }
 
-  toAccept(){
+  toAccept() {
     this.dataPrivacyModal = false;
   }
-
+  toDecline() {
+    this.router.navigate(['/admin'])
+  }
 }

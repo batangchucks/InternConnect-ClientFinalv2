@@ -38,11 +38,6 @@ export class createAccount {
     );
   }
 
-  getTechCoord() {
-    return this.http.get<coordinatorModel[]>(
-      this.apiUrl + 'api/Admin/admins/').pipe(map((eachV)=>eachV.filter((eachV)=>eachV.authId ===4)));
-    
-  }
   deleteCoordinator(id: number) {
     return this.http.delete(this.apiUrl + 'api/Accounts/' + id);
   }
@@ -123,11 +118,11 @@ export class createAccount {
     }
     else if (status == null && sectionId) {
         console.log("when only section");
-       
+
         return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId == sectionId)))));
-       
-     
-       
+
+
+
     }
     else if(status !=null && sectionId) {
       if(status) {
@@ -150,12 +145,12 @@ export class createAccount {
         else {
           return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.section.id== sectionId &&eachS.adminResponse.comments)))));
         }
-        
 
-       
+
+
     }
-      
-      
+
+
     }
      return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission');
   }
@@ -301,8 +296,8 @@ export class createAccount {
 
   getFileUpload(ids:string) {
     let headers = new HttpHeaders();
-   
-    return this.http.get(this.apiUrl+'api/File/excel?'+ids,{ responseType:'blob'});   
+
+    return this.http.get(this.apiUrl+'api/File/excel?'+ids,{ responseType:'blob'});
   }
   changeDean(payload:any) {
     return this.http.post(this.apiUrl+'api/Accounts/changeDean',payload,{responseType:'text'});
@@ -311,5 +306,9 @@ export class createAccount {
     return this.http.post(this.apiUrl+'/api/Auth/changedean?oldEmail='+oldemail,payload,{responseType:'text'});
   }
 
- 
+  getAllTechCoordinator():Observable<coordinatorModel[]> {
+    return this.http.get<coordinatorModel[]>(this.apiUrl + 'api/Admin/techcoord')
+  }
+
+
 }

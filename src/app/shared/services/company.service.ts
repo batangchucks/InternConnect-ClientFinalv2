@@ -58,9 +58,8 @@ export class CompanyService {
     const path = this.apiUrl + 'api/Opportunity/' + index;
     return this.http.delete<opportunityModel[]>(path);
   }
-  deleteCompany(eachId: number): Observable<CompanyModel[]> {
-    const path = this.apiUrl + 'api/Company/' + eachId;
-    return this.http.delete<CompanyModel[]>(path);
+  deleteCompany(eachId: number): Observable<any> {
+    return this.http.delete<any>(this.apiUrl + 'api/Company/status/'+eachId);
   }
   updateCompany(upCompany: any) {
     console.log(upCompany);

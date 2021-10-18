@@ -16,6 +16,7 @@ export class ChairComponent implements OnInit {
   DeleteIndicator: boolean = false;
   Program: programModel[] = [];
   Chair: chairModel[] = [];
+  modalAppear: boolean =false
 
   constructor(
     private program: ProgramService,
@@ -43,7 +44,9 @@ export class ChairComponent implements OnInit {
     this.DeleteIndicator = false;
   }
   submitNewChair(f: NgForm) {
+    this.modalAppear = true
     this.Account.POSTChair(f.value).subscribe((newChair) => {
+      this.modalAppear = false
       this.ngOnInit();
     });
   }
