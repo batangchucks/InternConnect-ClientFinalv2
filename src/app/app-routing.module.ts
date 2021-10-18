@@ -7,6 +7,7 @@ import { EndorsementformComponent } from './pages/endorsementform/endorsementfor
 import { CompanydirectoryComponent } from './pages/companydirectory/companydirectory.component';
 import { CompanyprofileComponent } from './pages/companyprofile/companyprofile.component';
 import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
+import { PolicyComponent } from './pages/landing/components/policy/policy.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminDashboardComponent } from './pages/admin/components/admin-dashboard/admin-dashboard.component';
 import { AdminEsignatureComponent } from './pages/admin/components/admin-esignature/admin-esignature.component';
@@ -75,6 +76,10 @@ const routes: Routes = [
   {
     path: 'faqs',
     component: FaqsComponent,
+  },
+  {
+    path: 'policy',
+    component: PolicyComponent,
   },
   {
     path: 'forgotpassword',
