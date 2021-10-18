@@ -19,6 +19,7 @@ import { EventsService } from 'src/app/shared/services/events.service';
   styleUrls: ['./admin-events.component.scss'],
 })
 export class AdminEventsComponent implements OnInit {
+  UpdateIndicator: boolean = false;
   DeleteIndicator: boolean = false;
   user = JSON.parse(localStorage.getItem('user'));
   eventList: ReadEventModel[];
@@ -96,5 +97,9 @@ export class AdminEventsComponent implements OnInit {
       this.ngOnInit();
     });
     this.deleteId = null;
+  }
+
+  toCancelTwo(){
+    this.UpdateIndicator = false;
   }
 }
