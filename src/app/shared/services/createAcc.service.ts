@@ -133,22 +133,22 @@ export class createAccount {
       if(status) {
         if(status == 'Acknowledged') {
 
-            return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=> eachS.student.sectionId && eachS.adminResponse.acceptedByCoordinator == true)))));
+            return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=> eachS.student.section.id == sectionId && eachS.adminResponse.acceptedByCoordinator == true)))));
         }
         else if(status == 'approvedbyC') {
-          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.acceptedByChair == true)))));
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.section.id== sectionId &&eachS.adminResponse.acceptedByChair == true)))));
         }
         else if(status == 'approvedD') {
-          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.acceptedByDean == true)))));
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.section.id== sectionId &&eachS.adminResponse.acceptedByDean == true)))));
         }
         else if(status == 'sentToCompany') {
-          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.emailSentByCoordinator == true)))));
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.section.id== sectionId &&eachS.adminResponse.emailSentByCoordinator == true)))));
         }
         else if(status == 'approvedByCompany') {
-          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.companyAgrees == true)))));
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.section.id== sectionId &&eachS.adminResponse.companyAgrees == true)))));
         }
         else {
-          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.sectionId &&eachS.adminResponse.comments)))));
+          return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.section.id== sectionId &&eachS.adminResponse.comments)))));
         }
         
 

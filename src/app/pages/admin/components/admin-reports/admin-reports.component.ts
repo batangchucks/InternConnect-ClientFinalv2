@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { programModel } from 'src/app/shared/models/programs.model';
 
 import { sectionModel } from 'src/app/shared/models/section.model';
 import { submissionModel } from 'src/app/shared/models/submission.model';
@@ -20,13 +21,40 @@ export class AdminReportsComponent implements OnInit {
   submission: submissionModel[] = [];
   id: string = '';
   filteredSubmit: submissionModel[] = [];
+  selectedProg:number;
+  programs:programModel[] = [];
+  changeSec:string;
 
-  constructor(private section: ProgramService, private Acc: createAccount) {}
+  
+  constructor(private section: ProgramService, private Acc: createAccount,private Program:ProgramService) {}
 
   ngOnInit(): void {
-    this.section.getSection(this.user.admin.programId).subscribe((eachS) => {
-      this.Section = eachS;
-    });
+    if(this.user.admin.authId == 1) {
+     
+      this.Program.getProgram().subscribe(eachP=> {
+        this.programs = eachP;
+      })
+    }
+    if(this.user.admin.authId == 2) {
+      this.section.getSection(this.user.admin.programId).subscribe((eachS) => {
+        console.log(eachS);
+        this.Section = eachS;
+      });
+    }
+
+    if(this.user.admin.authId== 3) {
+     
+      this.section.getSection(this.user.admin.programId).subscribe((eachS) => {
+        console.log(eachS);
+        this.Section = eachS;
+      });
+
+     this.selectedSec = this.user.admin.sectionId;
+    }
+    
+    
+
+   
 
     this.Acc.getAllSubmission().subscribe((eachS) => {
       this.submission = eachS;
@@ -38,6 +66,13 @@ export class AdminReportsComponent implements OnInit {
     });
   }
   Status() {
+
+    if(this.user.admin.authId == 1) {
+      this.Program.getSection(this.selectedProg).subscribe(eachS=> {
+        this.Section = eachS;
+      })
+
+    }
     this.Acc.filterSubmission(this.selectedSec, this.status).subscribe(
       (eachS) => {
         this.filteredSubmit = eachS;

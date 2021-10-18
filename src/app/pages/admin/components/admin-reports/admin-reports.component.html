@@ -11,14 +11,31 @@
      Table -->
 
 <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="" >
 <div
   class="pt-12 grid grid-cols-4 gap-x-8 sm:px-6 lg:px-8"
-  *ngIf="user.admin.authId == 2"
+ 
 >
   <!-- Filter 1  -->
   <div>
     <div class="relative px-8 inline-block text-left">
-      <div>
+      <div *ngIf="user.admin.authId == 1">
+        <label for="">Programs: </label>
+        <select [(ngModel)]="selectedProg" (change)="Status()">
+          <option value="" selected disabled hidden>Section</option>
+          <option *ngFor="let program of programs" [ngValue]="program.id">
+            {{ program.name }}
+          </option>
+        </select>
+        <label for="">Section: </label>
+        <select [(ngModel)]="selectedSec" (change)="Status()" [disabled]="!selectedProg" class="disabled:cursor-not-allowed">
+          <option value="" selected disabled hidden>Section</option>
+          <option *ngFor="let section of Section" [ngValue]="section.id">
+            {{ section.name }}
+          </option>
+        </select>
+      </div>
+      <div *ngIf="user.admin.authId == 2">
         <label for="">Section: </label>
         <select [(ngModel)]="selectedSec" (change)="Status()">
           <option value="" selected disabled hidden>Section</option>
@@ -27,6 +44,8 @@
           </option>
         </select>
       </div>
+      
+     
 
       <!--
           Dropdown menu, show/hide based on menu state.
@@ -52,6 +71,7 @@
   <div>
     <div class="relative inline-block text-left">
       <div>
+        <label for="">Status: </label>
         <select
           class="
             form-select
@@ -60,7 +80,7 @@
             mt-1
             disabled:cursor-not-allowed disabled:opacity-50
           "
-          [disabled]="!selectedSec"
+          [disabled]="!selectedSec && user.admin.authId!=3"
           [(ngModel)]="status"
           (change)="Status()"
         >
@@ -205,6 +225,8 @@
     </div>
   </div>
 </div>
+</div>
+
 
 <!-- This example requires Tailwind CSS v2.0+
      Pagination -->
@@ -300,3 +322,4 @@
     Download Report
   </button>
 </div>
+
