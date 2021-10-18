@@ -27,46 +27,164 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private dashboard: DashboardService) {}
 
   ngOnInit(): void {
-    this.dashboard.getCompanyWithHighestOccurence().subscribe((resp) => {
-      this.chart = document.getElementById('company_chart');
-      Chart.register(...registerables);
-      this.loadCompanyChart(resp);
-    });
+    // this.dashboard
+    //   .getCompanyWithHighestOccurence('whole', 0)
+    //   .subscribe((resp) => {
+    //     this.chart = document.getElementById('company_chart');
+    //     Chart.register(...registerables);
+    //     this.loadCompanyChart(resp);
+    //   });
 
-    this.dashboard.getStudentList().subscribe((resp) => {
-      this.studentList = resp;
+    if (this.user.admin.authId == 1 || this.user.admin.authId == 4) {
+      this.dashboard
+        .getCompanyWithHighestOccurence('whole', 0)
+        .subscribe((resp) => {
+          this.companyNameWithOccurence = resp;
+          this.chart = document.getElementById('company_chart');
+          Chart.register(...registerables);
+          this.loadCompanyChart(resp);
+        });
 
-      var studentsWithSubmissions = resp.filter((student) => {
-        return student.submissions.length > 0;
+      this.dashboard.getStudentList('whole', 0).subscribe((resp) => {
+        this.studentList = resp;
+
+        var studentsWithSubmissions = resp.filter((student) => {
+          return student.submissions.length > 0;
+        });
+
+        this.studentsWithCompany = studentsWithSubmissions.filter((student) => {
+          return (
+            student.submissions.slice(-1)[0].adminResponse.companyAgrees == true
+          );
+        }).length;
+        this.studentsWithoutCompany = resp.filter((student) => {
+          return (
+            student.submissions.length <= 0 ||
+            (student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+              false &&
+              student.submissions.slice(-1)[0].adminResponse.comments != null)
+          );
+        }).length;
+
+        this.studentsWithRequests = studentsWithSubmissions.filter(
+          (student) => {
+            return (
+              student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+              false
+            );
+          }
+        ).length;
+        this.chart = document.getElementById('status_chart');
+        Chart.register(...registerables);
+        this.loadStudentsChart(
+          this.studentsWithCompany,
+          this.studentsWithoutCompany
+        );
       });
-      console.log(studentsWithSubmissions);
+    }
 
-      this.studentsWithCompany = studentsWithSubmissions.filter((student) => {
-        return (
-          student.submissions.slice(-1)[0].adminResponse.companyAgrees == true
-        );
-      }).length;
-      this.studentsWithoutCompany = resp.filter((student) => {
-        return (
-          student.submissions.length <= 0 ||
-          (student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
-            false &&
-            student.submissions.slice(-1)[0].adminResponse.comments != null)
-        );
-      }).length;
+    if (this.user.admin.authId == 2) {
+      this.dashboard
+        .getCompanyWithHighestOccurence('program', this.user.admin.programId)
+        .subscribe((resp) => {
+          this.companyNameWithOccurence = resp;
+          this.chart = document.getElementById('company_chart');
+          Chart.register(...registerables);
+          this.loadCompanyChart(resp);
+        });
+      this.dashboard
+        .getStudentList('program', this.user.admin.programId)
+        .subscribe((resp) => {
+          this.studentList = resp;
 
-      this.studentsWithRequests = studentsWithSubmissions.filter((student) => {
-        return (
-          student.submissions.slice(-1)[0].adminResponse.companyAgrees == false
-        );
-      }).length;
-      this.chart = document.getElementById('status_chart');
-      Chart.register(...registerables);
-      this.loadStudentsChart(
-        this.studentsWithCompany,
-        this.studentsWithoutCompany
-      );
-    });
+          var studentsWithSubmissions = resp.filter((student) => {
+            return student.submissions.length > 0;
+          });
+
+          this.studentsWithCompany = studentsWithSubmissions.filter(
+            (student) => {
+              return (
+                student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+                true
+              );
+            }
+          ).length;
+          this.studentsWithoutCompany = resp.filter((student) => {
+            return (
+              student.submissions.length <= 0 ||
+              (student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+                false &&
+                student.submissions.slice(-1)[0].adminResponse.comments != null)
+            );
+          }).length;
+
+          this.studentsWithRequests = studentsWithSubmissions.filter(
+            (student) => {
+              return (
+                student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+                false
+              );
+            }
+          ).length;
+          this.chart = document.getElementById('status_chart');
+          Chart.register(...registerables);
+          this.loadStudentsChart(
+            this.studentsWithCompany,
+            this.studentsWithoutCompany
+          );
+        });
+    }
+    if (this.user.admin.authId == 3) {
+      this.dashboard
+        .getCompanyWithHighestOccurence('section', this.user.admin.sectionId)
+        .subscribe((resp) => {
+          this.companyNameWithOccurence = resp;
+          this.chart = document.getElementById('company_chart');
+          Chart.register(...registerables);
+          this.loadCompanyChart(resp);
+        });
+      this.dashboard
+        .getStudentList('section', this.user.admin.sectionId)
+        .subscribe((resp) => {
+          this.studentList = resp;
+
+          var studentsWithSubmissions = resp.filter((student) => {
+            return student.submissions.length > 0;
+          });
+
+          this.studentsWithCompany = studentsWithSubmissions.filter(
+            (student) => {
+              return (
+                student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+                true
+              );
+            }
+          ).length;
+          this.studentsWithoutCompany = resp.filter((student) => {
+            return (
+              student.submissions.length <= 0 ||
+              (student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+                false &&
+                student.submissions.slice(-1)[0].adminResponse.comments != null)
+            );
+          }).length;
+
+          this.studentsWithRequests = studentsWithSubmissions.filter(
+            (student) => {
+              return (
+                student.submissions.slice(-1)[0].adminResponse.companyAgrees ==
+                false
+              );
+            }
+          ).length;
+          this.chart = document.getElementById('status_chart');
+          Chart.register(...registerables);
+          this.loadStudentsChart(
+            this.studentsWithCompany,
+            this.studentsWithoutCompany
+          );
+        });
+    }
   }
 
   loadStudentsChart(withCompany: number, withoutCompany: number): void {

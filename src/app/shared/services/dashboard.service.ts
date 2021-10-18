@@ -11,15 +11,22 @@ import { studentDashboardModel } from '../models/students.model';
 export class DashboardService {
   apiUrl: string = environment.apiUrl;
   constructor(private http: HttpClient) {}
-  getStudentList(): Observable<studentDashboardModel[]> {
+
+  getStudentList(
+    type: string,
+    id: number
+  ): Observable<studentDashboardModel[]> {
     return this.http.get<studentDashboardModel[]>(
-      this.apiUrl + 'api/Student/dashboard'
+      this.apiUrl + 'api/Student/dashboard/' + type + '/' + id
     );
   }
 
-  getCompanyWithHighestOccurence(): Observable<CompanyOccurence[]> {
+  getCompanyWithHighestOccurence(
+    type: string,
+    id: number
+  ): Observable<CompanyOccurence[]> {
     return this.http.get<CompanyOccurence[]>(
-      this.apiUrl + 'api/Submission/dashboard'
+      this.apiUrl + 'api/Submission/dashboard/' + type + '/' + id
     );
   }
 }

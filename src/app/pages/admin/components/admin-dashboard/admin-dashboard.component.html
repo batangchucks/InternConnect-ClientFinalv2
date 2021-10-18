@@ -174,7 +174,10 @@
         style="position: relative; height: 10vh; width: 20vw"
       ></canvas>
     </div>
-    <div class="min-w-0 col-span-2 p-4 bg-white rounded-lg shadow-sm">
+    <div
+      class="min-w-0 col-span-2 p-4 bg-white rounded-lg shadow-sm"
+      *ngIf="companyNameWithOccurence.length >= 4 ? true : false"
+    >
       <h4 class="mb-4 font-semibold text-gray-600">
         Companies with the most number of interns
       </h4>
