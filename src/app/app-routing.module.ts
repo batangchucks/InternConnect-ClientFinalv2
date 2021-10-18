@@ -46,6 +46,7 @@ import {ResetpassComponent} from './pages/resetpass/resetpass.component';
 import {StatusComponent} from './pages/landing/components/status/status.component';
 import { AdminReturnisoComponent } from './pages/admin/components/admin-iso/components/admin-returniso/admin-returniso.component';
 import { RouteGuardEndorsement } from './helpers/route-guardEndorsement.service';
+import { ChangedeanComponent } from './pages/changedean/changedean.component';
 const routes: Routes = [
   {
     path: '',
@@ -90,6 +91,10 @@ const routes: Routes = [
     path: 'status',
     component: StatusComponent ,
     canActivate: [RouteGuardStudent],
+  },
+  {
+    path:'changedean',
+    component:ChangedeanComponent
   },
   {
     path: 'admin',

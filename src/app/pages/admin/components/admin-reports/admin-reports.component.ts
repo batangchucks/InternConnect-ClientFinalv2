@@ -64,11 +64,12 @@ export class AdminReportsComponent implements OnInit {
   }
   Status() {
     if (this.user.admin.authId == 1) {
+      console.log(this.selectedProg);
       this.Program.getSection(this.selectedProg).subscribe((eachS) => {
         this.Section = eachS;
       });
     }
-    this.Acc.filterSubmission(this.selectedSec, this.status).subscribe(
+    this.Acc.filterSubmission(this.selectedSec, this.status,this.selectedProg).subscribe(
       (eachS) => {
         this.filteredSubmit = eachS;
         this.id = '';

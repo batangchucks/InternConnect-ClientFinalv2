@@ -9,14 +9,10 @@ import { submissionModel } from './shared/models/submission.model';
   name: 'generateReportFilter',
 })
 export class reportFilter implements PipeTransform {
-  transform(submissions: submissionModel[],sectionId:number,status:string): submissionModel[] {
-    console.log(status);
-    if (!sectionId || !submissions ) {
-        console.log("going here");
-        console.log(sectionId);
-        console.log(status);
-        console.log(submissions);
-      return submissions;
+  transform(submissions: submissionModel[],sectionId:number,status:string,programId:number): submissionModel[] {
+  
+    if(programId && !sectionId) {
+      return submissions.filter((eachSubmit) => eachSubmit.student.section.programId == programId);
     }
     else if (status == null && sectionId) {
         console.log("when only section");

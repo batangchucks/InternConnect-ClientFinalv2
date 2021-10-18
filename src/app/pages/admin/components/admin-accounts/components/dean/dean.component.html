@@ -33,7 +33,7 @@
                   >
                   <input
                     type="email"
-                    name="state"
+                    [(ngModel)]="email"
                     id="state"
                     placeholder="deanemail@ust.edu.ph"
                     class="
@@ -62,10 +62,11 @@
                       bg-green-600
                       rounded-full
                       focus:shadow-outline
-                      hover:bg-green-700
+                      hover:bg-green-700 
+                      disabled:cursor-not-allowed
                     "
                     (click)="toAssign()"
-                  >
+                  [disabled]="!email"> 
                     Confirm
                   </button>
                 </td>
@@ -187,12 +188,13 @@
                   that, your session will be destroyed and you will no longer be
                   able to access this account.
                 </p>
+                <input type="password"[(ngModel)]="pass">
               </div>
             </div>
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button
+          <button (click)="changeDean()"
             type="button"
             class="
               w-full

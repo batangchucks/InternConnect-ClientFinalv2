@@ -116,10 +116,10 @@ export class createAccount {
     return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission');
 
   }
-  filterSubmission(sectionId:number,status:string) {
+  filterSubmission(sectionId:number,status:string,programId:number) {
 
-    if (!sectionId) {
-      return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission');
+    if(programId && !sectionId) {
+      return this.http.get<submissionModel[]>(this.apiUrl+'api/Submission').pipe(map((eachS=> eachS.filter((eachS=>eachS.student.section.programId == programId)))));
     }
     else if (status == null && sectionId) {
         console.log("when only section");
@@ -302,9 +302,14 @@ export class createAccount {
   getFileUpload(ids:string) {
     let headers = new HttpHeaders();
    
-    return this.http.get(this.apiUrl+'api/File/excel?'+ids,{ responseType:'blob'});
-
-   
+    return this.http.get(this.apiUrl+'api/File/excel?'+ids,{ responseType:'blob'});   
   }
+  changeDean(payload:any) {
+    return this.http.post(this.apiUrl+'api/Accounts/changeDean',payload,{responseType:'text'});
+  }
+  onBoardNewDean(payload:any,oldemail:string) {
+    return this.http.post(this.apiUrl+'/api/Auth/changedean?oldEmail='+oldemail,payload,{responseType:'text'});
+  }
+
  
 }

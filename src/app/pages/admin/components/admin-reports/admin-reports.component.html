@@ -204,7 +204,7 @@
               <tr
                 *ngFor="
                   let submissions of submission
-                    | generateReportFilter: selectedSec:status
+                    | generateReportFilter: selectedSec:status: selectedProg
                     | paginate: { itemsPerPage: 10, currentPage: p }
                 "
               >

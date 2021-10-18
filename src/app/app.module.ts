@@ -58,6 +58,7 @@ import { FaqsComponent } from './pages/landing/components/faqs/faqs.component';
 import { PolicyComponent } from './pages/landing/components/policy/policy.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { reportFilter } from './generateReportFilter.pipe';
+import { ChangedeanComponent } from './pages/changedean/changedean.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { reportFilter } from './generateReportFilter.pipe';
     FaqsComponent,
     PolicyComponent,
     isoCodeFilter,
-    reportFilter
+    reportFilter,
+    ChangedeanComponent
   ],
   imports: [
     BrowserModule,
