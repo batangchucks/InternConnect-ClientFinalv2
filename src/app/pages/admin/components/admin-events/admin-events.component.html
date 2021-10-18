@@ -16,10 +16,11 @@
      Table -->
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<form [formGroup]="createForm" (ngSubmit)="onAddEvent()">
-  <div class="grid grid-cols-2 my-12 sm:px-6 lg:px-8">
-    <!-- Filter 1 1 -->
-    <div>
+
+<div class="grid grid-cols-2 my-12 sm:px-6 lg:px-8">
+  <!-- Filter 1 1 -->
+  <div>
+    <form [formGroup]="createForm" (ngSubmit)="onAddEvent()">
       <div class="flex flex-col">
         <h1 class="text-lg flex items-center">Create an event</h1>
         <div class="-my-2 overflow-x-auto">
@@ -144,157 +145,156 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- Filter 2 -->
-    <div>
-      <div class="flex flex-col">
-        <h1 class="text-lg flex items-center sm:px-6 lg:px-8">
-          Events in your department
-        </h1>
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
+    </form>
+  </div>
+
+  <!-- Filter 2 -->
+  <div>
+    <div class="flex flex-col">
+      <h1 class="text-lg flex items-center sm:px-6 lg:px-8">
+        Events in your department
+      </h1>
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div
-            class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+            class="
+              shadow
+              overflow-hidden
+              border-b border-gray-200
+              sm:rounded-lg
+            "
           >
-            <div
-              class="
-                shadow
-                overflow-hidden
-                border-b border-gray-200
-                sm:rounded-lg
-              "
-            >
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    class="
+                      px-6
+                      py-3
+                      text-left text-xs
+                      font-medium
+                      text-gray-500
+                      uppercase
+                      tracking-wider
+                    "
+                  >
+                    Event name
+                  </th>
+                  <th
+                    scope="col"
+                    class="
+                      px-6
+                      py-3
+                      text-left text-xs
+                      font-medium
+                      text-gray-500
+                      uppercase
+                      tracking-wider
+                    "
+                  >
+                    Due
+                  </th>
+                  <th
+                    scope="col"
+                    class="
+                      px-6
+                      py-3
+                      text-left text-xs
+                      font-medium
+                      text-gray-500
+                      uppercase
+                      tracking-wider
+                    "
+                  ></th>
+                  <th
+                    scope="col"
+                    class="
+                      px-6
+                      py-3
+                      text-left text-xs
+                      font-medium
+                      text-gray-500
+                      uppercase
+                      tracking-wider
+                    "
+                  ></th>
+                </tr>
+              </thead>
+              <!-- Person 1 -->
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr *ngFor="let event of eventList">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{ event.name }}</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-500">
+                      {{ event.endDate | date }}
+                    </div>
+                  </td>
+                  <td
+                    class="
+                      px-6
+                      py-4
+                      whitespace-nowrap
+                      text-right text-sm
+                      font-medium
+                    "
+                  >
+                    <button
                       class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
+                        block
+                        h-8
+                        px-4
+                        text-white
+                        transition-colors
+                        duration-150
+                        bg-green-600
+                        rounded-full
+                        focus:shadow-outline
+                        hover:bg-green-700
                       "
+                      (click)="onUpdate(event)"
                     >
-                      Event name
-                    </th>
-                    <th
-                      scope="col"
+                      Update
+                    </button>
+                  </td>
+                  <td
+                    class="
+                      px-6
+                      py-4
+                      whitespace-nowrap
+                      text-right text-sm
+                      font-medium
+                    "
+                  >
+                    <button
                       class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
+                        block
+                        h-8
+                        px-4
+                        text-black
+                        transition-colors
+                        duration-150
+                        bg-gray-200
+                        rounded-full
+                        focus:shadow-outline
+                        hover:bg-gray-300
                       "
+                      (click)="onDeleteEvent(event)"
                     >
-                      Due
-                    </th>
-                    <th
-                      scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
-                    ></th>
-                    <th
-                      scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
-                    ></th>
-                  </tr>
-                </thead>
-                <!-- Person 1 -->
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr *ngFor="let event of eventList">
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900">{{ event.name }}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-500">
-                        {{ event.endDate | date }}
-                      </div>
-                    </td>
-                    <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-right text-sm
-                        font-medium
-                      "
-                    >
-                      <button
-                        class="
-                          block
-                          h-8
-                          px-4
-                          text-white
-                          transition-colors
-                          duration-150
-                          bg-green-600
-                          rounded-full
-                          focus:shadow-outline
-                          hover:bg-green-700
-                        "
-                      >
-                        Update
-                      </button>
-                    </td>
-                    <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-right text-sm
-                        font-medium
-                      "
-                      (click)="onUpdateEvent(event)"
-                    >
-                      <button
-                        class="
-                          block
-                          h-8
-                          px-4
-                          text-black
-                          transition-colors
-                          duration-150
-                          bg-gray-200
-                          rounded-full
-                          focus:shadow-outline
-                          hover:bg-gray-300
-                        "
-                        (click)="onDeleteEvent(event)"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
-</form>
+</div>
 
 <!-- This is the DeleteIndicator -->
 <div
@@ -465,9 +465,28 @@
 </div>
 
 <!-- This is the UpdateIndicator -->
-<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="UpdateIndicator">
-  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-    <!--
+<div
+  class="fixed z-10 inset-0 overflow-y-auto"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  *ngIf="UpdateIndicator"
+>
+  <form [formGroup]="updateForm" (ngSubmit)="onUpdateEvent()">
+    <div
+      class="
+        flex
+        items-end
+        justify-center
+        min-h-screen
+        pt-4
+        px-4
+        pb-20
+        text-center
+        sm:block sm:p-0
+      "
+    >
+      <!--
       Background overlay, show/hide based on modal state.
 
       Entering: "ease-out duration-300"
@@ -477,12 +496,19 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+      <div
+        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        aria-hidden="true"
+      ></div>
 
-    <!-- This element is to trick the browser into centering the modal contents. -->
-    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span
+        class="hidden sm:inline-block sm:align-middle sm:h-screen"
+        aria-hidden="true"
+        >&#8203;</span
+      >
 
-    <!--
+      <!--
       Modal panel, show/hide based on modal state.
 
       Entering: "ease-out duration-300"
@@ -492,37 +518,129 @@
         From: "opacity-100 translate-y-0 sm:scale-100"
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
-    <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <div class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
-          <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title">
-            Update event details
-          </h3>
-          <div class="mt-6">
-            <div class="mt-4">
-              <label for="event-title" class="text-base">Title of Event</label>
-              <input type="text" name="name" id="name" formcontrolname="name" class="mt-1 focus:ring-green-500
-              focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md mb-6" placeholder="Event Title">
-              <label for="event-title" class="text-base">Date</label>
-              <input type="date" name="endDate" [min]="academicYearStart" [max]="academicYearEnd" id="endDate" formcontrolname="endDate"
-              class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+      <div
+        class="
+          inline-block
+          align-bottom
+          bg-white
+          rounded-lg
+          text-left
+          overflow-hidden
+          shadow-xl
+          transform
+          transition-all
+          sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+        "
+      >
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
+            <h3
+              class="text-2xl leading-6 font-bold text-gray-900"
+              id="modal-title"
+            >
+              Update event details
+            </h3>
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="event-title" class="text-base"
+                  >Title of Event</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  formControlName="name"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-full
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                    mb-6
+                  "
+                  placeholder="Event Title"
+                />
+                <label for="event-title" class="text-base">Date</label>
+                <input
+                  type="date"
+                  name="endDate"
+                  [min]="academicYearStart"
+                  [max]="academicYearEnd"
+                  id="endDate"
+                  formControlName="endDate"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-full
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="pt-6 sm:flex sm:flex-row-reverse">
-          <button type="button"
-            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-            Update
-          </button>
-          <button type="button"
-            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-            (click)="toCancelTwo()">
-            Cancel
-          </button>
+          <div class="pt-6 sm:flex sm:flex-row-reverse">
+            <button
+              type="submit"
+              class="
+                w-full
+                inline-flex
+                justify-center
+                rounded-md
+                border border-transparent
+                shadow-sm
+                px-4
+                py-2
+                bg-green-600
+                text-base
+                font-medium
+                text-white
+                hover:bg-green-700
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-green-500
+                sm:ml-3 sm:w-auto sm:text-sm
+              "
+            >
+              Update
+            </button>
+            <button
+              type="button"
+              class="
+                mt-3
+                w-full
+                inline-flex
+                justify-center
+                rounded-md
+                border border-gray-300
+                shadow-sm
+                px-4
+                py-2
+                bg-white
+                text-base
+                font-medium
+                text-gray-700
+                hover:bg-gray-50
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-green-500
+                sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
+              "
+              (click)="toCancelTwo()"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
-

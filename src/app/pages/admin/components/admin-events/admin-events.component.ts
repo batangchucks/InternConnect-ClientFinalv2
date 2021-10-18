@@ -36,14 +36,13 @@ export class AdminEventsComponent implements OnInit {
     private academicyearService: AcademicyearService
   ) {}
   ngOnInit(): void {
-    this.eventService.getEvents(this.user.admin.id).subscribe((events) => {
-      console.log(events);
-      this.eventList = events;
-    });
     this.createForm = new FormGroup({
       name: new FormControl(''),
       endDate: new FormControl(''),
       adminId: new FormControl(this.user.admin.id),
+    });
+    this.eventService.getEvents(this.user.admin.id).subscribe((events) => {
+      this.eventList = events;
     });
 
     this.academicyearService.getAcademicYear().subscribe((aydata) => {
@@ -74,13 +73,19 @@ export class AdminEventsComponent implements OnInit {
     this.DeleteIndicator = false;
   }
 
-  onUpdateEvent(eventData: UpdateEventModel) {
-    const formPayload: UpdateEventModel = {
-      id: eventData.id,
-      name: eventData.name,
-      endDate: this.date.transform(eventData.endDate, 'yyyy-MM-dd'),
-    };
-    this.eventService.updateEvent(formPayload).subscribe((resp) => {
+  onUpdate(eventData: UpdateEventModel) {
+    this.updateForm = new FormGroup({
+      id: new FormControl(eventData.id),
+      name: new FormControl(eventData.name),
+      endDate: new FormControl(
+        this.date.transform(eventData.endDate, 'yyyy-MM-dd')
+      ),
+    });
+    this.UpdateIndicator = true;
+  }
+
+  onUpdateEvent() {
+    this.eventService.updateEvent(this.updateForm.value).subscribe((resp) => {
       this.ngOnInit();
     });
   }
@@ -99,7 +104,7 @@ export class AdminEventsComponent implements OnInit {
     this.deleteId = null;
   }
 
-  toCancelTwo(){
+  toCancelTwo() {
     this.UpdateIndicator = false;
   }
 }
