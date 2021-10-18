@@ -62,8 +62,9 @@ export class CompanyService {
     const path = this.apiUrl + 'api/Company/' + eachId;
     return this.http.delete<CompanyModel[]>(path);
   }
-  updateCompany(upCompany: FormGroup): Observable<CompanyModel[]> {
-    return this.http.put<CompanyModel[]>(
+  updateCompany(upCompany: any) {
+    console.log(upCompany);
+    return this.http.put(
       this.apiUrl + 'api/Company',
       upCompany
     );
