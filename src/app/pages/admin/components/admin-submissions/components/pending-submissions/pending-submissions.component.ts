@@ -11,6 +11,7 @@ export class PendingSubmissionsComponent implements OnInit {
   transactionLoader:boolean = false
 
   confirmSend: boolean = false;
+  FormEntry: boolean = false;
 
   p: number = 1;
   Submission: submissionModel[] = [];
@@ -46,5 +47,13 @@ export class PendingSubmissionsComponent implements OnInit {
 
   toCancel(){
     this.confirmSend = false;
+  }
+
+  toOpen(){
+    this.FormEntry = true;
+  }
+
+  toClose(){
+    this.FormEntry = false;
   }
 }

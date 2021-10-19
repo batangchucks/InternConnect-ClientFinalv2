@@ -28,7 +28,9 @@ export class FinalSubmissionsComponent implements OnInit {
   ApproveIndicatorDean: boolean = false;
   DisapproveIndicatorChair: boolean = false;
   DisapproveIndicatorDean: boolean = false;
+  FormEntry: boolean = false;
   RejectForm: FormGroup;
+
 
   constructor(private Acc: createAccount) {}
 
@@ -184,5 +186,13 @@ export class FinalSubmissionsComponent implements OnInit {
 
   toCancelAD() {
     this.ApproveIndicatorDean = false;
+  }
+
+  toOpen() {
+    this.FormEntry = true;
+  }
+
+  toClose() {
+    this.FormEntry = false;
   }
 }

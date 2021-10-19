@@ -22,6 +22,7 @@ export class NewSubmissionsComponent implements OnInit {
   esig: string;
   isStamp: boolean = true;
   ApproveIndicator: boolean = false;
+  FormEntry: boolean = false;
   DisapproveIndicator: boolean = false;
   onAcceptLoading: boolean = false;
 
@@ -195,5 +196,13 @@ export class NewSubmissionsComponent implements OnInit {
 
   toCancelThree() {
     this.rejectModal = false;
+  }
+
+  toOpen() {
+    this.FormEntry = true;
+  }
+
+  toClose() {
+    this.FormEntry = false;
   }
 }

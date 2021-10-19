@@ -14,6 +14,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
   Submission: submissionModel[] = [];
   ApproveIndicator: boolean = false;
   DisapproveIndicator: boolean = false;
+  FormEntry: boolean = false;
 
   rejectedForm: FormGroup;
 
@@ -57,5 +58,13 @@ export class ApprovedSubmissionsComponent implements OnInit {
   }
   toCancelTwo() {
     this.DisapproveIndicator = false;
+  }
+
+  toOpen() {
+    this.FormEntry = true;
+  }
+
+  toClose() {
+    this.FormEntry = false;
   }
 }
