@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-pending-submissions',
@@ -15,7 +16,8 @@ export class PendingSubmissionsComponent implements OnInit {
 
   p: number = 1;
   Submission: submissionModel[] = [];
-
+  viewEndorsement:submissionModel;
+  readonly photoUrl = environment.apiUrl + 'images/Company/';
   constructor(private Acc: createAccount) {}
   user = JSON.parse(localStorage.getItem('user'));
 
@@ -49,8 +51,9 @@ export class PendingSubmissionsComponent implements OnInit {
     this.confirmSend = false;
   }
 
-  toOpen(){
+  toOpen(eachS:submissionModel){
     this.FormEntry = true;
+    this.viewEndorsement = eachS;
   }
 
   toClose(){

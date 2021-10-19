@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { interval } from 'rxjs';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-final-submissions',
@@ -30,12 +31,13 @@ export class FinalSubmissionsComponent implements OnInit {
   DisapproveIndicatorDean: boolean = false;
   FormEntry: boolean = false;
   RejectForm: FormGroup;
-
+  readonly photoUrl = environment.apiUrl + 'images/Company/';
+  viewEndorsement:submissionModel;
 
   constructor(private Acc: createAccount) {}
 
   stampFileName: string = 'file';
-
+  
   ngOnInit(): void {
     if (this.user.admin.authId == 2) {
       this.deptChairSubmissionList();
@@ -188,11 +190,33 @@ export class FinalSubmissionsComponent implements OnInit {
     this.ApproveIndicatorDean = false;
   }
 
-  toOpen() {
+  toOpen(eachS:submissionModel) {
     this.FormEntry = true;
+
+    this.viewEndorsement = eachS;
   }
 
   toClose() {
     this.FormEntry = false;
+  }
+
+  previewSub(id:number) {
+    // this.Acc.viewSubmission(id).subscribe(subm=> {
+    //   console.log(subm);
+    //   // var blob = new Blob([subm], { type: 'application/pdf' });
+
+    //   // let url = window.URL.createObjectURL(blob);
+    //   // console.log(url);
+    //   // window.open(url);
+    // })
+ 
+
+    this.Acc.viewSubmission(id).subscribe(sub=> {
+     var blob = new Blob([sub], { type: 'application/pdf' });
+
+      let url = window.URL.createObjectURL(blob);
+      console.log(url);
+      window.open(url);
+    })
   }
 }

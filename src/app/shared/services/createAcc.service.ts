@@ -259,6 +259,15 @@ export class createAccount {
     });
   }
 
+  viewSubmission(id:number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get(this.apiUrl + 'api/File/previewPdf/submission/' + id , {
+      headers: headers,
+      responseType: 'blob',
+    });
+  }
+
   emailSent(payload) {
     return this.http.put(
       this.apiUrl + 'api/AdminResponse/coordinator/email',

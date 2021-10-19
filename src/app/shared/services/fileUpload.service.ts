@@ -28,6 +28,7 @@ export class fileUpload {
       responseType: 'text',
     });
   }
+ 
 
   
 }

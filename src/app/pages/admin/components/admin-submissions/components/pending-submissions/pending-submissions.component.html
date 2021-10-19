@@ -118,7 +118,7 @@
                       {{ eachS.student.account.email.toLowerCase() }}
                     </div>
                     <!-- View full submission -->
-                  <a class="text-green-700 hover:text-green-800 hover:underline cursor-pointer" (click)="toOpen()">View submission</a>
+                  <a class="text-green-700 hover:text-green-800 hover:underline cursor-pointer" (click)="toOpen(eachS)">View submission</a>
                   </div>
                 </div>
               </td>
@@ -393,80 +393,81 @@
 
                     <div class="col-span-2 py-4">
                       <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
-                      <p>Last Name</p>
+                      <p>{{viewEndorsement.lastName}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="given-name" class="block text-sm font-medium text-gray-700">First Name</label>
-                      <p>First Name</p>
+                      <p>{{viewEndorsement.firstName}}</p>
                     </div>
                     <div class="col-span-6 py-4">
                       <label for="middle-initial" class="block text-sm font-medium text-gray-700">Middle Initial</label>
-                      <p>MI</p>
+                      <p>{{viewEndorsement.middleInitial}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="specialization" class="block text-sm font-medium text-gray-700">Specialization</label>
-                      <p>Specialization</p>
+                     <!-- wrong -->
+                     <p></p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="student-number" class="block text-sm font-medium text-gray-700">Student Number</label>
-                      <p>StudentNumber</p>
+                      <p>{{viewEndorsement.studentNumber}}</p>
 
                     <div class="col-span-6 py-4">
                       <label for="email-contactperson" class="block text-sm font-medium text-gray-700">Email Address of Contact Person</label>
-                      <p>ContactPersonEmailAddress</p>
+                      <p>{{viewEndorsement.contactPersonEmail}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="title-contactperson" class="block text-sm font-medium text-gray-700">Title of Contact Person</label>
-                      <p>ContactPersonTitle</p>
+                      <p>{{viewEndorsement.contactPersonTitle}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="ln-contactperson" class="block text-sm font-medium text-gray-700">Last Name of Contact Person</label>
-                      <p>LastNameContact</p>
+                      <p>{{viewEndorsement.contactPersonLastName}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="fn-contactperson" class="block text-sm font-medium text-gray-700">First Name of Contact Person</label>
-                      <p>FirstNameContact</p>
+                      <p>{{viewEndorsement.contactPersonFirstName}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="designation" class="block text-sm font-medium text-gray-700">Official Designation</label>
-                      <p>Designation</p>
+                      <p>{{viewEndorsement.contactPersonPosition}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-name" class="block text-sm font-medium text-gray-700">Name of Company/Institution</label>
-                      <p>CompanyName</p>
+                      <p>{{viewEndorsement.company.name}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-1" class="block text-sm font-medium text-gray-700">Company Address Line 1</label>
-                      <p>Line1</p>
+                      <p>{{viewEndorsement.company.addressOne}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-2" class="block text-sm font-medium text-gray-700">Company Address Line 2</label>
-                      <p>Line2</p>
+                      <p>{{viewEndorsement.company.addressTwo}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-3" class="block text-sm font-medium text-gray-700">Company Address Line 3</label>
-                      <p>Line3</p>
+                      <p>{{viewEndorsement.company.addressThree}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-profile" class="block text-sm font-medium text-gray-700">Company profile</label>
-                      <a href="" class="hover:text-blue-600">File link</a>
+                      <a [href]="photoUrl+viewEndorsement.companyProfileFileName" target="blank" class="hover:text-blue-600">File link</a>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="acceptance-letter" class="block text-sm font-medium text-gray-700">Acceptance letter</label>
-                      <a href="" class="hover:text-blue-600">File link</a>
+                      <a [href]="photoUrl+viewEndorsement.acceptanceLetterFileName" target="blank" class="hover:text-blue-600">File link</a>
                     </div>
                 </div>
               </div>

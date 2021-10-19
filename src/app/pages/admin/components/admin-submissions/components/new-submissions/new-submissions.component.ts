@@ -39,6 +39,8 @@ export class NewSubmissionsComponent implements OnInit {
 
   isoCodeValue: isoCodeListModel[] = [];
 
+  viewEndorsement:submissionModel;
+
   readonly photoUrl = environment.apiUrl + 'images/Company/';
 
   constructor(private Acc: createAccount, private isoCode: IsoCodeService) {}
@@ -174,6 +176,26 @@ export class NewSubmissionsComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  previewSub(id:number) {
+    // this.Acc.viewSubmission(id).subscribe(subm=> {
+    //   console.log(subm);
+    //   // var blob = new Blob([subm], { type: 'application/pdf' });
+
+    //   // let url = window.URL.createObjectURL(blob);
+    //   // console.log(url);
+    //   // window.open(url);
+    // })
+ 
+
+    this.Acc.viewSubmission(id).subscribe(sub=> {
+     var blob = new Blob([sub], { type: 'application/pdf' });
+
+      let url = window.URL.createObjectURL(blob);
+      console.log(url);
+      window.open(url);
+    })
+  }
   // rejectedSubmit() {
   //   this.Acc.coordinatorDisapprove(this.user.admin.id ,this.RejectForm.value).subscribe(
   //     (updatedVal) => {
@@ -198,8 +220,10 @@ export class NewSubmissionsComponent implements OnInit {
     this.rejectModal = false;
   }
 
-  toOpen() {
+  toOpen(eachS:submissionModel) {
     this.FormEntry = true;
+    this.viewEndorsement = eachS;
+    
   }
 
   toClose() {

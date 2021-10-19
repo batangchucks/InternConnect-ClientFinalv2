@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-approved-submissions',
@@ -17,6 +18,8 @@ export class ApprovedSubmissionsComponent implements OnInit {
   FormEntry: boolean = false;
 
   rejectedForm: FormGroup;
+  viewEndorsement:submissionModel;
+  readonly photoUrl = environment.apiUrl + 'images/Company/';
 
   constructor(private Acc: createAccount) {}
 
@@ -60,8 +63,10 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.DisapproveIndicator = false;
   }
 
-  toOpen() {
+  toOpen(eachS:submissionModel) {
     this.FormEntry = true;
+    this.FormEntry = true;
+    this.viewEndorsement = eachS;
   }
 
   toClose() {
