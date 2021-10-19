@@ -7,15 +7,57 @@
     </h1>
   </div>
 </div>
-<!-- This example requires Tailwind CSS v2.0+
-     Table -->
 
-<!-- This example requires Tailwind CSS v2.0+ -->
+
+<!-- AuthID 1 -->
+<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1">
+  <label for="filter-program" class="block text-sm font-medium text-gray-700">Filter by program:</label>
+  <select id="filter-proram" [(ngModel)]="selectedProg" (change)="Status()" (ngModelChange)="onFilterChange($event)"
+    class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+    <option selected disabled hidden>Filter by programs:</option>
+    <option *ngFor="let program of programs" [ngValue]="program.id">{{ program.name }}</option>
+  </select>
+</div>
+
+<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1">
+  <label for="filter-section" class="block text-sm font-medium text-gray-700">Filter by section:</label>
+  <select id="filter-section" [(ngModel)]="selectedSec" (change)="Status()" (ngModelChange)="onFilterChange($event)" [disabled]="!selectedProg" class="disabled:cursor-not-allowed"
+    class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+    <option selected disabled hidden>Filter by sections:</option>
+    <option *ngFor="let section of Section" [ngValue]="section.id">{{ section.name }}</option>
+  </select>
+</div>
+
+<!-- AuthID 2 -->
+<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 2">
+  <label for="filter-section" class="block text-sm font-medium text-gray-700">Filter by section:</label>
+  <select id="filter-section" [(ngModel)]="selectedSec" (change)="Status()" (ngModelChange)="onFilterChange($event)"
+    class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+    <option selected disabled hidden>Filter by section:</option>
+    <option *ngFor="let section of Section" [ngValue]="section.id">{{ section.name }}</option>
+  </select>
+</div>
+
+<!-- AuthID != 3 -->
+<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8">
+  <label for="filter-status" class="block text-sm font-medium text-gray-700">Filter by status:</label>
+  <select id="filter-status" [disabled]="!selectedSec && user.admin.authId != 3" [(ngModel)]="status" (change)="Status()" (ngModelChange)="onFilterChange($event)"
+    class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+    <option value="" selected disabled hidden>Filter by status:</option>
+    <option [ngValue]="'Acknowledged'">Acknowledged</option>
+    <option [ngValue]="'approvedbyC'">Approved by Coordinator</option>
+    <option [ngValue]="'approvedD'">Approved by Dean</option>
+    <option [ngValue]="'sentToCompany'">Sent to Company</option>
+    <option [ngValue]="'approvedByCompany'">Approved by Company</option>
+    <option [ngValue]="'disapproved'">Disapproved</option>
+  </select>
+</div>
+
+<!-- Old Filter + Table -->
 <div class="">
-  <div class="pt-12 grid grid-cols-4 gap-x-8 sm:px-6 lg:px-8">
-    <!-- Filter 1  -->
+  <!-- <div class="old-filter flex gap-x-8 sm:px-6 lg:px-8">
     <div>
-      <div class="relative px-8 inline-block text-left">
+      <div class="relative px-8 flex">
         <div *ngIf="user.admin.authId == 1">
           <label for="">Programs: </label>
           <select
@@ -55,30 +97,10 @@
             </option>
           </select>
         </div>
-
-        <!--
-          Dropdown menu, show/hide based on menu state.
-
-          Entering: "transition ease-out duration-100"
-            From: "transform opacity-0 scale-95"
-            To: "transform opacity-100 scale-100"
-          Leaving: "transition ease-in duration-75"
-            From: "transform opacity-100 scale-100"
-            To: "transform opacity-0 scale-95"
-        -->
-        <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-          <div class="py-1" role="none"> -->
-        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-        <!-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Without company</a>
-            <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">With company</a>
-            <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">With requests</a>
-          </div>
-        </div> -->
       </div>
     </div>
-    <!-- Filter 2 -->
     <div>
-      <div class="relative inline-block text-left">
+      <div class="relative flex">
         <div>
           <label for="">Status: </label>
           <select
@@ -103,29 +125,9 @@
             <option [ngValue]="'disapproved'">Disapproved</option>
           </select>
         </div>
-
-        <!--
-      Dropdown menu, show/hide based on menu state.
-
-      Entering: "transition ease-out duration-100"
-        From: "transform opacity-0 scale-95"
-        To: "transform opacity-100 scale-100"
-      Leaving: "transition ease-in duration-75"
-        From: "transform opacity-100 scale-100"
-        To: "transform opacity-0 scale-95"
-    -->
-        <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-      <div class="py-1" role="none"> -->
-        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-        <!-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Without company</a>
-        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">With company</a>
-        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">With requests</a>
-      </div>
-    </div> -->
       </div>
     </div>
-    <!-- Filter 3 -->
-  </div>
+  </div> -->
 
   <div class="pt-12 flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
