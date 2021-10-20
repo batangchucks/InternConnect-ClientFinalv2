@@ -6,6 +6,7 @@ import { isoCodeListModel } from 'src/app/shared/models/isoCodeList.model';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { IsoCodeService } from 'src/app/shared/services/iso-code.service';
+import { ProgramService } from 'src/app/shared/services/program.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -33,6 +34,7 @@ export class NewSubmissionsComponent implements OnInit {
 
   AcceptForm: FormGroup;
 
+  trackName: string
   rejectModal: boolean;
 
   rejectedForm: FormGroup;
@@ -43,7 +45,7 @@ export class NewSubmissionsComponent implements OnInit {
 
   readonly photoUrl = environment.apiUrl + 'images/Company/';
 
-  constructor(private Acc: createAccount, private isoCode: IsoCodeService) {}
+  constructor(private Acc: createAccount, private isoCode: IsoCodeService, private programService: ProgramService) {}
 
   ngOnInit(): void {
     this.Acc.getByAccount(this.user.admin.id).subscribe((Acc) => {
@@ -177,6 +179,7 @@ export class NewSubmissionsComponent implements OnInit {
     });
   }
 
+
   previewSub(id:number) {
     // this.Acc.viewSubmission(id).subscribe(subm=> {
     //   console.log(subm);
@@ -186,7 +189,7 @@ export class NewSubmissionsComponent implements OnInit {
     //   // console.log(url);
     //   // window.open(url);
     // })
- 
+
 
     this.Acc.viewSubmission(id).subscribe(sub=> {
      var blob = new Blob([sub], { type: 'application/pdf' });
@@ -223,10 +226,19 @@ export class NewSubmissionsComponent implements OnInit {
   toOpen(eachS:submissionModel) {
     this.FormEntry = true;
     this.viewEndorsement = eachS;
-    
+
   }
 
   toClose() {
     this.FormEntry = false;
   }
+
+    getSpecialization(trackId: number): string{
+    this.programService.getTrack(trackId).subscribe(resp => {
+      this.trackName = resp.name
+    })
+
+    return this.trackName;
+  }
+
 }

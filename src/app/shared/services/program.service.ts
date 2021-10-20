@@ -72,4 +72,8 @@ export class ProgramService {
   deleteTrack(id: number) {
     return this.http.delete(this.apiUrl + 'api/Track/' + id);
   }
+
+  getTrack(id: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl+'api/Track/' + id)
+  }
 }

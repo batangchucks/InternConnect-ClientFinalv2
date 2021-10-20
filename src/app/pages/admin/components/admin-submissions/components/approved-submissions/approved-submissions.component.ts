@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
+import { ProgramService } from 'src/app/shared/services/program.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -16,12 +17,17 @@ export class ApprovedSubmissionsComponent implements OnInit {
   ApproveIndicator: boolean = false;
   DisapproveIndicator: boolean = false;
   FormEntry: boolean = false;
+  modalAppear: boolean = false
 
+  trackName: string
   rejectedForm: FormGroup;
-  viewEndorsement:submissionModel;
+  viewEndorsement: submissionModel;
   readonly photoUrl = environment.apiUrl + 'images/Company/';
 
-  constructor(private Acc: createAccount) {}
+  constructor(
+    private Acc: createAccount,
+    private programService: ProgramService
+  ) {}
 
   ngOnInit(): void {
     this.Acc.submissionStep5(this.user.admin.sectionId).subscribe((eachS) => {
@@ -30,12 +36,14 @@ export class ApprovedSubmissionsComponent implements OnInit {
   }
 
   response(responseId: number, companyAgrees: boolean, comments: string) {
+    this.modalAppear = true
     var POSTval = {
       id: responseId,
       companyAgrees: companyAgrees,
       comments: comments,
     };
     this.Acc.approvedCompany(POSTval).subscribe((companyA) => {
+      this.modalAppear = false
       this.ngOnInit();
     });
   }
@@ -48,12 +56,15 @@ export class ApprovedSubmissionsComponent implements OnInit {
     });
   }
   rejectedSubmit() {
+    this.DisapproveIndicator = false;
+    this.modalAppear = true
     this.Acc.approvedCompany(this.rejectedForm.value).subscribe((companyA) => {
+      this.modalAppear = false
       this.ngOnInit();
     });
 
     this.ngOnInit();
-    this.DisapproveIndicator = false;
+
   }
 
   toCancelOne() {
@@ -63,7 +74,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.DisapproveIndicator = false;
   }
 
-  toOpen(eachS:submissionModel) {
+  toOpen(eachS: submissionModel) {
     this.FormEntry = true;
     this.FormEntry = true;
     this.viewEndorsement = eachS;
@@ -71,5 +82,12 @@ export class ApprovedSubmissionsComponent implements OnInit {
 
   toClose() {
     this.FormEntry = false;
+  }
+  getSpecialization(trackId: number): string {
+    this.programService.getTrack(trackId).subscribe((resp) => {
+      this.trackName = resp.name;
+    });
+
+    return this.trackName;
   }
 }

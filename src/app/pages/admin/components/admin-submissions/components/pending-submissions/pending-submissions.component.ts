@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
+import { ProgramService } from 'src/app/shared/services/program.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -14,11 +15,13 @@ export class PendingSubmissionsComponent implements OnInit {
   confirmSend: boolean = false;
   FormEntry: boolean = false;
 
+  trackName:string
+
   p: number = 1;
   Submission: submissionModel[] = [];
   viewEndorsement:submissionModel;
   readonly photoUrl = environment.apiUrl + 'images/Company/';
-  constructor(private Acc: createAccount) {}
+  constructor(private Acc: createAccount, private programService: ProgramService) {}
   user = JSON.parse(localStorage.getItem('user'));
 
   ngOnInit(): void {
@@ -58,5 +61,12 @@ export class PendingSubmissionsComponent implements OnInit {
 
   toClose(){
     this.FormEntry = false;
+  }
+  getSpecialization(trackId: number): string {
+    this.programService.getTrack(trackId).subscribe(resp => {
+      this.trackName = resp.name
+    })
+
+    return this.trackName;
   }
 }
