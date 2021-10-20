@@ -40,6 +40,11 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   updateCompanyStatus: FormGroup;
   selectedCompanyStatus: string;
 
+  ToDeleteCompanyId: number;
+
+
+  deleteCompanyModal:boolean = false;
+
   constructor(private company: CompanyService, private File: fileUpload) {}
 
   ngOnInit(): void {
@@ -267,5 +272,23 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
   updateStatusCancel() {
     this.UpdateStatusIndicator = false;
+  }
+
+  onDelete(id: number) {
+    this.deleteCompanyModal = true
+    this.ToDeleteCompanyId = id
+  }
+
+  confirmDelete() {
+    this.company.deleteCompany(this.ToDeleteCompanyId).subscribe(resp => {
+      this.deleteCompanyModal = false
+      this.ToDeleteCompanyId = null
+      this.ngOnInit()
+    })
+
+  }
+
+  cancelDelete() {
+    this.deleteCompanyModal = false
   }
 }

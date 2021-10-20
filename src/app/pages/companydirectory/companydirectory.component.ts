@@ -29,8 +29,8 @@ export class CompanydirectoryComponent implements OnInit {
       console.log(eachC)
       this.searchedCompany = eachC.filter(company=>{
         return (
-          company.status == CompanyStatusList.NEW.toString() ||
-          company.status == CompanyStatusList.EXISTING.toString()
+          company.status == CompanyStatusList[1] ||
+          company.status == CompanyStatusList[2] && company.isActive == true
         );
       });
     });

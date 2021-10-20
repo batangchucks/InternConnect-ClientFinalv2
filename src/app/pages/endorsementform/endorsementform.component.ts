@@ -60,7 +60,7 @@ export class EndorsementformComponent implements OnInit {
       });
     this.company.getCompany().subscribe((eachC) => {
       this.Company = eachC.filter((company)=>{
-        return company.status == CompanyStatusList.NEW.toString() || company.status == CompanyStatusList.EXISTING.toString()
+        return company.status == CompanyStatusList[1] || company.status == CompanyStatusList[0]
       });
     });
     this.initForm();

@@ -59,7 +59,7 @@ export class CompanyService {
     return this.http.delete<opportunityModel[]>(path);
   }
   deleteCompany(eachId: number): Observable<any> {
-    return this.http.delete<any>(this.apiUrl + 'api/Company/status/'+eachId);
+    return this.http.delete<any>(this.apiUrl + 'api/Company/'+eachId);
   }
   updateCompany(upCompany: any) {
     console.log(upCompany);
@@ -91,4 +91,5 @@ export class CompanyService {
   updateCompanyStatus(payload): Observable<any> {
     return this.http.put<any>(this.apiUrl + 'api/Company/status', payload)
   }
+
 }

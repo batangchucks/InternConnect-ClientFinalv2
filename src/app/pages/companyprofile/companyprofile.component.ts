@@ -35,7 +35,7 @@ export class CompanyprofileComponent implements OnInit {
     });
     this.company.getCompanyById(this.index).subscribe((eachC) => {
       this.companyProfile = eachC;
-      if(this.companyProfile.status == CompanyStatusList.EXPIRED.toString()) {
+      if(this.companyProfile.status == CompanyStatusList[2] ) {
         this.router.navigate(["/"]);
       }
     });
