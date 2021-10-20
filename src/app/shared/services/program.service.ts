@@ -76,4 +76,8 @@ export class ProgramService {
   getTrack(id: number): Observable<any> {
     return this.http.get<any>(this.apiUrl+'api/Track/' + id)
   }
+
+  getAllTracks(): Observable<tracksModel[]> {
+    return this.http.get<tracksModel[]>(this.apiUrl +'api/Track')
+  }
 }

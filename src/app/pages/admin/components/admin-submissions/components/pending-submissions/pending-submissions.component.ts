@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { submissionModel } from 'src/app/shared/models/submission.model';
+import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
 import { environment } from 'src/environments/environment.prod';
@@ -15,7 +16,8 @@ export class PendingSubmissionsComponent implements OnInit {
   confirmSend: boolean = false;
   FormEntry: boolean = false;
 
-  trackName:string
+  trackName: string
+  trackList: tracksModel[]
 
   p: number = 1;
   Submission: submissionModel[] = [];
@@ -28,6 +30,9 @@ export class PendingSubmissionsComponent implements OnInit {
     this.Acc.submissionStep4(this.user.admin.sectionId).subscribe((eachS) => {
       this.Submission = eachS;
     });
+        this.programService.getAllTracks().subscribe((resp) => {
+          this.trackList = resp;
+        });
   }
   downloadPdf(submissionId: number) {
     this.Acc.approvedPending(submissionId).subscribe((pdfGeneration) => {
@@ -63,10 +68,10 @@ export class PendingSubmissionsComponent implements OnInit {
     this.FormEntry = false;
   }
   getSpecialization(trackId: number): string {
-    this.programService.getTrack(trackId).subscribe(resp => {
-      this.trackName = resp.name
-    })
-
-    return this.trackName;
+    return this.trackList
+      .filter((track) => {
+        return track.id == trackId;
+      })
+      .slice(-1)[0].name;
   }
 }

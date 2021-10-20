@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { isoCodeListModel } from 'src/app/shared/models/isoCodeList.model';
 
 import { submissionModel } from 'src/app/shared/models/submission.model';
+import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { IsoCodeService } from 'src/app/shared/services/iso-code.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
@@ -34,6 +35,7 @@ export class NewSubmissionsComponent implements OnInit {
 
   AcceptForm: FormGroup;
 
+  trackList: tracksModel[]
   trackName: string
   rejectModal: boolean;
 
@@ -62,6 +64,9 @@ export class NewSubmissionsComponent implements OnInit {
     this.isoCode.getIsoById(this.user.admin.id).subscribe((eachIso) => {
       this.isoCodeValue = eachIso;
     });
+        this.programService.getAllTracks().subscribe((resp) => {
+          this.trackList = resp;
+        });
   }
   isoChange() {
     this.iso = (<HTMLInputElement>document.getElementById('isoCode')).value;
@@ -234,11 +239,11 @@ export class NewSubmissionsComponent implements OnInit {
   }
 
     getSpecialization(trackId: number): string{
-    this.programService.getTrack(trackId).subscribe(resp => {
-      this.trackName = resp.name
-    })
-
-    return this.trackName;
+    return this.trackList
+      .filter((track) => {
+        return track.id == trackId;
+      })
+      .slice(-1)[0].name;
   }
 
 }

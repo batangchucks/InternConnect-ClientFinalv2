@@ -16,7 +16,10 @@ export class CoordinatorComponent implements OnInit {
   UpdateIndicator: boolean = false;
   DeleteIndicator: boolean = false;
   user = JSON.parse(localStorage.getItem('user'));
-  idSection:number;
+  idSection: number;
+  modalAppear: boolean = false;
+
+  toDeleteId: number
 
   coordinatorF!: FormGroup;
   Section: sectionModel[] = [];
@@ -61,19 +64,27 @@ export class CoordinatorComponent implements OnInit {
   }
 
   createCoordinator() {
+    this.modalAppear = true
     this.coordinatorF.get('sectionId').setValue(this.idSection)
-    console.log(this.coordinatorF.value)
     this.accounts
       .POSTcoordinator(this.coordinatorF.value)
       .subscribe((createdCoord) => {
+        this.modalAppear = false;
         this.ngOnInit();
       });
   }
 
   toDelete(id: number) {
-    this.accounts.deleteCoordinator(id).subscribe((delC) => {
-      this.ngOnInit();
-    });
+    this.DeleteIndicator = true
+    this.toDeleteId = id
+  }
+
+  onDelete() {
+        this.accounts.deleteCoordinator(this.toDeleteId).subscribe((delC) => {
+          this.ngOnInit();
+          this.DeleteIndicator = false
+        });
+    this.toDeleteId = null
   }
 
   toCancel() {

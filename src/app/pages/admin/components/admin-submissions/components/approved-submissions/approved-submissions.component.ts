@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { submissionModel } from 'src/app/shared/models/submission.model';
+import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
 import { environment } from 'src/environments/environment.prod';
@@ -17,9 +18,10 @@ export class ApprovedSubmissionsComponent implements OnInit {
   ApproveIndicator: boolean = false;
   DisapproveIndicator: boolean = false;
   FormEntry: boolean = false;
-  modalAppear: boolean = false
+  modalAppear: boolean = false;
+  trackList: tracksModel[];
 
-  trackName: string
+  trackName: string;
   rejectedForm: FormGroup;
   viewEndorsement: submissionModel;
   readonly photoUrl = environment.apiUrl + 'images/Company/';
@@ -33,17 +35,20 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.Acc.submissionStep5(this.user.admin.sectionId).subscribe((eachS) => {
       this.Submission = eachS;
     });
+        this.programService.getAllTracks().subscribe((resp) => {
+          this.trackList = resp;
+        });
   }
 
   response(responseId: number, companyAgrees: boolean, comments: string) {
-    this.modalAppear = true
+    this.modalAppear = true;
     var POSTval = {
       id: responseId,
       companyAgrees: companyAgrees,
       comments: comments,
     };
     this.Acc.approvedCompany(POSTval).subscribe((companyA) => {
-      this.modalAppear = false
+      this.modalAppear = false;
       this.ngOnInit();
     });
   }
@@ -57,14 +62,13 @@ export class ApprovedSubmissionsComponent implements OnInit {
   }
   rejectedSubmit() {
     this.DisapproveIndicator = false;
-    this.modalAppear = true
+    this.modalAppear = true;
     this.Acc.approvedCompany(this.rejectedForm.value).subscribe((companyA) => {
-      this.modalAppear = false
+      this.modalAppear = false;
       this.ngOnInit();
     });
 
     this.ngOnInit();
-
   }
 
   toCancelOne() {
@@ -84,10 +88,10 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.FormEntry = false;
   }
   getSpecialization(trackId: number): string {
-    this.programService.getTrack(trackId).subscribe((resp) => {
-      this.trackName = resp.name;
-    });
-
-    return this.trackName;
+    return this.trackList
+      .filter((track) => {
+        return track.id == trackId;
+      })
+      .slice(-1)[0].name;
   }
 }

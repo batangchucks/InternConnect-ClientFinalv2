@@ -1029,7 +1029,7 @@ no conditions on angular set, but all modals are present -->
           "
           *ngIf="loadPhaseOne"
         >
-          <img
+          <img *ngIf="loadPhaseOne"
             src="https://res.cloudinary.com/daljbo1q0/image/upload/v1633844396/Landing/scan_h6bwy7.gif"
           />
         </div>
@@ -1052,7 +1052,7 @@ no conditions on angular set, but all modals are present -->
           "
           *ngIf="loadPhaseTwo"
         >
-          <img
+          <img *ngIf="loadPhaseTwo"
             src="https://res.cloudinary.com/daljbo1q0/image/upload/v1633844110/Landing/send_othtis.gif"
           />
         </div>
@@ -1075,7 +1075,7 @@ no conditions on angular set, but all modals are present -->
           "
           *ngIf="loadPhaseThree"
         >
-          <img
+          <img *ngIf="loadPhaseThree"
             src="https://res.cloudinary.com/daljbo1q0/image/upload/v1633844110/Landing/send_othtis.gif"
           />
         </div>
@@ -1098,7 +1098,7 @@ no conditions on angular set, but all modals are present -->
           "
           *ngIf="loadPhaseFour"
         >
-          <img
+          <img *ngIf="loadPhaseFour"
             src="https://res.cloudinary.com/daljbo1q0/image/upload/v1634090673/Landing/mail_eexlbl.gif"
           />
         </div>
@@ -1161,6 +1161,8 @@ no conditions on angular set, but all modals are present -->
   id="modalAppear"
   *ngIf="onDeanSubmit"
 ></div>
+
+
 
 <div
   *ngIf="ApproveIndicatorChair"
