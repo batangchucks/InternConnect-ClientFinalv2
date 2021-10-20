@@ -4,6 +4,8 @@ import { CompanyModel } from 'src/app/shared/models/company.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
+import { CompanyStatusList } from 'src/app/shared/models/enums.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-companydirectory-update',
   templateUrl: './companydirectory-update.component.html',
@@ -16,6 +18,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   DeleteIndicator: boolean = false;
   updateCompany!: FormGroup;
   createCompany!: FormGroup;
+  UpdateStatusIndicator: boolean = false;
 
   selectedFileLogo: File = null;
   imageSrc: string;
@@ -25,13 +28,17 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   coverPhotoFileName: string;
 
   Companies: CompanyModel[] = [];
-  photoUrl:string;
+  photoUrl: string;
 
-  selectedUpdateLogo:File = null;
+  companyStatus = CompanyStatusList
 
-  updateLogo:string;
-  selectedUpdateCoverPhoto:File = null;
-  updateCoverPhoto:string;
+  selectedUpdateLogo: File = null;
+
+  updateLogo: string;
+  selectedUpdateCoverPhoto: File = null;
+  updateCoverPhoto: string;
+  updateCompanyStatus: FormGroup;
+  selectedCompanyStatus: string;
 
   constructor(private company: CompanyService, private File: fileUpload) {}
 
@@ -40,8 +47,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       this.Companies = eC;
     });
 
-     this.photoUrl = this.File.photoUrl;
-    
+    this.photoUrl = this.File.photoUrl;
   }
   deleteCompany(eachCid: number) {
     this.company.deleteCompany(eachCid).subscribe((response) => {
@@ -49,11 +55,11 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   }
   toCreate() {
-    console.log("here")
+    console.log('here');
     this.CreateIndicator = true;
   }
 
-  toCancel(){
+  toCancel() {
     this.DeleteIndicator = false;
   }
 
@@ -79,11 +85,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     const contactPersonEmail = toUpdateCompany.contactPersonEmail;
     const link = toUpdateCompany.link;
     const id = toUpdateCompany.id;
-    
+
     this.updateCoverPhoto = headerFileName;
     this.updateLogo = logoFileName;
-    
-
 
     this.updateCompany = new FormGroup({
       name: new FormControl(name, Validators.required),
@@ -93,7 +97,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       addressThree: new FormControl(addressThree),
       city: new FormControl(city, Validators.required),
       headerFileName: new FormControl(headerFileName),
-      
+
       contactPersonName: new FormControl(
         contactPersonName,
         Validators.required
@@ -111,8 +115,6 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   }
   onSubmitCreate(f: NgForm) {
-
-   
     var payload = {
       name: f.controls.name.value,
       link: f.controls.link.value,
@@ -129,13 +131,10 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     };
     console.log(payload);
 
-    
-
-     this.company.createCompany(payload).subscribe((createdC) => {
+    this.company.createCompany(payload).subscribe((createdC) => {
       this.ngOnInit();
       this.toCancelOne();
     });
-   
   }
   updateSubmit() {
     var payload = {
@@ -150,11 +149,12 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       description: this.updateCompany.controls.description.value,
       contactPersonName: this.updateCompany.controls.contactPersonName.value,
       contactPersonEmail: this.updateCompany.controls.contactPersonEmail.value,
-      contactPersonDesignation: this.updateCompany.controls.contactPersonDesignation.value,
-      id: this.updateCompany.controls.id.value
+      contactPersonDesignation:
+        this.updateCompany.controls.contactPersonDesignation.value,
+      id: this.updateCompany.controls.id.value,
     };
- 
-    this.company.updateCompany(payload).subscribe(eachC=> {
+
+    this.company.updateCompany(payload).subscribe((eachC) => {
       console.log(eachC);
       this.UpdateIndicator = false;
       this.ngOnInit();
@@ -248,4 +248,24 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   }
 
+  onUpdateStatus(id: number, status: string) {
+    this.UpdateStatusIndicator = true;
+    this.updateCompanyStatus = new FormGroup({
+      id: new FormControl(id),
+      status: new FormControl(status),
+    });
+  }
+
+  confirmUpdateStatus() {
+    this.company
+      .updateCompanyStatus(this.updateCompanyStatus.value)
+      .subscribe((resp) => {
+        this.UpdateStatusIndicator = false;
+        this.ngOnInit();
+      });
+  }
+
+  updateStatusCancel() {
+    this.UpdateStatusIndicator = false;
+  }
 }

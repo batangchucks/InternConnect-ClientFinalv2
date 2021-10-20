@@ -3,6 +3,7 @@ import { CompanyService } from 'src/app/shared/services/company.service';
 import { CompanyModel } from 'src/app/shared/models/company.model';
 import { Router } from '@angular/router';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
+import { CompanyStatusList } from 'src/app/shared/models/enums.model';
 @Component({
   selector: 'app-companydirectory',
   templateUrl: './companydirectory.component.html',
@@ -27,7 +28,10 @@ export class CompanydirectoryComponent implements OnInit {
     this.company.getCompany().subscribe((eachC) => {
       console.log(eachC)
       this.searchedCompany = eachC.filter(company=>{
-        return company.isActive == true;
+        return (
+          company.status == CompanyStatusList.NEW.toString() ||
+          company.status == CompanyStatusList.EXISTING.toString()
+        );
       });
     });
   }

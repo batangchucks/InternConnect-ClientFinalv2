@@ -87,4 +87,8 @@ export class CompanyService {
       opU
     );
   }
+
+  updateCompanyStatus(payload): Observable<any> {
+    return this.http.put<any>(this.apiUrl + 'api/Company/status', payload)
+  }
 }

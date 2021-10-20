@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CompanyModel } from 'src/app/shared/models/company.model';
+import { CompanyStatusList } from 'src/app/shared/models/enums.model';
 import { programModel } from 'src/app/shared/models/programs.model';
 import { CompanyService } from 'src/app/shared/services/company.service';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
@@ -59,7 +60,7 @@ export class EndorsementformComponent implements OnInit {
       });
     this.company.getCompany().subscribe((eachC) => {
       this.Company = eachC.filter((company)=>{
-        return company.isActive == true
+        return company.status == CompanyStatusList.NEW.toString() || company.status == CompanyStatusList.EXISTING.toString()
       });
     });
     this.initForm();

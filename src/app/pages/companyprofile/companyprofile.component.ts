@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { CompanyModel } from 'src/app/shared/models/company.model';
+import { CompanyStatusList } from 'src/app/shared/models/enums.model';
 import { opportunityModel } from 'src/app/shared/models/opportunity.model';
 import { CompanyService } from 'src/app/shared/services/company.service';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
@@ -34,7 +35,7 @@ export class CompanyprofileComponent implements OnInit {
     });
     this.company.getCompanyById(this.index).subscribe((eachC) => {
       this.companyProfile = eachC;
-      if(this.companyProfile.isActive == false) {
+      if(this.companyProfile.status == CompanyStatusList.EXPIRED.toString()) {
         this.router.navigate(["/"]);
       }
     });
