@@ -15,6 +15,6 @@ export interface CompanyModel {
    link:string;
   status: string
   isActive: boolean
-
-
+  dateAdded: string
+  expiration:string
 }

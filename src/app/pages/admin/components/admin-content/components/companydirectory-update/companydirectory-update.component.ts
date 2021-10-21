@@ -50,6 +50,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.company.getCompany().subscribe((eC) => {
       this.Companies = eC;
+      console.log(this.Companies)
     });
 
     this.photoUrl = this.File.photoUrl;
