@@ -12,10 +12,21 @@ export class AdminLogsComponent implements OnInit {
   constructor(private Acc: createAccount) {}
   user = JSON.parse(localStorage.getItem('user'));
   logs: logsModel[] = [];
+  coordLogs: logsModel[]
+  delayedStart: boolean = false
+  sampleLog: logsModel[]
 
   ngOnInit(): void {
-    this.Acc.getLogs(this.user.admin.id).subscribe((profile) => {
-      this.logs = profile;
-    });
+      this.Acc.getAllLogs().subscribe((profile) => {
+        this.logs = profile;
+        this.coordLogs =
+          profile.filter((log) => {
+            return log.actorEmail.toUpperCase() == this.user.email;
+          });
+      });
+
+    this.Acc.getLogsBySubmission(360).subscribe(resp => {
+        console.log(resp)
+      })
   }
 }

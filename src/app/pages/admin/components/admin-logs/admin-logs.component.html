@@ -35,7 +35,7 @@
                   tracking-wider
                 "
               >
-                Student Name
+                Time Stamp
               </th>
               <th
                 scope="col"
@@ -49,7 +49,21 @@
                   tracking-wider
                 "
               >
-                Email Address
+                Actor Email
+              </th>
+              <th
+                scope="col"
+                class="
+                  px-6
+                  py-3
+                  text-left text-xs
+                  font-medium
+                  text-gray-500
+                  uppercase
+                  tracking-wider
+                "
+              >
+                Actor Type
               </th>
               <th
                 scope="col"
@@ -65,120 +79,12 @@
               >
                 Action
               </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Date
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Reference No.
-              </th>
             </tr>
           </thead>
           <!-- Person 1 -->
           <tbody
             class="bg-white divide-y divide-gray-200"
-            *ngIf="user.admin.authId == 3"
-          >
-            <tr
-              *ngFor="
-                let log of logs.reverse()
-                  | paginate: { itemsPerPage: 10, currentPage: p }
-              "
-            >
-              <td
-                class="px-6 py-4 whitespace-nowrap"
-                *ngIf="
-                  log.submission.adminResponse.acceptedByCoordinator ||
-                  !log.submission.adminResponse.acceptedByCoordinator ||
-                  log.submission.adminResponse.companyAgrees ||
-                  !log.submission.adminResponse.companyAgrees ||
-                  log.submission.adminResponse.emailSentByCoordinator ||
-                  !log.submission.adminResponse.emailSentByCoordinator
-                "
-              >
-                <div class="text-sm text-gray-900">
-                  {{
-                    log.submission.lastName +
-                      " " +
-                      log.submission.middleInitial +
-                      " " +
-                      log.submission.firstName
-                  }}
-                </div>
-              </td>
-              <td
-                class="px-6 py-4 whitespace-nowrap"
-                *ngIf="
-                  log.submission.adminResponse.acceptedByCoordinator ||
-                  !log.submission.adminResponse.acceptedByCoordinator ||
-                  log.submission.adminResponse.companyAgrees ||
-                  !log.submission.adminResponse.companyAgrees ||
-                  log.submission.adminResponse.emailSentByCoordinator ||
-                  !log.submission.adminResponse.emailSentByCoordinator
-                "
-              >
-                <div class="text-sm text-gray-500">
-                  {{ log.submission.student.account.email.toLowerCase() }}
-                </div>
-              </td>
 
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span
-                  class="
-                    px-2
-                    inline-flex
-                    text-xs
-                    leading-5
-                    font-semibold
-                    rounded-full
-                    bg-green-100
-                    text-green-800
-                  "
-                >
-                  {{ log.status == "Rejected" ? "Disapproved" : "Accepted" }}
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span
-                  class="
-                    px-2
-                    inline-flex
-                    text-xs
-                    leading-5
-                    font-semibold
-                    rounded-full
-                  "
-                >
-                  {{ log.dateStamped | date: "medium" }}
-                </span>
-              </td>
-            </tr>
-
-            <!-- More people... -->
-          </tbody>
-          <tbody
-            class="bg-white divide-y divide-gray-200"
             *ngIf="user.admin.authId == 1"
           >
             <tr
@@ -189,30 +95,18 @@
             >
               <td
                 class="px-6 py-4 whitespace-nowrap"
-                *ngIf="
-                  log.submission.adminResponse.acceptedByDean ||
-                  !log.submission.adminResponse.acceptedByDean
-                "
               >
                 <div class="text-sm text-gray-900">
                   {{
-                    log.submission.lastName +
-                      " " +
-                      log.submission.middleInitial +
-                      " " +
-                      log.submission.firstName
+                    log.dateStamped | date: 'medium'
                   }}
                 </div>
               </td>
               <td
                 class="px-6 py-4 whitespace-nowrap"
-                *ngIf="
-                  log.submission.adminResponse.acceptedByDean ||
-                  !log.submission.adminResponse.acceptedByDean
-                "
               >
                 <div class="text-sm text-gray-500">
-                  {{ log.submission.student.account.email.toLowerCase() }}
+                  {{ log.actorEmail}}
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -228,7 +122,7 @@
                     text-green-800
                   "
                 >
-                  {{ log.status == "Rejected" ? "Disapproved" : "Accepted" }}
+                  {{ log.actorType }}
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -242,7 +136,67 @@
                     rounded-full
                   "
                 >
-                  {{ log.dateStamped | date: "medium" }}
+                  {{ log.action }}
+                </span>
+              </td>
+            </tr>
+
+            <!-- More people... -->
+          </tbody>
+          <tbody
+            class="bg-white divide-y divide-gray-200"
+            *ngIf="user.admin.authId == 3"
+          >
+            <tr
+              *ngFor="
+                let logs of coordLogs.reverse()
+                  | paginate: { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <td
+                class="px-6 py-4 whitespace-nowrap"
+              >
+                <div class="text-sm text-gray-900">
+                  {{
+                    logs.dateStamped | date: 'medium'
+                  }}
+                </div>
+              </td>
+              <td
+                class="px-6 py-4 whitespace-nowrap"
+              >
+                <div class="text-sm text-gray-500">
+                  {{ logs.actorEmail}}
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <span
+                  class="
+                    px-2
+                    inline-flex
+                    text-xs
+                    leading-5
+                    font-semibold
+                    rounded-full
+                    bg-green-100
+                    text-green-800
+                  "
+                >
+                  {{ logs.actorType }}
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <span
+                  class="
+                    px-2
+                    inline-flex
+                    text-xs
+                    leading-5
+                    font-semibold
+                    rounded-full
+                  "
+                >
+                  {{ logs.action }}
                 </span>
               </td>
             </tr>
@@ -319,7 +273,7 @@
         to
         <span class="font-medium">10</span>
         of
-        <span class="font-medium">{{ logs.length }}</span>
+        <span class="font-medium">{{ user.admin.authId == 1? logs.length : coordLogs.length }}</span>
         results
       </p>
     </div>
