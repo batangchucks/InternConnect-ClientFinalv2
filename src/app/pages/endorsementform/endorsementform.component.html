@@ -647,34 +647,42 @@
           </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
             <label
-              for="country"
+              for="company-profile"
               class="block text-sm font-medium text-gray-700"
             >
               <span class="text-red-500">*</span>Upload company profile:
             </label>
             <input
+              class="pt-4"
               type="file"
               id="myFile"
               name="filename"
+              accept="application/msword, application/pdf"
               (change)="imgCompanyProfile($event)"
               required
             />
+            <p class="text-gray-600 text-xs">File must be in PDF or DOCX format</p>
+            <span *ngIf="EndorsementF.get('filename').invalid && (EndorsementF.get('filename').dirty || EndorsementF.get('filename').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{ EndorsementF.get("filename").invalid ? "Required" : "Invalid field" }}</span>
           </div>
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">
             <label
-              for="country"
+              for="acceptance-letter"
               class="block text-sm font-medium text-gray-700"
             >
               <span class="text-red-500">*</span>Upload acceptance letter:
             </label>
             <input
+              class="pt-4"
               type="file"
               id="myFile"
               name="filename"
+              accept="application/msword, application/pdf"
               (change)="imgAcceptanceL($event)"
               required
             />
+            <p class="text-gray-600 text-xs">File must be in PDF or DOCX format</p>
           </div>
         </div>
       </div>

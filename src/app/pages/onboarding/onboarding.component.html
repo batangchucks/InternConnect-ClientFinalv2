@@ -61,7 +61,7 @@
             #emailaddress
             class="
               appearance-none
-              rounded-none
+              rounded-md
               relative
               block
               w-full
@@ -70,7 +70,6 @@
               border border-gray-300
               placeholder-gray-500
               text-gray-900
-              rounded-t-md
               focus:outline-none
               focus:ring-blue-500
               focus:border-blue-500
@@ -86,7 +85,6 @@
           <input
             class="
               appearance-none
-              rounded-none
               relative
               block
               w-full
@@ -95,7 +93,7 @@
               border border-gray-300
               placeholder-gray-500
               text-gray-900
-              rounded-t-md
+              rounded-md
               focus:outline-none
               focus:ring-blue-500
               focus:border-blue-500
@@ -112,11 +110,11 @@
         <div>
           <label for="password" class="text-sm">Password</label>
           <input id="password" name="password" formControlName="password" type="password" autocomplete="current-password"
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required class="appearance-none rounded-none relative block w-full
-          px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required class="appearance-none relative block w-full
+          px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none
           focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="*******">
           <span *ngIf="onboardForm.get('password').invalid && (onboardForm.get('password').dirty || onboardForm.get('password').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
-            {{ onboardForm.get("password").invalid ? "Required" : "Invalid field" }}</span>
+            {{ onboardForm.get("password").invalid ? "Password must contain at least eight (8) characters, one (1) uppercase letter, one (1) lowercase letter, and a special character." : "Invalid field" }}</span>
         </div>
         <br />
         <div>
@@ -148,6 +146,8 @@
             "
             placeholder="*******"
           />
+          <span *ngIf="onboardForm.get('password').invalid && (onboardForm.get('password').dirty || onboardForm.get('password').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {{ onboardForm.get("password").invalid ? "Password must contain at least eight (8) characters, one (1) uppercase letter, one (1) lowercase letter, and a special character." : "Invalid field" }}</span>
         </div>
         <br />
         <div style="display: none">
@@ -177,12 +177,14 @@
             "
             placeholder="*******"
           />
+              <span *ngIf="onboardForm.get('password').hasError('minLength') && (onboardForm.get('password').hasError('pattern') || onboardForm.get('password').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {{ onboardForm.get("password").hasError ? "Password must contain at least eight (8) characters, one (1) uppercase letter, one (1) lowercase letter, and a special character." : "Invalid field" }}</span>
         </div>
       </div>
 
       <div>
         <button
-          
+
           type="submit"
           class="
             group

@@ -263,15 +263,6 @@
       sm:block sm:p-0
     "
   >
-    <!--
-      Background overlay, show/hide based on modal state.
-      Entering: "ease-out duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
       aria-hidden="true"
@@ -283,16 +274,6 @@
       aria-hidden="true"
       >&#8203;</span
     >
-
-    <!--
-      Modal panel, show/hide based on modal state.
-      Entering: "ease-out duration-300"
-        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        To: "opacity-100 translate-y-0 sm:scale-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100 translate-y-0 sm:scale-100"
-        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-    -->
     <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
       <div class="bg-white px-4 pt-5 pb-5 sm:p-6 sm:pb-4">
         <div class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
@@ -477,11 +458,13 @@
               </div>
               <div class="mt-4">
                 <p>Company logo</p>
-                <input type="file" (change)="uploadLogo($event)" />
+                <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="uploadLogo($event)" />
+                <p class="text-gray-600 text-xs">Accepts PNG or JPEG</p>
               </div>
               <div class="mt-4">
                 <p>Company coverphoto</p>
-                <input type="file" (change)="uploadCoverPhoto($event)" />
+                <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCoverPhoto($event)" />
+                <p class="text-gray-600 text-xs">Accepts PNG or JPEG</p>
               </div>
             </div>
             <div class="pt-6 sm:px-4 sm:flex sm:flex-row-reverse">
@@ -791,11 +774,13 @@
                 />
                 <div class="mt-4">
                   <p>Update logo</p>
-                  <input type="file" (change)="changeLogo($event)" />
+                  <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="changeLogo($event)" />
+                  <p class="text-gray-600 text-xs">Accepts PNG or JPEG</p>
                 </div>
                 <div class="mt-4">
                   <p>Update coverphoto</p>
-                  <input type="file" (change)="changeCoverPhoto($event)" />
+                  <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="changeCoverPhoto($event)" />
+                  <p class="text-gray-600 text-xs">Accepts PNG or JPEG</p>
                 </div>
               </div>
               <input type="hidden" formControlName="id" name="id" />

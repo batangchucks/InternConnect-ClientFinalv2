@@ -68,7 +68,7 @@
                       stroke-linejoin="round"
                     />
                   </svg>
-                  <div class="flex text-sm text-gray-600">
+                  <div class="text-sm text-gray-600">
                     <label
                       for="file-upload"
                       class="
@@ -85,17 +85,19 @@
                         focus-within:ring-green-500
                       "
                     >
-                      <span>Upload a file</span>
+                      <span class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white hover:bg-green-700 rounded-full">
+                        Upload a file</span>
                       <input
                         id="file-upload"
                         name="file-upload"
                         type="file"
                         class="sr-only"
+                        accept=".jpg .jpeg .png"
                         (change)="eSignatureUp($event)"
                       />
                     </label>
                   </div>
-                  <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                  <p class="text-xs text-center text-gray-500">PNG file only, up to 10MB</p>
                 </div>
               </div>
             </div>

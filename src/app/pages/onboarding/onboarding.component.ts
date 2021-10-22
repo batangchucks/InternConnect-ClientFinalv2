@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 
@@ -32,7 +32,7 @@ export class OnboardingComponent implements OnInit {
     this.onboardForm = new FormGroup({
       email: new FormControl(this.email.toLowerCase()),
       resetkey: new FormControl(this.resetKey),
-      password: new FormControl(''),
+      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]),
     });
   }
   onSubmit() {
@@ -40,7 +40,7 @@ export class OnboardingComponent implements OnInit {
 
     //   })
     const password = this.onboardForm.get('password').value;
-   
+
     if (password === this.confirmpassword) {
       this.isLoggedIn = true;
       this.account
