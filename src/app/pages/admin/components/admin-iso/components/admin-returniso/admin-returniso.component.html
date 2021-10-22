@@ -117,7 +117,6 @@
                         leading-5
                         font-semibold
                         rounded-full
-                        bg-yellow-100
                         text-gray-700
                       "
                     >
@@ -137,14 +136,12 @@
                       (click)="returnIso(coordIso.id, coordIso.code)"
                       *ngIf="!coordIso.used"
                       class="
-                        mt-1
-                        mb-6
                         block
-                        w-24
-                        py-2
-                        px-3
+                        px-6
+                        py-1
                         border border-gray-300
-                        bg-white
+                        bg-gray-50
+                        hover:bg-gray-100
                         rounded-md
                         shadow-sm
                         focus:outline-none
