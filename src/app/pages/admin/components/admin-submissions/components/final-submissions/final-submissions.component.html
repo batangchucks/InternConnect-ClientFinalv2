@@ -63,64 +63,18 @@
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Name
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Company Name
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                HR Email
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Job Description
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Timestamp</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Name</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Company Info</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Job Description</th>
+              <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Action</th>
+              <th scope="col" class="pl-0 pr-5 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Action</th>
             </tr>
           </thead>
           <!-- Person 1 -->
@@ -134,17 +88,16 @@
                   | paginate: { itemsPerPage: 10, currentPage: p }
               "
             >
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">
+                  <!-- {{ Timestamp }} -->
+                </div>
+              </td>
               <td class="px-2 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900">
-                      {{
-                        eachS.lastName +
-                          " " +
-                          eachS.firstName +
-                          " " +
-                          eachS.middleInitial
-                      }}
+                      {{ eachS.lastName + " " + eachS.firstName + " " + eachS.middleInitial }}
                     </div>
                     <div class="text-sm text-gray-500">
                       <!-- {{eachS.lastName+' '+eachS.firstName+' '+eachS.middleInitial}} -->
@@ -160,11 +113,11 @@
                   {{ eachS.company.name }}
                 </div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap">
+              <!-- <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-500">
                   {{ eachS.company.name }}
                 </div>
-              </td>
+              </td> -->
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{ eachS.jobDescription }}
               </td>
@@ -196,7 +149,7 @@
               </td>
               <td
                 class="
-                  px-6
+                  pl-1 pr-4
                   py-4
                   whitespace-nowrap
                   text-right text-sm
@@ -230,17 +183,16 @@
             *ngIf="user.admin.authId == 1"
           >
             <tr *ngFor="let eachS of deanSubmissions">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">
+                  <!-- {{ Timestamp }} -->
+                </div>
+              </td>
               <td class="px-2 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900">
-                      {{
-                        eachS.lastName +
-                          " " +
-                          eachS.firstName +
-                          " " +
-                          eachS.middleInitial
-                      }}
+                      {{ eachS.lastName + " " + eachS.firstName + " " + eachS.middleInitial }}
                     </div>
                     <div class="text-sm text-gray-500">
                       <!-- {{eachS.lastName+' '+eachS.firstName+' '+eachS.middleInitial}} -->
@@ -256,11 +208,11 @@
                   {{ eachS.company.name }}
                 </div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap">
+              <!-- <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-500">
                   {{ eachS.company.name }}
                 </div>
-              </td>
+              </td> -->
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{ eachS.jobDescription }}
               </td>
@@ -292,7 +244,7 @@
               </td>
               <td
                 class="
-                  px-6
+                  pl-1 pr-4
                   py-4
                   whitespace-nowrap
                   text-right text-sm

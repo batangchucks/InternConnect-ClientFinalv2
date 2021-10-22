@@ -22,73 +22,36 @@
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Name
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                Company Name
-              </th>
-              <th
-                scope="col"
-                class="
-                  px-6
-                  py-3
-                  text-left text-xs
-                  font-medium
-                  text-gray-500
-                  uppercase
-                  tracking-wider
-                "
-              >
-                HR Email
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job Description</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Timestamp</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Name</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Company Info</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Job Description</th>
+              <th scope="col" class="pl-5 pr-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Action</th>
+              <th scope="col" class="pl-4 pr-5 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Action</th>
             </tr>
           </thead>
           <!-- Person 1 -->
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr
-              *ngFor="
+            <tr *ngFor="
                 let submission of Submission
                   | paginate: { itemsPerPage: 10, currentPage: p }
-              "
-            >
+              ">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">
+                  <!-- {{ Timestamp }} -->
+                </div>
+              </td>
               <td class="px-2 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900">
-                      {{
-                        submission.lastName +
-                          " " +
-                          submission.firstName +
-                          " " +
-                          submission.middleInitial
-                      }}
-                    </div>
+                      {{ submission.lastName + " " + submission.firstName + " " + submission.middleInitial }}</div>
                     <div class="text-sm text-gray-500">
                       {{ submission.student.account.email.toLowerCase() }}
                     </div>
@@ -101,8 +64,6 @@
                 <div class="text-sm text-gray-900">
                   {{ submission.company.name }}
                 </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-500">
                   {{ submission.contactPersonEmail }}
                 </div>
@@ -112,7 +73,7 @@
               </td>
               <td
                 class="
-                  px-6
+                  pl-6 pr-3
                   py-4
                   whitespace-nowrap
                   text-right text-sm
