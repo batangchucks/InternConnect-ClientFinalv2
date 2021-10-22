@@ -11,8 +11,7 @@
     >
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a href="#">
-          <span class="sr-only">Workflow</span>
-          <img class="h-8 w-auto sm:h-10" [src]="logoPath" alt="" />
+          <img class="h-8 w-auto sm:h-10" [src]="logoPath" alt="logo" />
         </a>
       </div>
       <div class="-mr-2 -my-2 md:hidden">
@@ -51,7 +50,7 @@
           </svg>
         </button>
       </div>
-      <nav class="md:flex space-x-10 sm:hidden">
+      <nav class="md:flex space-x-10 hidden">
           <div class="relative">
             <a type="button" [routerLink]="['/']" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-semibold hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
               <span>Home</span>
@@ -143,7 +142,7 @@
         <div class="pt-5 pb-6 px-5">
           <div class="flex items-center justify-between">
             <div>
-              <img class="h-8 w-auto" src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632198472/logo_iivggh.png" alt="Workflow">
+              <img class="h-8 w-auto"  [src]="logoPath" alt="logo">
             </div>
             <div class="-mr-2">
               <button (click)="toClose()" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
