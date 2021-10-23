@@ -46,6 +46,8 @@
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">
                   <!-- {{ Timestamp }} -->
+                  <a class="text-green-700 hover:text-green-800 hover:underline cursor-pointer"
+                  (click)="viewHistory()">View history</a>
                 </div>
               </td>
               <td class="px-2 py-4 whitespace-nowrap">
@@ -292,7 +294,7 @@
       />
     </div>
     <h3 class="pt-4 text-xl leading-6 font-semibold text-gray-900">
-      Submitting...
+      Notifying student...
     </h3>
   </div>
 </div>
@@ -418,4 +420,52 @@
     </div>
   </div>
 </div>
+</div>
 
+<!-- Submission history Modal -->
+<div *ngIf="submissionHistory"
+  class="fixed z-10 inset-0 mx-auto p-8 border mt-12 w-3/5 h-4/5 overflow-y-auto shadow-lg rounded-md bg-white">
+  <button (click)="closeHistory()" type="button" class="bg-white rounded-md absolute mt-2 mr-2 p-2 top-0 right-0 text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+    <span class="sr-only">Close menu</span>
+    <!-- Heroicon name: outline/x -->
+    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <h1 class="text-xl font-semibold">Submission History</h1>
+<!-- Cards -->
+<div class="px-4 py-8 rounded-t sm:px-6">
+  <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
+      <ul class="divide-y divide-gray-200"> <!-- Card list-->
+          <li> <!-- Individual card -->
+              <a class="block hover:bg-gray-50 dark:hover:bg-gray-900">
+                  <div class="px-4 py-4 sm:px-6">
+                      <div class="flex items-center justify-between">
+                          <p class="text-md font-semibold text-gray-700 dark:text-white md:truncate">
+                              Action
+                          </p>
+                          <div class="ml-2 flex-shrink-0 flex">
+                              <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                  Actor Type
+                              </p>
+                          </div>
+                      </div>
+                      <div class="mt-2 sm:flex sm:justify-between">
+                          <div class="sm:row">
+                              <p class="flex items-center text-md font-normal text-gray-500 dark:text-gray-300">
+                                  Actor Email
+                              </p>
+                              <p class="flex items-center text-xs uppercase font-normal text-gray-500 dark:text-gray-300">
+                                  Date and Time
+                            </p>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </li>
+      </ul>
+  </div>
+</div>
+</div>
+<!-- Dim bg -->
+<div *ngIf="submissionHistory" class="fixed inset-0 overflow-hidden bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"></div>

@@ -19,6 +19,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
   DisapproveIndicator: boolean = false;
   FormEntry: boolean = false;
   modalAppear: boolean = false;
+  submissionHistory: boolean = false;
   trackList: tracksModel[];
 
   trackName: string;
@@ -93,5 +94,13 @@ export class ApprovedSubmissionsComponent implements OnInit {
         return track.id == trackId;
       })
       .slice(-1)[0].name;
+  }
+
+  viewHistory(){
+    this.submissionHistory = true;
+  }
+
+  closeHistory(){
+    this.submissionHistory = false;
   }
 }

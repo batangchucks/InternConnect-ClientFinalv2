@@ -15,6 +15,7 @@ export class PendingSubmissionsComponent implements OnInit {
 
   confirmSend: boolean = false;
   FormEntry: boolean = false;
+  submissionHistory: boolean = false;
 
   trackName: string
   trackList: tracksModel[]
@@ -73,5 +74,13 @@ export class PendingSubmissionsComponent implements OnInit {
         return track.id == trackId;
       })
       .slice(-1)[0].name;
+  }
+
+  viewHistory() {
+    this.submissionHistory = true;
+  }
+
+  closeHistory() {
+    this.submissionHistory = false;
   }
 }

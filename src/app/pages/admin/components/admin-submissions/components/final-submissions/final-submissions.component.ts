@@ -33,6 +33,7 @@ export class FinalSubmissionsComponent implements OnInit {
   DisapproveIndicatorChair: boolean = false;
   DisapproveIndicatorDean: boolean = false;
   FormEntry: boolean = false;
+  submissionHistory: boolean = false;
   RejectForm: FormGroup;
   readonly photoUrl = environment.apiUrl + 'images/Company/';
   viewEndorsement: submissionModel;
@@ -244,5 +245,13 @@ export class FinalSubmissionsComponent implements OnInit {
     return this.trackList.filter(track => {
       return track.id == trackId
     }).slice(-1)[0].name
+  }
+
+  viewHistory() {
+    this.submissionHistory = true;
+  }
+
+  closeHistory() {
+    this.submissionHistory = false;
   }
 }

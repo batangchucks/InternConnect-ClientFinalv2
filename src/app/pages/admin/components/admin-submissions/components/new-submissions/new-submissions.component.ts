@@ -26,6 +26,7 @@ export class NewSubmissionsComponent implements OnInit {
   ApproveIndicator: boolean = false;
   FormEntry: boolean = false;
   DisapproveIndicator: boolean = false;
+  submissionHistory: boolean = false;
   onAcceptLoading: boolean = false;
 
   disapprovedStudentIso: number;
@@ -244,6 +245,14 @@ export class NewSubmissionsComponent implements OnInit {
         return track.id == trackId;
       })
       .slice(-1)[0].name;
+  }
+
+  viewHistory() {
+    this.submissionHistory = true;
+  }
+
+  closeHistory() {
+    this.submissionHistory = false;
   }
 
 }
