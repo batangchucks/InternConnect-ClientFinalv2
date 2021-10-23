@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { logsModel } from 'src/app/shared/models/logs.model';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
@@ -11,29 +12,33 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./pending-submissions.component.scss'],
 })
 export class PendingSubmissionsComponent implements OnInit {
-  transactionLoader:boolean = false
+  transactionLoader: boolean = false;
 
   confirmSend: boolean = false;
   FormEntry: boolean = false;
   submissionHistory: boolean = false;
 
-  trackName: string
-  trackList: tracksModel[]
+  trackName: string;
+  trackList: tracksModel[];
+  submissionLogs: logsModel[];
 
   p: number = 1;
   Submission: submissionModel[] = [];
-  viewEndorsement:submissionModel;
+  viewEndorsement: submissionModel;
   readonly photoUrl = environment.apiUrl + 'images/Company/';
-  constructor(private Acc: createAccount, private programService: ProgramService) {}
+  constructor(
+    private Acc: createAccount,
+    private programService: ProgramService
+  ) {}
   user = JSON.parse(localStorage.getItem('user'));
 
   ngOnInit(): void {
     this.Acc.submissionStep4(this.user.admin.sectionId).subscribe((eachS) => {
       this.Submission = eachS;
     });
-        this.programService.getAllTracks().subscribe((resp) => {
-          this.trackList = resp;
-        });
+    this.programService.getAllTracks().subscribe((resp) => {
+      this.trackList = resp;
+    });
   }
   downloadPdf(submissionId: number) {
     this.Acc.approvedPending(submissionId).subscribe((pdfGeneration) => {
@@ -51,21 +56,21 @@ export class PendingSubmissionsComponent implements OnInit {
       comments: '',
     };
     this.Acc.emailSent(Payload).subscribe((response) => {
-      this.transactionLoader = false
+      this.transactionLoader = false;
       this.ngOnInit();
     });
   }
 
-  toCancel(){
+  toCancel() {
     this.confirmSend = false;
   }
 
-  toOpen(eachS:submissionModel){
+  toOpen(eachS: submissionModel) {
     this.FormEntry = true;
     this.viewEndorsement = eachS;
   }
 
-  toClose(){
+  toClose() {
     this.FormEntry = false;
   }
   getSpecialization(trackId: number): string {
@@ -76,11 +81,15 @@ export class PendingSubmissionsComponent implements OnInit {
       .slice(-1)[0].name;
   }
 
-  viewHistory() {
+  viewHistory(id: number) {
     this.submissionHistory = true;
+    this.Acc.getLogsBySubmission(id).subscribe((resp) => {
+      this.submissionLogs = resp;
+    });
   }
 
   closeHistory() {
     this.submissionHistory = false;
+    this.submissionLogs = null;
   }
 }

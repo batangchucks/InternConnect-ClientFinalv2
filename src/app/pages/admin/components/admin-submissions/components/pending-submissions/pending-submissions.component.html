@@ -45,9 +45,10 @@
 
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">
-                  <!-- {{ Timestamp }} -->
+                  {{eachS.submissionDate| date: 'medium'}}
+                  <br>
                   <a class="text-green-700 hover:text-green-800 hover:underline cursor-pointer"
-                  (click)="viewHistory()">View history</a>
+                  (click)="viewHistory(eachS.id)">View history</a>
                 </div>
               </td>
               <td class="px-2 py-4 whitespace-nowrap">
@@ -437,26 +438,26 @@
 <div class="px-4 py-8 rounded-t sm:px-6">
   <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
       <ul class="divide-y divide-gray-200"> <!-- Card list-->
-          <li> <!-- Individual card -->
+          <li *ngFor="let log of submissionLogs"> <!-- Individual card -->
               <a class="block hover:bg-gray-50 dark:hover:bg-gray-900">
-                  <div class="px-4 py-4 sm:px-6">
+                  <div class="px-4 py-4 sm:px-6" >
                       <div class="flex items-center justify-between">
                           <p class="text-md font-semibold text-gray-700 dark:text-white md:truncate">
-                              Action
+                              {{log.action}}
                           </p>
                           <div class="ml-2 flex-shrink-0 flex">
                               <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                  Actor Type
+                                {{log.actorType}}
                               </p>
                           </div>
                       </div>
                       <div class="mt-2 sm:flex sm:justify-between">
                           <div class="sm:row">
                               <p class="flex items-center text-md font-normal text-gray-500 dark:text-gray-300">
-                                  Actor Email
+                                  {{log.actorEmail.toLowerCase()}}
                               </p>
                               <p class="flex items-center text-xs uppercase font-normal text-gray-500 dark:text-gray-300">
-                                  Date and Time
+                                 {{log.dateStamped | date:'medium'}}
                             </p>
                           </div>
                       </div>

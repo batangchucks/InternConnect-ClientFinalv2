@@ -24,9 +24,5 @@ export class AdminLogsComponent implements OnInit {
             return log.actorEmail.toUpperCase() == this.user.email;
           });
       });
-
-    this.Acc.getLogsBySubmission(360).subscribe(resp => {
-        console.log(resp)
-      })
   }
 }

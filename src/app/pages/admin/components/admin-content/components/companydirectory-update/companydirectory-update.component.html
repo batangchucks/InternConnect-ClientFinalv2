@@ -456,6 +456,31 @@
                   placeholder="Hr Manager"
                 />
               </div>
+
+              <div class="mt-4">
+                <label
+                  for="expirationDate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Expiration Date</label
+                >
+                <input
+                  id="expirationDate"
+                  name="expirationDate"
+                  ngModel
+                  type="date"
+                  [min]="todayDate"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-42
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  ">
+              </div>
+
               <div class="mt-4">
                 <p>Company logo</p>
                 <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="uploadLogo($event)" />
@@ -772,6 +797,29 @@
                   "
                   placeholder="HR Representative"
                 />
+              <div class="mt-4">
+                <label
+                  for="expiration"
+                  class="block text-sm font-medium text-gray-700"
+                  >Expiration Date</label
+                >
+                <input
+                  id="expiration"
+                  name="expiration"
+                  formControlName="expiration"
+                  type="date"
+                  [min]="todayDate"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-42
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  ">
+              </div>
                 <div class="mt-4">
                   <p>Update logo</p>
                   <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="changeLogo($event)" />

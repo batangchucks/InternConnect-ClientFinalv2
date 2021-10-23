@@ -47,10 +47,12 @@ import {StatusComponent} from './pages/landing/components/status/status.componen
 import { AdminReturnisoComponent } from './pages/admin/components/admin-iso/components/admin-returniso/admin-returniso.component';
 import { RouteGuardEndorsement } from './helpers/route-guardEndorsement.service';
 import { ChangedeanComponent } from './pages/changedean/changedean.component';
+import { LandingGuard } from './helpers/landing.guard';
 const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
+    canActivate: [LandingGuard],
   },
   { path: 'login', component: LoginComponent, canActivate: [RouteGuardLogin] },
   {
@@ -67,8 +69,13 @@ const routes: Routes = [
     path: 'companydirectory',
 
     component: CompanydirectoryComponent,
+    canActivate: [LandingGuard],
   },
-  { path: 'companyprofile/:id', component: CompanyprofileComponent },
+  {
+    path: 'companyprofile/:id',
+    component: CompanyprofileComponent,
+    canActivate: [LandingGuard],
+  },
   {
     path: 'onboard',
     component: OnboardingComponent,
@@ -84,17 +91,17 @@ const routes: Routes = [
   },
   {
     path: 'forgotpassword',
-    component: ResetpassComponent ,
+    component: ResetpassComponent,
     canActivate: [RouteGuardLogin],
   },
   {
     path: 'status',
-    component: StatusComponent ,
+    component: StatusComponent,
     canActivate: [RouteGuardStudent],
   },
   {
-    path:'changedean',
-    component:ChangedeanComponent
+    path: 'changedean',
+    component: ChangedeanComponent,
   },
   {
     path: 'admin',
@@ -194,9 +201,10 @@ const routes: Routes = [
         path: 'iso',
         component: AdminIsoComponent,
       },
-      { path: 'returniso',
-      canActivate: [RouteGuardCordChair],
-      component: AdminReturnisoComponent,
+      {
+        path: 'returniso',
+        canActivate: [RouteGuardCordChair],
+        component: AdminReturnisoComponent,
       },
       {
         // dean

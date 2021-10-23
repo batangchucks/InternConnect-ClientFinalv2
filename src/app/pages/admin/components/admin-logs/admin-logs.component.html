@@ -149,7 +149,7 @@
           >
             <tr
               *ngFor="
-                let logs of coordLogs.reverse()
+                let logsers of coordLogs.reverse()
                   | paginate: { itemsPerPage: 10, currentPage: p }
               "
             >
@@ -158,7 +158,7 @@
               >
                 <div class="text-sm text-gray-900">
                   {{
-                    logs.dateStamped | date: 'medium'
+                    logsers.dateStamped | date: 'medium'
                   }}
                 </div>
               </td>
@@ -166,7 +166,7 @@
                 class="px-6 py-4 whitespace-nowrap"
               >
                 <div class="text-sm text-gray-500">
-                  {{ logs.actorEmail}}
+                  {{ logsers.actorEmail}}
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -182,7 +182,7 @@
                     text-green-800
                   "
                 >
-                  {{ logs.actorType }}
+                  {{ logsers.actorType }}
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -196,7 +196,7 @@
                     rounded-full
                   "
                 >
-                  {{ logs.action }}
+                  {{ logsers.action }}
                 </span>
               </td>
             </tr>

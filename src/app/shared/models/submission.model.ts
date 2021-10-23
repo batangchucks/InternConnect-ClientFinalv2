@@ -2,7 +2,7 @@
 export interface submissionModel {
     id:number,
     isoCode:number,
-    submissionDate:Date,
+    submissionDate:string,
     lastName:string,
     firstName:string,
     middleInitial:string,
@@ -19,7 +19,7 @@ export interface submissionModel {
     studentId:number,
     companyId:number,
     studentTitle:string
-    
+
     company: {
       id: 0,
       name: string,
@@ -61,8 +61,7 @@ export interface submissionModel {
       comments: string,
       submissionId: number
     },
-    
-      
-  
+
+
+
 }
- 

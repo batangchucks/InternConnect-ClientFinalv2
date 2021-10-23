@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { logsModel } from 'src/app/shared/models/logs.model';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
@@ -25,6 +26,8 @@ export class ApprovedSubmissionsComponent implements OnInit {
   trackName: string;
   rejectedForm: FormGroup;
   viewEndorsement: submissionModel;
+
+  submissionLogs: logsModel[]
   readonly photoUrl = environment.apiUrl + 'images/Company/';
 
   constructor(
@@ -96,11 +99,15 @@ export class ApprovedSubmissionsComponent implements OnInit {
       .slice(-1)[0].name;
   }
 
-  viewHistory(){
-    this.submissionHistory = true;
+  viewHistory(id:number){
+        this.submissionHistory = true;
+        this.Acc.getLogsBySubmission(id).subscribe((resp) => {
+          this.submissionLogs = resp;
+        });
   }
 
   closeHistory(){
-    this.submissionHistory = false;
+       this.submissionHistory = false;
+       this.submissionLogs = null;
   }
 }

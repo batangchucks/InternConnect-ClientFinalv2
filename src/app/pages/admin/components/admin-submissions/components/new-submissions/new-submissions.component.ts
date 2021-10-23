@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { isoCodeListModel } from 'src/app/shared/models/isoCodeList.model';
+import { logsModel } from 'src/app/shared/models/logs.model';
 
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
@@ -44,7 +45,9 @@ export class NewSubmissionsComponent implements OnInit {
 
   isoCodeValue: isoCodeListModel[] = [];
 
-  viewEndorsement:submissionModel;
+  viewEndorsement: submissionModel;
+
+  submissionLogs: logsModel[];
 
   readonly photoUrl = environment.apiUrl + 'images/Company/';
 
@@ -247,12 +250,16 @@ export class NewSubmissionsComponent implements OnInit {
       .slice(-1)[0].name;
   }
 
-  viewHistory() {
+  viewHistory(id: number) {
     this.submissionHistory = true;
+    this.Acc.getLogsBySubmission(id).subscribe(resp => {
+      this.submissionLogs = resp;
+    })
   }
 
   closeHistory() {
     this.submissionHistory = false;
+    this.submissionLogs = null;
   }
 
 }

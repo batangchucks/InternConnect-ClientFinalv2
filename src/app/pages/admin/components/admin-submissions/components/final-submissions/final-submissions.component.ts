@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { interval } from 'rxjs';
+import { logsModel } from 'src/app/shared/models/logs.model';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
@@ -35,14 +36,18 @@ export class FinalSubmissionsComponent implements OnInit {
   FormEntry: boolean = false;
   submissionHistory: boolean = false;
   RejectForm: FormGroup;
+  submissionLogs: logsModel[];
   readonly photoUrl = environment.apiUrl + 'images/Company/';
   viewEndorsement: submissionModel;
 
-  constructor(private Acc: createAccount, private programService: ProgramService) {}
+  constructor(
+    private Acc: createAccount,
+    private programService: ProgramService
+  ) {}
 
   stampFileName: string = 'file';
-  trackName: string
-  trackList: tracksModel[]
+  trackName: string;
+  trackList: tracksModel[];
 
   ngOnInit(): void {
     if (this.user.admin.authId == 2) {
@@ -52,10 +57,9 @@ export class FinalSubmissionsComponent implements OnInit {
       this.deanAcc();
     }
 
-    this.programService.getAllTracks().subscribe(resp => {
-      this.trackList = resp
-    })
-
+    this.programService.getAllTracks().subscribe((resp) => {
+      this.trackList = resp;
+    });
   }
 
   deanAcc() {
@@ -105,9 +109,9 @@ export class FinalSubmissionsComponent implements OnInit {
       acceptedByDean: acceptedByDean,
       comments: comments,
     };
-    this.loadPhaseOne = false
+    this.loadPhaseOne = false;
     this.loadPhaseTwo = false;
-    this.loadPhaseThree = false
+    this.loadPhaseThree = false;
     this.loadPhaseFour = false;
 
     this.loadPhaseOne = true;
@@ -129,18 +133,14 @@ export class FinalSubmissionsComponent implements OnInit {
 
     this.Acc.approvedbyDean(this.user.admin.id, Payload).subscribe(
       (approved) => {
-
         this.onDeanSubmit = false;
 
         this.ngOnInit();
-
       },
       (err) => {
-
         this.onDeanSubmit = false;
 
         this.ngOnInit();
-
       }
     );
   }
@@ -242,16 +242,21 @@ export class FinalSubmissionsComponent implements OnInit {
   }
 
   getSpecialization(trackId: number): string {
-    return this.trackList.filter(track => {
-      return track.id == trackId
-    }).slice(-1)[0].name
+    return this.trackList
+      .filter((track) => {
+        return track.id == trackId;
+      })
+      .slice(-1)[0].name;
   }
 
-  viewHistory() {
+  viewHistory(id: number) {
     this.submissionHistory = true;
+    this.Acc.getLogsBySubmission(id).subscribe((resp) => {
+      this.submissionLogs = resp;
+    });
   }
-
   closeHistory() {
     this.submissionHistory = false;
+    this.submissionLogs = null;
   }
 }

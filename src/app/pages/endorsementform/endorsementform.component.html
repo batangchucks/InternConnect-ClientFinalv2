@@ -662,8 +662,8 @@
               required
             />
             <p class="text-gray-600 text-xs">File must be in PDF or DOCX format</p>
-            <span *ngIf="EndorsementF.get('filename').invalid && (EndorsementF.get('filename').dirty || EndorsementF.get('filename').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
-              {{ EndorsementF.get("filename").invalid ? "Required" : "Invalid field" }}</span>
+            <!-- <span *ngIf="EndorsementF.get('filename').invalid && (EndorsementF.get('filename').dirty || EndorsementF.get('filename').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {{ EndorsementF.get("filename").invalid ? "Required" : "Invalid field" }}</span> -->
           </div>
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-3">

@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 import { CompanyStatusList } from 'src/app/shared/models/enums.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-companydirectory-update',
   templateUrl: './companydirectory-update.component.html',
@@ -41,17 +42,27 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   selectedCompanyStatus: string;
 
   ToDeleteCompanyId: number;
-
+  todayDate;
 
   deleteCompanyModal:boolean = false;
 
-  constructor(private company: CompanyService, private File: fileUpload) {}
+  constructor(private company: CompanyService, private File: fileUpload, private date:DatePipe) {}
 
   ngOnInit(): void {
     this.company.getCompany().subscribe((eC) => {
       this.Companies = eC;
       console.log(this.Companies)
     });
+    var dateGen = new Date();
+    var today =
+      dateGen.getFullYear() +
+      '-' +
+      (dateGen.getMonth() + 1) +
+      '-' +
+      dateGen.getDate();
+    this.todayDate = today
+
+
 
     this.photoUrl = this.File.photoUrl;
   }
@@ -103,6 +114,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       addressThree: new FormControl(addressThree),
       city: new FormControl(city, Validators.required),
       headerFileName: new FormControl(headerFileName),
+      expiration: new FormControl(
+        this.date.transform(toUpdateCompany.expiration, 'yyyy-MM-dd')
+      ),
 
       contactPersonName: new FormControl(
         contactPersonName,
@@ -134,6 +148,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       contactPersonName: f.controls.contactPersonName.value,
       contactPersonEmail: f.controls.contactPersonEmail.value,
       contactPersonDesignation: f.controls.contactPersonDesignation.value,
+      expiration: f.controls.expirationDate.value,
     };
     console.log(payload);
 
