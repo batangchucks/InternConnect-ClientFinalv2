@@ -22,9 +22,14 @@ export class LandingGuard implements CanActivate {
     if (this.user) {
       return true;
     }
-    this.router.navigate(['/login']);
-    alert('You must be logged in to view the landing page')
-    return false
+    else {
+                this.router.navigate(['/login']);
+                alert('You must be logged in to view the landing page');
+                return false;
+
+    }
+
+
 
   }
 }

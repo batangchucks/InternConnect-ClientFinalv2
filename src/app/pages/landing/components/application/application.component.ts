@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { submissionModel } from 'src/app/shared/models/submission.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
@@ -14,16 +15,16 @@ export class ApplicationComponent implements OnInit {
 
 
   readonly envVar= environment.apiUrl;
-  
+
   user = JSON.parse(localStorage.getItem("user"));
-  
+
   logo:string;
   landingImg:string;
   logoPath:string;
   landingPath:string;
   submission:submissionModel;
 
-  constructor(private File: fileUpload,private Auth: AuthenticationService, private Acc: createAccount) { }
+  constructor(private File: fileUpload,private Auth: AuthenticationService, private Acc: createAccount, private router: Router) { }
 
   ngOnInit(): void {
     this.Acc.getWebstate().subscribe(webState=> {
@@ -31,11 +32,17 @@ export class ApplicationComponent implements OnInit {
       this.landingImg = webState.coverPhotoFileName;
       this.logoPath = this.File.photoUrlL+this.logo;
       this.landingPath = this.File.photoUrlL+this.landingImg;
-
+      if (this.user == null) {
+        alert("You must be logged in to view the landing page")
+        this.router.navigate(['/login']);
+      }
     });
     this.Acc.getSubmissionStudent(this.user.student.id).subscribe(student=> {
         this.submission = student;
     });
+
+
+
 
 
   }

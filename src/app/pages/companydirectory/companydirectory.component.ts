@@ -28,9 +28,7 @@ export class CompanydirectoryComponent implements OnInit {
     this.company.getCompany().subscribe((eachC) => {
       this.searchedCompany = eachC.filter(company=>{
         return (
-          company.status == CompanyStatusList[1] ||
-          company.status == CompanyStatusList[2] &&
-          company.isActive == true
+          company.status != CompanyStatusList[2]
         );
       });
     });
