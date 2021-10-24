@@ -5,6 +5,7 @@ import { CompanyModel } from 'src/app/shared/models/company.model';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { CompanyStatusList } from 'src/app/shared/models/enums.model';
 
 @Component({
   selector: 'app-opportunities-update',
@@ -29,11 +30,14 @@ export class OpportunitiesUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.company.getOpportunity().subscribe((eO) => {
       this.Opportunities = eO.filter((opp)=>{
-        return opp.company.isActive == true
+        return opp.company.isActive == true && opp.company.status != CompanyStatusList[2]
       });
     });
     this.company.getCompany().subscribe((eC) => {
-      this.Company = eC;
+      this.Company = eC.filter(comp => {
+        return comp.status != CompanyStatusList[2]
+      });
+      console.log(this.Company)
     });
 
     // this.company.POST_Opportunity();

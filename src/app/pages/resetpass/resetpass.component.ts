@@ -36,9 +36,7 @@ export class ResetpassComponent implements OnInit {
     });
   }
   onSubmit() {
-    //   this.account.resetPassword(f.value).subscribe(newUser=> {
 
-    //   })
     const password = this.onboardForm.get('password').value;
 
     if (password === this.confirmpassword) {
@@ -46,6 +44,7 @@ export class ResetpassComponent implements OnInit {
       this.account
         .resetPassword(this.onboardForm.value)
         .subscribe((resettedU) => {
+          alert("Password Successfully Resetted")
           this.router.navigate(['/login']);
         });
     } else {
