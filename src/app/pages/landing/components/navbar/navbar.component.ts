@@ -37,6 +37,8 @@ export class NavbarComponent implements OnInit {
   }
   logout() {
     this.Auth.logout();
+    this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   toOpen() {
@@ -45,8 +47,5 @@ export class NavbarComponent implements OnInit {
 
   toClose() {
     this.mobileNav = false;
-  }
-  navigateToHome() {
-    this.router.navigate(['/'])
   }
 }

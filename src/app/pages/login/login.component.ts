@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
       (val) => {
         if (val.admin) {
           this.isLoggedIn = true;
-          location.reload();
           this.router.navigate(['/admin']);
+          location.reload();
         } else if (val.student) {
           this.isLoggedIn = true;
-          location.reload();
           this.router.navigate(['/']);
+          location.reload();
 
         }
       },

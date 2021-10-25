@@ -45,8 +45,6 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
-    location.reload();
   }
 
   getAccounts() {
