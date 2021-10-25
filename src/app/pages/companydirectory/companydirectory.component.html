@@ -70,11 +70,14 @@
 <div class="container mx-auto px-5">
   <div class="grid gap-6 lg:gap-10 xl:grid-cols-4">
     <div class="grid gap-6 sm:grid-cols-3 lg:gap-10 xl:col-span-4">
+      <p *ngIf="(searchedCompany | searchfilter :companySearch)?.length == 0">Sorry, this company isn’t in the list right now</p>
       <div
         *ngFor="
-          let foundCompany of searchedCompany | searchfilter: companySearch
+          let foundCompany of searchedCompany | searchfilter: companySearch;let indexOfelement=index; 
         "
       >
+      
+    
         <a routerLink="/companyprofile/{{ foundCompany.id }}">
           <div
             class="

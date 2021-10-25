@@ -6,12 +6,14 @@ import { CompanyModel } from './shared/models/company.model';
 })
 export class SearchfilterPipe implements PipeTransform {
 
-  transform(searchedCompany:CompanyModel[],companySearch:string): CompanyModel[] {
+  transform(searchedCompany:CompanyModel[],companySearch:string): any {
     if(!searchedCompany || !companySearch) {
       return searchedCompany;
     }
-    return searchedCompany.filter(eachC =>
-      eachC.name.toLocaleLowerCase().includes(companySearch.toLocaleLowerCase()));
+    
+    
+      return searchedCompany.filter(eachC =>
+        eachC.name.toLocaleLowerCase().includes(companySearch.toLocaleLowerCase()));
   }
 
 }

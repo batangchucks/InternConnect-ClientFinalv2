@@ -178,6 +178,7 @@ export class NewSubmissionsComponent implements OnInit {
       id: this.rejectedForm.get('id').value,
     };
 
+    // pass the value of the iso code as the initial state
     this.Acc.coordinatorApprove(
       this.user.admin.id,
       this.rejectedForm.get('assignIso').value,

@@ -64,7 +64,7 @@
                       font-medium
                     "
                   >
-                    <button
+                    <button [disabled]="techCoordList"
                       class="
                         block
                         h-8
@@ -76,6 +76,7 @@
                         rounded-full
                         focus:shadow-outline
                         hover:bg-green-700
+                        disabled:cursor-not-allowed
                       "
                     >
                       Assign

@@ -34,8 +34,9 @@ export class CoordinatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.addFormval();
-    this.showSection();
-    this.showCoordinator();
+    this.getCoordinatorAndSection();
+    this.removeDuplicate();
+    
   }
   addFormval() {
     this.coordinatorF = new FormGroup({
@@ -45,23 +46,43 @@ export class CoordinatorComponent implements OnInit {
     });
   }
 
-  showSection() {
+  getCoordinatorAndSection() {
     this.program.getSection(this.user.admin.programId).subscribe((sections) => {
       this.Section = sections;
     });
-  }
-
-  updateCoordinatorS() {}
-
-  showCoordinator() {
-    // should use the admin routes only
-
     this.accounts
       .getCoordinator(this.user.admin.programId)
       .subscribe((coordinator) => {
         this.Coordinator = coordinator;
+
+        this.Coordinator.map(eachC=> {
+          this.Section.map(eachS=> {
+
+            if(eachC.sectionId == eachS.id) {
+           
+              console.log(this.Section.indexOf(eachS));
+
+              const index = this.Section.indexOf(eachS);
+              this.Section.splice(index,1);
+              
+            }
+
+          })
+        })
       });
+
+      
   }
+
+
+  removeDuplicate() {
+    console.log(this.Section);
+    console.log(this.Coordinator);
+  }
+
+  updateCoordinatorS() {}
+
+ 
 
   createCoordinator() {
     this.modalAppear = true

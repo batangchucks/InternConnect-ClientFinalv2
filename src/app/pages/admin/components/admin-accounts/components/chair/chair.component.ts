@@ -24,9 +24,7 @@ export class ChairComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.program.getProgram().subscribe((eachP) => {
-      this.Program = eachP;
-    });
+    
     this.showChair();
   }
 
@@ -51,8 +49,21 @@ export class ChairComponent implements OnInit {
     });
   }
   showChair() {
+
+    this.program.getProgram().subscribe((eachP) => {
+      this.Program = eachP;
+    });
     this.Account.getChairs().subscribe((eachC) => {
       this.Chair = eachC;
+
+      this.Chair.map(eachChair=> {
+          this.Program.map(eachP=> {
+            if(eachChair.program.id == eachP.id) {
+              const index = this.Program.indexOf(eachP);
+              this.Program.splice(index,1);
+            }
+          })
+      })
     });
   }
 }

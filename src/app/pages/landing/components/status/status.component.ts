@@ -307,12 +307,7 @@ export class StatusComponent implements OnInit {
     //     this.PhotoFileNameC = this.student.companyProfileFileName;
 
     // }
-    if (this.PhotoFileNameA && this.PhotoFileNameC) {
-      this.PhotoFileNameA = this.student.acceptanceLetterFileName;
-      this.PhotoFileNameC = this.student.companyProfileFileName;
-    } else {
-      // error message
-    }
+   
 
     var form_payload = {
       studentTitle: studentTitle,
@@ -335,7 +330,7 @@ export class StatusComponent implements OnInit {
 
       studentId: studentId,
     };
-
+   
     this.Acc.POSTsubmission(
       this.user.student.sectionId,
       this.user.student.programId,
@@ -380,6 +375,8 @@ export class StatusComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.PhotoFileNameC = data.toString();
       this.PhotoFilePathC = this.File.photoUrl + this.PhotoFileNameC;
+
+      console.log(this.PhotoFilePathC);
     });
   }
   imgAcceptanceL(event) {
@@ -399,6 +396,7 @@ export class StatusComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.PhotoFileNameA = data.toString();
       this.PhotoFilePathA = this.File.photoUrl + this.PhotoFileNameA;
+      console.log(this.PhotoFilePathA);
     });
   }
 }
