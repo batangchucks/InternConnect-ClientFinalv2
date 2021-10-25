@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CompanyModel } from 'src/app/shared/models/company.model';
 import { programModel } from 'src/app/shared/models/programs.model';
 import { submissionModel } from 'src/app/shared/models/submission.model';
@@ -81,25 +81,19 @@ export class StatusComponent implements OnInit {
     this.FormEntry = true;
 
     this.updateSubmission = new FormGroup({
-      lastName: new FormControl(this.student.lastName),
-      firstName: new FormControl(this.student.firstName),
-      middleInitial: new FormControl(this.student.middleInitial),
-      studentNumber: new FormControl(this.student.studentNumber),
-      contactPersonTitle: new FormControl(this.student.contactPersonTitle),
-      contactPersonFirstName: new FormControl(
-        this.student.contactPersonFirstName
-      ),
-      contactPersonLastName: new FormControl(
-        this.student.contactPersonLastName
-      ),
-      contactPersonEmail: new FormControl(this.student.contactPersonEmail),
-      contactPersonPosition: new FormControl(
-        this.student.contactPersonPosition
-      ),
-      jobDescription: new FormControl(this.student.jobDescription),
-      studentTitle: new FormControl(this.student.studentTitle),
-      companyId: new FormControl(''),
-      trackId: new FormControl(''),
+      lastName: new FormControl(this.student.lastName,[Validators.required]),
+      firstName: new FormControl(this.student.firstName, [Validators.required]),
+      middleInitial: new FormControl(this.student.middleInitial, [Validators.required]),
+      studentNumber: new FormControl(this.student.studentNumber, [Validators.required,  Validators.minLength(10)]),
+      contactPersonTitle: new FormControl(this.student.contactPersonTitle, [Validators.required]),
+      contactPersonFirstName: new FormControl(this.student.contactPersonFirstName, [Validators.required]),
+      contactPersonLastName: new FormControl(this.student.contactPersonLastName, [Validators.required]),
+      contactPersonEmail: new FormControl(this.student.contactPersonEmail, [Validators.required]),
+      contactPersonPosition: new FormControl(this.student.contactPersonPosition, [Validators.required]),
+      jobDescription: new FormControl(this.student.jobDescription, [Validators.required]),
+      studentTitle: new FormControl(this.student.studentTitle, [Validators.required]),
+      companyId: new FormControl('', [Validators.required]),
+      trackId: new FormControl('', [Validators.required]),
     });
   }
   updateFormSubmit() {
@@ -200,19 +194,19 @@ export class StatusComponent implements OnInit {
     this.CompanyEntry = true;
 
     this.companyForm = new FormGroup({
-      lastName: new FormControl(this.student.lastName),
-      firstName: new FormControl(this.student.firstName),
-      middleInitial: new FormControl(this.student.middleInitial),
-      studentNumber: new FormControl(this.student.studentNumber),
-      contactPersonTitle: new FormControl(''),
-      contactPersonFirstName: new FormControl(''),
-      contactPersonLastName: new FormControl(''),
-      contactPersonEmail: new FormControl(''),
-      contactPersonPosition: new FormControl(''),
-      jobDescription: new FormControl(''),
-      studentTitle: new FormControl(this.student.studentTitle),
-      companyId: new FormControl(''),
-      trackId: new FormControl(this.student.trackId),
+      lastName: new FormControl(this.student.lastName, [Validators.required]),
+      firstName: new FormControl(this.student.firstName, [Validators.required]),
+      middleInitial: new FormControl(this.student.middleInitial, [Validators.required]),
+      studentNumber: new FormControl(this.student.studentNumber, [Validators.required, Validators.minLength(10)]),
+      contactPersonTitle: new FormControl('', [Validators.required]),
+      contactPersonFirstName: new FormControl('', [Validators.required]),
+      contactPersonLastName: new FormControl('', [Validators.required]),
+      contactPersonEmail: new FormControl('', [Validators.required]),
+      contactPersonPosition: new FormControl('', [Validators.required]),
+      jobDescription: new FormControl('', [Validators.required]),
+      studentTitle: new FormControl(this.student.studentTitle, [Validators.required]),
+      companyId: new FormControl('', [Validators.required]),
+      trackId: new FormControl(this.student.trackId, [Validators.required]),
     });
   }
   companySubmit() {
