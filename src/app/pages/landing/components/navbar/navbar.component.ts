@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { fileUpload } from 'src/app/shared/services/fileUpload.service';
@@ -9,7 +10,6 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
   //Mobile navigation
   mobileNav: boolean = false;
 
@@ -23,7 +23,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private File: fileUpload,
     private Auth: AuthenticationService,
-    private Acc: createAccount
+    private Acc: createAccount,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,5 +46,7 @@ export class NavbarComponent implements OnInit {
   toClose() {
     this.mobileNav = false;
   }
-
+  navigateToHome() {
+    this.router.navigate(['/'])
+  }
 }

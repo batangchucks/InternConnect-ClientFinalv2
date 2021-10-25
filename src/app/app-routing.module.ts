@@ -48,60 +48,72 @@ import { AdminReturnisoComponent } from './pages/admin/components/admin-iso/comp
 import { RouteGuardEndorsement } from './helpers/route-guardEndorsement.service';
 import { ChangedeanComponent } from './pages/changedean/changedean.component';
 import { LandingGuard } from './helpers/landing.guard';
+import { ApplicationComponent } from './pages/landing/components/application/application.component';
 const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
-  },
-  { path: 'login', component: LoginComponent, canActivate: [RouteGuardLogin] },
-  {
-    path: 'resetPassword',
-    component: ForgotpassComponent,
-    canActivate: [RouteGuardLogin],
-  },
-  {
-    path: 'endorsementform',
-    component: EndorsementformComponent,
-    canActivate: [RouteGuardEndorsement],
-  },
-  {
-    path: 'companydirectory',
+    children: [
+      {
+        path: '',
+        component: ApplicationComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [RouteGuardLogin],
+      },
+      {
+        path: 'resetPassword',
+        component: ForgotpassComponent,
+        canActivate: [RouteGuardLogin],
+      },
+      {
+        path: 'endorsementform',
+        component: EndorsementformComponent,
+        canActivate: [RouteGuardEndorsement],
+      },
+      {
+        path: 'companydirectory',
 
-    component: CompanydirectoryComponent,
-    canActivate: [LandingGuard],
+        component: CompanydirectoryComponent,
+        canActivate: [LandingGuard],
+      },
+      {
+        path: 'companyprofile/:id',
+        component: CompanyprofileComponent,
+        canActivate: [LandingGuard],
+      },
+      {
+        path: 'onboard',
+        component: OnboardingComponent,
+        canActivate: [RouteGuardLogin],
+      },
+      {
+        path: 'faqs',
+        component: FaqsComponent,
+      },
+      {
+        path: 'policy',
+        component: PolicyComponent,
+      },
+      {
+        path: 'forgotpassword',
+        component: ResetpassComponent,
+        canActivate: [RouteGuardLogin],
+      },
+      {
+        path: 'status',
+        component: StatusComponent,
+        canActivate: [RouteGuardStudent],
+      },
+      {
+        path: 'changedean',
+        component: ChangedeanComponent,
+      },
+    ],
   },
-  {
-    path: 'companyprofile/:id',
-    component: CompanyprofileComponent,
-    canActivate: [LandingGuard],
-  },
-  {
-    path: 'onboard',
-    component: OnboardingComponent,
-    canActivate: [RouteGuardLogin],
-  },
-  {
-    path: 'faqs',
-    component: FaqsComponent,
-  },
-  {
-    path: 'policy',
-    component: PolicyComponent,
-  },
-  {
-    path: 'forgotpassword',
-    component: ResetpassComponent,
-    canActivate: [RouteGuardLogin],
-  },
-  {
-    path: 'status',
-    component: StatusComponent,
-    canActivate: [RouteGuardStudent],
-  },
-  {
-    path: 'changedean',
-    component: ChangedeanComponent,
-  },
+
   {
     path: 'admin',
     component: AdminComponent,
