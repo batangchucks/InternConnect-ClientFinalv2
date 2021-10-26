@@ -36,7 +36,7 @@ export class CoordinatorComponent implements OnInit {
     this.addFormval();
     this.getCoordinatorAndSection();
     this.removeDuplicate();
-    
+
   }
   addFormval() {
     this.coordinatorF = new FormGroup({
@@ -59,19 +59,19 @@ export class CoordinatorComponent implements OnInit {
           this.Section.map(eachS=> {
 
             if(eachC.sectionId == eachS.id) {
-           
+
               console.log(this.Section.indexOf(eachS));
 
               const index = this.Section.indexOf(eachS);
               this.Section.splice(index,1);
-              
+
             }
 
           })
         })
       });
 
-      
+
   }
 
 
@@ -80,9 +80,11 @@ export class CoordinatorComponent implements OnInit {
     console.log(this.Coordinator);
   }
 
-  updateCoordinatorS() {}
+  toUpdate() {
+    this.UpdateIndicator = true;
+  }
 
- 
+
 
   createCoordinator() {
     this.modalAppear = true

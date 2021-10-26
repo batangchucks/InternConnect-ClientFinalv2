@@ -17,153 +17,41 @@
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 
-<div class="grid grid-cols-2 my-12 sm:px-6 lg:px-8">
-  <!-- Filter 1 1 -->
-  <div>
+<div class="max-w-xl flex-col mt-5 sm:px-6 lg:px-8">
+  <!-- Events -->
+  <h2 class="py-3 flex text-xl font-bold items-center">Create an event</h2>
+  <section class="max-w-xl  bg-white rounded-md shadow-md sm:px-6 lg:px-8">
     <form [formGroup]="createForm" (ngSubmit)="onAddEvent()">
-      <div class="flex flex-col">
-        <h1 class="text-lg flex items-center">Create an event</h1>
-        <div class="-my-2 overflow-x-auto">
-          <div class="py-2 align-middle inline-block min-w-full">
-            <div
-              class="
-                shadow
-                overflow-hidden
-                border-b border-gray-200
-                sm:rounded-lg
-              "
-            >
-              <table class="min-w-full divide-y divide-gray-200">
-                <!-- User Assignment -->
-                <tbody class="bg-white">
-                  <tr>
-                    <td class="px-2 py-4 whitespace-nowrap">
-                      <div class="col-span-6">
-                        <label
-                          for="state"
-                          class="block text-sm font-medium text-gray-700"
-                          >Title of event</label
-                        >
-                        <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          formControlName="name"
-                          class="
-                            mt-1
-                            focus:ring-green-500 focus:border-green-500
-                            block
-                            w-full
-                            shadow-sm
-                            sm:text-sm
-                            border-gray-300
-                            rounded-md
-                          "
-                          placeholder="Event Title"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="px-2 py-4 whitespace-nowrap">
-                      <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <label
-                          for="state"
-                          class="block text-sm font-medium text-gray-700"
-                          >Deadline</label
-                        >
-                        <input
-                          type="date"
-                          name="endDate"
-                          [min]="academicYearStart"
-                          [max]="academicYearEnd"
-                          id="endDate"
-                          formControlName="endDate"
-                          class="
-                            mt-1
-                            focus:ring-green-500 focus:border-green-500
-                            block
-                            w-full
-                            shadow-sm
-                            sm:text-sm
-                            border-gray-300
-                            rounded-md
-                          "
-                        />
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td
-                      class="
-                        pt-9
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-right text-sm
-                        font-medium
-                      "
-                    ></td>
-                    <td
-                      class="
-                        pt-9
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-right text-sm
-                        font-medium
-                      "
-                    >
-                      <button
-                        class="
-                          ml-5
-                          bg-green-600
-                          py-2
-                          px-3
-                          rounded-md
-                          shadow-sm
-                          text-sm
-                          leading-4
-                          font-medium
-                          text-white
-                          hover:bg-green-700
-                          focus:outline-none
-                          focus:ring-2
-                          focus:ring-offset-2
-                          focus:ring-green-500
-                        "
-                        type="submit"
-                      >
-                        Create event
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+        <div class="flex flex-col py-6">
+            <div>
+                <label class="text-gray-700" for="event-title">Title of event</label>
+                <input id="event-name" type="text" name="name" id="name" formControlName="name"  placeholder="Event Title" class="block mt-1 focus:ring-green-500 focus:border-green-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
-          </div>
+
+            <div>
+                <label class="text-gray-700" for="event-date">Deadline</label>
+                <input id="event-date" type="date" name="endDate" [min]="academicYearStart" [max]="academicYearEnd" id="endDate" formControlName="endDate" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
         </div>
-      </div>
+
+        <div class="flex justify-end py-6">
+            <button class="ml-5 bg-green-600 py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 " type="submit">
+              Create Event</button>
+        </div>
     </form>
-  </div>
+  </section>
 
   <!-- Filter 2 -->
   <div>
-    <div class="flex flex-col">
-      <h1 class="text-lg flex items-center sm:px-6 lg:px-8">
-        Events in your department
-      </h1>
-      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
-        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <h2 class="py-3 pt-12 flex text-xl font-bold items-center">Events in your department</h2>
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="min-w-full py-2 align-middle inline-block sm:px-6 lg:px-8">
           <div
             class="
               shadow
               overflow-hidden
               border-b border-gray-200
-              sm:rounded-lg
-            "
-          >
+              sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
@@ -184,13 +72,14 @@
                   <th
                     scope="col"
                     class="
-                      px-6
+                      px-3
                       py-3
                       text-left text-xs
                       font-medium
                       text-gray-500
                       uppercase
                       tracking-wider
+                      truncate
                     "
                   >
                     Due
@@ -198,27 +87,27 @@
                   <th
                     scope="col"
                     class="
-                      px-6
+                      pl-0
                       py-3
-                      text-left text-xs
+                      text-center text-xs
                       font-medium
                       text-gray-500
                       uppercase
                       tracking-wider
                     "
-                  ></th>
+                  >Action</th>
                   <th
                     scope="col"
                     class="
-                      px-6
+                      pl-0
                       py-3
-                      text-left text-xs
+                      text-center text-xs
                       font-medium
                       text-gray-500
                       uppercase
                       tracking-wider
                     "
-                  ></th>
+                  >Action</th>
                 </tr>
               </thead>
               <!-- Person 1 -->
@@ -227,17 +116,17 @@
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-900">{{ event.name }}</div>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
+                  <td class="px-3 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-500">
                       {{ event.endDate | date }}
                     </div>
                   </td>
                   <td
                     class="
-                      px-6
+                      pl-4 pr-0
                       py-4
                       whitespace-nowrap
-                      text-right text-sm
+                      text-center text-sm
                       font-medium
                     "
                   >
@@ -261,7 +150,7 @@
                   </td>
                   <td
                     class="
-                      px-6
+                      pl-5 pr-2
                       py-4
                       whitespace-nowrap
                       text-right text-sm
@@ -293,7 +182,6 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 <!-- This is the DeleteIndicator -->

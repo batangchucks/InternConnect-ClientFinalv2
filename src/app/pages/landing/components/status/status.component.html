@@ -452,7 +452,7 @@
                       <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Upload company profile</label>
-                        <input type="file" id="myFile" name="filename" (change)="imgCompanyProfile($event)">
+                        <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgCompanyProfile($event)">
                         <!-- <span *ngIf="updateSubmission.get('imgCompanyProfile').invalid && (updateSubmission.get('imgCompanyProfile').dirty || updateSubmission.get('imgCompanyProfile').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("imgCompanyProfile").invalid ? "Required" : "Invalid field" }}</span> -->
                      </div>
@@ -460,7 +460,7 @@
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label for="country" class="block text-sm font-medium text-gray-700">
                         <span class="text-red-500">*</span>Upload acceptance letter</label>
-                      <input type="file" id="myFile" name="filename" (change)="imgAcceptanceL($event)">
+                      <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgAcceptanceL($event)">
                       <!-- <span *ngIf="updateSubmission.get('imgAcceptanceL').invalid && (updateSubmission.get('imgAcceptanceL').dirty || updateSubmission.get('imgCompanyProfile').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                         {{ updateSubmission.get("imgAcceptanceL").invalid ? "Required" : "Invalid field" }}</span> -->
                     </div>
@@ -590,7 +590,7 @@
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label for="country" class="block text-sm font-medium text-gray-700">
                         <span class="text-red-500">*</span>Upload company profile</label>
-                      <input type="file" id="myFile" name="filename" (change)="imgCompanyProfile($event)">
+                      <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgCompanyProfile($event)">
                       <!-- <span *ngIf="companyForm.get('imgCompanyProfile').invalid && (companyForm.get('imgCompanyProfile').dirty || companyForm.get('imgCompanyProfile').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                         {{ companyForm.get("imgCompanyProfile").invalid ? "Required" : "Invalid field" }}</span> -->
                    </div>
@@ -598,7 +598,7 @@
                   <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                     <label for="country" class="block text-sm font-medium text-gray-700">
                       <span class="text-red-500">*</span>Upload acceptance letter</label>
-                    <input type="file" id="myFile" name="filename" (change)="imgAcceptanceL($event)">
+                    <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgAcceptanceL($event)">
                     <!-- <span *ngIf="(!PhotoFileNameA || !PhotoFileNameC)">"Required"</span> -->
                   </div>
                 </div>

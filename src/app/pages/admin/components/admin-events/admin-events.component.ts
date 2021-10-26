@@ -86,6 +86,7 @@ export class AdminEventsComponent implements OnInit {
 
   onUpdateEvent() {
     this.eventService.updateEvent(this.updateForm.value).subscribe((resp) => {
+      this.UpdateIndicator = false;
       this.ngOnInit();
     });
   }

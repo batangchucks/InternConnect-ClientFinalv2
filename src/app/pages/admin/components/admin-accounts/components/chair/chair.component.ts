@@ -24,7 +24,7 @@ export class ChairComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+
     this.showChair();
   }
 
@@ -32,6 +32,10 @@ export class ChairComponent implements OnInit {
     this.Account.deleteChair(chairId).subscribe((deletedCh) => {
       this.ngOnInit();
     });
+  }
+
+  toUpdate() {
+    this.UpdateIndicator = true;
   }
 
   toCancel() {

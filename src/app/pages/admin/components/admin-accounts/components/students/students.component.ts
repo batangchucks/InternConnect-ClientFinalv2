@@ -12,6 +12,7 @@ import { studentModel } from 'src/app/shared/models/students.model';
 export class StudentsComponent implements OnInit {
 
   DeleteIndicator: boolean = false;
+  UpdateIndicator: boolean = false;
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Section: sectionModel[] = [];
@@ -76,6 +77,10 @@ export class StudentsComponent implements OnInit {
     });
   }
 
+  toUpdate(){
+    this.UpdateIndicator = true;
+  }
+
   enrolledStudent() {
     if (this.user.admin.authId === 2) {
       this.account
@@ -93,6 +98,10 @@ export class StudentsComponent implements OnInit {
           this.Students = eachS;
         });
     }
+  }
+
+  toCancelOne(){
+    this.UpdateIndicator = false;
   }
 
   toCancel(){

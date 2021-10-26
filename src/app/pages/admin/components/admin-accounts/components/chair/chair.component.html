@@ -134,34 +134,10 @@
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    font-medium
-                    text-gray-500
-                    uppercase
-                    tracking-wider
-                  "
-                >
-                  Email Address
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    font-medium
-                    text-gray-500
-                    uppercase
-                    tracking-wider
-                  "
-                >
-                  Program
-                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email Address</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Program</th>
+                <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
             <!-- Person 1 -->
@@ -179,33 +155,11 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {{ eachC.program.name }}
                 </td>
-
-                <td
-                  class="
-                    px-6
-                    py-4
-                    whitespace-nowrap
-                    text-right text-sm
-                    font-medium
-                  "
-                >
-                  <button
-                    class="
-                      block
-                      h-8
-                      px-4
-                      text-black
-                      transition-colors
-                      duration-150
-                      bg-gray-200
-                      rounded-full
-                      focus:shadow-outline
-                      hover:bg-gray-300
-                    "
-                    (click)="toDelete(eachC.account.id)"
-                  >
-                    Delete
-                  </button>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300" (click)="toUpdate()">Update</button>
+                  </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <button class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300" (click)="toDelete(eachC.account.id)">Delete</button>
                 </td>
               </tr>
 
@@ -218,190 +172,6 @@
   </div>
 
   <!-- Pagination -->
-  <div
-    class="fixed z-10 inset-0 overflow-y-auto"
-    aria-labelledby="modal-title"
-    role="dialog"
-    aria-modal="true"
-    *ngIf="UpdateIndicator"
-  >
-    <div
-      class="
-        flex
-        items-end
-        justify-center
-        min-h-screen
-        pt-4
-        px-4
-        pb-20
-        text-center
-        sm:block sm:p-0
-      "
-    >
-      <!--
-          Background overlay, show/hide based on modal state.
-          Entering: "ease-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
-      <div
-        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        aria-hidden="true"
-      ></div>
-
-      <!-- This element is to trick the browser into centering the modal contents. -->
-      <span
-        class="hidden sm:inline-block sm:align-middle sm:h-screen"
-        aria-hidden="true"
-        >&#8203;</span
-      >
-
-      <!--
-          Modal panel, show/hide based on modal state.
-          Entering: "ease-out duration-300"
-            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            To: "opacity-100 translate-y-0 sm:scale-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100 translate-y-0 sm:scale-100"
-            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        -->
-      <div
-        class="
-          inline-block
-          align-bottom
-          bg-white
-          rounded-lg
-          text-left
-          overflow-hidden
-          shadow-xl
-          transform
-          transition-all
-          sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
-        "
-      >
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
-            <h3
-              class="text-2xl leading-6 font-bold text-gray-900"
-              id="modal-title"
-            >
-              Department Chair Account
-            </h3>
-            <div class="mt-6">
-              <div class="mt-4">
-                <label for="email-address" class="text-base"
-                  >Email address</label
-                >
-                <input
-                  type="text"
-                  name="price"
-                  id="price"
-                  class="
-                    focus:ring-green-500 focus:border-green-500
-                    block
-                    w-full
-                    sm:text-sm
-                    border-gray-300
-                    rounded-md
-                  "
-                  placeholder="0.00"
-                />
-              </div>
-
-              <div class="mt-4">
-                <label for="email-address" class="text-base">Program</label>
-                <select
-                  id="program"
-                  name="program"
-                  class="block"
-                  class="
-                    mt-1
-                    block
-                    w-full
-                    py-2
-                    px-3
-                    border border-gray-300
-                    bg-white
-                    rounded-md
-                    shadow-sm
-                    focus:outline-none
-                    focus:ring-green-500
-                    focus:border-green-500
-                    sm:text-sm
-                  "
-                >
-                  <option value="Information Technology">
-                    Information Technology
-                  </option>
-                  <option value="Computer Science">Computer Science</option>
-                  <option value="Information Systems">
-                    Information Systems
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse">
-            <button
-              type="button"
-              class="
-                w-full
-                inline-flex
-                justify-center
-                rounded-md
-                border border-transparent
-                shadow-sm
-                px-4
-                py-2
-                bg-green-600
-                text-base
-                font-medium
-                text-white
-                hover:bg-green-700
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-green-500
-                sm:ml-3 sm:w-auto sm:text-sm
-              "
-            >
-              Update
-            </button>
-            <button
-              type="button"
-              class="
-                mt-3
-                w-full
-                inline-flex
-                justify-center
-                rounded-md
-                border border-gray-300
-                shadow-sm
-                px-4
-                py-2
-                bg-white
-                text-base
-                font-medium
-                text-gray-700
-                hover:bg-gray-50
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-green-500
-                sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
-              "
-              (click)="toCancel()"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- This is the DeleteIndicator -->
@@ -505,3 +275,109 @@
   "
   *ngIf="modalAppear"
 ></div>
+
+
+<!-- This is the UpdateIndicator -->
+<div
+  *ngIf="UpdateIndicator"
+  class="fixed z-10 inset-0 overflow-y-auto"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+
+>
+  <form [formGroup]="">
+    <div
+      class="
+        flex
+        items-end
+        justify-center
+        min-h-screen
+        pt-4
+        px-4
+        pb-20
+        text-center
+        sm:block sm:p-0
+      "
+    >
+      <!--
+        Background overlay, show/hide based on modal state.
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div
+        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        aria-hidden="true"
+      ></div>
+
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span
+        class="hidden sm:inline-block sm:align-middle sm:h-screen"
+        aria-hidden="true"
+        >&#8203;</span
+      >
+
+      <!--
+        Modal panel, show/hide based on modal state.
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div
+      class=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all
+      sm:my-8 sm:align-middle sm:max-w-lg sm:w-full "
+      >
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
+            <h3
+              class="text-2xl leading-6 font-bold text-gray-900"
+              id="modal-title"
+            >
+              Update Chair
+            </h3>
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Email</label>
+                <p class="text-base font-normal text-gray-700">NameChair</p>
+              </div>
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Change Program</label>
+                <select name="programId" class=" mt-1
+                focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300
+                rounded-md mb-6">
+                <option>Chair email - Program</option>
+                </select>
+              </div>
+            </div>
+            </div>
+          <div class="pt-6 sm:flex sm:flex-row-reverse">
+            <button
+              type="submit"
+              class="
+              w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600
+              text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2
+              focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+              Update
+            </button>
+            <button
+              (click)="toCancel()"
+              type="button"
+              class="
+              mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2
+              bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2
+              focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
