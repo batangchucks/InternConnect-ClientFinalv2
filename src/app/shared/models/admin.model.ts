@@ -8,3 +8,13 @@ export interface adminModel {
   sectionId: number;
   stampFileName: string;
 }
+
+export interface AdminUpdateSection {
+  id: number,
+  sectionId: number;
+}
+
+export interface AdminUpdateProgram {
+  id: number,
+  programId: number
+}

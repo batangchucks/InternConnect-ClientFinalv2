@@ -10,6 +10,9 @@ import { tracksModel } from 'src/app/shared/models/tracks.model';
   styleUrls: ['./programs.component.scss'],
 })
 export class ProgramsComponent implements OnInit {
+  //pagination
+  p: number = 1;
+
   Program: programModel[] = [];
   CreateProgramIndicator: boolean = false;
   UpdateProgramIndicator: boolean = false;

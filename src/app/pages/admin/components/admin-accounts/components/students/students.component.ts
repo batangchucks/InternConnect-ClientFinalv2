@@ -3,14 +3,13 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 import { sectionModel } from 'src/app/shared/models/section.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
-import { studentModel } from 'src/app/shared/models/students.model';
+import { ChangeStudentSection, studentModel } from 'src/app/shared/models/students.model';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent implements OnInit {
-
   DeleteIndicator: boolean = false;
   UpdateIndicator: boolean = false;
   p: number = 1;
@@ -19,6 +18,17 @@ export class StudentsComponent implements OnInit {
   studentForms: FormGroup;
   Students: studentModel[] = [];
   studentFormsCoord: FormGroup;
+  modalAppear: boolean = false;
+
+
+  //update
+  selectedUpdate: studentModel
+  filteredSectionList: sectionModel[]
+  selectedSection: sectionModel
+
+
+  //delete
+  toDeleteStudentId: number
 
   constructor(
     private program: ProgramService,
@@ -57,28 +67,35 @@ export class StudentsComponent implements OnInit {
   }
   formSubmit() {
     // passs the value here
+    this.modalAppear = true
     this.account
       .POSTstudent(this.studentForms.value)
       .subscribe((newStudent) => {
+        this.modalAppear = false;
         this.ngOnInit();
       });
   }
 
   formSubmitforCoord() {
+    this.modalAppear = true;
     this.account
       .POSTstudent(this.studentFormsCoord.value)
       .subscribe((newStudent) => {
+      this.modalAppear = false;
         this.ngOnInit();
       });
   }
-  deleteStudent(id: number) {
-    this.account.deleteStudent(id).subscribe((deletedS) => {
+
+  toDeleteStudent(studentId : number) {
+    this.DeleteIndicator = true;
+    this.toDeleteStudentId = studentId;
+  }
+  deleteStudent() {
+    this.account.deleteStudent(this.toDeleteStudentId).subscribe((deletedS) => {
+      this.toDeleteStudentId = null
+      this.DeleteIndicator = false;
       this.ngOnInit();
     });
-  }
-
-  toUpdate(){
-    this.UpdateIndicator = true;
   }
 
   enrolledStudent() {
@@ -100,11 +117,41 @@ export class StudentsComponent implements OnInit {
     }
   }
 
-  toCancelOne(){
+  toCancelOne() {
     this.UpdateIndicator = false;
   }
 
-  toCancel(){
+  toCancel() {
     this.DeleteIndicator = false;
+  }
+
+  toUpdate(student: studentModel) {
+    this.UpdateIndicator = true;
+    this.selectedUpdate = student;
+    this.getSectionListWithoutStudentSection(student.section);
+  }
+
+  onUpdate() {
+    var payload: ChangeStudentSection = {
+      id: this.selectedUpdate.id,
+      sectionId: this.selectedSection.id
+    }
+    this.account.ChangeStudentSection(payload).subscribe(resp => {
+      this.UpdateIndicator = false;
+      this.selectedUpdate = null;
+      this.selectedSection = null;
+      this.filteredSectionList = []
+      this.ngOnInit();
+    })
+  }
+
+  getSectionListWithoutStudentSection(studentSection: sectionModel): void {
+        this.program
+          .getSection(this.user.admin.programId)
+          .subscribe((resp) => {
+            this.filteredSectionList = resp.filter(section => {
+              return studentSection.id != section.id
+            })
+          });
   }
 }

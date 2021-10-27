@@ -156,7 +156,7 @@
                   {{ eachC.program.name }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <button class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300" (click)="toUpdate()">Update</button>
+                  <button class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300" (click)="toUpdate(eachC)">Update</button>
                   </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <button class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300" (click)="toDelete(eachC.account.id)">Delete</button>
@@ -345,14 +345,14 @@
             <div class="mt-6">
               <div class="mt-4">
                 <label for="email-address" class="text-base">Email</label>
-                <p class="text-base font-normal text-gray-700">NameChair</p>
+                <p class="text-base font-normal text-gray-700">{{UpdateSelectedChair.account.email.toLowerCase()}} {{UpdateSelectedChair.program.name.toLowerCase()}}</p>
               </div>
               <div class="mt-4">
                 <label for="email-address" class="text-base">Change Program</label>
-                <select name="programId" class=" mt-1
+                <select name="programId"  [(ngModel)]="selectedChair" [ngModelOptions]="{standalone: true}" class=" mt-1
                 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300
                 rounded-md mb-6">
-                <option>Chair email - Program</option>
+                <option *ngFor="let chair of OnUpdateChairList" [ngValue]="chair" >{{chair.account.email.toLowerCase()}} ({{chair.program.name.toUpperCase()}})</option>
                 </select>
               </div>
             </div>
@@ -360,6 +360,7 @@
           <div class="pt-6 sm:flex sm:flex-row-reverse">
             <button
               type="submit"
+              (click)="OnUpdateChair()"
               class="
               w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600
               text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2

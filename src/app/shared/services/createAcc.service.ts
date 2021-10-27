@@ -6,11 +6,11 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { filter, map } from 'rxjs/operators';
 import { userModel } from '../models/user.model';
 import { coordinatorModel } from '../models/coordinator.model';
-import { studentModel } from '../models/students.model';
+import { ChangeStudentSection, studentModel } from '../models/students.model';
 import { sectionModel } from '../models/section.model';
 import { chairModel } from '../models/chair.model';
 import { submissionModel } from '../models/submission.model';
-import { adminModel } from '../models/admin.model';
+import { adminModel, AdminUpdateProgram, AdminUpdateSection } from '../models/admin.model';
 import { environment } from 'src/environments/environment.prod';
 import { logsModel } from '../models/logs.model';
 import { webState } from '../models/webstate.model';
@@ -350,12 +350,14 @@ export class createAccount {
     );
   }
 
-  getLogsByEmail(payload:any): Observable<logsModel[]> {
+  getLogsByEmail(payload: any): Observable<logsModel[]> {
     return this.http.post<logsModel[]>(this.apiUrl + 'api/Logs/email', payload);
   }
 
-  getLogsBySubmission(submissionId : number): Observable<logsModel[]> {
-    return this.http.get<logsModel[]>(this.apiUrl + 'api/Logs/submission/' + submissionId);
+  getLogsBySubmission(submissionId: number): Observable<logsModel[]> {
+    return this.http.get<logsModel[]>(
+      this.apiUrl + 'api/Logs/submission/' + submissionId
+    );
   }
 
   getAllLogs(): Observable<logsModel[]> {
@@ -393,5 +395,17 @@ export class createAccount {
     return this.http.get<coordinatorModel[]>(
       this.apiUrl + 'api/Admin/techcoord'
     );
+  }
+
+  SwitchChairProgram(payload: AdminUpdateProgram[]):Observable<any> {
+    return this.http.put<any>(this.apiUrl+'api/Admin/program', payload)
+  }
+
+  SwitchChairSection(payload: AdminUpdateSection[]) {
+    return this.http.put<any>(this.apiUrl + 'api/Admin/section', payload);
+  }
+
+  ChangeStudentSection(payload: ChangeStudentSection): Observable<any> {
+    return this.http.put<any>(this.apiUrl+'api/Student', payload)
   }
 }

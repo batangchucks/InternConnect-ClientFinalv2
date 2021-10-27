@@ -426,7 +426,7 @@
                   Department
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                <th *ngIf="user.admin.authId === 2" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
             <!-- Person 1 -->
@@ -436,7 +436,7 @@
             >
               <tr
                 *ngFor="
-                  let students of Students
+                  let student of Students
                     | paginate: { itemsPerPage: 10, currentPage: p }
                 "
               >
@@ -444,20 +444,21 @@
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div class="text-sm text-gray-500">
-                        {{ students.account.email.toLowerCase() }}
+                        {{ student.account.email.toLowerCase() }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ students.section.name }}
+                  {{ student.section.name }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ students.program.name }}
+                  {{ student.program.name }}
                 </td>
-                <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium"><button
+                <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button
                   class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300"
-                  (click)="toUpdate()">Update</button></td>
+                  (click)="toUpdate(student)">Update</button></td>
                 <td
                   class="
                     px-3
@@ -480,7 +481,7 @@
                       focus:shadow-outline
                       hover:bg-gray-300
                     "
-                    (click)="deleteStudent(students.account.id)"
+                    (click)="toDeleteStudent(student.account.id)"
                   >
                     Delete
                   </button>
@@ -511,7 +512,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"><button
                     class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300"
-                    (click)="deleteStudent(students.account.id)">Delete</button></td>
+                    (click)="toDeleteStudent(students.account.id)">Delete</button></td>
               </tr>
             </tbody>
           </table>
@@ -660,14 +661,14 @@
             <div class="mt-6">
               <div class="mt-4">
                 <label for="email-address" class="text-base">Email</label>
-                <p class="text-base font-normal text-gray-700">NameStudent</p>
+                <p class="text-base font-normal text-gray-700">{{selectedUpdate.account.email}} ({{selectedUpdate.section.name}})</p>
               </div>
               <div class="mt-4">
                 <label for="email-address" class="text-base">Change Section</label>
-                <select name="programId" class=" mt-1
+                <select name="programId" [(ngModel)]="selectedSection" [ngModelOptions]="{standalone: true}" class=" mt-1
                 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300
                 rounded-md mb-6">
-                <option>Section</option>
+                <option *ngFor="let section of filteredSectionList" [ngValue]="section">{{section.name}}</option>
                 </select>
               </div>
             </div>
@@ -675,6 +676,7 @@
           <div class="pt-6 sm:flex sm:flex-row-reverse">
             <button
               type="submit"
+              (click)="onUpdate()"
               class="
               w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600
               text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2
@@ -808,6 +810,7 @@
       </div>
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <button
+          (click)="deleteStudent()"
           type="button"
           class="
             w-full
@@ -863,3 +866,48 @@
     </div>
   </div>
 </div>
+
+<!--modal content-->
+<div
+  class="
+    fixed
+    z-10
+    inset-0
+    mx-auto
+    p-8
+    border
+    mt-12
+    w-96
+    h-72
+    shadow-lg
+    rounded-md
+    bg-white
+  "
+  *ngIf="modalAppear"
+>
+  <div class="text-center">
+    <div
+      class="mx-auto flex items-center justify-center h-40 w-40 rounded-full"
+    >
+      <video autoplay loop
+        src="https://res.cloudinary.com/daljbo1q0/video/upload/v1634975066/Landing/75011-3d-mail_sgqufu.mp4"></video>
+    </div>
+    <h3 class="pt-4 text-xl leading-6 font-semibold text-gray-900">
+      Enrolling student...
+    </h3>
+  </div>
+</div>
+
+<!--Overlay Effect-->
+<div
+  class="
+    fixed
+    inset-0
+    overflow-hidden
+    bg-gray-600 bg-opacity-50
+    overflow-y-auto
+    h-full
+    w-full
+  "
+  *ngIf="modalAppear"
+></div>

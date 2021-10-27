@@ -6,7 +6,7 @@ export interface chairModel {
     },
     accountId:number,
     authId:number,
-    id:number,
+    id:number
     program: {
         id:number,
         name:string,
@@ -22,4 +22,3 @@ export interface chairModel {
     sectionId:number,
     stampFileName:string
  }
- 

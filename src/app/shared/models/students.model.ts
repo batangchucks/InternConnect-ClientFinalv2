@@ -63,3 +63,8 @@ export interface studentDashboardModel {
     }
   ];
 }
+
+export interface ChangeStudentSection {
+  id: number,
+  sectionId: number
+}

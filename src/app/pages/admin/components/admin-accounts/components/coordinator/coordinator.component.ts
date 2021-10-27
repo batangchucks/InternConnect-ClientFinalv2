@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { AdminUpdateSection } from 'src/app/shared/models/admin.model';
 import { coordinatorModel } from 'src/app/shared/models/coordinator.model';
 import { programModel } from 'src/app/shared/models/programs.model';
 import { sectionModel } from 'src/app/shared/models/section.model';
@@ -19,13 +20,18 @@ export class CoordinatorComponent implements OnInit {
   idSection: number;
   modalAppear: boolean = false;
 
-  toDeleteId: number
+  toDeleteId: number;
 
   coordinatorF!: FormGroup;
   Section: sectionModel[] = [];
   // create an adminModel
   Coordinator: coordinatorModel[] = [];
+
   updateCoordinatorF: FormGroup;
+  selectedCoordinator;
+  onUpdateList: coordinatorModel[];
+  updatePayload: AdminUpdateSection[] = []
+  targetCoordinator: coordinatorModel;
 
   constructor(
     private accounts: createAccount,
@@ -36,7 +42,6 @@ export class CoordinatorComponent implements OnInit {
     this.addFormval();
     this.getCoordinatorAndSection();
     this.removeDuplicate();
-
   }
   addFormval() {
     this.coordinatorF = new FormGroup({
@@ -55,40 +60,26 @@ export class CoordinatorComponent implements OnInit {
       .subscribe((coordinator) => {
         this.Coordinator = coordinator;
 
-        this.Coordinator.map(eachC=> {
-          this.Section.map(eachS=> {
-
-            if(eachC.sectionId == eachS.id) {
-
+        this.Coordinator.map((eachC) => {
+          this.Section.map((eachS) => {
+            if (eachC.sectionId == eachS.id) {
               console.log(this.Section.indexOf(eachS));
 
               const index = this.Section.indexOf(eachS);
-              this.Section.splice(index,1);
-
+              this.Section.splice(index, 1);
             }
-
-          })
-        })
+          });
+        });
       });
-
-
   }
-
-
   removeDuplicate() {
     console.log(this.Section);
     console.log(this.Coordinator);
   }
 
-  toUpdate() {
-    this.UpdateIndicator = true;
-  }
-
-
-
   createCoordinator() {
-    this.modalAppear = true
-    this.coordinatorF.get('sectionId').setValue(this.idSection)
+    this.modalAppear = true;
+    this.coordinatorF.get('sectionId').setValue(this.idSection);
     this.accounts
       .POSTcoordinator(this.coordinatorF.value)
       .subscribe((createdCoord) => {
@@ -98,23 +89,59 @@ export class CoordinatorComponent implements OnInit {
   }
 
   toDelete(id: number) {
-    this.DeleteIndicator = true
-    this.toDeleteId = id
+    this.DeleteIndicator = true;
+    this.toDeleteId = id;
   }
 
   onDelete() {
-        this.accounts.deleteCoordinator(this.toDeleteId).subscribe((delC) => {
-          this.ngOnInit();
-          this.DeleteIndicator = false
-        });
-    this.toDeleteId = null
+    this.accounts.deleteCoordinator(this.toDeleteId).subscribe((delC) => {
+      this.ngOnInit();
+      this.DeleteIndicator = false;
+    });
+    this.toDeleteId = null;
   }
 
+  toCancelTwo() {
+    this.DeleteIndicator = false;
+  }
+
+  toUpdate(coordinatorData: coordinatorModel) {
+    this.UpdateIndicator = true;
+    this.getCoordinator(coordinatorData);
+    this.selectedCoordinator = coordinatorData;
+
+    this.updatePayload.push({
+      id: coordinatorData.id,
+      sectionId: coordinatorData.section.id,
+    });
+
+  }
+
+  OnUpdate() {
+    this.updatePayload.push({
+      id: this.targetCoordinator.id,
+      sectionId: this.targetCoordinator.section.id
+    })
+    this.accounts.SwitchChairSection(this.updatePayload).subscribe((resp) => {
+      this.UpdateIndicator = false;
+      this.updatePayload = [];
+      this.targetCoordinator = null;
+      this.ngOnInit();
+    });
+  }
   toCancel() {
     this.UpdateIndicator = false;
+    this.targetCoordinator = null;
+    this.updatePayload = [];
   }
 
-  toCancelTwo(){
-    this.DeleteIndicator = false;
+  getCoordinator(coordinator: coordinatorModel): void {
+    this.accounts
+      .getCoordinator(this.user.admin.programId)
+      .subscribe((resp) => {
+        this.onUpdateList = resp.filter((coord) => {
+          return coordinator.id != coord.id;
+        });
+      });
   }
 }
