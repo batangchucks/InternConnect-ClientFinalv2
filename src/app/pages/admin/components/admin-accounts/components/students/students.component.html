@@ -21,7 +21,8 @@
 
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <button class="block h-8 px-4 text-white transition-colors duration-150 bg-green-600 rounded-full focus:shadow-outline hover:bg-green-700" (click)="openBatch()">Upload CSV</button>
+          <button class=" h-8 px-4 text-white transition-colors duration-150 bg-green-600 rounded-full focus:shadow-outline hover:bg-green-700" (click)="openBatch()">Upload CSV</button>
+          <a class="text-green-600" [href]="_env+'files/Batch-upload-template.csv'" ><u>Download CSV Template</u></a>
           <!-- <hr /> -->
           <!-- <form action="" [formGroup]="studentForms" (ngSubmit)="formSubmit()">
             <table class="min-w-full divide-y divide-gray-200">
@@ -897,18 +898,7 @@
 </div>
 
 <!--Overlay Effect-->
-<div
-  class="
-    fixed
-    inset-0
-    overflow-hidden
-    bg-gray-600 bg-opacity-50
-    overflow-y-auto
-    h-full
-    w-full
-  "
-  *ngIf="modalAppear"
-></div>
+
 
 <!-- Batch upload modal -->
 <div
@@ -926,13 +916,16 @@
 <div class="flex flex-row py-8 rounded-t">
       <div>
         <label class="block text-sm font-medium text-gray-700">Upload a file</label>
-        <input class="mt-1 py-2" type="file" />
+        <input type="file" class="mt-1 py-2" accept=".csv" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" />
       </div>
       <div>
         <label class="block text-sm font-medium text-gray-700">Assign a section</label>
         <select name=""
+        [(ngModel)]="selectedSectionBatch"
+        [ngModelOptions]="{standalone: true}"
           class="mt-1 max-w-md w-28 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-          <option>Hello</option>
+          <option *ngFor="let section of Section"
+          [ngValue]="section" >{{ section.name }}</option>
         </select>
       </div>
 </div>
@@ -954,18 +947,18 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
+            <tr *ngFor="let csv of csvArr; let i = index">
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                     <div class="text-sm text-gray-500">
-                     123
+                     {{i+1}}
                   </div>
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                     <div class="text-sm text-gray-500">
-                      jane.cooper@example.com
+                      {{csv.email}}
                   </div>
                 </div>
               </td>
@@ -980,9 +973,21 @@
 </div>
 
 <div class="mt-12 text-right">
-<button class="h-8 px-4 text-white transition-colors duration-150 bg-green-600 rounded-full focus:shadow-outline hover:bg-green-700">Upload</button>
+<button [disabled]="!selectedSectionBatch || !csvReader " (click)="onBatchUpload()" class="h-8 px-4 text-white transition-colors duration-150 bg-green-600 rounded-full focus:shadow-outline hover:bg-green-700">Upload</button>
 </div>
 
 </div>
 <!-- Dim bg -->
-<div *ngIf="BatchUpload" class="fixed inset-0 hidden overflow-hidden bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"></div>
+<!-- <div *ngIf="BatchUpload" class="fixed inset-0 hidden overflow-hidden bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"></div> -->
+<div
+  class="
+    fixed
+    inset-0
+    overflow-hidden
+    bg-gray-600 bg-opacity-50
+    overflow-y-auto
+    h-full
+    w-full
+  "
+  *ngIf="modalAppear||BatchUpload"
+></div>

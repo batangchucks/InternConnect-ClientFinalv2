@@ -6,7 +6,7 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { filter, map } from 'rxjs/operators';
 import { userModel } from '../models/user.model';
 import { coordinatorModel } from '../models/coordinator.model';
-import { ChangeStudentSection, studentModel } from '../models/students.model';
+import { AddStudentModel, ChangeStudentSection, studentModel } from '../models/students.model';
 import { sectionModel } from '../models/section.model';
 import { chairModel } from '../models/chair.model';
 import { submissionModel } from '../models/submission.model';
@@ -397,8 +397,8 @@ export class createAccount {
     );
   }
 
-  SwitchChairProgram(payload: AdminUpdateProgram[]):Observable<any> {
-    return this.http.put<any>(this.apiUrl+'api/Admin/program', payload)
+  SwitchChairProgram(payload: AdminUpdateProgram[]): Observable<any> {
+    return this.http.put<any>(this.apiUrl + 'api/Admin/program', payload);
   }
 
   SwitchChairSection(payload: AdminUpdateSection[]) {
@@ -406,6 +406,13 @@ export class createAccount {
   }
 
   ChangeStudentSection(payload: ChangeStudentSection): Observable<any> {
-    return this.http.put<any>(this.apiUrl+'api/Student', payload)
+    return this.http.put<any>(this.apiUrl + 'api/Student', payload);
+  }
+
+  batchUpload(payload: AddStudentModel[]): Observable<AddStudentModel[]> {
+    return this.http.post<AddStudentModel[]>(
+      this.apiUrl + 'api/Accounts/students',
+      payload
+    );
   }
 }

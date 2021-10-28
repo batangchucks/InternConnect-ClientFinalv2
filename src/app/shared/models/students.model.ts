@@ -68,3 +68,10 @@ export interface ChangeStudentSection {
   id: number,
   sectionId: number
 }
+
+export class AddStudentModel {
+  public email: string;
+  public sectionId: number;
+  public programId: number;
+  public adminEmail: string;
+}
