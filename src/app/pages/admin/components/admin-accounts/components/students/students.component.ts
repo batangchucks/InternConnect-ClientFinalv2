@@ -12,6 +12,7 @@ import { ChangeStudentSection, studentModel } from 'src/app/shared/models/studen
 export class StudentsComponent implements OnInit {
   DeleteIndicator: boolean = false;
   UpdateIndicator: boolean = false;
+  BatchUpload: boolean = false;
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Section: sectionModel[] = [];
@@ -153,5 +154,13 @@ export class StudentsComponent implements OnInit {
               return studentSection.id != section.id
             })
           });
+  }
+
+  openBatch(){
+    this.BatchUpload = true;
+  }
+
+  closeBatch(){
+    this.BatchUpload = false;
   }
 }
