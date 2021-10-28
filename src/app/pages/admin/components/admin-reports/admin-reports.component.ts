@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { map } from 'rxjs/operators';
 import { programModel } from 'src/app/shared/models/programs.model';
 
 import { sectionModel } from 'src/app/shared/models/section.model';
@@ -36,12 +38,25 @@ export class AdminReportsComponent implements OnInit {
       this.Program.getProgram().subscribe((eachP) => {
         this.programs = eachP;
       });
+
+      this.Acc.getAllSubmission().subscribe(eachS=> {
+        this.submission = eachS;
+        this.filteredSubmit = eachS;
+      });
     }
     if (this.user.admin.authId == 2) {
       this.section.getSection(this.user.admin.programId).subscribe((eachS) => {
         console.log(eachS);
+    
         this.Section = eachS;
       });
+
+      this.Acc.getSubmissionForChair(this.user.admin.programId).subscribe(eachSub=> {
+        this.submission = eachSub;
+        this.filteredSubmit = eachSub;
+        console.log(this.submission);
+        console.log(this.filteredSubmit);
+      })
     }
 
     if (this.user.admin.authId == 3) {
@@ -51,37 +66,59 @@ export class AdminReportsComponent implements OnInit {
       });
 
       this.selectedSec = this.user.admin.sectionId;
+
+
+      this.Acc.getSubmissionForCoord(this.user.admin.sectionId).subscribe(eachSub=> {
+        this.submission = eachSub;
+        this.filteredSubmit = eachSub;
+        console.log(eachSub.length);
+      })
+
+      
     }
-
-    this.Acc.getAllSubmission().subscribe((eachS) => {
-      this.submission = eachS;
-      console.log(this.submission);
-
-      this.submission.map((eachS) => {
-        this.id += 'ids=' + eachS.id + '&';
-      });
-    });
+    //  wrong
+   
   }
   Status() {
-    if (this.user.admin.authId == 1) {
-      console.log(this.selectedProg);
+
+    console.log("status is changing");
+   
+
+    if(this.user.admin.authId == 1) {
       this.Program.getSection(this.selectedProg).subscribe((eachS) => {
         this.Section = eachS;
       });
-    }
-    this.Acc.filterSubmission(this.selectedSec, this.status,this.selectedProg).subscribe(
-      (eachS) => {
-        this.filteredSubmit = eachS;
+      this.Acc.filterSubmissionDean(this.selectedSec,this.status,this.selectedProg).subscribe(eachP=> {
+        this.filteredSubmit = eachP;
+       
         this.id = '';
+       
+      })
 
-        console.log(this.selectedSec);
-        console.log(this.status);
-        this.filteredSubmit.map((eachS) => {
-          this.id += 'ids=' + eachS.id + '&';
-        });
-        console.log(this.id);
-      }
-    );
+    }
+    if(this.user.admin.authId == 2) {
+
+        this.Acc.filterSubmissionChair(this.selectedSec,this.status,this.user.admin.programId).subscribe(eachSub=> {
+          this.filteredSubmit = eachSub;
+          console.log(this.filteredSubmit);
+          this.id='';
+         
+        })
+    }
+
+    if(this.user.admin.authId == 3) {
+      this.Acc.filterSubmissionCord(this.selectedSec,this.status).subscribe(
+        (eachS) => {
+          this.filteredSubmit = eachS;
+          this.id = '';
+        
+         
+        
+        }
+      );
+
+    }
+   
   }
 
   onFilterChange(value) {
@@ -90,8 +127,17 @@ export class AdminReportsComponent implements OnInit {
 
   download() {
     this.id = this.id.substring(0, this.id.length - 1);
-    console.log(this.id);
-    this.Acc.getFileUpload(this.id).subscribe((file) => {
+    let payload = [];
+   
+    this.filteredSubmit.map((eachS) => {
+        const id = eachS.id;
+        payload.push({submissionId: id});
+    });
+
+    console.log(payload);
+   
+   
+    this.Acc.getFileUpload(payload).subscribe((file) => {
       const url = window.URL.createObjectURL(file);
       window.open(url);
       this.id = '';

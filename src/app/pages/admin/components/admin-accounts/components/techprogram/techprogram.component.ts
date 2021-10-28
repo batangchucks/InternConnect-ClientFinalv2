@@ -37,15 +37,15 @@ export class TechprogramComponent implements OnInit {
   }
   appearModalDelete(id: number) {
     this.DeleteIndicator = true;
-    this.toDeleteId = id
+    this.toDeleteId = id;
   }
 
   onDelete() {
     this.Account.deleteCoordinator(this.toDeleteId).subscribe(resp => {
       this.DeleteIndicator = false
-      this.ngOnInit()
+      this.ngOnInit();
     }, err => {
-      alert("Something went wrong")
+      alert("Something went wrong");
     })
   }
 }

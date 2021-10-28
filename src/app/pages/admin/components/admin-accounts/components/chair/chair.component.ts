@@ -22,6 +22,7 @@ export class ChairComponent implements OnInit {
   updatePayload: AdminUpdateProgram[] = [];
   OnUpdateChairList: chairModel[];
   UpdateSelectedChair: chairModel;
+  chairId:number;
 
   constructor(
     private program: ProgramService,
@@ -32,9 +33,23 @@ export class ChairComponent implements OnInit {
     this.showChair();
   }
 
-  toDelete(chairId: number) {
-    this.Account.deleteChair(chairId).subscribe((deletedCh) => {
+  toDelete(chairId:number) {
+    this.DeleteIndicator = true;
+    this.chairId = chairId;
+    // this.Account.deleteChair(chairId).subscribe((deletedCh) => {
+    //   this.ngOnInit();
+    // });
+  }
+
+  deleteAccepted() {
+
+     this.Account.deleteChair(this.chairId).subscribe((deletedCh) => {
+      this.DeleteIndicator = false;
+    
       this.ngOnInit();
+      this.chairId = null;
+    },err=> {
+       alert("Something went wrong please try again! ");
     });
   }
 

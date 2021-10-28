@@ -14,6 +14,7 @@ import { adminModel, AdminUpdateProgram, AdminUpdateSection } from '../models/ad
 import { environment } from 'src/environments/environment.prod';
 import { logsModel } from '../models/logs.model';
 import { webState } from '../models/webstate.model';
+
 @Injectable({ providedIn: 'root' })
 export class createAccount {
   programs: programModel[] = [];
@@ -55,8 +56,7 @@ export class createAccount {
     return this.http
       .get<sectionModel[]>(this.apiUrl + 'api/Section')
       .pipe(
-        map((eachV) => eachV.filter((eachS) => eachS.programId === programId))
-      );
+        map((eachV) => eachV.filter((eachS) => eachS.programId === programId)));
   }
   POSTsection(postVal: FormGroup) {
     return this.http.post(this.apiUrl + 'api/Section', postVal);
@@ -113,7 +113,127 @@ export class createAccount {
   getAllSubmission() {
     return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission');
   }
-  filterSubmission(sectionId: number, status: string, programId: number) {
+
+  getSubmissionForCoord(sectionId:number) {
+    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId);
+
+  }
+
+  getSubmissionForChair(programId:number) {
+    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId);
+  }
+  filterSubmissionChair(sectionId: number, status: string, programId: number) {
+    if (programId && !sectionId) {
+      return this.http
+        .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+        .pipe(
+          map((eachS) =>
+            eachS.filter(
+              (eachS) => eachS.student.section.programId == programId
+            )
+          )
+        );
+
+     }
+     else if (status == null && sectionId) {
+      console.log('when only section');
+
+      return this.http
+        .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+        .pipe(
+          map((eachS) =>
+            eachS.filter((eachS) => eachS.student.sectionId == sectionId)
+          )
+        );
+    } else if (status != null && sectionId) {
+      if (status) {
+        if (status == 'Acknowledged') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.acceptedByCoordinator == true
+                )
+              )
+            );
+        } else if (status == 'approvedbyC') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.acceptedByChair == true
+                )
+              )
+            );
+        } else if (status == 'approvedD') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.acceptedByDean == true
+                )
+              )
+            );
+        } else if (status == 'sentToCompany') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.emailSentByCoordinator == true
+                )
+              )
+            );
+        } else if (status == 'approvedByCompany') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.companyAgrees == true
+                )
+              )
+            );
+        } else {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.comments
+                )
+              )
+            );
+        }
+      }
+    }
+      return this.http
+    .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
+    .pipe(
+      map((eachS) =>
+        eachS.filter(
+          (eachS) => eachS.student.section.programId == programId
+        )
+      )
+    );
+  
+  }
+  filterSubmissionDean(sectionId: number, status: string, programId: number) {
     if (programId && !sectionId) {
       return this.http
         .get<submissionModel[]>(this.apiUrl + 'api/Submission')
@@ -213,6 +333,103 @@ export class createAccount {
     }
     return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission');
   }
+  filterSubmissionCord(sectionId: number,status: string) {
+      if(sectionId && status == null) {
+        return this.http
+        .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+        .pipe(
+          map((eachS) =>
+            eachS.filter((eachS) => eachS.student.sectionId == sectionId)
+          )
+        );
+      }
+      else if(sectionId && status) {
+        if (status == 'Acknowledged') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.acceptedByCoordinator == true
+                )
+              )
+            );
+        } else if (status == 'approvedbyC') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.acceptedByChair == true
+                )
+              )
+            );
+        } else if (status == 'approvedD') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.acceptedByDean == true
+                )
+              )
+            );
+        } else if (status == 'sentToCompany') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.emailSentByCoordinator == true
+                )
+              )
+            );
+        } else if (status == 'approvedByCompany') {
+          return this.http
+            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) =>
+                    eachS.student.section.id == sectionId &&
+                    eachS.adminResponse.companyAgrees == true
+                )
+              )
+            );
+      }
+      else {
+        return this.http
+          .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+          .pipe(
+            map((eachS) =>
+              eachS.filter(
+                (eachS) =>
+                  eachS.student.section.id == sectionId &&
+                  eachS.adminResponse.comments
+              )
+            )
+          );
+              }
+       
+
+      }
+      return this.http
+      .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+      .pipe(
+        map((eachS) =>
+          eachS.filter((eachS) => eachS.student.sectionId == sectionId)
+        )
+      ); 
+
+  }
   getSubmissionStudent(studId: number): Observable<submissionModel> {
     return this.http.get<submissionModel>(
       this.apiUrl + 'api/Submission/' + studId
@@ -220,14 +437,11 @@ export class createAccount {
     // wrong
   }
 
-  newSubmission(sectionId: number): Observable<submissionModel[]> {
+  submissionSteps(stepNumber:number,uniqueId:number): Observable<submissionModel[]> {
     return this.http
-      .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/1')
-      .pipe(
-        map((eachS) =>
-          eachS.filter((eachS) => eachS.student.sectionId == sectionId)
-        )
-      );
+      .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/'+stepNumber+'/'+uniqueId);
+
+ 
   }
 
   POSTsubmission(sectionId: number, programId: number, postVal) {
@@ -250,6 +464,7 @@ export class createAccount {
   }
 
   coordinatorApprove(adminId: number, assignIso: number, postVal) {
+    console.log(assignIso);
     return this.http.put(
       this.apiUrl +
         'api/AdminResponse/coordinator/' +
@@ -265,25 +480,13 @@ export class createAccount {
   //     postVal
   //   );
   // }
-  submissionStep2(programId: number): Observable<submissionModel[]> {
-    return this.http
-      .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/2')
-      .pipe(
-        map((eachS) =>
-          eachS.filter((eachS) => eachS.student.section.programId == programId)
-        )
-      );
-  }
+  
 
   approvedByChair(Payload) {
     return this.http.put(this.apiUrl + 'api/AdminResponse/chair', Payload);
   }
 
-  submissionStep3() {
-    return this.http.get<submissionModel[]>(
-      this.apiUrl + 'api/Submission/byStep/3'
-    );
-  }
+  
   approvedbyDean(adminId, Payload) {
     return this.http.put(
       this.apiUrl + 'api/AdminResponse/dean/' + adminId,
@@ -291,15 +494,7 @@ export class createAccount {
     );
   }
 
-  submissionStep4(sectionId: number): Observable<submissionModel[]> {
-    return this.http
-      .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/4')
-      .pipe(
-        map((eachS) =>
-          eachS.filter((eachS) => eachS.student.section.id == sectionId)
-        )
-      );
-  }
+  
   approvedPending(submissionId: number) {
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/pdf');
@@ -371,14 +566,16 @@ export class createAccount {
     return this.http.put(this.apiUrl + 'api/Webstate', postVal);
   }
 
-  getFileUpload(ids: string) {
+  getFileUpload(payload:any) {
     let headers = new HttpHeaders();
 
-    return this.http.get(this.apiUrl + 'api/File/excel?' + ids, {
+    console.log(payload);
+    return this.http.post(this.apiUrl+'api/File/excel',payload,{
       responseType: 'blob',
     });
   }
   changeDean(payload: any) {
+
     return this.http.post(this.apiUrl + 'api/Accounts/changeDean', payload, {
       responseType: 'text',
     });

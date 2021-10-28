@@ -110,6 +110,7 @@ const routes: Routes = [
       {
         path: 'changedean',
         component: ChangedeanComponent,
+        canActivate:[RouteGuardDean]
       },
     ],
   },
@@ -189,6 +190,7 @@ const routes: Routes = [
       {
         // dean pero nakasama track dito ayusin natin
         path: 'programs',
+        canActivate:[RouteGuardDean],
         component: ProgramsComponent,
       },
       {
@@ -200,16 +202,19 @@ const routes: Routes = [
       {
         path: 'reports',
         // can activate for everybody
+        canActivate:[RouteGuardAdmin],
         component: AdminReportsComponent,
       },
       {
         path: 'events',
         // everyone except dean?
+        canActivate:[RouteGuardChair],
         component: AdminEventsComponent,
       },
       {
         // chair or dean?
         path: 'iso',
+        canActivate:[RouteGuardChair],
         component: AdminIsoComponent,
       },
       {
@@ -221,6 +226,7 @@ const routes: Routes = [
         // dean
         path: 'acadyear',
         component: AdminAcadyearComponent,
+        canActivate: [RouteGuardDean],
       },
       {
         // everybody?

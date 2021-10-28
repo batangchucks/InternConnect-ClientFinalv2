@@ -20,6 +20,7 @@ export class OpportunitiesUpdateComponent implements OnInit {
   DeleteIndicator: boolean = false;
   updateOpportunity!: FormGroup;
   Company: CompanyModel[] = [];
+  opportunityId:number;
 
   constructor(
     private company: CompanyService,
@@ -43,14 +44,10 @@ export class OpportunitiesUpdateComponent implements OnInit {
     // this.company.POST_Opportunity();
   }
   deleteOpportunity(index: number) {
-    this.company.deleteByOpportunity(index).subscribe(
-      (response) => {
-        this.ngOnInit();
-      },
-      (error) => {
-        this.ngOnInit();
-      }
-    );
+    this.opportunityId = index;
+    this.DeleteIndicator = true;
+
+
   }
   createOpportunitySubmit(f: NgForm) {
     this.company.createOpportunity(f.value).subscribe((crO) => {
@@ -68,6 +65,14 @@ export class OpportunitiesUpdateComponent implements OnInit {
 
   toCancelOne() {
     this.CreateIndicator = false;
+  }
+
+  confirmDelete() {
+    this.company.deleteByOpportunity(this.opportunityId).subscribe(opDel=> {
+      this.DeleteIndicator = false;
+      this.opportunityId = null;
+      this.ngOnInit();
+    })
   }
 
   toUpdate(eO: opportunityModel) {

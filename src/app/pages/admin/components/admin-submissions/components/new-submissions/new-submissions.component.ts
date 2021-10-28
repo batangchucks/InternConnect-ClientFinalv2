@@ -61,7 +61,7 @@ export class NewSubmissionsComponent implements OnInit {
       } else this.isStamp = true;
     });
 
-    this.Acc.newSubmission(this.user.admin.sectionId).subscribe((eStud) => {
+    this.Acc.submissionSteps(1,this.user.admin.sectionId).subscribe((eStud) => {
       this.submission = eStud;
       console.log(eStud);
     });
@@ -139,23 +139,23 @@ export class NewSubmissionsComponent implements OnInit {
     });
   }
   rejectedSubmit() {
-    this.DisapproveIndicator = false;
-    this.onAcceptLoading = true
-    if(this.RejectForm.get('comments').value == '' || this.RejectForm.get('comments').value == null) {
-      this.RejectForm.get('comments').setValue('No Comment')
-    }
-    this.Acc.coordinatorApprove(
-      this.user.admin.id,
-      this.assignIso == null || this.assignIso == undefined
-        ? this.disapprovedStudentIso
-        : this.assignIso,
-      this.RejectForm.value
-    ).subscribe((updatedVal) => {
-      this.onAcceptLoading = false;
-      this.assignIso = null;
+    // this.DisapproveIndicator = false;
+    // this.onAcceptLoading = true;
+    // if(this.RejectForm.get('comments').value == '' || this.RejectForm.get('comments').value == null) {
+    //   this.RejectForm.get('comments').setValue('No Comment')
+    // }
 
-      this.ngOnInit();
-    });
+    // console.log("working");
+    // this.Acc.coordinatorApprove(
+    //   this.user.admin.id,0,
+    //   this.RejectForm.value
+    // ).subscribe((updatedVal) => {
+    //   console.log(updatedVal);
+    //   this.onAcceptLoading = false;
+    //   this.assignIso = null;
+
+    //   this.ngOnInit();
+    // });
   }
 
   toDisapproveModal(id: number) {
@@ -177,11 +177,11 @@ export class NewSubmissionsComponent implements OnInit {
         .value,
       id: this.rejectedForm.get('id').value,
     };
-
+    
     // pass the value of the iso code as the initial state
     this.Acc.coordinatorApprove(
       this.user.admin.id,
-      this.rejectedForm.get('assignIso').value,
+      5,
       payload
     ).subscribe((newVal) => {
       this.onAcceptLoading = false

@@ -33,7 +33,7 @@ export class PendingSubmissionsComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user'));
 
   ngOnInit(): void {
-    this.Acc.submissionStep4(this.user.admin.sectionId).subscribe((eachS) => {
+    this.Acc.submissionSteps(4,this.user.admin.sectionId).subscribe((eachS) => {
       this.Submission = eachS;
     });
     this.programService.getAllTracks().subscribe((resp) => {

@@ -68,7 +68,7 @@ export class FinalSubmissionsComponent implements OnInit {
     });
   }
   deptChairSubmissionList() {
-    this.Acc.submissionStep2(this.user.admin.programId).subscribe(
+    this.Acc.submissionSteps(2,this.user.admin.programId).subscribe(
       (appByCoord) => {
         this.Submissions = appByCoord;
       }
@@ -76,7 +76,7 @@ export class FinalSubmissionsComponent implements OnInit {
   }
 
   deanSubmissionList() {
-    this.Acc.submissionStep3().subscribe((eachS) => {
+    this.Acc.submissionSteps(3,5).subscribe((eachS) => {
       this.deanSubmissions = eachS;
     });
   }

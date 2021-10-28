@@ -306,6 +306,7 @@
 
 <div class="px-4 py-3 text-right sm:px-6 lg:px-8">
   <button
+  [disabled]= "!filteredSubmit.length"
     (click)="download()"
     type="button"
     class="
@@ -320,9 +321,9 @@
       font-medium
       text-white
       hover:bg-green-700
-      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500
+      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:cursor-not-allowed
     "
-  >
+    > 
     Download Report
   </button>
 </div>

@@ -3,6 +3,7 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 import { programModel } from 'src/app/shared/models/programs.model';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-programs',
@@ -27,15 +28,19 @@ export class ProgramsComponent implements OnInit {
 
   updateTrackF: FormGroup;
   selectedTrack: tracksModel[] = [];
+  programId:number;
 
+  trackId:number;
   constructor(private program: ProgramService) {}
 
   ngOnInit(): void {
-    this.program.getProgram().subscribe((eachP) => {
-      this.Program = eachP;
-    });
+    this.program.getProgram().subscribe(eachV=> {
+      this.Program = eachV;
+      console.log(this.Program);
+    })
 
     this.formInitalize();
+
   }
 
   toCreateProgram() {
@@ -115,9 +120,12 @@ export class ProgramsComponent implements OnInit {
   }
 
   toDelete(programId: number) {
-    this.program.deleteProgram(programId).subscribe((delP) => {
-      this.ngOnInit();
-    });
+    this.DeleteProgramIndicator = true;
+    this.programId = programId;
+
+    // this.program.deleteProgram(programId).subscribe((delP) => {
+    //   this.ngOnInit();
+    // });
   }
 
   updateTrackSubmit() {
@@ -134,8 +142,33 @@ export class ProgramsComponent implements OnInit {
     });
   }
   deleteTrack(id: number) {
-    this.program.deleteTrack(id).subscribe((delTrack) => {
-      this.ngOnInit();
+
+    this.trackId = id;
+    this.DeleteTrackIndicator = true;
+    // this.program.deleteTrack(id).subscribe((delTrack) => {
+    //   this.ngOnInit();
+    // });
+  }
+
+  acceptDelete() {
+    this.program.deleteProgram(this.programId).subscribe((delP) => {
+      console.log(delP);
+         this.programId = null;
+        this.DeleteProgramIndicator = false;
+        this.ngOnInit();
+        
     });
+
+  }
+
+  trackDeleteAccepted() {
+    console.log(this.trackId);
+    this.program.deleteTrack(this.trackId).subscribe((delTrack) => {
+          this.trackId = null;
+          this.DeleteTrackIndicator = false; 
+          this.ngOnInit();
+         
+        });
+
   }
 }

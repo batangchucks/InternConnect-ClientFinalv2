@@ -7,6 +7,7 @@ import { fileUpload } from 'src/app/shared/services/fileUpload.service';
 import { CompanyStatusList } from 'src/app/shared/models/enums.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-companydirectory-update',
   templateUrl: './companydirectory-update.component.html',
@@ -297,10 +298,10 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
   confirmDelete() {
     this.company.deleteCompany(this.ToDeleteCompanyId).subscribe(resp => {
-      this.deleteCompanyModal = false
-      this.ToDeleteCompanyId = null
-      this.ngOnInit()
-    })
+      this.deleteCompanyModal = false;
+      this.ToDeleteCompanyId = null;
+      this.ngOnInit();
+    });
 
   }
 

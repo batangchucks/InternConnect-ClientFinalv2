@@ -15,7 +15,7 @@ export class SectionsComponent implements OnInit {
   DeleteIndicator: boolean = false;
   createForm: FormGroup;
   updateForm: FormGroup;
-
+  sectionId:number;
   Section: sectionModel[] = [];
 
   user = JSON.parse(localStorage.getItem('user'));
@@ -59,10 +59,11 @@ export class SectionsComponent implements OnInit {
     });
   }
   // for deleting a section
-  deleteSection(section: sectionModel) {
-    this.program.deleteSection(section.id).subscribe((delS) => {
-      this.ngOnInit();
-    });
+  deleteSection(id:number) {
+    this.sectionId = id;
+    this.DeleteIndicator = true;
+
+   
   }
 
   toCancelTwo() {
@@ -79,6 +80,15 @@ export class SectionsComponent implements OnInit {
   showSection() {
     this.account.getSection(this.user.admin.programId).subscribe((eachS) => {
       this.Section = eachS;
+    });
+  }
+
+  confirmDelete() {
+    this.program.deleteSection(this.sectionId).subscribe((delS) => {
+      this.sectionId = null;
+      this.DeleteIndicator = false;
+      this.ngOnInit();
+      
     });
   }
 }

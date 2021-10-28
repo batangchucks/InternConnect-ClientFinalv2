@@ -36,7 +36,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.Acc.submissionStep5(this.user.admin.sectionId).subscribe((eachS) => {
+    this.Acc.submissionSteps(5,this.user.admin.sectionId).subscribe((eachS) => {
       this.Submission = eachS;
     });
         this.programService.getAllTracks().subscribe((resp) => {

@@ -6,7 +6,8 @@ export interface programModel {
     tracks:[{
         id:number,
         name:string,
-        programId:number
+        programId:number,
+        isActive:boolean
     }],
     isoCodeProgramNumber:string
         
