@@ -1,6 +1,88 @@
 <div
   class="min-h-screen flex justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
 >
+  <!-- Guidelines -->
+  <div *ngIf="userAgreement"
+    class="fixed z-20 inset-0 mx-auto p-8 border mt-12 w-4/5 lg:w-3/5 h-4/5 overflow-y-auto shadow-lg rounded-md bg-white">
+    <h1 class="text-3xl font-semibold sm:text-left">Implementing Guidelines for Practicum in the College of Information and Computing
+      Sciences (CICS)</h1>
+    <!-- Cards -->
+    <div class="py-8 rounded-t">
+      <h2 class="py-2 text-xl font-bold">Introduction</h2>
+      <p>InternConnect is a dedicated platform for requesting endorsement letters and viewing accredited companies in UST-CICS.
+        It is part of the major requirements in the Practicum course for CICS prior to starting one's internship.
+      </p>
+      <p class="pt-2">The curriculum of the College of Information and Computing Sciences includes practicum in all its three programs, namely:</p>
+      <ul class="list-disc md:list-disc ml-8 text-base py-2">
+        <li>CS 26116 - Computer Science</li>
+        <li>IS 26319 - Information Systems</li>
+        <li>IT 26212 - Information Technology</li>
+      </ul>
+
+      <h2 class="py-2 text-xl font-bold">List of Practicum Units and Eligibility</h2>
+      <p>Students are expected to pass the pre-requisite subjects for Practicum. Following that, CICS interns must complete the following required internship hours depending on their program and specialization track.</p>
+      <p class="pt-2 font-semibold">Computer Science - <span class="bg-red-100 rounded p-1">250 hours</span></p>
+      <ul class="list-disc md:list-disc ml-8 text-base py-2">
+        <li>Specialization tracks: Core Computer Science, Game Development, Data Science</li>
+        <li>Units: 4</li>
+        <li>Pre-requisites: CS 26112, ICS 26013</li>
+      </ul>
+      <p class="pt-2 font-semibold">Information Systems - <span class="bg-red-100 rounded p-1">600 hours</span></p>
+      <ul class="list-disc md:list-disc ml-8 text-base py-2">
+        <li>Specialization tracks: Business Analytics, Service Management</li>
+        <li>Units: 6</li>
+        <li>Pre-requisites: IS 26316</li>
+      </ul>
+      <p class="pt-2 font-semibold">Information Technology - <span class="bg-red-100 rounded p-1">500 hours</span></p>
+      <ul class="list-disc md:list-disc ml-8 text-base py-2">
+        <li>Specialization tracks: Network and Security, Web and Mobile App Development, IT Automation</li>
+        <li>Units: 6</li>
+        <li>Pre-requisites: IT 26211</li>
+      </ul>
+      <p class="pt-2">Only students who are officially enrolled for Practicum may undergo the internship program.</p>
+
+      <h2 class="py-2 text-xl font-bold">Issuance of Endorsement Letter</h2>
+
+      <p class="text-justify">For the students to proceed with their requirements, it is necessary to fill out an endorsement form that
+        can be accomplished through InternConnect. The endorsement form indicates the pertinent details
+        about the company where a student intends to have the internship during the term. An endorsement
+        letter will be generated based on the entries approved by the administrators
+        on the form. it will explicitly state the lines of work that an intern must work on during the internship.</p>
+
+      <p class="pt-2 text-justify">In accordance with the Data Privacy Act of 2012, the personal data of the users will be
+        collected, recorded,
+        and used only for academic purposes. To be specific, the personal data will be used to process the endorsement
+        requests of the students currently enrolled in their practicum course in the College of Information and
+        Computing Sciences (CICS).
+      </p>
+
+      <p class="pt-2">The following information is gathered from students for the endorsement request in CICS:</p>
+      <ul class="list-disc md:list-disc ml-8 text-base py-2">
+        <li>Name</li>
+        <li>Student Email address</li>
+        <li>UST ID number</li>
+        <li>Department</li>
+        <li>Specialization track</li>
+        <li>Section</li>
+        <li>Contact information about the contact person from the Company</li>
+        <li>Acceptance letter from company</li>
+      </ul>
+
+      <p class="pt-2">For selected administrators, the following information is collected to access the requests:</p>
+      <ul class="list-disc md:list-disc ml-8 text-base py-2">
+        <li>Admin Email address</li>
+        <li>E-signature</li>
+      </ul>
+    </div>
+    <label class="block items-center mt-3">
+      <button (click)="closeAgreement()" class="bg-green-600 hover:bg-green-700 rounded-md text-white py-2 px-4 focus:ring-green-500">I accept the guidelines</button>
+    </label>
+  </div>
+  <!-- Dim bg -->
+  <div *ngIf="userAgreement" class="fixed z-10 inset-0 overflow-hidden bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"></div>
+
+
+
   <div class="max-w-md w-full space-y-8">
     <div>
       <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -73,7 +155,6 @@
               focus:outline-none
               focus:ring-blue-500
               focus:border-blue-500
-              focus:z-10
               sm:text-base
               disabled:opacity-100
             "
@@ -97,7 +178,6 @@
               focus:outline-none
               focus:ring-blue-500
               focus:border-blue-500
-              focus:z-10
               sm:text-base
               disabled:opacity-100
             "
@@ -112,7 +192,7 @@
           <input id="password" name="password" formControlName="password" type="password" autocomplete="current-password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required class="appearance-none relative block w-full
           px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none
-          focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="*******">
+          focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="*******">
           <span *ngIf="onboardForm.get('password').invalid && (onboardForm.get('password').dirty || onboardForm.get('password').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
             {{ onboardForm.get("password").invalid ? "Password must contain at least eight (8) characters, one (1) uppercase letter, one (1) lowercase letter, and a special character." : "Invalid field" }}</span>
         </div>
@@ -141,7 +221,6 @@
               focus:outline-none
               focus:ring-blue-500
               focus:border-blue-500
-              focus:z-10
               sm:text-base
             "
             placeholder="*******"
@@ -170,7 +249,6 @@
               focus:outline-none
               focus:ring-blue-500
               focus:border-blue-500
-              focus:z-10
               sm:text-base
             "
             placeholder="*******"
@@ -225,3 +303,5 @@
     </form>
   </div>
 </div>
+
+

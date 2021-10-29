@@ -13,6 +13,7 @@ export class OnboardingComponent implements OnInit {
   resetKey: string;
   onboardForm: FormGroup;
   confirmpassword: string;
+  userAgreement: boolean = true;
   isLoggedIn: boolean = true;
   disabled: boolean = true;
   constructor(
@@ -54,5 +55,9 @@ export class OnboardingComponent implements OnInit {
   }
   onClick() {
     this.isLoggedIn = !this.isLoggedIn;
+  }
+
+  closeAgreement(){
+    this.userAgreement = false;
   }
 }
