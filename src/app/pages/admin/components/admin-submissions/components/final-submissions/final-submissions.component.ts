@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { interval } from 'rxjs';
 import { logsModel } from 'src/app/shared/models/logs.model';
-import { submissionModel } from 'src/app/shared/models/submission.model';
+import { compSubmissionModel, submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
@@ -27,8 +27,8 @@ export class FinalSubmissionsComponent implements OnInit {
   onAcceptLoader: boolean = false;
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
-  Submissions: submissionModel[] = [];
-  deanSubmissions: submissionModel[] = [];
+  Submissions: compSubmissionModel[] = [];
+  deanSubmissions: compSubmissionModel[] = [];
   ApproveIndicatorChair: boolean = false;
   ApproveIndicatorDean: boolean = false;
   DisapproveIndicatorChair: boolean = false;
@@ -38,7 +38,7 @@ export class FinalSubmissionsComponent implements OnInit {
   RejectForm: FormGroup;
   submissionLogs: logsModel[];
   readonly photoUrl = environment.apiUrl + 'images/Company/';
-  viewEndorsement: submissionModel;
+  viewEndorsement: compSubmissionModel;
 
   constructor(
     private Acc: createAccount,
@@ -68,7 +68,7 @@ export class FinalSubmissionsComponent implements OnInit {
     });
   }
   deptChairSubmissionList() {
-    this.Acc.submissionSteps(2,this.user.admin.programId).subscribe(
+    this.Acc.submissionSteps(2, this.user.admin.programId).subscribe(
       (appByCoord) => {
         this.Submissions = appByCoord;
       }
@@ -76,7 +76,7 @@ export class FinalSubmissionsComponent implements OnInit {
   }
 
   deanSubmissionList() {
-    this.Acc.submissionSteps(3,5).subscribe((eachS) => {
+    this.Acc.submissionSteps(3, 5).subscribe((eachS) => {
       this.deanSubmissions = eachS;
     });
   }
@@ -212,7 +212,7 @@ export class FinalSubmissionsComponent implements OnInit {
     this.ApproveIndicatorDean = false;
   }
 
-  toOpen(eachS: submissionModel) {
+  toOpen(eachS: compSubmissionModel) {
     this.FormEntry = true;
 
     this.viewEndorsement = eachS;

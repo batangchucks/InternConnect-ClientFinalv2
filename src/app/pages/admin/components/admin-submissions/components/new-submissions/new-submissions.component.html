@@ -103,7 +103,7 @@
                     {{ eachS.lastName + " " + eachS.firstName + " " + eachS.middleInitial }}
                   </div>
                   <div class="text-sm text-gray-500 truncate md:overflow-clip pb-1">
-                    {{ eachS.student.account.email.toLowerCase() }}
+                    {{ eachS.studentEmail.toLowerCase() }}
                   </div>
                   <!-- View full submission -->
                   <a class="text-green-700 hover:text-green-800 hover:underline cursor-pointer"
@@ -113,7 +113,7 @@
             </td>
             <td class="px-2 py-4 whitespace-nowrap">
               <div class="ml-4">
-                <div class="text-sm text-gray-900 overflow-ellipsis overflow-hidden">{{ eachS.company.name }}</div>
+                <div class="text-sm text-gray-900 overflow-ellipsis overflow-hidden">{{ eachS.companyName }}</div>
                 <div class="text-sm text-gray-500 truncate md:overflow-clip pb-1">
                   {{ eachS.contactPersonEmail }}
                 </div>
@@ -155,7 +155,7 @@
                   disabled:cursor-not-allowed
                 "
                 [disabled]="!isStamp || (!eachS.isoCode && !iso)"
-                (click)="approve(eachS.adminResponse.id, eachS.isoCode)"
+                (click)="approve(eachS.adminResponseId, eachS.isoCode)"
               >
                 Approve
               </button>
@@ -173,7 +173,7 @@
                   hover:bg-green-500
                   disabled:cursor-not-allowed
                 "
-                (click)="approveModal(eachS.adminResponse.id)"
+                (click)="approveModal(eachS.adminResponseId)"
               >
                 Approve
               </button>
@@ -193,7 +193,7 @@
                   focus:shadow-outline
                   hover:bg-gray-300
                 "
-                (click)="toDisapprove(eachS.adminResponse.id, eachS.isoCode)"
+                (click)="toDisapprove(eachS.adminResponseId, eachS.isoCode)"
               >
                 Disapprove
               </button>
@@ -211,7 +211,7 @@
                   focus:shadow-outline
                   hover:bg-gray-300
                 "
-                (click)="toDisapproveModal(eachS.adminResponse.id)"
+                (click)="toDisapproveModal(eachS.adminResponseId)"
               >
                 Disapprove
               </button>
@@ -1031,7 +1031,7 @@
                     rows="4"
                   ></textarea>
 
-                
+
                 </div>
               </div>
             </div>
@@ -1385,22 +1385,22 @@
 
                     <div class="col-span-6 py-4">
                       <label for="company-name" class="block text-sm font-medium text-gray-700">Name of Company/Institution</label>
-                      <p>{{viewEndorsement.company.name}}</p>
+                      <p>{{viewEndorsement.companyName}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-1" class="block text-sm font-medium text-gray-700">Company Address Line 1</label>
-                      <p>{{viewEndorsement.company.addressOne}}</p>
+                      <p>{{viewEndorsement.companyAddressOne}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-2" class="block text-sm font-medium text-gray-700">Company Address Line 2</label>
-                      <p>{{viewEndorsement.company.addressTwo}}</p>
+                      <p>{{viewEndorsement.companyAddressTwo}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-3" class="block text-sm font-medium text-gray-700">Company Address Line 3</label>
-                      <p>{{viewEndorsement.company.addressThree}}</p>
+                      <p>{{viewEndorsement.companyAddressThree}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">

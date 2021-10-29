@@ -205,12 +205,12 @@
               >
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">
-                    {{ submissions.student.account.email.toLowerCase() }}
+                    {{ submissions.lastName + ', ' + submissions.firstName + ' ' + submissions.middleInitial }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-500">
-                    {{ submissions.company.name }}
+                    {{ submissions.companyName }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -323,7 +323,7 @@
       hover:bg-green-700
       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:cursor-not-allowed
     "
-    > 
+    >
     Download Report
   </button>
 </div>

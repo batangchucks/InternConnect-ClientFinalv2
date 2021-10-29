@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { isoCodeListModel } from 'src/app/shared/models/isoCodeList.model';
 import { logsModel } from 'src/app/shared/models/logs.model';
 
-import { submissionModel } from 'src/app/shared/models/submission.model';
+import { compSubmissionModel, submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { IsoCodeService } from 'src/app/shared/services/iso-code.service';
@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class NewSubmissionsComponent implements OnInit {
   p: number = 1;
-  submission: submissionModel[] = [];
+  submission: compSubmissionModel[] = [];
   user = JSON.parse(localStorage.getItem('user'));
   assignIso: number;
   iso: string;
@@ -37,21 +37,25 @@ export class NewSubmissionsComponent implements OnInit {
 
   AcceptForm: FormGroup;
 
-  trackList: tracksModel[]
-  trackName: string
+  trackList: tracksModel[];
+  trackName: string;
   rejectModal: boolean;
 
   rejectedForm: FormGroup;
 
   isoCodeValue: isoCodeListModel[] = [];
 
-  viewEndorsement: submissionModel;
+  viewEndorsement: compSubmissionModel;
 
   submissionLogs: logsModel[];
 
   readonly photoUrl = environment.apiUrl + 'images/Company/';
 
-  constructor(private Acc: createAccount, private isoCode: IsoCodeService, private programService: ProgramService) {}
+  constructor(
+    private Acc: createAccount,
+    private isoCode: IsoCodeService,
+    private programService: ProgramService
+  ) {}
 
   ngOnInit(): void {
     this.Acc.getByAccount(this.user.admin.id).subscribe((Acc) => {
@@ -61,16 +65,17 @@ export class NewSubmissionsComponent implements OnInit {
       } else this.isStamp = true;
     });
 
-    this.Acc.submissionSteps(1,this.user.admin.sectionId).subscribe((eStud) => {
-      this.submission = eStud;
-      console.log(eStud);
-    });
+    this.Acc.submissionSteps(1, this.user.admin.sectionId).subscribe(
+      (eStud) => {
+        this.submission = eStud;
+      }
+    );
     this.isoCode.getIsoById(this.user.admin.id).subscribe((eachIso) => {
       this.isoCodeValue = eachIso;
     });
-        this.programService.getAllTracks().subscribe((resp) => {
-          this.trackList = resp;
-        });
+    this.programService.getAllTracks().subscribe((resp) => {
+      this.trackList = resp;
+    });
   }
   isoChange() {
     this.iso = (<HTMLInputElement>document.getElementById('isoCode')).value;
@@ -144,7 +149,6 @@ export class NewSubmissionsComponent implements OnInit {
     // if(this.RejectForm.get('comments').value == '' || this.RejectForm.get('comments').value == null) {
     //   this.RejectForm.get('comments').setValue('No Comment')
     // }
-
     // console.log("working");
     // this.Acc.coordinatorApprove(
     //   this.user.admin.id,0,
@@ -153,7 +157,6 @@ export class NewSubmissionsComponent implements OnInit {
     //   console.log(updatedVal);
     //   this.onAcceptLoading = false;
     //   this.assignIso = null;
-
     //   this.ngOnInit();
     // });
   }
@@ -170,27 +173,28 @@ export class NewSubmissionsComponent implements OnInit {
 
   rejectSubmit() {
     this.rejectModal = false;
-    this.onAcceptLoading = true
+    this.onAcceptLoading = true;
     var payload = {
-      comments: this.rejectedForm.get('comments').value == '' || this.rejectedForm.get('comments').value == null? 'No Comment' : this.rejectedForm.get('comments').value ,
+      comments:
+        this.rejectedForm.get('comments').value == '' ||
+        this.rejectedForm.get('comments').value == null
+          ? 'No Comment'
+          : this.rejectedForm.get('comments').value,
       acceptedByCoordinator: this.rejectedForm.get('acceptedByCoordinator')
         .value,
       id: this.rejectedForm.get('id').value,
     };
-    
+
     // pass the value of the iso code as the initial state
-    this.Acc.coordinatorApprove(
-      this.user.admin.id,
-      5,
-      payload
-    ).subscribe((newVal) => {
-      this.onAcceptLoading = false
-      this.ngOnInit();
-    });
+    this.Acc.coordinatorApprove(this.user.admin.id, 5, payload).subscribe(
+      (newVal) => {
+        this.onAcceptLoading = false;
+        this.ngOnInit();
+      }
+    );
   }
 
-
-  previewSub(id:number) {
+  previewSub(id: number) {
     // this.Acc.viewSubmission(id).subscribe(subm=> {
     //   console.log(subm);
     //   // var blob = new Blob([subm], { type: 'application/pdf' });
@@ -200,14 +204,13 @@ export class NewSubmissionsComponent implements OnInit {
     //   // window.open(url);
     // })
 
-
-    this.Acc.viewSubmission(id).subscribe(sub=> {
-     var blob = new Blob([sub], { type: 'application/pdf' });
+    this.Acc.viewSubmission(id).subscribe((sub) => {
+      var blob = new Blob([sub], { type: 'application/pdf' });
 
       let url = window.URL.createObjectURL(blob);
       console.log(url);
       window.open(url);
-    })
+    });
   }
   // rejectedSubmit() {
   //   this.Acc.coordinatorDisapprove(this.user.admin.id ,this.RejectForm.value).subscribe(
@@ -233,17 +236,16 @@ export class NewSubmissionsComponent implements OnInit {
     this.rejectModal = false;
   }
 
-  toOpen(eachS:submissionModel) {
+  toOpen(eachS: compSubmissionModel) {
     this.FormEntry = true;
     this.viewEndorsement = eachS;
-
   }
 
   toClose() {
     this.FormEntry = false;
   }
 
-    getSpecialization(trackId: number): string{
+  getSpecialization(trackId: number): string {
     return this.trackList
       .filter((track) => {
         return track.id == trackId;
@@ -253,14 +255,13 @@ export class NewSubmissionsComponent implements OnInit {
 
   viewHistory(id: number) {
     this.submissionHistory = true;
-    this.Acc.getLogsBySubmission(id).subscribe(resp => {
+    this.Acc.getLogsBySubmission(id).subscribe((resp) => {
       this.submissionLogs = resp;
-    })
+    });
   }
 
   closeHistory() {
     this.submissionHistory = false;
     this.submissionLogs = null;
   }
-
 }

@@ -55,7 +55,7 @@
                     <div class="text-sm font-medium text-gray-900">
                       {{ submission.lastName + " " + submission.firstName + " " + submission.middleInitial }}</div>
                     <div class="text-sm text-gray-500">
-                      {{ submission.student.account.email.toLowerCase() }}
+                      {{ submission.studentEmail.toLowerCase() }}
                     </div>
                     <!-- View full submission -->
                     <a class="text-green-700 hover:text-green-800 hover:underline cursor-pointer" (click)="toOpen(submission)">View submission</a>
@@ -64,7 +64,7 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">
-                  {{ submission.company.name }}
+                  {{ submission.companyName }}
                 </div>
                 <div class="text-sm text-gray-500">
                   {{ submission.contactPersonEmail }}
@@ -94,7 +94,7 @@
                     focus:shadow-outline
                     hover:bg-green-700
                   "
-                  (click)="response(this.submission.adminResponse.id, true, '')"
+                  (click)="response(this.submission.adminResponseId, true, '')"
                 >
                   Accept
                 </button>
@@ -120,7 +120,7 @@
                     focus:shadow-outline
                     hover:bg-gray-300
                   "
-                  (click)="toDisapprove(submission.adminResponse.id)"
+                  (click)="toDisapprove(submission.adminResponseId)"
                 >
                   Reject
                 </button>
@@ -540,22 +540,22 @@
 
                     <div class="col-span-6 py-4">
                       <label for="company-name" class="block text-sm font-medium text-gray-700">Name of Company/Institution</label>
-                      <p>{{viewEndorsement.company.name}}</p>
+                      <p>{{viewEndorsement.companyName}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-1" class="block text-sm font-medium text-gray-700">Company Address Line 1</label>
-                      <p>{{viewEndorsement.company.addressOne}}</p>
+                      <p>{{viewEndorsement.companyAddressOne}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-2" class="block text-sm font-medium text-gray-700">Company Address Line 2</label>
-                      <p>{{viewEndorsement.company.addressTwo}}</p>
+                      <p>{{viewEndorsement.companyAddressTwo}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">
                       <label for="company-address-3" class="block text-sm font-medium text-gray-700">Company Address Line 3</label>
-                      <p>{{viewEndorsement.company.addressThree}}</p>
+                      <p>{{viewEndorsement.companyAddressThree}}</p>
                     </div>
 
                     <div class="col-span-6 py-4">

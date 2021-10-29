@@ -707,7 +707,7 @@
             focus:ring-offset-2
             focus:ring-red-500
           "
-          [disabled]="modalAppear || !EndorsementF.valid"
+          [disabled]="modalAppear || EndorsementF.invalid || !PhotoFileNameA || !PhotoFileNameC"
         >
           Submit
         </button>

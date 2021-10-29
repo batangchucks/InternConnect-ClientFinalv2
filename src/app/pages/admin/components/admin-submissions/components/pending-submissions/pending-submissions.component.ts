@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { logsModel } from 'src/app/shared/models/logs.model';
-import { submissionModel } from 'src/app/shared/models/submission.model';
+import { compSubmissionModel, submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
@@ -23,8 +23,8 @@ export class PendingSubmissionsComponent implements OnInit {
   submissionLogs: logsModel[];
 
   p: number = 1;
-  Submission: submissionModel[] = [];
-  viewEndorsement: submissionModel;
+  Submission: compSubmissionModel[] = [];
+  viewEndorsement: compSubmissionModel;
   readonly photoUrl = environment.apiUrl + 'images/Company/';
   constructor(
     private Acc: createAccount,
@@ -33,9 +33,11 @@ export class PendingSubmissionsComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user'));
 
   ngOnInit(): void {
-    this.Acc.submissionSteps(4,this.user.admin.sectionId).subscribe((eachS) => {
-      this.Submission = eachS;
-    });
+    this.Acc.submissionSteps(4, this.user.admin.sectionId).subscribe(
+      (eachS) => {
+        this.Submission = eachS;
+      }
+    );
     this.programService.getAllTracks().subscribe((resp) => {
       this.trackList = resp;
     });
@@ -65,7 +67,7 @@ export class PendingSubmissionsComponent implements OnInit {
     this.confirmSend = false;
   }
 
-  toOpen(eachS: submissionModel) {
+  toOpen(eachS: compSubmissionModel) {
     this.FormEntry = true;
     this.viewEndorsement = eachS;
   }

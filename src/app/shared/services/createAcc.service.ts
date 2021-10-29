@@ -9,11 +9,12 @@ import { coordinatorModel } from '../models/coordinator.model';
 import { AddStudentModel, ChangeStudentSection, studentModel } from '../models/students.model';
 import { sectionModel } from '../models/section.model';
 import { chairModel } from '../models/chair.model';
-import { submissionModel } from '../models/submission.model';
+import { compSubmissionModel, submissionModel } from '../models/submission.model';
 import { adminModel, AdminUpdateProgram, AdminUpdateSection } from '../models/admin.model';
 import { environment } from 'src/environments/environment.prod';
 import { logsModel } from '../models/logs.model';
 import { webState } from '../models/webstate.model';
+import { ReportsModel } from '../models/reports.model';
 
 @Injectable({ providedIn: 'root' })
 export class createAccount {
@@ -56,7 +57,8 @@ export class createAccount {
     return this.http
       .get<sectionModel[]>(this.apiUrl + 'api/Section')
       .pipe(
-        map((eachV) => eachV.filter((eachS) => eachS.programId === programId)));
+        map((eachV) => eachV.filter((eachS) => eachS.programId === programId))
+      );
   }
   POSTsection(postVal: FormGroup) {
     return this.http.post(this.apiUrl + 'api/Section', postVal);
@@ -110,325 +112,324 @@ export class createAccount {
       postVal
     );
   }
-  getAllSubmission() {
-    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission');
+  getAllSubmission(): Observable<ReportsModel[]> {
+    return this.http.get<ReportsModel[]>(this.apiUrl + 'api/Submission');
   }
 
-  getSubmissionForCoord(sectionId:number) {
-    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId);
-
+  getSubmissionForCoord(sectionId: number) {
+    return this.http.get<ReportsModel[]>(
+      this.apiUrl + 'api/Submission/section/' + sectionId
+    );
   }
 
-  getSubmissionForChair(programId:number) {
-    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId);
+  getSubmissionForChair(programId: number) {
+    return this.http.get<ReportsModel[]>(
+      this.apiUrl + 'api/Submission/program/' + programId
+    );
   }
   filterSubmissionChair(sectionId: number, status: string, programId: number) {
     if (programId && !sectionId) {
       return this.http
-        .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-        .pipe(
-          map((eachS) =>
-            eachS.filter(
-              (eachS) => eachS.student.section.programId == programId
-            )
-          )
-        );
-
-     }
-     else if (status == null && sectionId) {
-      console.log('when only section');
-
-      return this.http
-        .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-        .pipe(
-          map((eachS) =>
-            eachS.filter((eachS) => eachS.student.sectionId == sectionId)
-          )
-        );
-    } else if (status != null && sectionId) {
-      if (status) {
-        if (status == 'Acknowledged') {
-          return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByCoordinator == true
-                )
-              )
-            );
-        } else if (status == 'approvedbyC') {
-          return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByChair == true
-                )
-              )
-            );
-        } else if (status == 'approvedD') {
-          return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByDean == true
-                )
-              )
-            );
-        } else if (status == 'sentToCompany') {
-          return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.emailSentByCoordinator == true
-                )
-              )
-            );
-        } else if (status == 'approvedByCompany') {
-          return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.companyAgrees == true
-                )
-              )
-            );
-        } else {
-          return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.comments
-                )
-              )
-            );
-        }
-      }
-    }
-      return this.http
-    .get<submissionModel[]>(this.apiUrl + 'api/Submission/program/'+programId)
-    .pipe(
-      map((eachS) =>
-        eachS.filter(
-          (eachS) => eachS.student.section.programId == programId
+        .get<ReportsModel[]>(
+          this.apiUrl + 'api/Submission/program/' + programId
         )
-      )
-    );
-  
-  }
-  filterSubmissionDean(sectionId: number, status: string, programId: number) {
-    if (programId && !sectionId) {
-      return this.http
-        .get<submissionModel[]>(this.apiUrl + 'api/Submission')
         .pipe(
-          map((eachS) =>
-            eachS.filter(
-              (eachS) => eachS.student.section.programId == programId
-            )
-          )
+          map((eachS) => eachS.filter((eachS) => eachS.programId == programId))
         );
     } else if (status == null && sectionId) {
       console.log('when only section');
 
       return this.http
-        .get<submissionModel[]>(this.apiUrl + 'api/Submission')
+        .get<ReportsModel[]>(
+          this.apiUrl + 'api/Submission/program/' + programId
+        )
         .pipe(
-          map((eachS) =>
-            eachS.filter((eachS) => eachS.student.sectionId == sectionId)
-          )
+          map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
         );
     } else if (status != null && sectionId) {
       if (status) {
         if (status == 'Acknowledged') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission')
+            .get<ReportsModel[]>(
+              this.apiUrl + 'api/Submission/program/' + programId
+            )
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByCoordinator == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'ACCEPTEDBYCOORDINATOR'
                 )
               )
             );
         } else if (status == 'approvedbyC') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission')
+            .get<ReportsModel[]>(
+              this.apiUrl + 'api/Submission/program/' + programId
+            )
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByChair == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'ACCEPTEDBYCHAIR'
                 )
               )
             );
         } else if (status == 'approvedD') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission')
+            .get<ReportsModel[]>(
+              this.apiUrl + 'api/Submission/program/' + programId
+            )
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByDean == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'ACCEPTEDBYDEAN'
                 )
               )
             );
         } else if (status == 'sentToCompany') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission')
+            .get<ReportsModel[]>(
+              this.apiUrl + 'api/Submission/program/' + programId
+            )
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.emailSentByCoordinator == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'EMAILSENTTOCOMPANY'
                 )
               )
             );
         } else if (status == 'approvedByCompany') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission')
+            .get<ReportsModel[]>(
+              this.apiUrl + 'api/Submission/program/' + programId
+            )
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.companyAgrees == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'COMPANYAGREES'
                 )
               )
             );
         } else {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission')
+            .get<ReportsModel[]>(
+              this.apiUrl + 'api/Submission/program/' + programId
+            )
             .pipe(
               map((eachS) =>
                 eachS.filter(
-                  (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.comments
+                  (eachS) => eachS.sectionId == sectionId && eachS.comments
                 )
               )
             );
         }
       }
     }
-    return this.http.get<submissionModel[]>(this.apiUrl + 'api/Submission');
+    return this.http
+      .get<ReportsModel[]>(this.apiUrl + 'api/Submission/program/' + programId)
+      .pipe(
+        map((eachS) => eachS.filter((eachS) => eachS.programId == programId))
+      );
   }
-  filterSubmissionCord(sectionId: number,status: string) {
-      if(sectionId && status == null) {
-        return this.http
-        .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+  filterSubmissionDean(sectionId: number, status: string, programId: number) {
+    if (programId && !sectionId) {
+      return this.http
+        .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
         .pipe(
-          map((eachS) =>
-            eachS.filter((eachS) => eachS.student.sectionId == sectionId)
-          )
+          map((eachS) => eachS.filter((eachS) => eachS.programId == programId))
         );
-      }
-      else if(sectionId && status) {
+    } else if (status == null && sectionId) {
+      console.log('when only section');
+
+      return this.http
+        .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
+        .pipe(
+          map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
+        );
+    } else if (status != null && sectionId) {
+      if (status) {
         if (status == 'Acknowledged') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByCoordinator == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'ACCEPTEDBYCOORDINATOR'
                 )
               )
             );
         } else if (status == 'approvedbyC') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByChair == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'ACCEPTEDBYCHAIR'
                 )
               )
             );
         } else if (status == 'approvedD') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.acceptedByDean == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'ACCEPTEDBYDEAN'
                 )
               )
             );
         } else if (status == 'sentToCompany') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.emailSentByCoordinator == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'EMAILSENTTOCOMPANY'
                 )
               )
             );
         } else if (status == 'approvedByCompany') {
           return this.http
-            .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
             .pipe(
               map((eachS) =>
                 eachS.filter(
                   (eachS) =>
-                    eachS.student.section.id == sectionId &&
-                    eachS.adminResponse.companyAgrees == true
+                    eachS.sectionId == sectionId &&
+                    eachS.submissionStatus == 'COMPANYAGREES'
                 )
               )
             );
+        } else {
+          return this.http
+            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
+            .pipe(
+              map((eachS) =>
+                eachS.filter(
+                  (eachS) => eachS.sectionId == sectionId && eachS.comments
+                )
+              )
+            );
+        }
       }
-      else {
+    }
+    return this.http.get<ReportsModel[]>(this.apiUrl + 'api/Submission');
+  }
+  filterSubmissionCord(sectionId: number, status: string) {
+    if (sectionId && status == null) {
+      return this.http
+        .get<ReportsModel[]>(
+          this.apiUrl + 'api/Submission/section/' + sectionId
+        )
+        .pipe(
+          map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
+        );
+    } else if (sectionId && status) {
+      if (status == 'Acknowledged') {
         return this.http
-          .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+          .get<ReportsModel[]>(
+            this.apiUrl + 'api/Submission/section/' + sectionId
+          )
           .pipe(
             map((eachS) =>
               eachS.filter(
                 (eachS) =>
-                  eachS.student.section.id == sectionId &&
-                  eachS.adminResponse.comments
+                  eachS.sectionId == sectionId &&
+                  eachS.submissionStatus == 'ACCEPTEDBYCOORDINATOR'
               )
             )
           );
-              }
-       
-
+      } else if (status == 'approvedbyC') {
+        return this.http
+          .get<ReportsModel[]>(
+            this.apiUrl + 'api/Submission/section/' + sectionId
+          )
+          .pipe(
+            map((eachS) =>
+              eachS.filter(
+                (eachS) =>
+                  eachS.sectionId == sectionId &&
+                  eachS.submissionStatus == 'ACCEPTEDBYCHAIR'
+              )
+            )
+          );
+      } else if (status == 'approvedD') {
+        return this.http
+          .get<ReportsModel[]>(
+            this.apiUrl + 'api/Submission/section/' + sectionId
+          )
+          .pipe(
+            map((eachS) =>
+              eachS.filter(
+                (eachS) =>
+                  eachS.sectionId == sectionId &&
+                  eachS.submissionStatus == 'ACCEPTEDBYDEAN'
+              )
+            )
+          );
+      } else if (status == 'sentToCompany') {
+        return this.http
+          .get<ReportsModel[]>(
+            this.apiUrl + 'api/Submission/section/' + sectionId
+          )
+          .pipe(
+            map((eachS) =>
+              eachS.filter(
+                (eachS) =>
+                  eachS.sectionId == sectionId &&
+                  eachS.submissionStatus == 'EMAILSENTTOCOMPANY'
+              )
+            )
+          );
+      } else if (status == 'approvedByCompany') {
+        return this.http
+          .get<ReportsModel[]>(
+            this.apiUrl + 'api/Submission/section/' + sectionId
+          )
+          .pipe(
+            map((eachS) =>
+              eachS.filter(
+                (eachS) =>
+                  eachS.sectionId == sectionId &&
+                  eachS.submissionStatus == 'COMPANYAGREES'
+              )
+            )
+          );
+      } else {
+        return this.http
+          .get<ReportsModel[]>(
+            this.apiUrl + 'api/Submission/section/' + sectionId
+          )
+          .pipe(
+            map((eachS) =>
+              eachS.filter(
+                (eachS) => eachS.sectionId == sectionId && eachS.comments
+              )
+            )
+          );
       }
-      return this.http
-      .get<submissionModel[]>(this.apiUrl + 'api/Submission/section/'+sectionId)
+    }
+    return this.http
+      .get<ReportsModel[]>(this.apiUrl + 'api/Submission/section/' + sectionId)
       .pipe(
-        map((eachS) =>
-          eachS.filter((eachS) => eachS.student.sectionId == sectionId)
-        )
-      ); 
-
+        map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
+      );
   }
   getSubmissionStudent(studId: number): Observable<submissionModel> {
     return this.http.get<submissionModel>(
@@ -437,11 +438,13 @@ export class createAccount {
     // wrong
   }
 
-  submissionSteps(stepNumber:number,uniqueId:number): Observable<submissionModel[]> {
-    return this.http
-      .get<submissionModel[]>(this.apiUrl + 'api/Submission/byStep/'+stepNumber+'/'+uniqueId);
-
- 
+  submissionSteps(
+    stepNumber: number,
+    uniqueId: number
+  ): Observable<compSubmissionModel[]> {
+    return this.http.get<compSubmissionModel[]>(
+      this.apiUrl + 'api/Submission/byStep/' + stepNumber + '/' + uniqueId
+    );
   }
 
   POSTsubmission(sectionId: number, programId: number, postVal) {
@@ -480,13 +483,11 @@ export class createAccount {
   //     postVal
   //   );
   // }
-  
 
   approvedByChair(Payload) {
     return this.http.put(this.apiUrl + 'api/AdminResponse/chair', Payload);
   }
 
-  
   approvedbyDean(adminId, Payload) {
     return this.http.put(
       this.apiUrl + 'api/AdminResponse/dean/' + adminId,
@@ -494,7 +495,6 @@ export class createAccount {
     );
   }
 
-  
   approvedPending(submissionId: number) {
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/pdf');
@@ -566,16 +566,15 @@ export class createAccount {
     return this.http.put(this.apiUrl + 'api/Webstate', postVal);
   }
 
-  getFileUpload(payload:any) {
+  getFileUpload(payload: any) {
     let headers = new HttpHeaders();
 
     console.log(payload);
-    return this.http.post(this.apiUrl+'api/File/excel',payload,{
+    return this.http.post(this.apiUrl + 'api/File/excel', payload, {
       responseType: 'blob',
     });
   }
   changeDean(payload: any) {
-
     return this.http.post(this.apiUrl + 'api/Accounts/changeDean', payload, {
       responseType: 'text',
     });

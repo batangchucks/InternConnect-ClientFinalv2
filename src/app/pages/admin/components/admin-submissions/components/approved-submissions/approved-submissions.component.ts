@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { logsModel } from 'src/app/shared/models/logs.model';
-import { submissionModel } from 'src/app/shared/models/submission.model';
+import { compSubmissionModel, submissionModel } from 'src/app/shared/models/submission.model';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 import { ProgramService } from 'src/app/shared/services/program.service';
@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ApprovedSubmissionsComponent implements OnInit {
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
-  Submission: submissionModel[] = [];
+  Submission: compSubmissionModel[] = [];
   ApproveIndicator: boolean = false;
   DisapproveIndicator: boolean = false;
   FormEntry: boolean = false;
@@ -25,9 +25,9 @@ export class ApprovedSubmissionsComponent implements OnInit {
 
   trackName: string;
   rejectedForm: FormGroup;
-  viewEndorsement: submissionModel;
+  viewEndorsement: compSubmissionModel;
 
-  submissionLogs: logsModel[]
+  submissionLogs: logsModel[];
   readonly photoUrl = environment.apiUrl + 'images/Company/';
 
   constructor(
@@ -36,12 +36,14 @@ export class ApprovedSubmissionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.Acc.submissionSteps(5,this.user.admin.sectionId).subscribe((eachS) => {
-      this.Submission = eachS;
+    this.Acc.submissionSteps(5, this.user.admin.sectionId).subscribe(
+      (eachS) => {
+        this.Submission = eachS;
+      }
+    );
+    this.programService.getAllTracks().subscribe((resp) => {
+      this.trackList = resp;
     });
-        this.programService.getAllTracks().subscribe((resp) => {
-          this.trackList = resp;
-        });
   }
 
   response(responseId: number, companyAgrees: boolean, comments: string) {
@@ -82,7 +84,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.DisapproveIndicator = false;
   }
 
-  toOpen(eachS: submissionModel) {
+  toOpen(eachS: compSubmissionModel) {
     this.FormEntry = true;
     this.FormEntry = true;
     this.viewEndorsement = eachS;
@@ -99,15 +101,15 @@ export class ApprovedSubmissionsComponent implements OnInit {
       .slice(-1)[0].name;
   }
 
-  viewHistory(id:number){
-        this.submissionHistory = true;
-        this.Acc.getLogsBySubmission(id).subscribe((resp) => {
-          this.submissionLogs = resp;
-        });
+  viewHistory(id: number) {
+    this.submissionHistory = true;
+    this.Acc.getLogsBySubmission(id).subscribe((resp) => {
+      this.submissionLogs = resp;
+    });
   }
 
-  closeHistory(){
-       this.submissionHistory = false;
-       this.submissionLogs = null;
+  closeHistory() {
+    this.submissionHistory = false;
+    this.submissionLogs = null;
   }
 }
