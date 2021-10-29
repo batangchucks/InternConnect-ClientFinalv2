@@ -26,6 +26,9 @@ export class ResetpassComponent implements OnInit {
       this.resetKey = params['resetkey'];
 
       this.initalizeForm();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   initalizeForm() {
@@ -46,6 +49,9 @@ export class ResetpassComponent implements OnInit {
         .subscribe((resettedU) => {
           alert("Password Successfully Resetted")
           this.router.navigate(['/login']);
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         });
     } else {
       this.isLoggedIn = false;

@@ -49,7 +49,9 @@ export class ChairComponent implements OnInit {
       this.ngOnInit();
       this.chairId = null;
     },err=> {
-       alert("Something went wrong please try again! ");
+     
+       alert("An error has occured");
+       this.ngOnInit();
     });
   }
 
@@ -61,12 +63,20 @@ export class ChairComponent implements OnInit {
     this.Account.POSTChair(f.value).subscribe((newChair) => {
       this.modalAppear = false;
       this.ngOnInit();
-    });
+    },err=> {
+     
+      alert("An error has occured");
+      this.ngOnInit();
+   });
   }
   showChair() {
     this.program.getProgram().subscribe((eachP) => {
       this.Program = eachP;
-    });
+    },err=> {
+     
+      alert("An error has occured");
+      this.ngOnInit();
+   });
     this.Account.getChairs().subscribe((eachC) => {
       this.Chair = eachC;
       console.log(this.Chair);
@@ -79,7 +89,11 @@ export class ChairComponent implements OnInit {
           }
         });
       });
-    });
+    },err=> {
+     
+      alert("An error has occured");
+      this.ngOnInit();
+   });
   }
 
   OnUpdateChair() {
@@ -92,7 +106,11 @@ export class ChairComponent implements OnInit {
       this.selectedChair = null;
       this.updatePayload = []
       this.ngOnInit();
-    });
+    },err=> {
+     
+      alert("An error has occured");
+      this.ngOnInit();
+   });
   }
 
   toUpdate(chairData: chairModel) {
@@ -115,6 +133,10 @@ export class ChairComponent implements OnInit {
       this.OnUpdateChairList = resp.filter((chair) => {
         return chair.id != selectedChair.id;
       });
-    });
+    },(err)=> {
+     
+      alert("An error has occured");
+      this.ngOnInit();
+   });
   }
 }

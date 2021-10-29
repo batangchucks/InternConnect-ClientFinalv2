@@ -23,6 +23,9 @@ export class AdminLogsComponent implements OnInit {
           profile.filter((log) => {
             return log.actorEmail.toUpperCase() == this.user.email;
           });
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
   }
 }

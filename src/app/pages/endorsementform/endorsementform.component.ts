@@ -57,11 +57,17 @@ export class EndorsementformComponent implements OnInit {
       .getSingleProgram(this.user.student.programId)
       .subscribe((eachV) => {
         this.Program = eachV;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
     this.company.getCompany().subscribe((eachC) => {
       this.Company = eachC.filter((company)=>{
         return company.status == CompanyStatusList[1] || company.status == CompanyStatusList[0]
       });
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
     this.initForm();
   }
@@ -181,6 +187,9 @@ export class EndorsementformComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.PhotoFileNameC = data.toString();
       this.PhotoFilePathC = this.File.photoUrl + this.PhotoFileNameC;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   imgAcceptanceL(event) {
@@ -203,6 +212,9 @@ export class EndorsementformComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.PhotoFileNameA = data.toString();
       this.PhotoFilePathA = this.File.photoUrl + this.PhotoFileNameA;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 }

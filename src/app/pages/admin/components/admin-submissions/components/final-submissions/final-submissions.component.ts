@@ -65,12 +65,18 @@ export class FinalSubmissionsComponent implements OnInit {
   deanAcc() {
     this.Acc.getByAccount(this.user.admin.id).subscribe((admin) => {
       this.stampFileName = admin.stampFileName;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   deptChairSubmissionList() {
     this.Acc.submissionSteps(2, this.user.admin.programId).subscribe(
       (appByCoord) => {
         this.Submissions = appByCoord;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       }
     );
   }
@@ -78,6 +84,9 @@ export class FinalSubmissionsComponent implements OnInit {
   deanSubmissionList() {
     this.Acc.submissionSteps(3, 5).subscribe((eachS) => {
       this.deanSubmissions = eachS;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -94,6 +103,9 @@ export class FinalSubmissionsComponent implements OnInit {
     };
     this.Acc.approvedByChair(Payload).subscribe((approvedS) => {
       this.ApproveIndicatorChair = false;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -182,6 +194,9 @@ export class FinalSubmissionsComponent implements OnInit {
   rejectedSubmitChair() {
     this.Acc.approvedByChair(this.RejectForm.value).subscribe((updatedVal) => {
       this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
     this.DisapproveIndicatorChair = false;
   }
@@ -191,6 +206,9 @@ export class FinalSubmissionsComponent implements OnInit {
       this.user.admin.id,
       this.RejectForm.value
     ).subscribe((updatedVal) => {
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
     this.DisapproveIndicatorDean = false;
@@ -253,6 +271,9 @@ export class FinalSubmissionsComponent implements OnInit {
     this.submissionHistory = true;
     this.Acc.getLogsBySubmission(id).subscribe((resp) => {
       this.submissionLogs = resp;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   closeHistory() {

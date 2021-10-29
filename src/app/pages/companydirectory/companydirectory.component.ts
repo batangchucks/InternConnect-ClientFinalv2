@@ -31,6 +31,9 @@ export class CompanydirectoryComponent implements OnInit {
           company.status != CompanyStatusList[2]
         );
       });
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 }

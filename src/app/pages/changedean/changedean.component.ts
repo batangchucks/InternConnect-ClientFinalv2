@@ -28,6 +28,9 @@ export class ChangedeanComponent implements OnInit {
       this.resetKey = params['resetkey'];
       this.oldemail = params['oldemail']
       this.initalizeForm();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   initalizeForm() {
@@ -51,6 +54,9 @@ export class ChangedeanComponent implements OnInit {
       this.isLoggedIn = true;
       this.account.onBoardNewDean(this.onboardForm.value,this.oldemail).subscribe(newAcc=> {
         this.router.navigate(['/login']);
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       })
     } else {
       this.isLoggedIn = false;

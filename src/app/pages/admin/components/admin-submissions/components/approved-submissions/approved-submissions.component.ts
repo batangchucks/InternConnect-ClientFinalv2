@@ -40,9 +40,15 @@ export class ApprovedSubmissionsComponent implements OnInit {
       (eachS) => {
         this.Submission = eachS;
       }
-    );
+    ),(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
+    };
     this.programService.getAllTracks().subscribe((resp) => {
       this.trackList = resp;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -55,6 +61,9 @@ export class ApprovedSubmissionsComponent implements OnInit {
     };
     this.Acc.approvedCompany(POSTval).subscribe((companyA) => {
       this.modalAppear = false;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -71,6 +80,9 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.modalAppear = true;
     this.Acc.approvedCompany(this.rejectedForm.value).subscribe((companyA) => {
       this.modalAppear = false;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
 
@@ -105,6 +117,9 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.submissionHistory = true;
     this.Acc.getLogsBySubmission(id).subscribe((resp) => {
       this.submissionLogs = resp;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 

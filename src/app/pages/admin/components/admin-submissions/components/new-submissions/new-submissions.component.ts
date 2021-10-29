@@ -63,18 +63,30 @@ export class NewSubmissionsComponent implements OnInit {
       if (this.esig == null) {
         this.isStamp = false;
       } else this.isStamp = true;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
 
     this.Acc.submissionSteps(1, this.user.admin.sectionId).subscribe(
       (eStud) => {
         this.submission = eStud;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       }
     );
     this.isoCode.getIsoById(this.user.admin.id).subscribe((eachIso) => {
       this.isoCodeValue = eachIso;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
     this.programService.getAllTracks().subscribe((resp) => {
       this.trackList = resp;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   isoChange() {
@@ -100,6 +112,9 @@ export class NewSubmissionsComponent implements OnInit {
       this.ngOnInit();
       this.assignIso = null;
       this.onAcceptLoading = false;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -118,6 +133,9 @@ export class NewSubmissionsComponent implements OnInit {
       this.ApproveIndicator = false;
 
       this.assignIso = null;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -190,6 +208,9 @@ export class NewSubmissionsComponent implements OnInit {
       (newVal) => {
         this.onAcceptLoading = false;
         this.ngOnInit();
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       }
     );
   }
@@ -257,6 +278,9 @@ export class NewSubmissionsComponent implements OnInit {
     this.submissionHistory = true;
     this.Acc.getLogsBySubmission(id).subscribe((resp) => {
       this.submissionLogs = resp;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 

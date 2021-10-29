@@ -30,6 +30,9 @@ export class AdminIsoComponent implements OnInit {
       .getCoordinatorData(this.user.admin.programId)
       .subscribe((val: [any]) => {
         this.coordinatorList = val;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
   }
   initalizeFormRange() {

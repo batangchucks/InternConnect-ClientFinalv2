@@ -25,6 +25,9 @@ export class OpportunitiesComponent implements OnInit {
 
     this.company.getOpportunity().subscribe((eO) => {
       this.opportunity = eO;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 }

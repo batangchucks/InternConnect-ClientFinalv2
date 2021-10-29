@@ -33,12 +33,18 @@ export class OpportunitiesUpdateComponent implements OnInit {
       this.Opportunities = eO.filter((opp)=>{
         return opp.company.isActive == true && opp.company.status != CompanyStatusList[2]
       });
+    },(err:Error)=>{
+      alert("An error has occured");
+      this.ngOnInit();
     });
     this.company.getCompany().subscribe((eC) => {
       this.Company = eC.filter(comp => {
         return comp.status != CompanyStatusList[2]
       });
       console.log(this.Company)
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
 
     // this.company.POST_Opportunity();
@@ -52,6 +58,9 @@ export class OpportunitiesUpdateComponent implements OnInit {
   createOpportunitySubmit(f: NgForm) {
     this.company.createOpportunity(f.value).subscribe((crO) => {
       this.toCancelOne();
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -71,6 +80,9 @@ export class OpportunitiesUpdateComponent implements OnInit {
     this.company.deleteByOpportunity(this.opportunityId).subscribe(opDel=> {
       this.DeleteIndicator = false;
       this.opportunityId = null;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     })
   }
@@ -101,6 +113,9 @@ export class OpportunitiesUpdateComponent implements OnInit {
       .subscribe((upO) => {
         this.ngOnInit();
         this.toCancelTwo();
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
   }
 

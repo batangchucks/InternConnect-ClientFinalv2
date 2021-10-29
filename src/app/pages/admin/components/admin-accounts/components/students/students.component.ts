@@ -74,7 +74,11 @@ export class StudentsComponent implements OnInit {
       .getSection(this.user.admin.programId)
       .subscribe((eachSection) => {
         this.Section = eachSection;
-      });
+      },(err)=> {
+     
+        alert("Something went wrong please try again! ");
+        this.ngOnInit();
+     });
   }
   formSubmit() {
     // passs the value here
@@ -84,7 +88,11 @@ export class StudentsComponent implements OnInit {
       .subscribe((newStudent) => {
         this.modalAppear = false;
         this.ngOnInit();
-      });
+      },(err)=> {
+     
+        alert("Something went wrong please try again! ");
+        this.ngOnInit();
+     });
   }
 
   formSubmitforCoord() {
@@ -94,7 +102,11 @@ export class StudentsComponent implements OnInit {
       .subscribe((newStudent) => {
         this.modalAppear = false;
         this.ngOnInit();
-      });
+      },(err)=> {
+     
+        alert("Something went wrong please try again! ");
+        this.ngOnInit();
+     });
   }
 
   toDeleteStudent(studentId: number) {
@@ -106,7 +118,11 @@ export class StudentsComponent implements OnInit {
       this.toDeleteStudentId = null;
       this.DeleteIndicator = false;
       this.ngOnInit();
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   enrolledStudent() {
@@ -115,7 +131,11 @@ export class StudentsComponent implements OnInit {
         .enrolledStudent(this.user.admin.programId)
         .subscribe((eachS) => {
           this.Students = eachS;
-        });
+        },(err)=> {
+     
+          alert("Something went wrong please try again! ");
+          this.ngOnInit();
+       });
     } else {
       this.account
         .enrolledStudentbyCoord(
@@ -124,7 +144,11 @@ export class StudentsComponent implements OnInit {
         )
         .subscribe((eachS) => {
           this.Students = eachS;
-        });
+        },(err)=> {
+     
+          alert("Something went wrong please try again! ");
+          this.ngOnInit();
+       });
     }
   }
 
@@ -153,7 +177,11 @@ export class StudentsComponent implements OnInit {
       this.selectedSection = null;
       this.filteredSectionList = [];
       this.ngOnInit();
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   getSectionListWithoutStudentSection(studentSection: sectionModel): void {
@@ -161,7 +189,11 @@ export class StudentsComponent implements OnInit {
       this.filteredSectionList = resp.filter((section) => {
         return studentSection.id != section.id;
       });
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   onBatchUpload() {
@@ -214,7 +246,11 @@ export class StudentsComponent implements OnInit {
       this.csvArr = []
       this.modalAppear = false
       this.ngOnInit();
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   public records: any[] = [];

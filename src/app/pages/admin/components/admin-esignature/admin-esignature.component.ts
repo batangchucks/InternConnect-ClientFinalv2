@@ -42,6 +42,9 @@ export class AdminEsignatureComponent implements OnInit {
     this.File.uploadEsign(formData).subscribe((data: any) => {
       this.PhotoFileNameEsig = data.toString();
       this.updateEsig();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   previewPdf() {
@@ -57,7 +60,10 @@ export class AdminEsignatureComponent implements OnInit {
     };
     this.Acc.updateAdminSignature(this.user.admin.id, PostVal).subscribe(
       (createdVal) => {}
-    );
+    ),(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
+    };
   }
 
   toAccept() {

@@ -36,10 +36,16 @@ export class PendingSubmissionsComponent implements OnInit {
     this.Acc.submissionSteps(4, this.user.admin.sectionId).subscribe(
       (eachS) => {
         this.Submission = eachS;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       }
     );
     this.programService.getAllTracks().subscribe((resp) => {
       this.trackList = resp;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   downloadPdf(submissionId: number) {
@@ -48,6 +54,9 @@ export class PendingSubmissionsComponent implements OnInit {
 
       let url = window.URL.createObjectURL(blob);
       window.open(url);
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   sendToCompany(responseId: number) {
@@ -59,6 +68,9 @@ export class PendingSubmissionsComponent implements OnInit {
     };
     this.Acc.emailSent(Payload).subscribe((response) => {
       this.transactionLoader = false;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -87,6 +99,9 @@ export class PendingSubmissionsComponent implements OnInit {
     this.submissionHistory = true;
     this.Acc.getLogsBySubmission(id).subscribe((resp) => {
       this.submissionLogs = resp;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 

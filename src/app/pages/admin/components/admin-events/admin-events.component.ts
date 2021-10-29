@@ -29,7 +29,7 @@ export class AdminEventsComponent implements OnInit {
   deleteId: number;
   academicYearStart: string;
   academicYearEnd: string;
-
+  modalAppear:boolean = false;
   constructor(
     private eventService: EventsService,
     private date: DatePipe,
@@ -64,7 +64,13 @@ export class AdminEventsComponent implements OnInit {
   }
 
   onAddEvent() {
+
+    this.modalAppear = true;
     this.eventService.addEvents(this.createForm.value).subscribe((resp) => {
+      this.ngOnInit();
+      this.modalAppear = false;
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -85,8 +91,14 @@ export class AdminEventsComponent implements OnInit {
   }
 
   onUpdateEvent() {
+    this.modalAppear = true
     this.eventService.updateEvent(this.updateForm.value).subscribe((resp) => {
       this.UpdateIndicator = false;
+      this.ngOnInit();
+
+      this.modalAppear = false;
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -100,6 +112,9 @@ export class AdminEventsComponent implements OnInit {
     this.eventService.deleteEvent(this.deleteId).subscribe((resp) => {
       console.log('Successfully deleted');
       this.DeleteIndicator = false;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
     this.deleteId = null;

@@ -61,21 +61,33 @@ export class StatusComponent implements OnInit {
   ngOnInit(): void {
     this.Company.getCompany().subscribe((c) => {
       this.company = c;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
     this.eventService
       .getAllEventsByProgramId(this.user.student.programId)
       .subscribe((resp) => {
         this.eventList = resp;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
 
     this.Acc.getSubmissionStudent(this.user.student.id).subscribe((student) => {
       this.student = student;
       this.initStatus();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
 
     this.Program.getSingleProgram(this.user.student.programId).subscribe(
       (eachV) => {
         this.program = eachV;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       }
     );
   }
@@ -208,6 +220,9 @@ export class StatusComponent implements OnInit {
       this.FormEntry = false;
       this.ngOnInit();
       location.reload();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -338,6 +353,9 @@ export class StatusComponent implements OnInit {
     ).subscribe((submission) => {
       this.CompanyEntry = false;
       this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   toCloseSecond() {
@@ -377,6 +395,9 @@ export class StatusComponent implements OnInit {
       this.PhotoFilePathC = this.File.photoUrl + this.PhotoFileNameC;
 
       console.log(this.PhotoFilePathC);
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   imgAcceptanceL(event) {
@@ -397,6 +418,9 @@ export class StatusComponent implements OnInit {
       this.PhotoFileNameA = data.toString();
       this.PhotoFilePathA = this.File.photoUrl + this.PhotoFileNameA;
       console.log(this.PhotoFilePathA);
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 }

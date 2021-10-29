@@ -54,7 +54,11 @@ export class CoordinatorComponent implements OnInit {
   getCoordinatorAndSection() {
     this.program.getSection(this.user.admin.programId).subscribe((sections) => {
       this.Section = sections;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
     this.accounts
       .getCoordinator(this.user.admin.programId)
       .subscribe((coordinator) => {
@@ -70,7 +74,11 @@ export class CoordinatorComponent implements OnInit {
             }
           });
         });
-      });
+      },(err)=> {
+     
+        alert("Something went wrong please try again! ");
+        this.ngOnInit();
+     });
   }
   removeDuplicate() {
     console.log(this.Section);
@@ -85,7 +93,11 @@ export class CoordinatorComponent implements OnInit {
       .subscribe((createdCoord) => {
         this.modalAppear = false;
         this.ngOnInit();
-      });
+      },(err)=> {
+     
+        alert("Something went wrong please try again! ");
+        this.ngOnInit();
+     });
   }
 
   toDelete(id: number) {
@@ -97,7 +109,11 @@ export class CoordinatorComponent implements OnInit {
     this.accounts.deleteCoordinator(this.toDeleteId).subscribe((delC) => {
       this.ngOnInit();
       this.DeleteIndicator = false;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
     this.toDeleteId = null;
   }
 
@@ -127,7 +143,11 @@ export class CoordinatorComponent implements OnInit {
       this.updatePayload = [];
       this.targetCoordinator = null;
       this.ngOnInit();
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
   toCancel() {
     this.UpdateIndicator = false;
@@ -142,6 +162,10 @@ export class CoordinatorComponent implements OnInit {
         this.onUpdateList = resp.filter((coord) => {
           return coordinator.id != coord.id;
         });
-      });
+      },(err)=> {
+     
+        alert("Something went wrong please try again! ");
+        this.ngOnInit();
+     });
   }
 }

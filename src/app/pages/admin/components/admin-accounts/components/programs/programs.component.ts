@@ -37,7 +37,11 @@ export class ProgramsComponent implements OnInit {
     this.program.getProgram().subscribe(eachV=> {
       this.Program = eachV;
       console.log(this.Program);
-    })
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   })
 
     this.formInitalize();
 
@@ -64,7 +68,11 @@ export class ProgramsComponent implements OnInit {
     this.program.putProgram(this.updateProgramF.value).subscribe((updated) => {
       this.UpdateProgramIndicator = false;
       this.ngOnInit();
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   toCancelTwo() {
@@ -99,7 +107,11 @@ export class ProgramsComponent implements OnInit {
           programId: new FormControl(programId),
         });
       });
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
 
     // this.UpdateTrackIndicator = true;
   }
@@ -116,7 +128,11 @@ export class ProgramsComponent implements OnInit {
     this.program.POSTProgram(f.value).subscribe((createdP) => {
       this.ngOnInit();
       this.CreateProgramIndicator = false;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   toDelete(programId: number) {
@@ -132,14 +148,22 @@ export class ProgramsComponent implements OnInit {
     this.program.updateTrack(this.updateTrackF.value).subscribe((eachT) => {
       this.ngOnInit();
       this.UpdateTrackIndicator = false;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   createTrack(f: NgForm) {
     this.program.POSTtracks(f.value).subscribe((newTrack) => {
       this.ngOnInit();
       this.CreateTrackIndicator = false;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
   deleteTrack(id: number) {
 
@@ -157,7 +181,11 @@ export class ProgramsComponent implements OnInit {
         this.DeleteProgramIndicator = false;
         this.ngOnInit();
         
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
 
   }
 
@@ -168,7 +196,11 @@ export class ProgramsComponent implements OnInit {
           this.DeleteTrackIndicator = false; 
           this.ngOnInit();
          
-        });
+        },(err)=> {
+     
+          alert("Something went wrong please try again! ");
+          this.ngOnInit();
+       });
 
   }
 }

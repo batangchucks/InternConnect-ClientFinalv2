@@ -15,6 +15,9 @@ export class ForgotpassComponent implements OnInit {
     this.Acc.ForgotPassword(f.controls.email.value).subscribe((email) => {
       console.log(email);
       f.resetForm();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
 
     // this.Acc.ForgotPassword(f.value).subscribe(forgotPass=> {

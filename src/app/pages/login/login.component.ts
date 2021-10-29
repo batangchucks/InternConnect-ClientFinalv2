@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
       (error: HttpErrorResponse) => {
         if (error.status == 400) {
           this.isLoggedIn = false;
+          this.ngOnInit();
         }
+        this.ngOnInit();
       }
     );
   }

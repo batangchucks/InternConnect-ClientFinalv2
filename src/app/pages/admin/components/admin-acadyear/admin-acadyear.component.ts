@@ -68,7 +68,11 @@ export class AdminAcadyearComponent implements OnInit {
         (resp) => {
           this.router.navigate(['/admin']);
         },
-        (err: Error) => console.log(err.message)
+        (err: Error) => {
+        
+        alert("An error has occured!");
+        this.ngOnInit();
+        }
       );
   }
 
@@ -104,6 +108,9 @@ export class AdminAcadyearComponent implements OnInit {
       alert('Successfully updated');
       this.router.navigate(['/admin']);
       this.ngOnInit();
+    }, (err:Error)=> {
+      alert("An error has occured!");
+      this.ngOnInit();
     });
   }
 
@@ -126,6 +133,9 @@ export class AdminAcadyearComponent implements OnInit {
 
     this.File.uploadLanding(formData).subscribe((data: any) => {
       this._psUstLogoFileName = data.toString();
+    },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
     });
   }
 
@@ -148,6 +158,9 @@ export class AdminAcadyearComponent implements OnInit {
 
     this.File.uploadLanding(formData).subscribe((data: any) => {
       this._psCollegeLogoFileName = data.toString();
-    });
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
+  });
   }
 }

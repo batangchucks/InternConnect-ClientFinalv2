@@ -70,10 +70,13 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   deleteCompany(eachCid: number) {
     this.company.deleteCompany(eachCid).subscribe((response) => {
       this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   toCreate() {
-    console.log('here');
+    
     this.CreateIndicator = true;
   }
 
@@ -156,6 +159,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     this.company.createCompany(payload).subscribe((createdC) => {
       this.ngOnInit();
       this.toCancelOne();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   updateSubmit() {
@@ -180,6 +186,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       console.log(eachC);
       this.UpdateIndicator = false;
       this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -199,6 +208,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.LogoFileName = data.toString();
       console.log(this.LogoFileName);
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -222,6 +234,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.coverPhotoFileName = data.toString();
       console.log(this.coverPhotoFileName);
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -245,6 +260,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.updateLogo = data.toString();
       console.log(this.updateLogo);
+    },(error:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   changeCoverPhoto(event) {
@@ -267,6 +285,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.updateCoverPhoto = data.toString();
       console.log(this.updateCoverPhoto);
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 
@@ -284,6 +305,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       .subscribe((resp) => {
         this.UpdateStatusIndicator = false;
         this.ngOnInit();
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
   }
 
@@ -300,6 +324,9 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     this.company.deleteCompany(this.ToDeleteCompanyId).subscribe(resp => {
       this.deleteCompanyModal = false;
       this.ToDeleteCompanyId = null;
+      this.ngOnInit();
+    },(err:Error)=> {
+      alert("An error has occured");
       this.ngOnInit();
     });
 

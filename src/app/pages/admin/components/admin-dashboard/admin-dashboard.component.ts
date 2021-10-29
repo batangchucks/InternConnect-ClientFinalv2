@@ -43,6 +43,9 @@ export class AdminDashboardComponent implements OnInit {
           this.chart = document.getElementById('company_chart');
           Chart.register(...registerables);
           this.loadCompanyChart(resp);
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         });
 
       this.dashboard.getStudentList('whole', 0).subscribe((resp) => {
@@ -91,6 +94,9 @@ export class AdminDashboardComponent implements OnInit {
           this.chart = document.getElementById('company_chart');
           Chart.register(...registerables);
           this.loadCompanyChart(resp);
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         });
       this.dashboard
         .getStudentList('program', this.user.admin.programId)
@@ -132,6 +138,9 @@ export class AdminDashboardComponent implements OnInit {
             this.studentsWithCompany,
             this.studentsWithoutCompany
           );
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         });
     }
     if (this.user.admin.authId == 3) {
@@ -142,6 +151,9 @@ export class AdminDashboardComponent implements OnInit {
           this.chart = document.getElementById('company_chart');
           Chart.register(...registerables);
           this.loadCompanyChart(resp);
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         });
       this.dashboard
         .getStudentList('section', this.user.admin.sectionId)
@@ -183,6 +195,9 @@ export class AdminDashboardComponent implements OnInit {
             this.studentsWithCompany,
             this.studentsWithoutCompany
           );
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         });
     }
   }

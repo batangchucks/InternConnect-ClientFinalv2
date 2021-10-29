@@ -28,6 +28,8 @@ export class AdminReportsComponent implements OnInit {
   programs: programModel[] = [];
   changeSec: string;
 
+  modalAppear:boolean = false;
+
   constructor(
     private section: ProgramService,
     private Acc: createAccount,
@@ -38,11 +40,17 @@ export class AdminReportsComponent implements OnInit {
     if (this.user.admin.authId == 1) {
       this.Program.getProgram().subscribe((eachP) => {
         this.programs = eachP;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
 
       this.Acc.getAllSubmission().subscribe((eachS) => {
         this.submission = eachS;
         this.filteredSubmit = eachS;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
     }
     if (this.user.admin.authId == 2) {
@@ -50,6 +58,9 @@ export class AdminReportsComponent implements OnInit {
         console.log(eachS);
 
         this.Section = eachS;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
 
       this.Acc.getSubmissionForChair(this.user.admin.programId).subscribe(
@@ -59,13 +70,19 @@ export class AdminReportsComponent implements OnInit {
           console.log(this.submission);
           console.log(this.filteredSubmit);
         }
-      );
+      ),(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
+      };
     }
 
     if (this.user.admin.authId == 3) {
       this.section.getSection(this.user.admin.programId).subscribe((eachS) => {
         console.log(eachS);
         this.Section = eachS;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
 
       this.selectedSec = this.user.admin.sectionId;
@@ -75,17 +92,23 @@ export class AdminReportsComponent implements OnInit {
           this.submission = eachSub;
           this.filteredSubmit = eachSub;
           console.log(eachSub.length);
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         }
       );
     }
     //  wrong
   }
   Status() {
-    console.log('status is changing');
+    this.modalAppear = true;
 
     if (this.user.admin.authId == 1) {
       this.Program.getSection(this.selectedProg).subscribe((eachS) => {
         this.Section = eachS;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
       this.Acc.filterSubmissionDean(
         this.selectedSec,
@@ -93,8 +116,11 @@ export class AdminReportsComponent implements OnInit {
         this.selectedProg
       ).subscribe((eachP) => {
         this.filteredSubmit = eachP;
-
+        this.modalAppear = false;
         this.id = '';
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
     }
     if (this.user.admin.authId == 2) {
@@ -106,6 +132,10 @@ export class AdminReportsComponent implements OnInit {
         this.filteredSubmit = eachSub;
         console.log(this.filteredSubmit);
         this.id = '';
+        this.modalAppear = false;
+      },(err:Error)=> {
+        alert("An error has occured");
+        this.ngOnInit();
       });
     }
 
@@ -114,6 +144,10 @@ export class AdminReportsComponent implements OnInit {
         (eachS) => {
           this.filteredSubmit = eachS;
           this.id = '';
+          this.modalAppear = false;
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         }
       );
     }
@@ -138,6 +172,9 @@ export class AdminReportsComponent implements OnInit {
       const url = window.URL.createObjectURL(file);
       window.open(url);
       this.id = '';
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
 }

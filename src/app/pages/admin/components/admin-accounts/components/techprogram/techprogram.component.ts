@@ -19,7 +19,11 @@ export class TechprogramComponent implements OnInit {
   ngOnInit(): void {
     this.Account.getAllTechCoordinator().subscribe((resp) => {
       this.techCoordList = resp;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   submitTechCoord(f: NgForm) {
@@ -29,7 +33,11 @@ export class TechprogramComponent implements OnInit {
       f.reset();
       this.modalAppear = false;
       this.ngOnInit();
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   toCancel() {
@@ -44,9 +52,11 @@ export class TechprogramComponent implements OnInit {
     this.Account.deleteCoordinator(this.toDeleteId).subscribe(resp => {
       this.DeleteIndicator = false
       this.ngOnInit();
-    }, err => {
-      alert("Something went wrong");
-    })
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 }
 

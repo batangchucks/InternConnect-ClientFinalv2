@@ -41,7 +41,11 @@ export class SectionsComponent implements OnInit {
     this.account.POSTsection(this.createForm.value).subscribe((newSection) => {
       this.ngOnInit();
       this.CreateIndicator = false;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   toUpdate(section: sectionModel) {
@@ -56,7 +60,11 @@ export class SectionsComponent implements OnInit {
     this.program.PUTsection(this.updateForm.value).subscribe((upSec) => {
       this.ngOnInit();
       this.UpdateIndicator = false;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
   // for deleting a section
   deleteSection(id:number) {
@@ -80,7 +88,11 @@ export class SectionsComponent implements OnInit {
   showSection() {
     this.account.getSection(this.user.admin.programId).subscribe((eachS) => {
       this.Section = eachS;
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 
   confirmDelete() {
@@ -89,6 +101,10 @@ export class SectionsComponent implements OnInit {
       this.DeleteIndicator = false;
       this.ngOnInit();
       
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
   }
 }

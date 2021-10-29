@@ -51,6 +51,9 @@ export class LandingUpdateComponent implements OnInit {
     this.File.uploadLanding(formData).subscribe((data: any) => {
       this.landingPagePhoto = data.toString();
       this.landingPagePath = this.File.photoUrlL + this.landingPagePhoto;
+    },(error:Error)=> {
+       alert("An error has occured");
+        this.ngOnInit();
     });
   }
   updateLogo(event) {
@@ -70,7 +73,9 @@ export class LandingUpdateComponent implements OnInit {
     this.File.uploadLanding(formData).subscribe((data: any) => {
       this.logoPhoto = data.toString();
       this.logoPath = this.File.photoUrlL + this.logoPhoto;
-    });
+    },(error:Error)=> {
+      alert("An error has occured");
+       this.ngOnInit()});
   }
 
   uploadImages() {
@@ -84,6 +89,8 @@ export class LandingUpdateComponent implements OnInit {
       this.ngOnInit();
       this.landingPagePhoto = '';
       this.logoPhoto = '';
-    });
+    }),(error:Error)=> {
+      alert("An error has occured");
+       this.ngOnInit()};
   }
 }

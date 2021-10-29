@@ -48,7 +48,11 @@ export class DeanComponent implements OnInit {
       this.ngOnInit();
       this.logout();
       
-    });
+    },(err)=> {
+     
+      alert("Something went wrong please try again! ");
+      this.ngOnInit();
+   });
 
    
 

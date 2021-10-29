@@ -27,6 +27,9 @@ export class OnboardingComponent implements OnInit {
       this.email = params['email'];
       this.resetKey = params['resetkey'];
       this.initalizeForm();
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
   }
   initalizeForm() {
@@ -48,6 +51,9 @@ export class OnboardingComponent implements OnInit {
         .resetPassword(this.onboardForm.value)
         .subscribe((resettedU) => {
           this.router.navigate(['/login']);
+        },(err:Error)=> {
+          alert("An error has occured");
+          this.ngOnInit();
         });
     } else {
       this.isLoggedIn = false;

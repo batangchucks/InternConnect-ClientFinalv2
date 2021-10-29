@@ -36,9 +36,15 @@ export class ApplicationComponent implements OnInit {
         alert("You must be logged in to view the landing page")
         this.router.navigate(['/login']);
       }
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
     this.Acc.getSubmissionStudent(this.user.student.id).subscribe(student=> {
         this.submission = student;
+    },(err:Error)=> {
+      alert("An error has occured");
+      this.ngOnInit();
     });
 
 
