@@ -1,7 +1,7 @@
 
 <main class="profile-page">
     <section class="relative" style="height:500px"> <!--Header-->
-      <div class="relative w-full h-full"
+      <div class="relative object-scale-down lg:object-cover w-full h-full lg:w-full lg:h-full"
         [style]="'background-image:url('+photoUrl+companyProfile.headerFileName+')'">
         <span class="w-full h-full absolute opacity-50 bg-black"></span>
       </div>
@@ -96,10 +96,10 @@
             <img class="h-40 rounded w-full object-cover object-center mb-6" [src]="photoUrl+eachOp.company.logoFileName"
               alt="content">
                 <div class="">
-                  <h1>{{eachOp.title}}</h1>
+                  <h1 class="text-lg font-semibold">{{eachOp.title}}</h1>
                 </div>
-                <h3 class="tracking-widest text-red-500 text-xl font-medium">{{eachOp.position}}</h3>
-                <h2 class="text-xl text-gray-900 font-medium mt-6">{{eachOp.introduction}}</h2>
+                <h3 class="tracking-normal text-red-500 text-xs font-bold uppercase">{{eachOp.position}}</h3>
+                <h2 class="text-base text-gray-900 font-medium overflow-hidden sm:truncate md:truncate lg:truncate">{{eachOp.introduction}}</h2>
           </div>
         </div>
       </div>

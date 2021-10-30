@@ -66,7 +66,7 @@ export class AdminEsignatureComponent implements OnInit {
     };
   }
 
-  toAccept() {
+  toAccept(event: any) {
     this.dataPrivacyModal = false;
   }
   toDecline() {
