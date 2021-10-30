@@ -12,7 +12,7 @@
 <!-- AuthID 1 -->
 <div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1">
   <label for="filter-program" class="block text-sm font-medium text-gray-700">Filter by program:</label>
-  <select id="filter-proram" [(ngModel)]="selectedProg" (change)="Status()" (ngModelChange)="onFilterChange($event)"
+  <select id="filter-proram" [(ngModel)]="selectedProg" (change)="StatusProgram(selectedProg)" (ngModelChange)="onFilterChange($event)"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
     <option selected disabled hidden>Filter by programs:</option>
     <option *ngFor="let program of programs" [ngValue]="program.id">{{ program.name }}</option>
@@ -21,7 +21,7 @@
 
 <div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1">
   <label for="filter-section" class="block text-sm font-medium text-gray-700">Filter by section:</label>
-  <select id="filter-section" [(ngModel)]="selectedSec" (change)="Status()" (ngModelChange)="onFilterChange($event)" [disabled]="!selectedProg" class="disabled:cursor-not-allowed"
+  <select id="filter-section" [(ngModel)]="selectedSec" (change)="StatusSection(selectedSec)" (ngModelChange)="onFilterChange($event)" [disabled]="!selectedProg" class="disabled:cursor-not-allowed"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
     <option selected disabled hidden>Filter by sections:</option>
     <option *ngFor="let section of Section" [ngValue]="section.id">{{ section.name }}</option>
@@ -31,7 +31,7 @@
 <!-- AuthID 2 -->
 <div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 2">
   <label for="filter-section" class="block text-sm font-medium text-gray-700">Filter by section:</label>
-  <select id="filter-section" [(ngModel)]="selectedSec" (change)="Status()" (ngModelChange)="onFilterChange($event)"
+  <select id="filter-section" [(ngModel)]="selectedSec" (change)="StatusSection(selectedSec)" (ngModelChange)="onFilterChange($event)"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
     <option selected disabled hidden>Filter by section:</option>
     <option *ngFor="let section of Section" [ngValue]="section.id">{{ section.name }}</option>
@@ -41,15 +41,16 @@
 <!-- AuthID != 3 -->
 <div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8">
   <label for="filter-status" class="block text-sm font-medium text-gray-700">Filter by status:</label>
-  <select id="filter-status" [disabled]="!selectedSec && user.admin.authId != 3" [(ngModel)]="status" (change)="Status()" (ngModelChange)="onFilterChange($event)"
+  <select id="filter-status" [disabled]="!selectedSec && user.admin.authId != 3" [(ngModel)]="status" (change)="StatusSubmission(status)" (ngModelChange)="onFilterChange($event)"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
     <option value="" selected disabled hidden>Filter by status:</option>
-    <option [ngValue]="'Acknowledged'">Acknowledged</option>
-    <option [ngValue]="'approvedbyC'">Approved by Coordinator</option>
-    <option [ngValue]="'approvedD'">Approved by Dean</option>
-    <option [ngValue]="'sentToCompany'">Sent to Company</option>
-    <option [ngValue]="'approvedByCompany'">Approved by Company</option>
-    <option [ngValue]="'disapproved'">Disapproved</option>
+    <option [ngValue]="'NEW_SUBMISSION'">Acknowledged</option>
+    <option [ngValue]="'ACCEPTEDBYCOORDINATOR'">Approved by Coordinator</option>
+    <option [ngValue]="'ACCEPTEDBYCHAIR'">Approved by Coordinator</option>
+    <option [ngValue]="'ACCEPTEDBYDEAN'">Approved by Dean</option>
+    <option [ngValue]="'EMAILSENTTOCOMPANY'">Sent to Company</option>
+    <option [ngValue]="'COMPANYAGREES'">Approved by Company</option>
+    <option [ngValue]="'REJECTED'">Disapproved</option>
   </select>
 </div>
 
@@ -198,28 +199,27 @@
             <tbody class="bg-white divide-y divide-gray-200">
               <tr
                 *ngFor="
-                  let submissions of submission
-                    | generateReportFilter: selectedSec:status: selectedProg
+                  let submission of Submissions
                     | paginate: { itemsPerPage: 10, currentPage: p }
                 "
               >
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">
-                    {{ submissions.lastName + ', ' + submissions.firstName + ' ' + submissions.middleInitial }}
+                    {{ submission.lastName + ', ' + submission.firstName + ' ' + submission.middleInitial }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-500">
-                    {{ submissions.companyName }}
+                    {{ submission.companyName }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <div class="text-sm text-gray-500">
-                    {{ submissions.contactPersonEmail }}
+                    {{ submission.contactPersonEmail }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ submissions.jobDescription }}
+                  {{ submission.jobDescription }}
                 </td>
               </tr>
 
@@ -290,13 +290,13 @@
   </div>
   <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
     <div>
-      <p class="text-sm text-gray-700">
+       <p class="text-sm text-gray-700">
         Showing
-        <span class="font-medium">1</span>
+        <span class="font-medium">{{(10*(p-1))+1}}</span>
         to
-        <span class="font-medium">10</span>
+        <span class="font-medium">{{10*p}}</span>
         of
-        <span class="font-medium">{{ submission.length }}</span>
+        <span class="font-medium">{{ Submissions.length }}</span>
         results
       </p>
     </div>
@@ -306,7 +306,7 @@
 
 <div class="px-4 py-3 text-right sm:px-6 lg:px-8">
   <button
-  [disabled]= "!filteredSubmit.length"
+  [disabled]= "filteredSubmit.length"
     (click)="download()"
     type="button"
     class="

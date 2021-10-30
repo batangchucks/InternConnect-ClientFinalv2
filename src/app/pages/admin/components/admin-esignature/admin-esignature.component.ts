@@ -59,7 +59,9 @@ export class AdminEsignatureComponent implements OnInit {
       stampFileName: this.PhotoFileNameEsig,
     };
     this.Acc.updateAdminSignature(this.user.admin.id, PostVal).subscribe(
-      (createdVal) => {}
+      (createdVal) => {
+              this.ngOnInit();
+      }
     ),(err:Error)=> {
       alert("An error has occured");
       this.ngOnInit();
