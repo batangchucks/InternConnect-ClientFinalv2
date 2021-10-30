@@ -17,11 +17,29 @@
                       class="hidden object-contain w-96 h-40 shadow-sm border-2 rounded-md sm:block"></div>
                 </div>
                 <div class="flex flex-row pt-6">
-                  <input type="file" (change)="updateLogo($event)"
-                    class="py-2 rounded-md text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                <label
+                  for="file-logo"
+                  class="
+                    relative
+                    cursor-pointer
+                    bg-white
+                    rounded-md
+                    font-medium
+                    text-green-600
+                    hover:text-green-500
+                    focus-within:outline-none
+                    focus-within:ring-2
+                    focus-within:ring-offset-2
+                    focus-within:ring-green-500
+                  "
+                >
+                  <span
+                    class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">Edit</span>
+                  <input type="file" id="file-logo"
+                    name="file-logo"  (change)="updateLogo($event)"
+                    class=" sr-only py-2 rounded-md text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                     accept=".png, .jpg, .jpeg">
-                  <button type="file"
-                    class="mt-2 w-full h-6 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">Edit</button>
+                   </label>
                 </div>
               </div>
             </div>
@@ -32,11 +50,29 @@
                       *ngIf="landingPagePhoto" src="{{ landingPagePath }}" alt="..."></div>
                 </div>
                 <div class="flex flex-row mt-6">
-                  <input type="file" (change)="updateLanding($event)"
-                    class="py-2 rounded-md text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                  <label
+                  for="file-cover"
+                  class="
+                    relative
+                    cursor-pointer
+                    bg-white
+                    rounded-md
+                    font-medium
+                    text-green-600
+                    hover:text-green-500
+                    focus-within:outline-none
+                    focus-within:ring-2
+                    focus-within:ring-offset-2
+                    focus-within:ring-green-500
+                  "
+                >
+                  <span
+                    class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">Edit</span>
+                  <input type="file" id="file-cover"
+                    name="file-cover"  (change)="updateLanding($event)"
+                    class=" sr-only py-2 rounded-md text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                     accept=".png, .jpg, .jpeg">
-                  <button type="file"
-                    class="mt-2 w-full h-6 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">Edit</button>
+                   </label>
                 </div>
               </div>
               <div class="pt-12 -ml-3"><button
