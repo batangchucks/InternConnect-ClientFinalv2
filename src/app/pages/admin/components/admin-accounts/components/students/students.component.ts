@@ -18,6 +18,8 @@ export class StudentsComponent implements OnInit {
   DeleteIndicator: boolean = false;
   UpdateIndicator: boolean = false;
   BatchUpload: boolean = false;
+  originalButton: boolean = true;
+  loadingButton: boolean = false;
   p: number = 1;
   user = JSON.parse(localStorage.getItem('user'));
   Section: sectionModel[] = [];
@@ -75,7 +77,7 @@ export class StudentsComponent implements OnInit {
       .subscribe((eachSection) => {
         this.Section = eachSection;
       },(err)=> {
-     
+
         alert("Something went wrong please try again! ");
         this.ngOnInit();
      });
@@ -89,7 +91,7 @@ export class StudentsComponent implements OnInit {
         this.modalAppear = false;
         this.ngOnInit();
       },(err)=> {
-     
+
         alert("Something went wrong please try again! ");
         this.ngOnInit();
      });
@@ -103,7 +105,7 @@ export class StudentsComponent implements OnInit {
         this.modalAppear = false;
         this.ngOnInit();
       },(err)=> {
-     
+
         alert("Something went wrong please try again! ");
         this.ngOnInit();
      });
@@ -119,7 +121,7 @@ export class StudentsComponent implements OnInit {
       this.DeleteIndicator = false;
       this.ngOnInit();
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -132,7 +134,7 @@ export class StudentsComponent implements OnInit {
         .subscribe((eachS) => {
           this.Students = eachS;
         },(err)=> {
-     
+
           alert("Something went wrong please try again! ");
           this.ngOnInit();
        });
@@ -145,7 +147,7 @@ export class StudentsComponent implements OnInit {
         .subscribe((eachS) => {
           this.Students = eachS;
         },(err)=> {
-     
+
           alert("Something went wrong please try again! ");
           this.ngOnInit();
        });
@@ -178,7 +180,7 @@ export class StudentsComponent implements OnInit {
       this.filteredSectionList = [];
       this.ngOnInit();
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -190,14 +192,15 @@ export class StudentsComponent implements OnInit {
         return studentSection.id != section.id;
       });
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
   }
 
   onBatchUpload() {
-
+    this.originalButton = false;
+    this.loadingButton = true;
     for (let csv of this.csvArr) {
       if (!re.test(csv.email)) {
         alert(
@@ -218,6 +221,8 @@ export class StudentsComponent implements OnInit {
     }
 
     this.account.batchUpload(this.batchUploadPayload).subscribe((resp) => {
+          this.loadingButton = false;
+          this.originalButton = true;
           this.modalAppear = true;
       // var failedEmails:string = ""
       // if (!resp) {
@@ -247,7 +252,7 @@ export class StudentsComponent implements OnInit {
       this.modalAppear = false
       this.ngOnInit();
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });

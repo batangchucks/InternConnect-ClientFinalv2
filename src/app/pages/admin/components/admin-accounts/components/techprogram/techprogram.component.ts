@@ -20,7 +20,7 @@ export class TechprogramComponent implements OnInit {
     this.Account.getAllTechCoordinator().subscribe((resp) => {
       this.techCoordList = resp;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -34,8 +34,8 @@ export class TechprogramComponent implements OnInit {
       this.modalAppear = false;
       this.ngOnInit();
     },(err)=> {
-     
-      alert("Something went wrong please try again! ");
+      this.modalAppear = false;
+      alert("Something went wrong please try again!");
       this.ngOnInit();
    });
   }
@@ -53,7 +53,7 @@ export class TechprogramComponent implements OnInit {
       this.DeleteIndicator = false
       this.ngOnInit();
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });

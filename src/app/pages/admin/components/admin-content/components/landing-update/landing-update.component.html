@@ -27,23 +27,19 @@
                     font-medium
                     text-green-600
                     hover:text-green-500
-                    focus-within:outline-none
-                    focus-within:ring-2
-                    focus-within:ring-offset-2
-                    focus-within:ring-green-500
                   "
                 >
                   <span
-                    class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">Edit</span>
+                    class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Edit</span>
                   <input type="file" id="file-logo"
                     name="file-logo"  (change)="updateLogo($event)"
-                    class=" sr-only py-2 rounded-md text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    class=" sr-only py-2 rounded-md text-sm leading-4 font-medium"
                     accept=".png, .jpg, .jpeg">
                    </label>
                 </div>
               </div>
             </div>
-            <div class="mt-24"><label class="block text-sm font-semibold text-gray-700">Cover Photo</label>
+            <div class="mt-8"><label class="block text-sm font-semibold text-gray-700">Cover Photo</label>
               <div class="flex flex-col">
                 <div class="justify-left">
                   <div class=""><img class="hidden object-cover w-96 h-40 shadow-sm border-2 rounded-md sm:block"
@@ -60,14 +56,10 @@
                     font-medium
                     text-green-600
                     hover:text-green-500
-                    focus-within:outline-none
-                    focus-within:ring-2
-                    focus-within:ring-offset-2
-                    focus-within:ring-green-500
                   "
                 >
                   <span
-                    class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">Edit</span>
+                    class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Edit</span>
                   <input type="file" id="file-cover"
                     name="file-cover"  (change)="updateLanding($event)"
                     class=" sr-only py-2 rounded-md text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
@@ -76,7 +68,7 @@
                 </div>
               </div>
               <div class="pt-12 -ml-3"><button
-                  class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
                   type="submit" (click)="uploadImages()">Upload</button></div>
             </div>
           </div>
