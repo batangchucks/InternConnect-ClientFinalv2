@@ -18,6 +18,8 @@ import { EventsService } from 'src/app/shared/services/events.service';
 export class StatusComponent implements OnInit {
   FormEntry: boolean = false;
   CompanyEntry: boolean = false;
+  originalButton: boolean = true;
+  loadingButton: boolean = false;
 
   user = JSON.parse(localStorage.getItem('user'));
   student: submissionModel;
@@ -134,6 +136,8 @@ export class StatusComponent implements OnInit {
     });
   }
   updateFormSubmit() {
+    this.originalButton = false;
+    this.loadingButton = true;
     const studentTitle: string =
       this.updateSubmission.get('studentTitle').value;
     const lastName: string = this.updateSubmission.get('lastName').value;
@@ -217,6 +221,7 @@ export class StatusComponent implements OnInit {
     };
 
     this.Acc.UPDATEsubmission(form_payload).subscribe((submission) => {
+      this.loadingButton = false;
       this.FormEntry = false;
       this.ngOnInit();
       location.reload();
@@ -322,7 +327,7 @@ export class StatusComponent implements OnInit {
     //     this.PhotoFileNameC = this.student.companyProfileFileName;
 
     // }
-   
+
 
     var form_payload = {
       studentTitle: studentTitle,
@@ -345,7 +350,7 @@ export class StatusComponent implements OnInit {
 
       studentId: studentId,
     };
-   
+
     this.Acc.POSTsubmission(
       this.user.student.sectionId,
       this.user.student.programId,

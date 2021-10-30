@@ -1,36 +1,70 @@
-
-
 <div class="min-h-screen flex  justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Forgot your password?
-        </h2>
-      </div>
-      <form  #f="ngForm" (ngSubmit)="onSubmit(f)">
-        <input type="hidden" name="remember" value="true">
-        <div class="space-y-px">
-          <div>
-            <label for="email" class="text-sm">Enter your e-mail to continue</label>
-            <input  ngModel id="email" name="email" type="text" autocomplete="current-password" required class="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:z-10 sm:text-sm" placeholder="*******">
-          </div>
-        </div>
-
-        <div class="mt-6">
-          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-semibold rounded text-white bg-red-600 hover:bg-red-700 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-               <!-- Heroicon name: solid/lock-closed -->
-                <svg class="h-5 w-5 text-red-300 group-hover:text-red-300" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd"d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                  clip-rule="evenodd" />
-                s</svg>
-            </span>
-            Reset password
-          </button>
-        </div>
-      </form>
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 *ngIf="!doneButton" class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Forgot your password?
+      </h2>
+      <h2 *ngIf="doneButton" class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Thank you!
+      </h2>
     </div>
-  </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <input type="hidden" name="remember" value="true">
+      <div class="space-y-px">
+        <div>
+          <label *ngIf="!doneButton" for="email" class="text-sm">Enter your e-mail to continue</label>
+          <div class="text-justify">
+          <label *ngIf="doneButton" for="email" class="text-base">We have sent an email to <b> {{userAccount}}.</b> Please visit your inbox and follow the instructions to reset your password.</label></div>
+          <input #email="ngModel" ngModel id="email" name="email" type="email" required
+            class="{{doneButton == true ? 'hidden' : ''}} appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:z-10 sm:text-sm"
+            placeholder="student.cics@ust.edu.ph">
+          <span *ngIf="pwValidation" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">Please enter a valid UST email.</span>
+        </div>
+      </div>
 
-  <app-footer></app-footer>
+      <div class="mt-6">
+        <button type="submit" *ngIf="originalButton" [disabled]="email.invalid"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-semibold rounded text-white bg-red-600 hover:bg-red-700 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <!-- Heroicon name: solid/lock-closed -->
+            <svg class="h-5 w-5 text-red-300 group-hover:text-red-300" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </span>
+          Reset password
+        </button>
+        <button type="submit" *ngIf="loadingButton" disabled
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-semibold rounded text-gray-900 bg-gray-200 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <!-- Heroicon name: solid/lock-closed -->
+            <svg width="20" height="20" fill="currentColor" class="mr-2 text-gray-500 animate-spin" viewBox="0 0 1792 1792"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+              </path>
+            </svg>
+          </span>
+          Processing
+        </button>
+        <button type="submit" *ngIf="doneButton" disabled
+        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-semibold rounded text-white bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+          <!-- Heroicon name: solid/lock-closed -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 animate-bounce" viewBox="0 0 20 20"
+          fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd" />
+          </svg>
+        </span>
+        Sent to email.
+      </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

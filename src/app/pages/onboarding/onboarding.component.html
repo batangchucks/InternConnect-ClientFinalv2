@@ -131,7 +131,7 @@
       [formGroup]="onboardForm"
       (ngSubmit)="onSubmit()"
     >
-      <div class="rounded-md shadow-sm -space-y-px">
+      <div class="-space-y-px">
         <div style="display: none">
           <label for="email-address" class="text-sm">Your email address</label>
           <input
@@ -162,7 +162,7 @@
           />
         </div>
         <div>
-          <label for="email-address" class="text-sm">Your email address</label>
+          <label for="email-address" class="text-sm">Your email address</label> <!--Working-->
           <input
             class="
               appearance-none
@@ -188,7 +188,7 @@
         <br />
 
         <div>
-          <label for="password" class="text-sm">Password</label>
+          <label for="password" class="text-sm">Password</label> <!--Working-->
           <input id="password" name="password" formControlName="password" type="password" autocomplete="current-password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required class="appearance-none relative block w-full
           px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none
@@ -207,21 +207,9 @@
             autocomplete="current-password"
             required
             class="
-              appearance-none
-              rounded-none
-              relative
-              block
-              w-full
-              px-3
-              py-2
-              border border-gray-300
-              placeholder-gray-500
-              text-gray-900
-              rounded-b-md
-              focus:outline-none
-              focus:ring-blue-500
-              focus:border-blue-500
-              sm:text-base
+            appearance-none relative block w-full
+            px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none
+            focus:ring-blue-500 focus:border-blue-500 sm:text-sm
             "
             placeholder="*******"
           />
@@ -235,21 +223,21 @@
             autocomplete="current-password"
             required
             class="
-              appearance-none
-              rounded-none
-              relative
-              block
-              w-full
-              px-3
-              py-2
-              border border-gray-300
-              placeholder-gray-500
-              text-gray-900
-              rounded-b-md
-              focus:outline-none
-              focus:ring-blue-500
-              focus:border-blue-500
-              sm:text-base
+            appearance-none
+            relative
+            block
+            w-full
+            px-3
+            py-2
+            border border-gray-300
+            placeholder-gray-500
+            text-gray-900
+            rounded-md
+            focus:outline-none
+            focus:ring-blue-500
+            focus:border-blue-500
+            sm:text-base
+            disabled:opacity-100
             "
             placeholder="*******"
           />
