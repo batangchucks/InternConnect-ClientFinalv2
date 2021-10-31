@@ -37,6 +37,13 @@ export class FinalSubmissionsComponent implements OnInit {
   submissionHistory: boolean = false;
   RejectForm: FormGroup;
   submissionLogs: logsModel[];
+
+  deanPayload: {
+    adminResponseId: number;
+    acceptedByDeans: boolean;
+    comments: string;
+  };
+
   readonly photoUrl = environment.apiUrl + 'images/Company/';
   viewEndorsement: compSubmissionModel;
 
@@ -63,31 +70,38 @@ export class FinalSubmissionsComponent implements OnInit {
   }
 
   deanAcc() {
-    this.Acc.getByAccount(this.user.admin.id).subscribe((admin) => {
-      this.stampFileName = admin.stampFileName;
-    },(err:Error)=> {
-      alert("An error has occured");
-      this.ngOnInit();
-    });
+    this.Acc.getByAccount(this.user.admin.id).subscribe(
+      (admin) => {
+        this.stampFileName = admin.stampFileName;
+      },
+      (err: Error) => {
+        alert('An error has occured');
+        this.ngOnInit();
+      }
+    );
   }
   deptChairSubmissionList() {
     this.Acc.submissionSteps(2, this.user.admin.programId).subscribe(
       (appByCoord) => {
         this.Submissions = appByCoord;
-      },(err:Error)=> {
-        alert("An error has occured");
+      },
+      (err: Error) => {
+        alert('An error has occured');
         this.ngOnInit();
       }
     );
   }
 
   deanSubmissionList() {
-    this.Acc.submissionSteps(3, 5).subscribe((eachS) => {
-      this.deanSubmissions = eachS;
-    },(err:Error)=> {
-      alert("An error has occured");
-      this.ngOnInit();
-    });
+    this.Acc.submissionSteps(3, 5).subscribe(
+      (eachS) => {
+        this.deanSubmissions = eachS;
+      },
+      (err: Error) => {
+        alert('An error has occured');
+        this.ngOnInit();
+      }
+    );
   }
 
   decision(
@@ -101,29 +115,38 @@ export class FinalSubmissionsComponent implements OnInit {
       acceptedByChair: acceptedByChair,
       comments: comments,
     };
-    this.Acc.approvedByChair(Payload).subscribe((approvedS) => {
-      this.ApproveIndicatorChair = false;
-      this.ngOnInit();
-    },(err:Error)=> {
-      alert("An error has occured");
-      this.ngOnInit();
-    });
+    this.Acc.approvedByChair(Payload).subscribe(
+      (approvedS) => {
+        this.ApproveIndicatorChair = false;
+        this.ngOnInit();
+      },
+      (err: Error) => {
+        alert('An error has occured');
+        this.ngOnInit();
+      }
+    );
   }
 
-  deanApprove(){
+  deanApprove(
+    adminResponseIds: number,
+    acceptedByDeans: boolean,
+    commentss: string
+  ) {
+    this.deanPayload = {
+      adminResponseId: adminResponseIds,
+      acceptedByDeans: acceptedByDeans,
+      comments: commentss
+    };
     this.ApproveIndicatorDean = true;
   }
 
   deanDecision(
-    adminResponseId: number,
-    acceptedByDean: boolean,
-    comments: string
   ) {
     const obs$ = interval(2000);
     var Payload = {
-      id: adminResponseId,
-      acceptedByDean: acceptedByDean,
-      comments: comments,
+      id: this.deanPayload.adminResponseId,
+      acceptedByDean: this.deanPayload.acceptedByDeans,
+      comments: this.deanPayload.comments,
     };
     this.loadPhaseOne = false;
     this.loadPhaseTwo = false;
@@ -150,12 +173,14 @@ export class FinalSubmissionsComponent implements OnInit {
     this.Acc.approvedbyDean(this.user.admin.id, Payload).subscribe(
       (approved) => {
         this.onDeanSubmit = false;
-
+        this.ApproveIndicatorDean = false
+        this.deanPayload = null
         this.ngOnInit();
       },
       (err) => {
         this.onDeanSubmit = false;
-
+        this.ApproveIndicatorDean = false;
+        this.deanPayload= null
         this.ngOnInit();
       }
     );
@@ -196,12 +221,15 @@ export class FinalSubmissionsComponent implements OnInit {
   }
 
   rejectedSubmitChair() {
-    this.Acc.approvedByChair(this.RejectForm.value).subscribe((updatedVal) => {
-      this.ngOnInit();
-    },(err:Error)=> {
-      alert("An error has occured");
-      this.ngOnInit();
-    });
+    this.Acc.approvedByChair(this.RejectForm.value).subscribe(
+      (updatedVal) => {
+        this.ngOnInit();
+      },
+      (err: Error) => {
+        alert('An error has occured');
+        this.ngOnInit();
+      }
+    );
     this.DisapproveIndicatorChair = false;
   }
 
@@ -209,12 +237,15 @@ export class FinalSubmissionsComponent implements OnInit {
     this.Acc.approvedbyDean(
       this.user.admin.id,
       this.RejectForm.value
-    ).subscribe((updatedVal) => {
-      this.ngOnInit();
-    },(err:Error)=> {
-      alert("An error has occured");
-      this.ngOnInit();
-    });
+    ).subscribe(
+      (updatedVal) => {
+        this.ngOnInit();
+      },
+      (err: Error) => {
+        alert('An error has occured');
+        this.ngOnInit();
+      }
+    );
     this.DisapproveIndicatorDean = false;
   }
 
@@ -232,6 +263,7 @@ export class FinalSubmissionsComponent implements OnInit {
 
   toCancelAD() {
     this.ApproveIndicatorDean = false;
+    this.deanPayload = null
   }
 
   toOpen(eachS: compSubmissionModel) {
@@ -273,12 +305,15 @@ export class FinalSubmissionsComponent implements OnInit {
 
   viewHistory(id: number) {
     this.submissionHistory = true;
-    this.Acc.getLogsBySubmission(id).subscribe((resp) => {
-      this.submissionLogs = resp;
-    },(err:Error)=> {
-      alert("An error has occured");
-      this.ngOnInit();
-    });
+    this.Acc.getLogsBySubmission(id).subscribe(
+      (resp) => {
+        this.submissionLogs = resp;
+      },
+      (err: Error) => {
+        alert('An error has occured');
+        this.ngOnInit();
+      }
+    );
   }
   closeHistory() {
     this.submissionHistory = false;

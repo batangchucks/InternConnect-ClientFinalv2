@@ -243,7 +243,7 @@
                     focus:shadow-outline
                     hover:bg-green-700
                   "
-                  (click)="deanDecision(eachS.adminResponseId, true, '')"
+                  (click)="deanApprove(eachS.adminResponseId, true, '')"
                 >
                   Approve
                 </button>
@@ -474,6 +474,7 @@
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <button
           type="button"
+          (click)="deanDecision()"
           class="
             w-full
             inline-flex
