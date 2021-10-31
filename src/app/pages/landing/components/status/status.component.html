@@ -1,292 +1,228 @@
+<div class="heading__container">
+  <h1 class="text-4xl leading-8 text-center font-extrabold text-gray-900 py-12">
+    Status
+  </h1>
+</div>
 
 
-<div class="status-page__container bg-gray-50">
-  <div class="heading__container">
-    <h1 class="text-4xl leading-8 text-center font-extrabold text-gray-900 py-12">
-        Status
-      </h1>
-  </div>
-  <div class="hero__container">
-    <div class="student-container">
-      <div class="student-info__container">
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-          <div class="padding-alter">
-            <h3 class="text-lg leading-6 font-bold text-gray-900">
-              Applicant Information
-            </h3>
-            <p class=" text-gray-500">
-              Your personal details can be found here.
-            </p>
-          </div>
-          <div class="border-t border-gray-200">
-            <dl>
-              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  Full name
-                </dt>
-                <dd class="mt-1 padding-alter break-words text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{student.firstName+" "+student.middleInitial+" "+student.lastName}}
-                </dd>
-              </div>
-              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  Email Address
-                </dt>
-                <dd class="padding-alter break-words mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{student.student.account.email.toLowerCase()}}
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="change-company__contianer">
-        <button *ngIf="student.adminResponse.companyAgrees" class="change-company__btn rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" (click)="toChange()" >
-          Change Company</button>
-      </div>
-      <div class="update-form__container" >
-        <button [disabled]="!comments" class="disabled:cursor-not-allowed updateForm__btn rounded-md border border-gray-300 shadow-sm bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer" (click)="toUpdate()">
-          Update Form</button>
-      </div>
-      <div class="legend-container">
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-          <div class="padding-alter">
-            <h3 class="text-lg leading-6 font-bold text-gray-900">
-              Legend
-            </h3>
-          </div>
-          <div class="border-t border-gray-200">
-            <dl>
-              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
-                  </svg>
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Acknowledged
-                </dd>
-              </div>
-              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                  </svg>
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Signed
-                </dd>
-              </div>
-              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Sent to Company
-                </dd>
-              </div>
-              <div class="bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Accepted
-                </dd>
-              </div>
-              <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current text-red-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                  </svg>
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Rejected
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-        <div class="student-info__container">
-          <div class="mt-10 bg-white shadow overflow-hidden sm:rounded-lg">
-            <div class="padding-alter">
-              <h3 class="text-lg leading-6 font-bold text-gray-900">
-                Deadlines
-              </h3>
-            </div>
-            <div class="border-t border-gray-200">
-              <dl>
-                <div class="bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6" *ngFor="let event of eventList">
-                  <dt class="padding-alter text-sm font-medium text-gray-500">
-                  {{event.endDate| date}}
-                  </dt>
-                  <dd class="mt-1 padding-alter break-words text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <b>{{event.name}}</b>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="acknowledged-container statuses-container">
-      <div class="acknowledged-container statuses-container"*ngIf="responseType == 'acknowledged'" >
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
-            <!--Acknowledged-->
-            <div class="p-3">
-              <div class="inline-flex justify-center items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+<div class="mt-2 w-11/12 lg:w-2/6 mx-auto">
+  <img *ngIf="responseType == 'acknowledged'"
+  src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/acknowledged_fhsdqe.png">
+  <img *ngIf="responseType == 'dean'"
+  src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/signed_kzsdeb.png">
+  <img *ngIf="responseType == 'emailed'"
+  src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/sent_ocovew.png">
+  <img *ngIf="responseType== 'agrees'"
+  src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207474/Status/accepted_wfnrcv.png">
+</div>
+
+<div class="relative bg-white dark:bg-gray-800 p-8 text-justify">
+  <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-12 lg:items-center">
+    <div class="relative lg:-top-24 lg:col-start-2 lg:-mt-16">
+      <h4 class="mt-6 text-2xl leading-8 font-extrabold text-gray-900 dark:text-white tracking-tight sm:leading-9">
+        Updates
+      </h4>
+      <ul class="mt-10">
+        <li *ngIf="responseType== 'agrees'">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 -mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-current text-green-600" viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd" />
                 </svg>
-                <p class="text-2xl font-bold pl-3">Your request is acknowledged.</p>
               </div>
-              <p class=" text-gray-700">
-                The practicum coordinator received your request and will now be verifying your form details.
-                <br><br>
-                After verifying, the practicum coordinator will forward the form to the IGAARP and Dean for signing.
+            </div>
+            <div class="ml-4">
+              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+                Congrats! Your endorsement is accepted.
+              </h5>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                The company successfully claimed the endorsement letter. You are now ready to start your internship and
+                proceed with other practicum requirements.
+              </p>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                Remarks: <span></span>
               </p>
             </div>
-          <div class="border-t border-gray-200">
-            <dl>
-              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  Remarks
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  None
-                </dd>
+          </div>
+        </li>
+        <li *ngIf="comments">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 -mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-current text-red-600" viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd" />
+                </svg>
               </div>
-            </dl>
+            </div>
+            <div class="ml-4">
+              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+                Sorry, your request was disapproved.
+              </h5>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                You probably missed out something or entered incorrect data required in the form.
+              </p>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                Remarks: <span></span>
+              </p>
+            </div>
+          </div>
+        </li>
+        <li  *ngIf="responseType == 'emailed'">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 -mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+                Your endorsement letter has been sent to the company.
+              </h5>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                The practicum coordinator successfully sent the endorsement letter to the email address of the company
+                representative indicated in the form.
+                Just one more step and you're ready to start your internship!
+              </p>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                Remarks: <span></span>
+              </p>
+            </div>
+          </div>
+        </li>
+        <li *ngIf="responseType == 'dean'">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 -mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+                Your endorsement letter is signed
+              </h5>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                The CICS dean, IGAARP coordinator, and practicum coordinator have finalized your request and signed your
+                endorsement letter.
+              </p>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                Remarks: <span></span>
+              </p>
+            </div>
+          </div>
+        </li>
+        <li *ngIf="responseType == 'acknowledged'">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 -mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+                Your request is acknowledged.
+              </h5>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                The practicum coordinator received your request and will now be verifying your form details.
+                After verifying, the practicum coordinator will forward the form to the IGAARP and Dean for signing.
+              </p>
+              <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
+                Remarks: <span></span>
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+    <div class="relative lg:mt-0 lg:col-start-1">
+      <div class="mt-12 lg:col-start-2">
+
+        <div class="w-full pt overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+          <div class="flex items-center px-6 py-3 bg-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path
+                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+            </svg>
+
+            <h1 class="mx-3 text-lg font-semibold text-white">Student Profile</h1>
+          </div>
+
+          <div class="px-6 py-4">
+            <h1 class="text-xl font-semibold text-gray-800 dark:text-white">{{student.firstName+" "+student.middleInitial+" "+student.lastName}}</h1>
+
+            <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z" />
+              </svg>
+
+              <h1 class="px-2 text-sm">{{student.student.account.email.toLowerCase()}}</h1>
+            </div>
+            <div class="flex items-center justify-between gap-4 w-full mt-8">
+              <button type="button" (click)="toUpdate()" [disabled]="!comments"
+                class="disabled:cursor-not-allowed py-2 px-4  bg-red-600 hover:bg-red-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                Update Form
+              </button>
+              <button type="button" *ngIf="student.adminResponse.companyAgrees" (click)="toChange()"
+                class="py-2 px-4  bg-white hover:bg-gray-100 focus:ring-green-500 focus:ring-offset-green-200 text-red-500 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                Change Company
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="signed-container statuses-container"  *ngIf="responseType == 'dean'">
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
-          <!-- Signed -->
-          <div class="p-3">
-            <div class="inline-flex justify-center items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-              </svg>
-              <p class="text-2xl font-bold pl-3">Your endorsement letter is signed.</p>
-            </div>
-            <p class=" text-gray-700">
-              The CICS dean, IGAARP coordinator, and practicum coordinator have finalized your request and signed your endorsement letter.
-              <br><br>
-              Thanks for being patient. Just a few more steps and you're good to go.
-            </p>
+        <!-- Deadlines -->
+        <div class="mt-12 w-full pt overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+          <div class="flex items-center px-6 py-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+
+            <h1 class="mx-3 text-lg font-semibold text-gray-900">Deadlines</h1>
           </div>
-          <div class="border-t border-gray-200 " >
-            <dl>
-              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  Remarks
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  None
-                </dd>
+
+            <div class="px-6 py-8" *ngFor="let event of eventList">
+
+              <div class="shadow-lg rounded-2xl w-full p-4 bg-gray-50 relative overflow-hidden">
+                  <div class="w-4/6">
+                  <p class="text-gray-800 text-lg font-semibold mb-2">
+                    {{event.name}}
+                  </p>
+                  <p class="text-gray-600 font-medium text-xs uppercase tracking-normal">
+                    {{event.endDate| date}}
+                  </p>
+                </div>
               </div>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="sentTo-Company-container statuses-container"  *ngIf="responseType == 'emailed'">
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
-          <!-- Sent to company -->
-          <div class="p-3">
-            <div class="inline-flex justify-center items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-              <p class="text-2xl font-bold pl-3">Your endorsement letter has been sent to the company.</p>
+
             </div>
-            <p class=" text-gray-700">
-              The practicum coordinator successfully sent the endorsement letter to the email address of the company representative indicated in the form.
-              <br><br>
-              Just one more step and you're ready to start your internship!
-            </p>
-          </div>
-          <div class="border-t border-gray-200 ">
-            <dl>
-              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  Remarks
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  None
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="accepted-container statuses-container" *ngIf="responseType== 'agrees'">
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
-          <!-- Accepted -->
-          <div class="p-3">
-            <div class="inline-flex justify-center items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 fill-current text-green-600" viewBox="0 0 20 20"
-                fill="currentColor">
-                <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd" />
-              </svg>
-              <p class="text-2xl font-bold pl-3">Congrats! Your endorsement is accepted.</p>
             </div>
-            <p class=" text-gray-700">
-              The company successfully claimed the endorsement letter.
-              <br><br>
-              You are now ready to start your internship and proceed with other practicum requirements.
-            </p>
-          </div>
-          <div class="border-t border-gray-200 ">
-            <dl>
-              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  Remarks
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  None
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="rejected-container statuses-container" *ngIf="comments">
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg padding-alter">
-          <!-- Rejected -->
-          <div class="p-3">
-            <div class="inline-flex justify-center items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 fill-current text-red-600" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-              </svg>
-              <p class="text-2xl font-bold pl-3">Sorry, your request was disapproved.</p>
-            </div>
-            <p class=" text-gray-700">
-              You probably missed out something or entered incorrect data required in the form.
-            </p>
-          </div>
-          <div class="border-t border-gray-200 ">
-            <dl>
-              <div class="bg-white-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="padding-alter text-sm font-medium text-gray-500">
-                  Remarks
-                </dt>
-                <dd class="padding-alter mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{comments}}
-                </dd>
-              </div>
-            </dl>
-          </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
+
+
 
 <!-- This is the Update FormEntry -->
 <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="FormEntry">
@@ -615,10 +551,17 @@
         </div>
       </div>
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-        <button [disabled]="companyForm.invalid || !PhotoFileNameA || !PhotoFileNameC" type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 {{!PhotoFileNameA || !PhotoFileNameC? 'bg-gray-50': 'bg-green-600'}} text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm  disabled:cursor-not-allowed">
+        <button type="submit" [disabled]="companyForm.invalid || !PhotoFileNameA || !PhotoFileNameC" *ngIf="originalButton" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-not-allowed">
           Submit
         </button>
-        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toCloseSecond()">
+        <button disabled *ngIf="loadingButton" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-not-allowed">
+          <svg width="20" height="20" fill="currentColor" class="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+            </path>
+        </svg>
+          Submitting
+        </button>
+        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toClose()">
           Cancel
         </button>
       </div>

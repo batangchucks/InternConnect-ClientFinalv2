@@ -142,6 +142,7 @@ export class FinalSubmissionsComponent implements OnInit {
 
   deanDecision(
   ) {
+    this.ApproveIndicatorDean = false;
     const obs$ = interval(2000);
     var Payload = {
       id: this.deanPayload.adminResponseId,

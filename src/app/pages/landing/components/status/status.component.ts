@@ -263,7 +263,8 @@ export class StatusComponent implements OnInit {
   }
   companySubmit() {
     // submit the value
-
+    this.originalButton = false;
+    this.loadingButton = true;
     const studentTitle: string = this.companyForm.get('studentTitle').value;
     const lastName: string = this.companyForm.get('lastName').value;
 

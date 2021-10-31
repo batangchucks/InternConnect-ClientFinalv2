@@ -15,7 +15,7 @@ import { ProgramService } from 'src/app/shared/services/program.service';
   styleUrls: ['./endorsementform.component.scss'],
 })
 export class EndorsementformComponent implements OnInit {
-  tooltip_status = 1;
+  tooltip_status = 0;
   modalAppear: boolean = false;
 
   myDate = new Date();

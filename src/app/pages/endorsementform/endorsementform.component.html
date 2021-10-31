@@ -711,7 +711,7 @@
           "
           [disabled]="modalAppear || EndorsementF.invalid || !PhotoFileNameA || !PhotoFileNameC"
         >
-        <div *ngIf="tooltip_status == 1" role="tooltip" class="text-left z-20 ml-72 -mt-20 w-64 absolute transition duration-150 ease-in-out shadow-lg bg-white p-4 rounded">
+        <div *ngIf="tooltip_status == 1 && EndorsementF.invalid" role="tooltip" class="text-left z-20 ml-72 -mt-20 w-64 absolute transition duration-150 ease-in-out shadow-lg bg-white p-4 rounded">
         <p class="text-sm font-bold text-gray-800 pb-1">Please revisit the form.</p>
         <p class="text-xs leading-4 text-gray-600 pb-3">You might have missed out some fields or have incorrect data.</p>
           </div>
