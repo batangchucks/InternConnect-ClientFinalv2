@@ -78,30 +78,44 @@
               >
                 Internship Hours
               </th>
-              <th
+                            <th
                 scope="col"
                 class="
-                  px-3
+                  px-6
                   py-3
-                  text-center text-xs
+                  text-left text-xs
                   font-medium
                   text-gray-500
                   uppercase
                   tracking-wider
                 "
-              >Action</th>
+              >
+                Department Code
+              </th>
               <th
                 scope="col"
                 class="
-                  px-3
+                  px-6
                   py-3
-                  text-center text-xs
+                  text-left text-xs
                   font-medium
                   text-gray-500
                   uppercase
                   tracking-wider
                 "
-              >Action</th>
+              ></th>
+              <th
+                scope="col"
+                class="
+                  px-6
+                  py-3
+                  text-left text-xs
+                  font-medium
+                  text-gray-500
+                  uppercase
+                  tracking-wider
+                "
+              ></th>
             </tr>
           </thead>
           <!-- Person 1 -->
@@ -113,11 +127,15 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{ eachP.numberOfHours }}
               </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{ eachP.isoCodeProgramNumber }}
+              </td>
               <td
                 class="
+                  px-6
                   py-4
                   whitespace-nowrap
-                  text-center text-sm
+                  text-right text-sm
                   font-medium
                 "
               >
@@ -140,9 +158,10 @@
               </td>
               <td
                 class="
+                  px-6
                   py-4
                   whitespace-nowrap
-                  text-center text-sm
+                  text-right text-sm
                   font-medium
                 "
               >
@@ -321,7 +340,7 @@
                   uppercase
                   tracking-wider
                 "
-              >Action</th>
+              ></th>
               <th
                 scope="col"
                 class="
@@ -333,7 +352,7 @@
                   uppercase
                   tracking-wider
                 "
-              >Action</th>
+              ></th>
             </tr>
           </thead>
           <!-- Person 1 -->
@@ -536,7 +555,7 @@
                   type="text"
                   ngModel
                   name="name"
-                  id="price"
+                  id="name"
                   class="
                     focus:ring-green-500 focus:border-green-500
                     block
@@ -549,39 +568,81 @@
                 />
               </div>
             </div>
-
-            <div class="mt-4 flex flex-col">
-              <tr>
-                <td class="py-4 whitespace-nowrap text-sm"> <label for="email-address" class="text-base">Internship Hours</label>
-                  <input type="number" ngModel name="numberOfHours" id="price" class="block w-36 focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md" placeholder="300">
-                </td>
-                <td class="pl-12 py-4 whitespace-nowrap text-sm"><label for="email-address" class="text-base">Department Code: </label>
-                  <select name="isoCodeProgramNumber" id="" ngModel
-                    class="focus:ring-green-500 focus:border-green-500 block w-36 shadow-sm sm:text-sm border-gray-300 rounded-md">
-                    <option value="{{ Program.length + 1 }}">{{ Program.length + 1 }}</option>
-                  </select>
-                </td>
-              </tr>
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Number of Internship Hours</label>
+                <input
+                  type="number"
+                  ngModel
+                  name="numberOfHours"
+                  id="numberOfHours"
+                  class="
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-1/6
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                  placeholder="300"
+                />
+              </div>
             </div>
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Practicum Start Date</label>
+                <input
+                  type="date"
+                  ngModel
+                  name="practicumStart"
+                  id="practicumStart"
+                  min="{{academicYear.startYear}}-01-01"
+                  max="{{academicYear.endYear}}-12-30"
+                  class="
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-full
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                  placeholder="Information Technology"
+                />
+              </div>
+            </div>
+            <div class="mt-6">
+              <div class="mt-4 {{f.value.practicumStart ? '' : 'display:hidden'}}">
+                <label for="email-address" class="text-base">Practicum End Date</label>
+                <input
+                  type="date"
+                  ngModel
+                  name="practicumEnd"
+                  id="practicumEnd"
+                  min="{{f.value.practicumStart}}"
+                  max="{{academicYear.endYear}}-12-31"
+                  class="
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-full
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                  placeholder="Information Technology"
+                />
+              </div>
+            </div>
+            <!-- still wrong -->
+            <div class="mt-6">
+              <label for="email-address" class="text-base">Department Code: </label>
+              <select name="isoCodeProgramNumber"  id="isoCodeProgramNumber" ngModel>
+                <option *ngFor="let num of DepartmentCodeEnum" value="{{num}}">{{num}}</option>
 
-            <div class="mt-4 flex flex-col">
-              <label for="email-address" class="text-base">Assign the duration of the practicum</label>
-              <tr>
-                <td class="py-4 whitespace-nowrap text-sm"><label for="end"
-                    class="block text-base">Start</label><input id="about" name="about"
-                    type="date"
-                    class="mt-1 focus:ring-green-500 focus:border-green-500 block w-42 shadow-sm sm:text-sm border-gray-300 rounded-md">
-                </td>
-                <td class="pl-12 py-4 whitespace-nowrap text-sm"><label for="end"
-                    class="block text-base">End</label><input id="about" name="about"
-                    type="date"
-                    class="mt-1 focus:ring-green-500 focus:border-green-500 block w-42 shadow-sm sm:text-sm border-gray-300 rounded-md">
-                </td>
-              </tr>
+              </select>
             </div>
           </div>
 
-          <div class="py-6 sm:flex sm:flex-row-reverse">
+          <div class="px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse">
             <button
               type="submit"
               class="
@@ -758,6 +819,50 @@
                 />
               </div>
             </div>
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Practicum Start Date</label>
+                <input
+                  type="date"
+                  formControlName="practicumStart"
+                  name="practicumStart"
+                  id="practicumStart"
+                  min="{{academicYear.startYear}}-01-01"
+                  max="{{academicYear.endYear}}-12-30"
+                  class="
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-full
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                  placeholder="Information Technology"
+                />
+              </div>
+            </div>
+            <div class="mt-6">
+              <div class="mt-4">
+                <label for="email-address" class="text-base">Practicum End Date</label>
+                <input
+                  type="date"
+                  formControlName="practicumEnd"
+                  name="practicumEnd"
+                  id="practicumEnd"
+                  min="{{academicYear.startYear}}-01-01"
+                  max="{{academicYear.endYear}}-12-31"
+                  class="
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-full
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                  placeholder="Information Technology"
+                />
+              </div>
+            </div>
 
             <div class="mt-6" style="display: none">
               <div class="mt-4">
@@ -840,6 +945,10 @@
   </form>
 </div>
 
+
+
+
+<!--Tracks-->
 <div
   class="fixed z-10 inset-0 overflow-y-auto"
   aria-labelledby="modal-title"
@@ -931,7 +1040,7 @@
                   "
                   placeholder="Web and Mobile Development"
                 />
-                <label class="block text-base"
+                <label class="block text-sm font-medium text-gray-700"
                   >Assign a Program</label
                 >
 
@@ -964,7 +1073,7 @@
               </div>
             </div>
           </div>
-          <div class="py-6 sm:flex sm:flex-row-reverse">
+          <div class="px-4 py-6 sm:px-6 sm:flex sm:flex-row-reverse">
             <button
               type="submit"
               class="

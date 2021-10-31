@@ -6,12 +6,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ReadAcademicYearModel } from 'src/app/shared/models/AcademicYear.model';
 import {
   ReadEventModel,
   UpdateEventModel,
 } from 'src/app/shared/models/event.model';
+import { programModel } from 'src/app/shared/models/programs.model';
 import { AcademicyearService } from 'src/app/shared/services/academicyear.service';
 import { EventsService } from 'src/app/shared/services/events.service';
+import { ProgramService } from 'src/app/shared/services/program.service';
 
 @Component({
   selector: 'app-admin-events',
@@ -27,13 +30,14 @@ export class AdminEventsComponent implements OnInit {
   updateForm: FormGroup;
   createForm: FormGroup;
   deleteId: number;
-  academicYearStart: string;
-  academicYearEnd: string;
+  createToday: string
+
+  programData: programModel;
   modalAppear:boolean = false;
   constructor(
     private eventService: EventsService,
     private date: DatePipe,
-    private academicyearService: AcademicyearService
+    private programService: ProgramService
   ) {}
   ngOnInit(): void {
     this.createForm = new FormGroup({
@@ -45,22 +49,20 @@ export class AdminEventsComponent implements OnInit {
       this.eventList = events;
     });
 
-    this.academicyearService.getAcademicYear().subscribe((aydata) => {
-      console.log(this.date.transform(aydata.startDate, 'yyyy-MM-dd'));
-      this.academicYearStart = this.date.transform(
-        aydata.startDate,
-        'yyyy-MM-dd'
-      );
+    this.programService.getSingleProgram(this.user.admin.programId).subscribe(resp => {
+      resp[0].practicumStart = this.date.transform(resp[0].practicumStart, 'yyyy-MM-dd')
+      resp[0].practicumEnd = this.date.transform(resp[0].practicumEnd, 'yyyy-MM-dd')
+      this.programData = resp[0];
+    })
       var dateGen = new Date();
       var today =
         dateGen.getFullYear() +
         '-' +
         (dateGen.getMonth() + 1) +
         '-' +
-        dateGen.getDate();
-      this.academicYearStart = today;
-      this.academicYearEnd = this.date.transform(aydata.endDate, 'yyyy-MM-dd');
-    });
+      dateGen.getDate();
+    this.createToday = today;
+
   }
 
   onAddEvent() {

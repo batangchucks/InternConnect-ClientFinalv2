@@ -30,7 +30,7 @@
 
             <div>
                 <label class="text-gray-700" for="event-date">Deadline</label>
-                <input id="event-date" type="date" name="endDate" [min]="academicYearStart" [max]="academicYearEnd" id="endDate" formControlName="endDate" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input id="event-date" type="date" name="endDate" [min]="createToday" [max]="programData.practicumEnd" id="endDate" formControlName="endDate" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
         </div>
 
@@ -455,8 +455,8 @@
                 <input
                   type="date"
                   name="endDate"
-                  [min]="academicYearStart"
-                  [max]="academicYearEnd"
+                  [min]="createToday"
+                  [max]="programData.practicumEnd"
                   id="endDate"
                   formControlName="endDate"
                   class="

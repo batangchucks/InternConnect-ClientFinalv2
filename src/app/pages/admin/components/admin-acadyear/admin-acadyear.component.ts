@@ -22,8 +22,8 @@ export class AdminAcadyearComponent implements OnInit {
   _ayId: number;
   _ayCollegeName: string;
   _ayIgaarpEmail: string;
-  _ayStartDate: string;
-  _ayEndDate: string;
+  _ayStartYear: number;
+  _ayEndYear: number;
 
   selectedFileUpOne: File = null;
   selectedFileUpTwo: File = null;
@@ -41,11 +41,12 @@ export class AdminAcadyearComponent implements OnInit {
 
   ngOnInit(): void {
     this.academicyear.getAcademicYear().subscribe((resp) => {
+
       this._ayId = resp.id;
       this._ayCollegeName = resp.collegeName;
       this._ayIgaarpEmail = resp.igaarpEmail;
-      this._ayStartDate = this.date.transform(resp.startDate, 'yyyy-MM-dd');
-      this._ayEndDate = this.date.transform(resp.endDate, 'yyyy-MM-dd');
+      this._ayStartYear = resp.startYear
+      this._ayEndYear = resp.endYear
     });
 
     this.academicyear.getPdfState().subscribe((resp) => {
@@ -63,15 +64,15 @@ export class AdminAcadyearComponent implements OnInit {
     };
     console.log(resetPayload);
     this.academicyear
-      .resetYear(this._ayStartDate, this._ayEndDate, resetPayload)
+      .resetYear(this._ayStartYear, this._ayEndYear, resetPayload)
       .subscribe(
         (resp) => {
+          alert("Successfully resetted the academic year")
           this.router.navigate(['/admin']);
         },
-        (err: Error) => {
-        
-        alert("An error has occured!");
-        this.ngOnInit();
+        (resp) => {
+          alert(resp.error);
+          this.ngOnInit();
         }
       );
   }
@@ -104,14 +105,17 @@ export class AdminAcadyearComponent implements OnInit {
       collegeLogoFileName: this._psCollegeLogoFileName,
     };
 
-    this.academicyear.updatePdfState(psPayload).subscribe((resp) => {
-      alert('Successfully updated');
-      this.router.navigate(['/admin']);
-      this.ngOnInit();
-    }, (err:Error)=> {
-      alert("An error has occured!");
-      this.ngOnInit();
-    });
+    this.academicyear.updatePdfState(psPayload).subscribe(
+      (resp) => {
+        alert('Successfully updated');
+        this.router.navigate(['/admin']);
+        this.ngOnInit();
+      },
+      (err: Error) => {
+        alert('An error has occured!');
+        this.ngOnInit();
+      }
+    );
   }
 
   UnivLogoUp(event) {
@@ -131,12 +135,15 @@ export class AdminAcadyearComponent implements OnInit {
       this.selectedFileUpOne.name
     );
 
-    this.File.uploadLanding(formData).subscribe((data: any) => {
-      this._psUstLogoFileName = data.toString();
-    },(err:Error)=> {
-        alert("An error has occured");
+    this.File.uploadLanding(formData).subscribe(
+      (data: any) => {
+        this._psUstLogoFileName = data.toString();
+      },
+      (err: Error) => {
+        alert('An error has occured');
         this.ngOnInit();
-    });
+      }
+    );
   }
 
   CollegeLogoUp(event) {
@@ -156,11 +163,14 @@ export class AdminAcadyearComponent implements OnInit {
       this.selectedFileUpTwo.name
     );
 
-    this.File.uploadLanding(formData).subscribe((data: any) => {
-      this._psCollegeLogoFileName = data.toString();
-    },(err:Error)=> {
-      alert("An error has occured");
-      this.ngOnInit();
-  });
+    this.File.uploadLanding(formData).subscribe(
+      (data: any) => {
+        this._psCollegeLogoFileName = data.toString();
+      },
+      (err: Error) => {
+        alert('An error has occured');
+        this.ngOnInit();
+      }
+    );
   }
 }

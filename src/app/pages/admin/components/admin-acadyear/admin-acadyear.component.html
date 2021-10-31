@@ -1,30 +1,104 @@
 <div class="pt-6 sm:px-6 lg:px-8 pb-10">
   <div>
-    <h1 class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight">Manage Academic Year</h1>
+    <h1
+      class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight"
+    >
+      Manage Academic Year
+    </h1>
   </div>
-  <p class="mt-1 text-lg text-gray-500">Information in the current academic year can be updated. Resetting it would mean
-    deleting all the data.</p>
+  <p class="mt-1 text-lg text-gray-500">
+    Information in the current academic year can be updated. Resetting it would
+    mean deleting all the data.
+  </p>
 </div>
+<!-- This example requires Tailwind CSS v2.0+
+     Table -->
+
+<!-- Range of ISO Code -->
 <div class="flex flex-col">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-gray-200 sm:rounded-lg">
+      <div
+        class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+      >
         <table class="min-w-32 divide-y divide-gray-200">
-          <tbody class="bg-white  divide-gray-200">
+          <!-- User Assignment -->
+          <tbody class="bg-white divide-y divide-gray-200">
             <tr>
-              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500"><label for="start"
-                  class="block text-sm font-medium text-gray-700">Start</label><input id="about" name="about"
-                  type="text" placeholder="2020"
-                  class="mt-1 focus:ring-green-500 focus:border-green-500 block w-42 shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
+                <label
+                  for="start"
+                  class="block text-sm font-medium text-gray-700"
+                  >Start</label
+                >
+                <input
+                  id="about"
+                  name="about"
+                  [(ngModel)]="_ayStartYear"
+                  type="number"
+                  min="2000"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-42
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                />
               </td>
-              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500"><label for="end"
-                  class="block text-sm font-medium text-gray-700">End</label><input id="about" name="about"
-                  type="text" placeholder="2021"
-                  class="mt-1 focus:ring-green-500 focus:border-green-500 block w-42 shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
+                <label for="end" class="block text-sm font-medium text-gray-700"
+                  >End</label
+                >
+                <input
+                  id="about"
+                  name="about"
+                  [(ngModel)]="_ayEndYear"
+                  type="number"
+                  [min]="_ayStartYear"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-42
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                />
               </td>
-              <td class="px-4 pt-9 py-4 whitespace-nowrap text-right text-sm font-medium"><button
-                class="block h-8 px-4 text-white transition-colors duration-150 bg-green-600 rounded-full focus:shadow-outline hover:bg-green-700"
-                (click)="toReset()">Reset Acad Year</button></td>
+              <td
+                class="
+                  pt-9
+                  px-6
+                  py-4
+                  whitespace-nowrap
+                  text-right text-sm
+                  font-medium
+                "
+              >
+                <button
+                  class="
+                    block
+                    h-8
+                    px-4
+                    text-white
+                    transition-colors
+                    duration-150
+                    bg-green-600
+                    rounded-full
+                    focus:shadow-outline
+                    hover:bg-green-700
+                  "
+                  (click)="toReset()"
+                >
+                  Reset Acad Year
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -32,153 +106,571 @@
     </div>
   </div>
 </div>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
 <div class="pt-12 sm:px-6 lg:px-8">
+  <!-- <form> -->
   <div class="shadow sm:rounded-md sm:overflow-hidden">
     <div class="px-4 py-5 bg-white">
       <div>
-        <h3 class="text-2xl font-semibold leading-6 text-gray-900">Academic Information</h3>
-        <p class="mt-1 text-base text-gray-500">This sets the name of the college in the letterhead of the generated
-          endorsement PDF.</p>
-        <hr class="my-4 sm:px-6 lg:px-8">
-        <div class="mt-4"><label for="about" class="block text-sm font-medium text-gray-700">College Name</label><input
-            id="about" name="about" type="text" [(ngModel)]="_ayCollegeName"
-            class="focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border p-2 border-gray-300 rounded-md"
-            placeholder="College of Information and Computing Sciences"></div>
-        <h3 class="mt-8 text-2xl font-semibold leading-6 text-gray-900">Endorsement Letter Information</h3>
-        <p class="mt-1 text-base text-gray-500">This sets the credentials of the IGAARP coordinator and the dean which
-          will be visible in generated endorsement PDF.</p>
-        <hr class="my-4 sm:px-6 lg:px-8">
-        <div class="mt-4"><label for="about" class="block text-sm font-medium text-gray-700">IGAARP Coordinator
-            Name</label><input id="about" name="about" type="text" [(ngModel)]="_psIgaarpName"
-            class="focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border p-2 border-gray-300 rounded-md"
-            placeholder="Asst. Prof. Juan Dela Cruz"></div>
-        <div class="mt-4"><label for="about" class="block text-sm font-medium text-gray-700">IGAARP Coordinator Email
-            Address</label><input id="about" name="about" [(ngModel)]="_ayIgaarpEmail" type="email"
-            class="focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border p-2 border-gray-300 rounded-md"
-            placeholder="igaarp@ust.edu.ph"></div>
-        <div class="mt-4"><label for="about" class="block text-sm font-medium text-gray-700">Dean Name</label><input
-            id="about" name="about" [(ngModel)]="_psDeanName" type="text"
-            class="focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border p-2 border-gray-300 rounded-md"
-            placeholder="Asst. Prof. Juana Santos"></div>
-        <h3 class="mt-8 text-2xl font-semibold leading-6 text-gray-900">Asset Uploads</h3>
-        <p class="mt-1 text-base text-gray-500">This sets the logos in the letterhead of the generated endorsement PDF.
+        <h3 class="text-2xl font-semibold leading-6 text-gray-900">
+          Academic Information
+        </h3>
+        <p class="mt-1 text-base text-gray-500">
+          This sets the name of the college in the letterhead of the generated
+          endorsement PDF.
         </p>
-        <hr class="my-4 sm:px-6 lg:px-8">
-        <div><label class="mt-4 block text-sm font-medium text-gray-700">College Logo</label>
-          <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-            <div class="space-y-1 text-center"><svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor"
-                fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                <path
-                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              <div class="text-sm text-gray-600"><label for="file-upload"
-                  class="relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500"><span
-                    class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">Upload
-                    a file</span><input id="file-upload" name="file-upload" type="file" class="sr-only" accept=".png"
-                    (change)="CollegeLogoUp($event)"></label></div>
-              <p class="text-xs text-gray-500 text-center">PNG file only, up to 10MB</p>
-            </div>
-          </div>
+        <hr class="my-4 sm:px-6 lg:px-8" />
+
+        <!-- <label for="about" class="block text-sm font-medium text-gray-700">
+          <label for="about" class="block text-sm font-medium text-gray-700"
+            >University Name</label
+          >
+          <input
+            id="about"
+            name="about"
+            class="
+              focus:ring-green-500 focus:border-green-500
+              block
+              w-full
+              sm:text-sm
+              border
+              p-2
+              border-gray-300
+              rounded-md
+            "
+            placeholder="University Of Santo Tomas"
+          />
+        </label> -->
+
+        <div class="mt-4">
+          <label for="about" class="block text-sm font-medium text-gray-700"
+            >College Name</label
+          >
+          <input
+            id="about"
+            name="about"
+            type="text"
+            [(ngModel)]="_ayCollegeName"
+            class="
+              focus:ring-green-500 focus:border-green-500
+              block
+              w-full
+              sm:text-sm
+              border
+              p-2
+              border-gray-300
+              rounded-md
+            "
+            placeholder="College of Information and Computing Sciences"
+          />
         </div>
-        <div><label class="mt-4 block text-sm font-medium text-gray-700">University Logo</label>
-          <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-            <div class="space-y-1 text-center"><svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor"
-                fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                <path
-                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              <div class="text-sm text-gray-600"><label for="file-uploads"
-                  class="relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500"><span
-                    class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">Upload
-                    a file</span><input id="file-uploads" name="file-uploads" type="file" class="sr-only" accept=".png"
-                    (change)="UnivLogoUp($event)"></label></div>
-              <p class="text-xs text-gray-500 text-center">PNG file only, up to 10MB</p>
-            </div>
-          </div>
+
+        <h3 class="mt-8 text-2xl font-semibold leading-6 text-gray-900">
+          Endorsement Letter Information
+        </h3>
+        <p class="mt-1 text-base text-gray-500">
+          This sets the credentials of the IGAARP coordinator and the dean which
+          will be visible in generated endorsement PDF.
+        </p>
+        <hr class="my-4 sm:px-6 lg:px-8" />
+
+        <div class="mt-4">
+          <label for="about" class="block text-sm font-medium text-gray-700"
+            >IGAARP Coordinator Name</label
+          >
+          <input
+            id="about"
+            name="about"
+            type="text"
+            [(ngModel)]="_psIgaarpName"
+            class="
+              focus:ring-green-500 focus:border-green-500
+              block
+              w-full
+              sm:text-sm
+              border
+              p-2
+              border-gray-300
+              rounded-md
+            "
+            placeholder="Asst. Prof. Juan Dela Cruz"
+          />
         </div>
-      </div>
-    </div>
-    <div class="px-4 py-3 text-right sm:px-6"><button type="submit"
-        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-        (click)="toUpdate()">Update</button></div>
-  </div>
-</div>
-<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true"
-  *ngIf="AcadYearIndicator">
-  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div><span
-      class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-    <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <div class="sm:flex sm:items-start">
+
+        <div class="mt-4">
+          <label for="about" class="block text-sm font-medium text-gray-700"
+            >IGAARP Coordinator Email Address</label
+          >
+          <input
+            id="about"
+            name="about"
+            [(ngModel)]="_ayIgaarpEmail"
+            type="email"
+            class="
+              focus:ring-green-500 focus:border-green-500
+              block
+              w-full
+              sm:text-sm
+              border
+              p-2
+              border-gray-300
+              rounded-md
+            "
+            placeholder="igaarp@ust.edu.ph"
+          />
+        </div>
+
+        <div class="mt-4">
+          <label for="about" class="block text-sm font-medium text-gray-700"
+            >Dean Name</label
+          >
+          <input
+            id="about"
+            name="about"
+            [(ngModel)]="_psDeanName"
+            type="text"
+            class="
+              focus:ring-green-500 focus:border-green-500
+              block
+              w-full
+              sm:text-sm
+              border
+              p-2
+              border-gray-300
+              rounded-md
+            "
+            placeholder="Asst. Prof. Juana Santos"
+          />
+        </div>
+
+        <h3 class="mt-8 text-2xl font-semibold leading-6 text-gray-900">
+          Asset Uploads
+        </h3>
+        <p class="mt-1 text-base text-gray-500">
+          This sets the logos in the letterhead of the generated endorsement
+          PDF.
+        </p>
+        <hr class="my-4 sm:px-6 lg:px-8" />
+
+        <div>
+          <label class="mt-4 block text-sm font-medium text-gray-700"
+            >College Logo
+          </label>
           <div
-            class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Are you sure you want to reset the
-              academic school year?</h3>
-            <div class="mt-2">
-              <p class="text-sm text-gray-500">If you confirm, all content and data will be removed. Practicum
-                coordinators and department chair accounts will also be affected in the process.</p>
-            </div>
-            <div class="mt-2">
-              <div class="mt-4 col-span-6"><label for="street-address"
-                  class="block text-sm font-medium text-gray-700">Enter your password to confirm</label><input
-                  type="password" name="password" [(ngModel)]="_deanPassword"
-                  class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            class="
+              mt-1
+              flex
+              justify-center
+              px-6
+              pt-5
+              pb-6
+              border-2 border-gray-300 border-dashed
+              rounded-md
+            "
+          >
+            <div class="space-y-1 text-center">
+              <svg
+                class="mx-auto h-12 w-12 text-gray-400"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <path
+                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <div class="text-sm text-gray-600">
+                <label
+                  for="file-upload"
+                  class="
+                    relative
+                    cursor-pointer
+                    bg-white
+                    rounded-md
+                    font-medium
+                    text-green-600
+                    hover:text-green-500
+                    focus-within:outline-none
+                    focus-within:ring-2
+                    focus-within:ring-offset-2
+                    focus-within:ring-green-500
+                  "
+                >
+                <span class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">
+                  Upload a file</span>
+                <input
+                    id="file-upload"
+                    name="file-upload"
+                    type="file"
+                    class="sr-only"
+                    accept=".png"
+                    (change)="CollegeLogoUp($event)"
+                  />
+                </label>
               </div>
+              <p class="text-xs text-gray-500 text-center">PNG file only, up to 10MB</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="mt-4 block text-sm font-medium text-gray-700"
+            >University Logo</label
+          >
+          <div
+            class="
+              mt-1
+              flex
+              justify-center
+              px-6
+              pt-5
+              pb-6
+              border-2 border-gray-300 border-dashed
+              rounded-md
+            "
+          >
+            <div class="space-y-1 text-center">
+              <svg
+                class="mx-auto h-12 w-12 text-gray-400"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <path
+                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <div class="text-sm text-gray-600">
+                <label
+                  for="file-uploads"
+                  class="
+                    relative
+                    cursor-pointer
+                    bg-white
+                    rounded-md
+                    font-medium
+                    text-green-600
+                    hover:text-green-500
+                    focus-within:outline-none
+                    focus-within:ring-2
+                    focus-within:ring-offset-2
+                    focus-within:ring-green-500
+                  "
+                >
+                <span class="transparent shadow-sm px-4 py-1 bg-green-600 text-base font-medium text-white text-center hover:bg-green-700 rounded-full">
+                  Upload a file</span>
+                <input
+                    id="file-uploads"
+                    name="file-uploads"
+                    type="file"
+                    class="sr-only"
+                    accept=".png"
+                    (change)="UnivLogoUp($event)"
+                  />
+                </label>
+              </div>
+              <p class="text-xs text-gray-500 text-center">PNG file only, up to 10MB</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"><button type="button"
-          (click)="toConfirmReset()"
-          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">Reset
-          Academic Year</button><button type="button"
-          class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-          (click)="toCancel()">Cancel</button></div>
+    </div>
+
+    <div class="px-4 py-3 text-right sm:px-6">
+      <button
+        type="submit"
+        class="
+          inline-flex
+          justify-center
+          py-2
+          px-4
+          border border-transparent
+          shadow-sm
+          text-sm
+          font-medium
+          rounded-md
+          text-white
+          bg-green-600
+          hover:bg-green-700
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-green-500
+        "
+        (click)="toUpdate()"
+      >
+        Update
+      </button>
     </div>
   </div>
+  <!-- </form> -->
 </div>
-<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true"
-  *ngIf="ResetYearIndicator">
-  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div><span
-      class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+<div
+  class="fixed z-10 inset-0 overflow-y-auto"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  *ngIf="AcadYearIndicator"
+>
+  <div
+    class="
+      flex
+      items-end
+      justify-center
+      min-h-screen
+      pt-4
+      px-4
+      pb-20
+      text-center
+      sm:block sm:p-0
+    "
+  >
+    <!--
+            Background overlay, show/hide based on modal state.
+            Entering: "ease-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
     <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      aria-hidden="true"
+    ></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span
+      class="hidden sm:inline-block sm:align-middle sm:h-screen"
+      aria-hidden="true"
+      >&#8203;</span
+    >
+
+    <!--
+            Modal panel, show/hide based on modal state.
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+    <div
+      class="
+        inline-block
+        align-bottom
+        bg-white
+        rounded-lg
+        text-left
+        overflow-hidden
+        shadow-xl
+        transform
+        transition-all
+        sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+      "
+    >
       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start">
           <div
-            class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+            class="
+              mx-auto
+              flex-shrink-0 flex
+              items-center
+              justify-center
+              h-12
+              w-12
+              rounded-full
+              bg-gray-100
+              sm:mx-0 sm:h-10 sm:w-10
+            "
+          >
+            <!-- Heroicon name: outline/exclamation -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="mt-1 text-lg leading-6 font-medium text-gray-900" id="modal-title">Enter your password to confirm
+            <h3
+              class="text-lg leading-6 font-medium text-gray-900"
+              id="modal-title"
+            >
+              Are you sure you want to reset the academic school year?
             </h3>
             <div class="mt-2">
-              <p class="text-sm text-gray-500">Resetting the academic year would delete the all entries in the database.
-                Do this only when necessary.</p>
-              <div class="mt-4 col-span-6"><label for="street-address"
-                  class="block text-sm font-medium text-gray-700">Password</label><input type="password" name="" id=""
-                  placeholder="******"
+              <p class="text-sm text-gray-500">
+                If you confirm, all content and data will be removed. Practicum
+                coordinators and department chair accounts will also be affected
+                in the process.
+              </p>
+            </div>
+            <div class="mt-2">
+              <div class="mt-4 col-span-6">
+                <label
+                  for="street-address"
+                  class="block text-sm font-medium text-gray-700"
+                  >Enter your password to confirm</label
+                >
+                <input
+                  type="password"
+                  name="password"
+                  [(ngModel)]="_deanPassword"
+                  class="
+                    mt-1
+                    focus:ring-green-500 focus:border-green-500
+                    block
+                    w-full
+                    shadow-sm
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button
+          type="button"
+          (click)="toConfirmReset()"
+          class="
+            w-full
+            inline-flex
+            justify-center
+            rounded-md
+            border border-transparent
+            shadow-sm
+            px-4
+            py-2
+            bg-green-600
+            text-base
+            font-medium
+            text-white
+            hover:bg-green-700
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-green-500
+            sm:ml-3 sm:w-auto sm:text-sm
+          "
+        >
+          Reset Academic Year
+        </button>
+        <button
+          type="button"
+          class="
+            mt-3
+            w-full
+            inline-flex
+            justify-center
+            rounded-md
+            border border-gray-300
+            shadow-sm
+            px-4
+            py-2
+            bg-white
+            text-base
+            font-medium
+            text-gray-700
+            hover:bg-gray-50
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-green-500
+            sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
+          "
+          (click)="toCancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- This is the ResetYearIndicator -->
+<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="ResetYearIndicator">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <!--
+      Background overlay, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+    <!--
+      Modal panel, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
+            <!-- Heroicon name: outline/exclamation -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="mt-1 text-lg leading-6 font-medium text-gray-900" id="modal-title">
+              Enter your password to confirm
+            </h3>
+            <div class="mt-2">
+              <p class="text-sm text-gray-500">
+                Resetting the academic year would delete the all entries in the database. Do this only when necessary.
+              </p>
+              <div class="mt-4 col-span-6">
+                <label for="street-address" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="" id="" placeholder="******"
                   class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"><button type="button"
-          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">Reset
-          Academic Year</button><button type="button"
-          class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-          (click)="toCancelTwo()">Cancel</button></div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+          Reset Academic Year
+        </button>
+        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toCancelTwo()">
+          Cancel
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProgramService } from 'src/app/shared/services/program.service';
-import { programModel } from 'src/app/shared/models/programs.model';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { AddProgramModel, programModel } from 'src/app/shared/models/programs.model';
+import { FormControl, FormControlName, FormGroup, NgForm } from '@angular/forms';
 import { tracksModel } from 'src/app/shared/models/tracks.model';
-import { map } from 'rxjs/operators';
+import { ReadAcademicYearModel } from 'src/app/shared/models/AcademicYear.model';
+import { AcademicyearService } from 'src/app/shared/services/academicyear.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-programs',
@@ -15,6 +17,8 @@ export class ProgramsComponent implements OnInit {
   p: number = 1;
 
   Program: programModel[] = [];
+
+  DepartmentCodeEnum: string[] = ["1","2","3","4","5","6","7","8","9"]
   CreateProgramIndicator: boolean = false;
   UpdateProgramIndicator: boolean = false;
   DeleteProgramIndicator: boolean = false;
@@ -28,17 +32,29 @@ export class ProgramsComponent implements OnInit {
 
   updateTrackF: FormGroup;
   selectedTrack: tracksModel[] = [];
-  programId:number;
+  programId: number;
+
+  academicYear: ReadAcademicYearModel;
 
   trackId:number;
-  constructor(private program: ProgramService) {}
+  constructor(private program: ProgramService, private academicYearService: AcademicyearService,     private date: DatePipe) {}
 
   ngOnInit(): void {
+    this.academicYearService.getAcademicYear().subscribe(resp => {
+      this.academicYear = resp;
+    })
+
     this.program.getProgram().subscribe(eachV=> {
       this.Program = eachV;
-      console.log(this.Program);
+      var usedDeptCode: string[] = []
+      eachV.forEach(elem => {
+        usedDeptCode.push(elem.isoCodeProgramNumber)
+      });
+      this.DepartmentCodeEnum = this.DepartmentCodeEnum.filter(enumers => {
+        return !usedDeptCode.includes(enumers);
+      })
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    })
@@ -54,13 +70,18 @@ export class ProgramsComponent implements OnInit {
   toCancelOne() {
     this.CreateProgramIndicator = false;
   }
-
   toUpdateProgram(eachP: programModel) {
     this.updateProgramF = new FormGroup({
       id: new FormControl(eachP.id),
       name: new FormControl(eachP.name),
       isoCodeProgramNumber: new FormControl(eachP.isoCodeProgramNumber),
-      numberOfHours: new FormControl(eachP.numberOfHours)
+      numberOfHours: new FormControl(eachP.numberOfHours),
+      practicumStart: new FormControl(
+        this.date.transform(eachP.practicumStart, 'yyyy-MM-dd')
+      ),
+      practicumEnd: new FormControl(
+        this.date.transform(eachP.practicumEnd, 'yyyy-MM-dd')
+      ),
     });
     this.UpdateProgramIndicator = true;
   }
@@ -69,7 +90,7 @@ export class ProgramsComponent implements OnInit {
       this.UpdateProgramIndicator = false;
       this.ngOnInit();
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -108,7 +129,7 @@ export class ProgramsComponent implements OnInit {
         });
       });
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -125,14 +146,23 @@ export class ProgramsComponent implements OnInit {
     });
   }
   onSubmitCreate(f: NgForm) {
-    this.program.POSTProgram(f.value).subscribe((createdP) => {
-      this.ngOnInit();
-      this.CreateProgramIndicator = false;
-    },(err)=> {
-     
-      alert("Something went wrong please try again! ");
-      this.ngOnInit();
-   });
+    var formPayload: AddProgramModel = {
+      name: f.value.name,
+      isoCodeProgramNumber: f.value.isoCodeProgramNumber,
+      numberOfHours: f.value.numberOfHours,
+      practicumStart: f.value.practicumStart,
+      practicumEnd: f.value.practicumEnd,
+    };
+    this.program.POSTProgram(formPayload).subscribe(
+      (createdP) => {
+        this.ngOnInit();
+        this.CreateProgramIndicator = false;
+      },
+      (err) => {
+        alert('Something went wrong please try again! ');
+        this.ngOnInit();
+      }
+    );
   }
 
   toDelete(programId: number) {
@@ -149,7 +179,7 @@ export class ProgramsComponent implements OnInit {
       this.ngOnInit();
       this.UpdateTrackIndicator = false;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -160,7 +190,7 @@ export class ProgramsComponent implements OnInit {
       this.ngOnInit();
       this.CreateTrackIndicator = false;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -180,9 +210,9 @@ export class ProgramsComponent implements OnInit {
          this.programId = null;
         this.DeleteProgramIndicator = false;
         this.ngOnInit();
-        
+
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -193,11 +223,11 @@ export class ProgramsComponent implements OnInit {
     console.log(this.trackId);
     this.program.deleteTrack(this.trackId).subscribe((delTrack) => {
           this.trackId = null;
-          this.DeleteTrackIndicator = false; 
+          this.DeleteTrackIndicator = false;
           this.ngOnInit();
-         
+
         },(err)=> {
-     
+
           alert("Something went wrong please try again! ");
           this.ngOnInit();
        });

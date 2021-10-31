@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { programModel } from '../models/programs.model';
+import { AddProgramModel, programModel } from '../models/programs.model';
 import { HttpClient } from '@angular/common/http';
 import { sectionModel } from '../models/section.model';
 import { FormGroup, NgForm } from '@angular/forms';
@@ -29,7 +29,7 @@ export class ProgramService {
     return this.http.put(this.apiUrl + 'api/Program/program', formVal);
   }
   getAllsection() {
-    return this.http.get<sectionModel[]>(this.apiUrl+'api/Section');
+    return this.http.get<sectionModel[]>(this.apiUrl + 'api/Section');
   }
   getSection(id: number): Observable<sectionModel[]> {
     // return this.http.get<sectionModel[]>(this.apiUrl+"Sections").pipe(
@@ -54,7 +54,7 @@ export class ProgramService {
       .get<programModel[]>(this.apiUrl + 'api/Program')
       .pipe(map((eachP) => eachP.filter((eachP) => eachP.id === id)));
   }
-  POSTProgram(formVal: NgForm) {
+  POSTProgram(formVal: AddProgramModel) {
     return this.http.post(this.apiUrl + 'api/Program', formVal);
   }
   POSTtracks(postVal: NgForm) {
@@ -74,10 +74,10 @@ export class ProgramService {
   }
 
   getTrack(id: number): Observable<any> {
-    return this.http.get<any>(this.apiUrl+'api/Track/' + id)
+    return this.http.get<any>(this.apiUrl + 'api/Track/' + id);
   }
 
   getAllTracks(): Observable<tracksModel[]> {
-    return this.http.get<tracksModel[]>(this.apiUrl +'api/Track')
+    return this.http.get<tracksModel[]>(this.apiUrl + 'api/Track');
   }
 }
