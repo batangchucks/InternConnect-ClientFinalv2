@@ -35,7 +35,7 @@ export class ResetpassComponent implements OnInit {
     this.onboardForm = new FormGroup({
       email: new FormControl(this.email.toLowerCase()),
       resetkey: new FormControl(this.resetKey),
-      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]),
+      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,})')]),
     });
   }
   onSubmit() {
