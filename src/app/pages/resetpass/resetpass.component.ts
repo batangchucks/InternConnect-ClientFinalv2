@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 
+const re = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
+
 @Component({
   selector: 'app-resetpass',
   templateUrl: './resetpass.component.html',
@@ -12,6 +14,7 @@ export class ResetpassComponent implements OnInit {
   email: string;
   resetKey: string;
   onboardForm: FormGroup;
+  passwordInvalid: boolean = false;
   confirmpassword: string;
   isLoggedIn: boolean = true;
   constructor(
@@ -35,10 +38,16 @@ export class ResetpassComponent implements OnInit {
     this.onboardForm = new FormGroup({
       email: new FormControl(this.email.toLowerCase()),
       resetkey: new FormControl(this.resetKey),
-      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,})')]),
+      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$')]),
     });
   }
   onSubmit() {
+
+    if(!re.test(this.onboardForm.get("password").value)){
+      this.passwordInvalid = true;
+
+      return;
+    }
 
     const password = this.onboardForm.get('password').value;
 

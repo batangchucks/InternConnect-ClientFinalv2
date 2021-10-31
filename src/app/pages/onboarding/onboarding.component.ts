@@ -3,6 +3,8 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 
+const re = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
+
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.component.html',
@@ -16,6 +18,7 @@ export class OnboardingComponent implements OnInit {
   userAgreement: boolean = true;
   isLoggedIn: boolean = true;
   disabled: boolean = true;
+  passwordInvalid: boolean = false;
   constructor(
     private account: createAccount,
     private router: Router,
@@ -36,13 +39,21 @@ export class OnboardingComponent implements OnInit {
     this.onboardForm = new FormGroup({
       email: new FormControl(this.email.toLowerCase()),
       resetkey: new FormControl(this.resetKey),
-      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,})')]),
+      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern("/^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/")]),
     });
   }
   onSubmit() {
     //   this.account.resetPassword(f.value).subscribe(newUser=> {
 
     //   })
+
+    if(!re.test(this.onboardForm.get("password").value)){
+      this.passwordInvalid = true;
+
+      return;
+    }
+
+
     const password = this.onboardForm.get('password').value;
 
     if (password === this.confirmpassword) {

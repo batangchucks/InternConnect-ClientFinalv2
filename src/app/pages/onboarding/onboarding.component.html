@@ -190,11 +190,10 @@
         <div>
           <label for="password" class="text-sm">Password</label> <!--Working-->
           <input id="password" name="password" formControlName="password" type="password" autocomplete="current-password"
-          required class="appearance-none relative block w-full
+          pattern="/^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/" required class="appearance-none relative block w-full
           px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none
           focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="*******">
-          <span *ngIf="onboardForm.get('password').invalid && (onboardForm.get('password').dirty || onboardForm.get('password').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
-            {{ onboardForm.get("password").invalid ? "Password must contain at least eight (8) characters, one (1) uppercase letter, one (1) lowercase letter, and a special character." : "Invalid field" }}</span>
+          <span class="text-red-500 text-base" *ngIf="passwordInvalid">Password must contain at least eight (8) characters, one (1) uppercase letter, one (1) lowercase letter, and a special character.</span>
         </div>
         <br />
         <div>
@@ -268,7 +267,7 @@
             focus:ring-offset-2
             focus:ring-red-500
           "
-          [disabled] = "onboardForm.invalid"
+
         >
           <span class="absolute left-0 inset-y-0 flex items-center pl-3">
             <!-- Heroicon name: solid/lock-closed -->
