@@ -104,6 +104,8 @@
             "
             placeholder="*******"
           />
+          <span *ngIf="onboardForm.get('password').invalid && (onboardForm.get('password').dirty || onboardForm.get('password').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {{ onboardForm.get("password").invalid ? "Password must contain at least eight (8) characters, one (1) uppercase letter, one (1) lowercase letter, and a special character." : "Invalid field" }}</span>
         </div>
         <br />
         <div>
@@ -165,6 +167,7 @@
 
       <div>
         <button
+          [disabled] = "onboardForm.invalid"
           type="submit"
           class="
             group

@@ -95,7 +95,6 @@ export class NewSubmissionsComponent implements OnInit {
     console.log(this.iso);
   }
   approve(adminResponseId: number, isoCode: number) {
-    this.onAcceptLoading = true;
     var PostVal = {
       id: adminResponseId,
       acceptedByCoordinator: true,
@@ -119,6 +118,8 @@ export class NewSubmissionsComponent implements OnInit {
   }
 
   approveAssign() {
+    this.ApproveIndicator = false;
+    this.onAcceptLoading = true;
     var PostVal = {
       id: this.AcceptForm.get('id').value,
       acceptedByCoordinator: true,
@@ -130,7 +131,7 @@ export class NewSubmissionsComponent implements OnInit {
       this.assignIso,
       PostVal
     ).subscribe((updatedVal) => {
-      this.ApproveIndicator = false;
+      this.onAcceptLoading = false;
 
       this.assignIso = null;
       this.ngOnInit();

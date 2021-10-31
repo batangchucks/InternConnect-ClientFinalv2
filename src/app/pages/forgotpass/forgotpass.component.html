@@ -14,7 +14,7 @@
         <div>
           <label *ngIf="!doneButton" for="email" class="text-sm">Enter your e-mail to continue</label>
           <div class="text-justify">
-          <label *ngIf="doneButton" for="email" class="text-base">We have sent an email to <b> {{userAccount}}.</b> Please visit your inbox and follow the instructions to reset your password.</label></div>
+          <label *ngIf="doneButton" for="email" class="text-base">We have successfully sent an email to <b> {{userAccount}}.</b> Please visit your inbox and follow the instructions to reset your password.</label></div>
           <input #email="ngModel" ngModel id="email" name="email" type="email" required
             class="{{doneButton == true ? 'hidden' : ''}} appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:z-10 sm:text-sm"
             placeholder="student.cics@ust.edu.ph">

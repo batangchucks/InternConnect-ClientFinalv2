@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { createAccount } from 'src/app/shared/services/createAcc.service';
 
@@ -35,7 +35,7 @@ export class ResetpassComponent implements OnInit {
     this.onboardForm = new FormGroup({
       email: new FormControl(this.email.toLowerCase()),
       resetkey: new FormControl(this.resetKey),
-      password: new FormControl(''),
+      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]),
     });
   }
   onSubmit() {

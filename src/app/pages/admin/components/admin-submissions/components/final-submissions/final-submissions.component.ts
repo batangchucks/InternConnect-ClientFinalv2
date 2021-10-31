@@ -110,6 +110,10 @@ export class FinalSubmissionsComponent implements OnInit {
     });
   }
 
+  deanApprove(){
+    this.ApproveIndicatorDean = true;
+  }
+
   deanDecision(
     adminResponseId: number,
     acceptedByDean: boolean,
