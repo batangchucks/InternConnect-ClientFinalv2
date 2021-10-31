@@ -43,7 +43,7 @@ export class AdminReportsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.user.admin.authId == 1) {
+    if (this.user.admin.authId == 1 || this.user.admin.authId == 4) {
       this.Program.getProgram().subscribe(
         (eachP) => {
           this.programs = eachP;

@@ -32,6 +32,8 @@ export class ApplicationComponent implements OnInit {
       this.landingImg = webState.coverPhotoFileName;
       this.logoPath = this.File.photoUrlL+this.logo;
       this.landingPath = this.File.photoUrlL+this.landingImg;
+
+      console.log(this.landingImg);
       if (this.user == null) {
         alert("You must be logged in to view the landing page")
         this.router.navigate(['/login']);

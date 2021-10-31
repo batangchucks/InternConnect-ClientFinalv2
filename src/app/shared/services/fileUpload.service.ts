@@ -28,7 +28,12 @@ export class fileUpload {
       responseType: 'text',
     });
   }
- 
+  deleteWebState(id:number, toDelete:string) {
+    return this.http.delete(this.apiUrl + 'api/WebState/'+id+'?type='+toDelete, {
+      responseType: 'text',
+    });
 
-  
+  }
+
+
 }

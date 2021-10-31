@@ -18,6 +18,7 @@ export class LandingUpdateComponent implements OnInit {
   selectedFileLogo: File = null;
   logoPhoto: string;
   logoPath: string;
+  id:number;
 
   constructor(private File: fileUpload, private Acc: createAccount) {}
 
@@ -27,6 +28,8 @@ export class LandingUpdateComponent implements OnInit {
       this.logoPhoto = web.logoFileName;
       this.landingPagePath = this.File.photoUrlL + this.landingPagePhoto;
       this.logoPath = this.File.photoUrlL + this.logoPhoto;
+      this.id = web.id;
+      console.log(this.id);
     });
   }
 
@@ -92,5 +95,13 @@ export class LandingUpdateComponent implements OnInit {
     }),(error:Error)=> {
       alert("An error has occured");
        this.ngOnInit()};
+  }
+
+
+  deleteState(toDelete:string) {
+      this.File.deleteWebState(this.id,toDelete).subscribe(delV=> {
+        console.log(delV);
+          this.ngOnInit();
+      })
   }
 }

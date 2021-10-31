@@ -10,7 +10,7 @@
 
 
 <!-- AuthID 1 -->
-<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1">
+<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1 || user.admin.authId==4">
   <label for="filter-program" class="block text-sm font-medium text-gray-700">Filter by program:</label>
   <select id="filter-proram" [(ngModel)]="selectedProg" (change)="StatusProgram(selectedProg)" (ngModelChange)="onFilterChange($event)"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
@@ -19,7 +19,7 @@
   </select>
 </div>
 
-<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1">
+<div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8" *ngIf="user.admin.authId == 1 || user.admin.authId == 4">
   <label for="filter-section" class="block text-sm font-medium text-gray-700">Filter by section:</label>
   <select id="filter-section" [(ngModel)]="selectedSec" (change)="StatusSection(selectedSec)" (ngModelChange)="onFilterChange($event)" [disabled]="!selectedProg" class="disabled:cursor-not-allowed"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
