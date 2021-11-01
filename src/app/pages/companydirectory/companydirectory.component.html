@@ -68,9 +68,9 @@
   </div>
 </section>
 <div class="container mx-auto px-5">
+  <p class="px-6 lg:px-8 text-lg font-bold text-center w-full" *ngIf="(searchedCompany | searchfilter :companySearch)?.length == 0">Sorry, this company isn’t in the list right now.</p>
   <div class="grid gap-6 lg:gap-10 xl:grid-cols-4">
     <div class="grid gap-6 sm:grid-cols-3 lg:gap-10 xl:col-span-4">
-      <p class="px-6 lg:px-8" *ngIf="(searchedCompany | searchfilter :companySearch)?.length == 0">Sorry, this company isn’t in the list right now</p>
       <div
         *ngFor="
           let foundCompany of searchedCompany | searchfilter: companySearch;let indexOfelement=index;
@@ -98,6 +98,7 @@
             "
           >
             <!-- Logo -->
+            <dl>
             <dt>
               <div
                 class="
@@ -112,7 +113,7 @@
                 "
               >
                 <img
-                  class="h-16 w-16"
+                  class="h-16 w-16 object-contain" alt="company logo"
                   [src]="photoUrl + foundCompany.logoFileName"
                 />
               </div>
@@ -121,6 +122,7 @@
             <dd class="ml-24 overflow-hidden text-gray-500 sm:visible sm:truncate xl:truncate 2xl:truncate md:truncate lg:truncate">
               {{ foundCompany.description }}
             </dd>
+          </dl>
             <!-- <a routerLink="/companyprofile/{{foundCompany.id}}" >Visit profile page</a> -->
           </div>
         </a>

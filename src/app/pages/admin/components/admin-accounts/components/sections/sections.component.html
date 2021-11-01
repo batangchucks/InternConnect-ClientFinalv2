@@ -13,7 +13,7 @@
 </div>
 
 <!-- Table -->
-<div class="flex flex-col w-3/5">
+<div class="flex flex-col w-4/5 sm:w-3/5 md:w-3/5 lg:w-3/5">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
       <button
@@ -61,12 +61,8 @@
               >
                 Section
               </th>
-              <th scope="col" class=" py-3 text-xs font-medium text-gray-500 uppercase">
-              </th>
-              <th scope="col" class="py-3 text-xs font-medium text-gray-500 uppercase">
-              </th>
-              <th scope="col" class="py-3 text-xs font-medium text-gray-500 uppercase">
-              </th>
+              <th scope="col" class=" py-3 text-xs font-medium text-gray-500 uppercase">Action</th>
+              <th scope="col" class=" py-3 text-xs font-medium text-gray-500 uppercase">Action</th>
             </tr>
           </thead>
           <!-- Person 1 -->
@@ -75,14 +71,14 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{ section.name }}
               </td>
-                <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
+                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                   <button class="h-8 px-4 text-white transition-colors duration-150 bg-green-600
                           rounded-full focus:shadow-outline hover:bg-green-700"
                   (click)="toUpdate(section)">
                   Update
                 </button>
               </td>
-              <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
+              <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                 <button class="h-8 px-4 text-black transition-colors duration-150 bg-gray-200
                         rounded-full focus:shadow-outline hover:bg-gray-300"
                   (click)="deleteSection(section.id)">

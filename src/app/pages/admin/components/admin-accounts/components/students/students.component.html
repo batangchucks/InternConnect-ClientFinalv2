@@ -23,7 +23,7 @@
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <button class=" h-8 px-4 text-white transition-colors duration-150 bg-green-600 rounded-full focus:shadow-outline hover:bg-green-700" (click)="openBatch()">Upload CSV</button>
-          <a class="text-green-600" [href]="_env+'files/Batch-upload-template.csv'" ><u>Download CSV Template</u></a>
+          <a class="text-green-600 hover:underline px-5" [href]="_env+'files/Batch-upload-template.csv'" ><u>Download CSV Template</u></a>
           <!-- <hr /> -->
           <!-- <form action="" [formGroup]="studentForms" (ngSubmit)="formSubmit()">
             <table class="min-w-full divide-y divide-gray-200">
@@ -372,7 +372,7 @@
   <h2 class="pt-12 py-3 flex text-xl font-bold items-center sm:px-6 lg:px-8">
     Enrolled Students
   </h2>
-  <div class="flex flex-col">
+  <div class="flex flex-col overflow-hidden">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div

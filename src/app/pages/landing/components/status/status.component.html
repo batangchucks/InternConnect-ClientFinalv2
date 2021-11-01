@@ -6,22 +6,22 @@
 
 
 <div class="mt-2 w-11/12 lg:w-2/6 mx-auto">
-  <img *ngIf="responseType == 'acknowledged'"
+  <img class="w-full h-auto" *ngIf="responseType == 'acknowledged'" alt="Acknowledged status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/acknowledged_fhsdqe.png">
-  <img *ngIf="responseType == 'dean'"
+  <img *ngIf="responseType == 'dean'" alt="Signed endorsement letter status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/signed_kzsdeb.png">
-  <img *ngIf="responseType == 'emailed'"
+  <img *ngIf="responseType == 'emailed'" alt="Sent to company status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/sent_ocovew.png">
-  <img *ngIf="responseType== 'agrees'"
+  <img *ngIf="responseType== 'agrees'" alt="Accepted status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207474/Status/accepted_wfnrcv.png">
 </div>
 
 <div class="relative bg-white dark:bg-gray-800 p-8 text-justify">
   <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-12 lg:items-center">
     <div class="relative lg:-top-24 lg:col-start-2 lg:-mt-16">
-      <h4 class="mt-6 text-2xl leading-8 font-extrabold text-gray-900 dark:text-white tracking-tight sm:leading-9">
+      <h1 class="mt-6 text-2xl leading-8 font-extrabold text-gray-900 dark:text-white tracking-tight sm:leading-9">
         Updates
-      </h4>
+      </h1>
       <ul class="mt-10">
         <li *ngIf="responseType== 'agrees'">
           <div class="flex">
@@ -36,9 +36,9 @@
               </div>
             </div>
             <div class="ml-4">
-              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+              <h2 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
                 Congrats! Your endorsement is accepted.
-              </h5>
+              </h2>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
                 The company successfully claimed the endorsement letter. You are now ready to start your internship and
                 proceed with other practicum requirements.
@@ -62,9 +62,9 @@
               </div>
             </div>
             <div class="ml-4">
-              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+              <h2 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
                 Sorry, your request was disapproved.
-              </h5>
+              </h2>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
                 You probably missed out something or entered incorrect data required in the form.
               </p>
@@ -86,9 +86,9 @@
               </div>
             </div>
             <div class="ml-4">
-              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+              <h2 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
                 Your endorsement letter has been sent to the company.
-              </h5>
+              </h2>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
                 The practicum coordinator successfully sent the endorsement letter to the email address of the company
                 representative indicated in the form.
@@ -112,9 +112,9 @@
               </div>
             </div>
             <div class="ml-4">
-              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+              <h2 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
                 Your endorsement letter is signed
-              </h5>
+              </h2>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
                 The CICS dean, IGAARP coordinator, and practicum coordinator have finalized your request and signed your
                 endorsement letter.
@@ -137,9 +137,9 @@
               </div>
             </div>
             <div class="ml-4">
-              <h5 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
+              <h2 class="text-lg leading-6 text-gray-900 dark:text-white font-bold">
                 Your request is acknowledged.
-              </h5>
+              </h2>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
                 The practicum coordinator received your request and will now be verifying your form details.
                 After verifying, the practicum coordinator will forward the form to the IGAARP and Dean for signing.
@@ -175,7 +175,7 @@
             <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z" />
+                  d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621h2C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z" />
               </svg>
 
               <h1 class="px-2 text-sm">{{student.student.account.email.toLowerCase()}}</h1>
@@ -186,7 +186,7 @@
                 Update Form
               </button>
               <button type="button" *ngIf="student.adminResponse.companyAgrees" (click)="toChange()"
-                class="py-2 px-4  bg-white hover:bg-gray-100 focus:ring-green-500 focus:ring-offset-green-200 text-red-500 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                class="py-2 px-4  bg-white hover:bg-gray-100 focus:ring-green-500 focus:ring-offset-green-200 text-red-600 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                 Change Company
               </button>
             </div>
@@ -196,7 +196,7 @@
         <div class="mt-12 w-full pt overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <div class="flex items-center px-6 py-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2h2a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
 
             <h1 class="mx-3 text-lg font-semibold text-gray-900">Deadlines</h1>
@@ -204,7 +204,7 @@
 
             <div class="px-6 py-8" *ngFor="let event of eventList">
 
-              <div class="shadow-lg rounded-2xl w-full p-4 bg-gray-50 relative overflow-hidden">
+              <div class="shadow-lg rounded-2xl w-full p-4 relative overflow-hidden">
                   <div class="w-4/6">
                   <p class="text-gray-800 text-lg font-semibold mb-2">
                     {{event.name}}
@@ -561,7 +561,7 @@
         </svg>
           Submitting
         </button>
-        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toClose()">
+        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toCloseSecond()">
           Cancel
         </button>
       </div>

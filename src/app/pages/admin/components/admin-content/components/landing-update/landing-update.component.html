@@ -14,7 +14,7 @@
               <div class="mt-1 flex flex-col">
                 <div class="justify-left">
                   <div class=""><img *ngIf="logoPhoto" src="{{ logoPath }}" alt="..."
-                      class="hidden object-contain w-96 h-40 shadow-sm border-2 rounded-md sm:block"></div>
+                      class="object-contain w-96 h-40 shadow-sm border-2 rounded-md sm:block"></div>
                       <!-- fix ui for logo when deleted -->
                   <div class=""
                     class="hidden object-contain w-96 h-40 shadow-sm border-2 rounded-md sm:block"*ngIf="!logoPhoto">
@@ -22,35 +22,27 @@
                   </div>
 
                 </div>
-                <div class="flex flex-row pt-6">
-                <label
-                  for="file-logo"
-                  class="
-                    relative
-                    cursor-pointer
-                    bg-white
-                    rounded-md
-                    font-medium
-                    text-green-600
-                    hover:text-green-500
-                  "
-                >
+                <div class="flex flex-row mt-6">
+                  <div class="flex flex-row">
+                    <label for="file-logo" class="mt-2 relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500">
                   <span
-                    class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Edit</span>
+                    class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-base">Edit</span>
                   <input type="file" id="file-logo"
                     name="file-logo"  (change)="updateLogo($event)"
                     class=" sr-only py-2 rounded-md text-sm leading-4 font-medium"
                     accept=".png, .jpg, .jpeg">
                    </label>
-
-                   <button (click)="deleteState('logo')">Delete</button>
+                   <div class="px-4">
+                      <button (click)="deleteState('logo')" class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Delete</button>
+                  </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="mt-8"><label class="block text-sm font-semibold text-gray-700">Cover Photo</label>
               <div class="flex flex-col">
                 <div class="justify-left">
-                  <div class=""><img class="hidden object-cover w-96 h-40 shadow-sm border-2 rounded-md sm:block"
+                  <div class=""><img class="object-contain w-96 h-40 shadow-sm border-2 rounded-md sm:block"
                       *ngIf="landingPagePhoto" src="{{ landingPagePath }}" alt="..."></div>
                         <!-- fix ui for logo when deleted -->
                   <div class=""
@@ -71,8 +63,12 @@
                     hover:text-green-500
                   "
                 >
-                  <span
-                    class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Edit</span>
+                  <div class="flex flex-row">
+                  <span class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-base">Edit</span>
+                  <div class="px-4">
+                  <button (click)="deleteState('cover')" class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Delete</button>
+                  </div>
+                 </div>
                   <input type="file" id="file-cover"
                     name="file-cover"  (change)="updateLanding($event)"
                     class=" sr-only py-2 rounded-md text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
@@ -80,12 +76,12 @@
                    </label>
                 </div>
               </div>
-              <div class="pt-12 -ml-3"><button
-                  class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  type="submit" (click)="uploadImages()">Upload</button></div>
-
+              <div class="pt-12 -ml-3">
+                <button
+                  class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-base"
+                  type="submit" (click)="uploadImages()">Upload</button>
+              </div>
             </div>
-            <button (click)="deleteState('cover')">Delete</button>
           </div>
         </div>
       </form>
