@@ -18,22 +18,29 @@
                       <!-- fix ui for logo when deleted -->
                   <div class=""
                     class="hidden object-contain w-96 h-40 shadow-sm border-2 rounded-md sm:block"*ngIf="!logoPhoto">
-                      <h1>*Logo Was Deleted*</h1>
+                      <h1>Default image only</h1>
                   </div>
 
                 </div>
                 <div class="flex flex-row mt-6">
                   <div class="flex flex-row">
                     <label for="file-logo" class="mt-2 relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500">
-                  <span
+                  <span *ngIf="originalButton"
                     class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-base">Edit</span>
                   <input type="file" id="file-logo"
                     name="file-logo"  (change)="updateLogo($event)"
                     class=" sr-only py-2 rounded-md text-sm leading-4 font-medium"
                     accept=".png, .jpg, .jpeg">
                    </label>
+                   <span disabled *ngIf="loadingButton"
+                   class="w-full flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-base">
+                   <svg width="20" height="20" fill="currentColor" class="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+                    </path>
+                  </svg>
+                   Uploading...</span>
                    <div class="px-4">
-                      <button (click)="deleteState('logo')" class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Delete</button>
+                      <button (click)="deleteState('logo')" class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Remove</button>
                   </div>
                   </div>
                 </div>
@@ -47,7 +54,7 @@
                         <!-- fix ui for logo when deleted -->
                   <div class=""
                   class="hidden object-contain w-96 h-40 shadow-sm border-2 rounded-md sm:block"*ngIf="!landingPagePhoto">
-                    <h1>*Logo Was Deleted*</h1>
+                    <h1>Default image only</h1>
                 </div>
                 </div>
                 <div class="flex flex-row mt-6">
@@ -64,9 +71,16 @@
                   "
                 >
                   <div class="flex flex-row">
-                  <span class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-base">Edit</span>
+                  <span *ngIf="originalButton2" class="w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-base">Edit</span>
+                  <span disabled *ngIf="loadingButton2"
+                  class="w-full flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-base">
+                  <svg width="20" height="20" fill="currentColor" class="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+                   </path>
+                 </svg>
+                  Uploading...</span>
                   <div class="px-4">
-                  <button (click)="deleteState('cover')" class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Delete</button>
+                  <button (click)="deleteState('cover')" class="transparent shadow-sm px-4 py-2 text-base font-medium text-gray-900 border text-center bg-gray-100 hover:bg-gray-200 rounded-md">Remove</button>
                   </div>
                  </div>
                   <input type="file" id="file-cover"

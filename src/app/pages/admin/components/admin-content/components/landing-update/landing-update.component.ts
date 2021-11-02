@@ -20,6 +20,12 @@ export class LandingUpdateComponent implements OnInit {
   logoPath: string;
   id:number;
 
+  originalButton: boolean = true;
+  loadingButton: boolean = false;
+  originalButton2: boolean = true;
+  loadingButton2: boolean = false;
+
+
   constructor(private File: fileUpload, private Acc: createAccount) {}
 
   ngOnInit(): void {
@@ -34,6 +40,8 @@ export class LandingUpdateComponent implements OnInit {
   }
 
   updateLanding(event) {
+    this.originalButton2 = false;
+    this.loadingButton2 = true;
     this.selectedFileLanding = <File>event.target.files[0];
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -52,6 +60,8 @@ export class LandingUpdateComponent implements OnInit {
     );
 
     this.File.uploadLanding(formData).subscribe((data: any) => {
+      this.loadingButton2 = false;
+      this.originalButton2 = true;
       this.landingPagePhoto = data.toString();
       this.landingPagePath = this.File.photoUrlL + this.landingPagePhoto;
     },(error:Error)=> {
@@ -60,6 +70,8 @@ export class LandingUpdateComponent implements OnInit {
     });
   }
   updateLogo(event) {
+    this.originalButton = false;
+    this.loadingButton = true;
     this.selectedFileLogo = <File>event.target.files[0];
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -74,6 +86,8 @@ export class LandingUpdateComponent implements OnInit {
     formData.append('files', this.selectedFileLogo, this.selectedFileLogo.name);
 
     this.File.uploadLanding(formData).subscribe((data: any) => {
+      this.loadingButton = false;
+      this.originalButton = true;
       this.logoPhoto = data.toString();
       this.logoPath = this.File.photoUrlL + this.logoPhoto;
     },(error:Error)=> {
