@@ -31,9 +31,7 @@
           <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company Info
             </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address Line 1</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address Line 2</th>
-            <th scope="col" class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address Line 3</th>
+            <th scope="col" class="w-full px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
             <th scope="col" class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
             <th scope="col" class="px-5 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
             <th scope="col" class="px-5 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
@@ -61,19 +59,19 @@
               <!-- <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-500">{{ eachC.contactPersonEmail }}</div>
               </td> -->
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <p class="overflow-hidden truncate w-20">
-                  {{ eachC.addressOne }}
+              <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
+                <p class="overflow-hidden w-60 truncate">
+                  {{ eachC.addressOne+" "+eachC.addressTwo+" "+eachC.addressThree}}
                 </p>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <p class="overflow-hidden truncate w-20">
                 {{ eachC.addressTwo }}
                 </p>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{ eachC.addressThree }}
-              </td>
+              </td> -->
               <td class="pl-4 pr-0 whitespace-nowrap text-xs text-gray-500 font-semibold uppercase tracking-normal">
                 {{ eachC.status }}
               </td>

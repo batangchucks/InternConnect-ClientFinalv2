@@ -261,11 +261,11 @@
               <div class="mt-6">
                   <div class=" bg-white">
 
-                    <div class="grid grid-cols-6 gap-6">
-                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                    <div class="col-span-6">
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Prefix: </label>
-                        <select id="specialization" formControlName="studentTitle"
+                        <select id="ID" formControlName="studentTitle"
                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                           <option value="Mr.">Mr.</option>
                           <option value="Ms.">Ms.</option>
@@ -273,7 +273,7 @@
                         <span *ngIf="updateSubmission.get('studentTitle').invalid && (updateSubmission.get('studentTitle').dirty || updateSubmission.get('studentTitle').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("studentTitle").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Last name</label>
                         <input formControlName="lastName" type="text" name="street-address" id="street-address"  placeholder="dela Cruz"
@@ -282,7 +282,7 @@
                           {{ updateSubmission.get("lastName").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>First Name</label>
                         <input formControlName="firstName" type="text" name="street-address" id="street-address"  placeholder="Juan"
@@ -290,7 +290,7 @@
                         <span *ngIf="updateSubmission.get('firstName').invalid && (updateSubmission.get('firstName').dirty || updateSubmission.get('firstName').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("firstName").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Middle Initial</label>
                         <input formControlName="middleInitial" type="text" name="street-address" id="street-address"  placeholder="A."
@@ -298,7 +298,7 @@
                         <span *ngIf="updateSubmission.get('middleInitial').invalid && (updateSubmission.get('middleInitial').dirty || updateSubmission.get('middleInitial').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("middleInitial").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Student Number </label>
                         <input formControlName="studentNumber" type="number" name="street-address" id="street-address" type="number" min="2000000000" max="2999999999" placeholder="2021123456"
@@ -306,7 +306,7 @@
                         <span *ngIf="updateSubmission.get('studentNumber').invalid && (updateSubmission.get('studentNumber').dirty || updateSubmission.get('studentNumber').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("studentNumber").invalid ? "Input must have 10 numerical digits." : "Invalid field" }}</span>
                       </div>
-                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3 py-2">
                         <label for="specialization" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Specialization</label>
                         <select id="specialization" formControlName="trackId"
@@ -316,7 +316,7 @@
                         <span *ngIf="updateSubmission.get('trackId').invalid && (updateSubmission.get('trackId').dirty || updateSubmission.get('trackId').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("trackId").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Email Address of Contact Person (Company Representative)</label>
                         <input type="text" name="street-address" id="street-address" placeholder="companyrep@mail.com" formControlName="contactPersonEmail"
@@ -325,7 +325,7 @@
                           {{ updateSubmission.get("contactPersonEmail").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
-                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <div class="col-span-6 sm:col-span-3 lg:col-span-3 py-2">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Title of Contact Person</label>
                         <select id="country" name="country" formControlName="contactPersonTitle"
@@ -339,7 +339,7 @@
                           {{ updateSubmission.get("contactPersonTitle").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Last Name of Contact Person</label>
                         <input type="text" name="street-address" id="street-address" placeholder="Santos" formControlName="contactPersonLastName"
@@ -348,7 +348,7 @@
                           {{ updateSubmission.get("contactPersonLastName").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>First Name of Contact Person</label>
                         <input type="text" name="street-address" id="street-address" placeholder="Thomasnino" formControlName="contactPersonFirstName"
@@ -357,7 +357,7 @@
                           {{ updateSubmission.get("contactPersonFirstName").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Official Designation</label>
                         <input type="text" name="street-address" id="street-address" placeholder="Managing Director" formControlName="contactPersonPosition"
@@ -365,7 +365,7 @@
                         <span *ngIf="updateSubmission.get('contactPersonPosition').invalid && (updateSubmission.get('contactPersonPosition').dirty || updateSubmission.get('contactPersonPosition').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("contactPersonPosition").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
-                      <div class="col-span-6">
+                      <div class="col-span-6 py-2">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Internship Description</label>
                         <input formControlName="jobDescription" type="text" name="street-address" id="street-address" placeholder="Managing Director"
@@ -374,7 +374,7 @@
                           {{ updateSubmission.get("jobDescription").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
-                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <div class="col-span-6 py-2">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Company: </label>
                         <select id="country" name="country" formControlName="companyId"
@@ -385,31 +385,35 @@
                           {{ updateSubmission.get("companyId").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
-                      <div class="block flex-col w-full">
+                      <div class="col-span-6 py-2">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                           Company Profile </label>
-                          <a [href]="_env+'images/Company/'+student.companyProfileFileName" target="blank" class="text-gray-900 hover:text-blue-600">File link</a>
+                          <div class="flex flex-row pt-4">
+                          <a [href]="_env+'images/Company/'+student.companyProfileFileName" target="blank" class="text-gray-900 hover:text-blue-600 cursor-pointer">File link</a>
                           <div class="px-4">
-                          <a target="blank" class="px-4 bg-gray-200 rounded-md text-gray-900 py-2" (click)="editProfile()">Edit</a>
+                          <a target="blank" class="flex-row px-4 bg-gray-200 hover:bg-gray-300 rounded-md cursor-pointer text-gray-900 py-1" (click)="editProfile()">Edit</a></div>
                          </div>
                       </div>
 
-                      <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <div class="col-span-6 py-2">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                           Acceptance Letter </label>
-                          <a [href]="_env+'images/Company/'+student.companyProfileFileName" target="blank" class="text-gray-900 hover:text-blue-600">File link</a>
-                          <a target="blank" class="px-4 text-gray-900 hover:text-blue-600" (click)="editLetter()">Edit</a>
+                          <div class="flex flex-row pt-4">
+                          <a [href]="_env+'images/Company/'+student.companyProfileFileName" target="blank" class="text-gray-900 hover:text-blue-600 cursor-pointer">File link</a>
+                          <div class="px-4">
+                          <a target="blank" class="flex-row px-4 bg-gray-200 hover:bg-gray-300 rounded-md text-gray-900 py-1 cursor-pointer" (click)="editLetter()">Edit</a></div>
+                          </div>
                       </div>
 
-                      <div *ngIf="editCompanyProfile" class="col-span-6 sm:col-span-3 lg:col-span-3">
-                        <label for="country" class="block text-sm font-medium text-gray-700">
+                      <div *ngIf="editCompanyProfile" class="col-span-6 py-2">
+                        <label for="country" class="block text-sm font-medium text-gray-700 py-2">
                           <span class="text-red-500">*</span>Upload company profile</label>
                         <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgCompanyProfile($event)">
                         <!-- <span *ngIf="updateSubmission.get('imgCompanyProfile').invalid && (updateSubmission.get('imgCompanyProfile').dirty || updateSubmission.get('imgCompanyProfile').touched)" class="flex items-center font-bold tracking-wide text-red-500 text-xs mt-1 ml-1">
                           {{ updateSubmission.get("imgCompanyProfile").invalid ? "Required" : "Invalid field" }}</span> -->
                      </div>
 
-                    <div *ngIf="editAcceptanceLetter" class="col-span-6 sm:col-span-3 lg:col-span-3">
+                    <div *ngIf="editAcceptanceLetter" class="col-span-6 py-2">
                       <label for="country" class="block text-sm font-medium text-gray-700">
                         <span class="text-red-500">*</span>Upload acceptance letter</label>
                       <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgAcceptanceL($event)">
