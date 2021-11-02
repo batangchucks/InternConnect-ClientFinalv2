@@ -85,6 +85,9 @@ export class StudentsComponent implements OnInit {
   formSubmit() {
     // passs the value here
     this.modalAppear = true;
+    this.studentFormsCoord.patchValue({
+      email: this.studentFormsCoord.get('email').value.replace(/\s/g, ''),
+    });
     this.account
       .POSTstudent(this.studentForms.value)
       .subscribe((newStudent) => {
@@ -99,6 +102,9 @@ export class StudentsComponent implements OnInit {
 
   formSubmitforCoord() {
     this.modalAppear = true;
+    this.studentFormsCoord.patchValue({
+      email: this.studentFormsCoord.get('email').value.replace(/\s/g, ''),
+    });
     this.account
       .POSTstudent(this.studentFormsCoord.value)
       .subscribe((newStudent) => {
@@ -213,8 +219,8 @@ export class StudentsComponent implements OnInit {
       }
 
       this.batchUploadPayload.push({
-        adminEmail: this.user.email,
-        email: csv.email,
+        adminEmail: this.user.email.replace(/\s/g, ''),
+        email: csv.email.replace(/\s/g, ''),
         sectionId: this.selectedSectionBatch.id,
         programId: this.user.admin.programId,
       });
