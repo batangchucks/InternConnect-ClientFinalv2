@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CompanyModel } from 'src/app/shared/models/company.model';
@@ -20,6 +21,8 @@ export class StatusComponent implements OnInit {
   CompanyEntry: boolean = false;
   originalButton: boolean = true;
   loadingButton: boolean = false;
+  editCompanyProfile: boolean = false;
+  editAcceptanceLetter: boolean = false;
 
   user = JSON.parse(localStorage.getItem('user'));
   student: submissionModel;
@@ -40,6 +43,8 @@ export class StatusComponent implements OnInit {
   selectedFileA: File;
   PhotoFileNameA: string;
   PhotoFilePathA: string;
+
+  _env: string = environment.apiUrl;
 
   eventList: ReadEventModel[] = [
     {
@@ -429,4 +434,12 @@ export class StatusComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+    editProfile(){
+      this.editCompanyProfile = true;
+    }
+
+    editLetter(){
+      this.editAcceptanceLetter = true;
+    }
 }

@@ -385,7 +385,23 @@
                           {{ updateSubmission.get("companyId").invalid ? "Required" : "Invalid field" }}</span>
                       </div>
 
+                      <div class="block flex-col w-full">
+                        <label for="country" class="block text-sm font-medium text-gray-700">
+                          Company Profile </label>
+                          <a [href]="_env+'images/Company/'+student.companyProfileFileName" target="blank" class="text-gray-900 hover:text-blue-600">File link</a>
+                          <div class="px-4">
+                          <a target="blank" class="px-4 bg-gray-200 rounded-md text-gray-900 py-2" (click)="editProfile()">Edit</a>
+                         </div>
+                      </div>
+
                       <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                        <label for="country" class="block text-sm font-medium text-gray-700">
+                          Acceptance Letter </label>
+                          <a [href]="_env+'images/Company/'+student.companyProfileFileName" target="blank" class="text-gray-900 hover:text-blue-600">File link</a>
+                          <a target="blank" class="px-4 text-gray-900 hover:text-blue-600" (click)="editLetter()">Edit</a>
+                      </div>
+
+                      <div *ngIf="editCompanyProfile" class="col-span-6 sm:col-span-3 lg:col-span-3">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                           <span class="text-red-500">*</span>Upload company profile</label>
                         <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgCompanyProfile($event)">
@@ -393,7 +409,7 @@
                           {{ updateSubmission.get("imgCompanyProfile").invalid ? "Required" : "Invalid field" }}</span> -->
                      </div>
 
-                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                    <div *ngIf="editAcceptanceLetter" class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label for="country" class="block text-sm font-medium text-gray-700">
                         <span class="text-red-500">*</span>Upload acceptance letter</label>
                       <input type="file" id="myFile" name="filename" accept=".doc, .docx, .pdf" (change)="imgAcceptanceL($event)">
@@ -407,7 +423,7 @@
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button type="submit" [disabled]="updateSubmission.invalid || !PhotoFileNameA || !PhotoFileNameC" *ngIf="originalButton" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-not-allowed">
+          <button type="submit" [disabled]="updateSubmission.invalid" *ngIf="originalButton" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-not-allowed">
             Submit
           </button>
           <button disabled *ngIf="loadingButton" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-not-allowed">
