@@ -19,23 +19,23 @@ export class DeanComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
+
   }
 
-  toAssign() { 
+  toAssign() {
     this.AssignIndicator = true;
-  } 
+  }
 
   toCancel() {
     this.AssignIndicator = false;
-  } 
+  }
   changeDean() {
 
     console.log();
 
     var payload = {
       oldEmail:this.user.email.toLowerCase(),
-      newEmail:this.email,
+      newEmail:this.email.replace(/\s/g, ''),
       password:this.pass
 
     }
@@ -47,14 +47,14 @@ export class DeanComponent implements OnInit {
       this.pass = '';
       this.ngOnInit();
       this.logout();
-      
+
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
 
-   
+
 
 
   }
@@ -62,5 +62,5 @@ export class DeanComponent implements OnInit {
     this.Auth.logout();
     this.router.navigate(['/login']);
   }
-  
+
 }

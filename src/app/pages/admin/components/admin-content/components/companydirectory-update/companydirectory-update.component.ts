@@ -76,7 +76,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     });
   }
   toCreate() {
-    
+
     this.CreateIndicator = true;
   }
 
@@ -180,6 +180,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       contactPersonDesignation:
         this.updateCompany.controls.contactPersonDesignation.value,
       id: this.updateCompany.controls.id.value,
+      expiration: this.updateCompany.controls.expiration.value,
     };
 
     this.company.updateCompany(payload).subscribe((eachC) => {
