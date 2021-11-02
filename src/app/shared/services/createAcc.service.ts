@@ -24,7 +24,7 @@ export class createAccount {
 
   readonly apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getByAccount(id: number): Observable<adminModel> {
     return this.http.get<adminModel>(this.apiUrl + 'api/Admin/' + id);
@@ -127,310 +127,7 @@ export class createAccount {
       this.apiUrl + 'api/Submission/program/' + programId
     );
   }
-  filterSubmissionChair(sectionId: number, status: string, programId: number) {
-    if (programId && !sectionId) {
-      return this.http
-        .get<ReportsModel[]>(
-          this.apiUrl + 'api/Submission/program/' + programId
-        )
-        .pipe(
-          map((eachS) => eachS.filter((eachS) => eachS.programId == programId))
-        );
-    } else if (status == null && sectionId) {
-      console.log('when only section');
 
-      return this.http
-        .get<ReportsModel[]>(
-          this.apiUrl + 'api/Submission/program/' + programId
-        )
-        .pipe(
-          map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
-        );
-    } else if (status != null && sectionId) {
-      if (status) {
-        if (status == 'Acknowledged') {
-          return this.http
-            .get<ReportsModel[]>(
-              this.apiUrl + 'api/Submission/program/' + programId
-            )
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'ACCEPTEDBYCOORDINATOR'
-                )
-              )
-            );
-        } else if (status == 'approvedbyC') {
-          return this.http
-            .get<ReportsModel[]>(
-              this.apiUrl + 'api/Submission/program/' + programId
-            )
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'ACCEPTEDBYCHAIR'
-                )
-              )
-            );
-        } else if (status == 'approvedD') {
-          return this.http
-            .get<ReportsModel[]>(
-              this.apiUrl + 'api/Submission/program/' + programId
-            )
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'ACCEPTEDBYDEAN'
-                )
-              )
-            );
-        } else if (status == 'sentToCompany') {
-          return this.http
-            .get<ReportsModel[]>(
-              this.apiUrl + 'api/Submission/program/' + programId
-            )
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'EMAILSENTTOCOMPANY'
-                )
-              )
-            );
-        } else if (status == 'approvedByCompany') {
-          return this.http
-            .get<ReportsModel[]>(
-              this.apiUrl + 'api/Submission/program/' + programId
-            )
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'COMPANYAGREES'
-                )
-              )
-            );
-        } else {
-          return this.http
-            .get<ReportsModel[]>(
-              this.apiUrl + 'api/Submission/program/' + programId
-            )
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) => eachS.sectionId == sectionId && eachS.comments
-                )
-              )
-            );
-        }
-      }
-    }
-    return this.http
-      .get<ReportsModel[]>(this.apiUrl + 'api/Submission/program/' + programId)
-      .pipe(
-        map((eachS) => eachS.filter((eachS) => eachS.programId == programId))
-      );
-  }
-  filterSubmissionDean(sectionId: number, status: string, programId: number) {
-    if (programId && !sectionId) {
-      return this.http
-        .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-        .pipe(
-          map((eachS) => eachS.filter((eachS) => eachS.programId == programId))
-        );
-    } else if (status == null && sectionId) {
-      console.log('when only section');
-
-      return this.http
-        .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-        .pipe(
-          map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
-        );
-    } else if (status != null && sectionId) {
-      if (status) {
-        if (status == 'Acknowledged') {
-          return this.http
-            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'ACCEPTEDBYCOORDINATOR'
-                )
-              )
-            );
-        } else if (status == 'approvedbyC') {
-          return this.http
-            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'ACCEPTEDBYCHAIR'
-                )
-              )
-            );
-        } else if (status == 'approvedD') {
-          return this.http
-            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'ACCEPTEDBYDEAN'
-                )
-              )
-            );
-        } else if (status == 'sentToCompany') {
-          return this.http
-            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'EMAILSENTTOCOMPANY'
-                )
-              )
-            );
-        } else if (status == 'approvedByCompany') {
-          return this.http
-            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) =>
-                    eachS.sectionId == sectionId &&
-                    eachS.submissionStatus == 'COMPANYAGREES'
-                )
-              )
-            );
-        } else {
-          return this.http
-            .get<ReportsModel[]>(this.apiUrl + 'api/Submission')
-            .pipe(
-              map((eachS) =>
-                eachS.filter(
-                  (eachS) => eachS.sectionId == sectionId && eachS.comments
-                )
-              )
-            );
-        }
-      }
-    }
-    return this.http.get<ReportsModel[]>(this.apiUrl + 'api/Submission');
-  }
-  filterSubmissionCord(sectionId: number, status: string) {
-    if (sectionId && status == null) {
-      return this.http
-        .get<ReportsModel[]>(
-          this.apiUrl + 'api/Submission/section/' + sectionId
-        )
-        .pipe(
-          map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
-        );
-    } else if (sectionId && status) {
-      if (status == 'Acknowledged') {
-        return this.http
-          .get<ReportsModel[]>(
-            this.apiUrl + 'api/Submission/section/' + sectionId
-          )
-          .pipe(
-            map((eachS) =>
-              eachS.filter(
-                (eachS) =>
-                  eachS.sectionId == sectionId &&
-                  eachS.submissionStatus == 'ACCEPTEDBYCOORDINATOR'
-              )
-            )
-          );
-      } else if (status == 'approvedbyC') {
-        return this.http
-          .get<ReportsModel[]>(
-            this.apiUrl + 'api/Submission/section/' + sectionId
-          )
-          .pipe(
-            map((eachS) =>
-              eachS.filter(
-                (eachS) =>
-                  eachS.sectionId == sectionId &&
-                  eachS.submissionStatus == 'ACCEPTEDBYCHAIR'
-              )
-            )
-          );
-      } else if (status == 'approvedD') {
-        return this.http
-          .get<ReportsModel[]>(
-            this.apiUrl + 'api/Submission/section/' + sectionId
-          )
-          .pipe(
-            map((eachS) =>
-              eachS.filter(
-                (eachS) =>
-                  eachS.sectionId == sectionId &&
-                  eachS.submissionStatus == 'ACCEPTEDBYDEAN'
-              )
-            )
-          );
-      } else if (status == 'sentToCompany') {
-        return this.http
-          .get<ReportsModel[]>(
-            this.apiUrl + 'api/Submission/section/' + sectionId
-          )
-          .pipe(
-            map((eachS) =>
-              eachS.filter(
-                (eachS) =>
-                  eachS.sectionId == sectionId &&
-                  eachS.submissionStatus == 'EMAILSENTTOCOMPANY'
-              )
-            )
-          );
-      } else if (status == 'approvedByCompany') {
-        return this.http
-          .get<ReportsModel[]>(
-            this.apiUrl + 'api/Submission/section/' + sectionId
-          )
-          .pipe(
-            map((eachS) =>
-              eachS.filter(
-                (eachS) =>
-                  eachS.sectionId == sectionId &&
-                  eachS.submissionStatus == 'COMPANYAGREES'
-              )
-            )
-          );
-      } else {
-        return this.http
-          .get<ReportsModel[]>(
-            this.apiUrl + 'api/Submission/section/' + sectionId
-          )
-          .pipe(
-            map((eachS) =>
-              eachS.filter(
-                (eachS) => eachS.sectionId == sectionId && eachS.comments
-              )
-            )
-          );
-      }
-    }
-    return this.http
-      .get<ReportsModel[]>(this.apiUrl + 'api/Submission/section/' + sectionId)
-      .pipe(
-        map((eachS) => eachS.filter((eachS) => eachS.sectionId == sectionId))
-      );
-  }
   getSubmissionStudent(studId: number): Observable<submissionModel> {
     return this.http.get<submissionModel>(
       this.apiUrl + 'api/Submission/' + studId
@@ -450,10 +147,10 @@ export class createAccount {
   POSTsubmission(sectionId: number, programId: number, postVal) {
     return this.http.post(
       this.apiUrl +
-        'api/Submission?sectionId=' +
-        sectionId +
-        '&programId=' +
-        programId,
+      'api/Submission?sectionId=' +
+      sectionId +
+      '&programId=' +
+      programId,
       postVal
     );
   }
@@ -470,10 +167,10 @@ export class createAccount {
     console.log(assignIso);
     return this.http.put(
       this.apiUrl +
-        'api/AdminResponse/coordinator/' +
-        adminId +
-        '/' +
-        assignIso,
+      'api/AdminResponse/coordinator/' +
+      adminId +
+      '/' +
+      assignIso,
       postVal
     );
   }
@@ -609,6 +306,16 @@ export class createAccount {
     return this.http.post<AddStudentModel[]>(
       this.apiUrl + 'api/Accounts/students',
       payload
+    );
+  }
+
+  DeleteSignature(adminId: number, adminEmail: string): Observable<any> {
+    return this.http.delete<any>(
+      this.apiUrl +
+        'api/Admin/esignature/' +
+        adminId +
+        '?adminEmail=' +
+        adminEmail
     );
   }
 }

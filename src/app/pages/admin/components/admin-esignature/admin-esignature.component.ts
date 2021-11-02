@@ -74,4 +74,14 @@ export class AdminEsignatureComponent implements OnInit {
   toDecline() {
     this.router.navigate(['/admin'])
   }
+
+  onDeleteSignature() {
+    this.Acc.DeleteSignature(this.user.admin.id, this.user.email).subscribe(resp => {
+      this.ngOnInit();
+    location.reload();
+    },err => {
+      alert(err.error)
+      location.reload()
+    })
+  }
 }
