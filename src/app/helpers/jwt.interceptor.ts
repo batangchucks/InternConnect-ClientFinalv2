@@ -6,6 +6,8 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { environment } from 'src/environments/environment.prod';
@@ -31,6 +33,13 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(catchError(err => {
+      if (err.status === 401) {
+        this.authenticationService.logout();
+        location.reload();
+      }
+              const error = err.error.message || err.statusText;
+              return throwError(error);
+    }));
   }
 }
