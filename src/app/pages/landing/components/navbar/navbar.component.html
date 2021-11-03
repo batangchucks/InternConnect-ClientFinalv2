@@ -98,9 +98,10 @@
             Dashboard
           </a> For Admin dashboard-->
           <a
-          *ngIf="user.admin"
-          [routerLink]="['/admin']"
+          *ngIf="user"
+          routerLink="admin"
           class="
+          {{user.admin == null ? 'hidden': ''}}
             ml-8
             whitespace-nowrap
             inline-flex

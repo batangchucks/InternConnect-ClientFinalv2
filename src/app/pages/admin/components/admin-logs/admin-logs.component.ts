@@ -17,15 +17,24 @@ export class AdminLogsComponent implements OnInit {
   sampleLog: logsModel[]
 
   ngOnInit(): void {
-      this.Acc.getAllLogs().subscribe((profile) => {
-        this.logs = profile;
-        this.coordLogs =
-          profile.filter((log) => {
-            return log.actorEmail.toUpperCase() == this.user.email;
+
+    if (this.user.admin.authId == 1) {
+            this.Acc.getAllLogs().subscribe(
+              (profile) => {
+                this.logs = profile;
+              },
+              (err: Error) => {
+                alert('An error has occured');
+                this.ngOnInit();
+              }
+            );
+    }
+
+    if (this.user.admin.authId == 3) {
+          this.Acc.getLogsByAdminId(this.user.admin.id).subscribe((resp) => {
+            this.coordLogs = resp;
           });
-      },(err:Error)=> {
-        alert("An error has occured");
-        this.ngOnInit();
-      });
+    }
+
   }
 }

@@ -20,7 +20,7 @@
       <div
         class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
       >
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200" *ngIf="user.admin.authId == 1">
           <thead class="bg-gray-50">
             <tr>
               <th
@@ -143,6 +143,71 @@
 
             <!-- More people... -->
           </tbody>
+        </table>
+
+        <table class="min-w-full divide-y divide-gray-200" *ngIf="user.admin.authId == 3">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                class="
+                  px-6
+                  py-3
+                  text-left text-xs
+                  font-medium
+                  text-gray-500
+                  uppercase
+                  tracking-wider
+                "
+              >
+                Time Stamp
+              </th>
+              <th
+                scope="col"
+                class="
+                  px-6
+                  py-3
+                  text-left text-xs
+                  font-medium
+                  text-gray-500
+                  uppercase
+                  tracking-wider
+                "
+              >
+                Actor Email
+              </th>
+              <th
+                scope="col"
+                class="
+                  px-6
+                  py-3
+                  text-left text-xs
+                  font-medium
+                  text-gray-500
+                  uppercase
+                  tracking-wider
+                "
+              >
+                Actor Type
+              </th>
+              <th
+                scope="col"
+                class="
+                  px-6
+                  py-3
+                  text-left text-xs
+                  font-medium
+                  text-gray-500
+                  uppercase
+                  tracking-wider
+                "
+              >
+                Action
+              </th>
+            </tr>
+          </thead>
+          <!-- Person 1 -->
+
           <tbody
             class="bg-white divide-y divide-gray-200"
             *ngIf="user.admin.authId == 3"

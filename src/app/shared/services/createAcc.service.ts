@@ -164,7 +164,7 @@ export class createAccount {
   }
 
   coordinatorApprove(adminId: number, assignIso: number, postVal) {
-    console.log(assignIso);
+
     return this.http.put(
       this.apiUrl +
       'api/AdminResponse/coordinator/' +
@@ -242,8 +242,8 @@ export class createAccount {
     );
   }
 
-  getLogsByEmail(payload: any): Observable<logsModel[]> {
-    return this.http.post<logsModel[]>(this.apiUrl + 'api/Logs/email', payload);
+  getLogsByAdminId(id: number): Observable<logsModel[]> {
+    return this.http.get<logsModel[]>(this.apiUrl + 'api/Logs/admin/'+id);
   }
 
   getLogsBySubmission(submissionId: number): Observable<logsModel[]> {
@@ -266,7 +266,7 @@ export class createAccount {
   getFileUpload(payload: any) {
     let headers = new HttpHeaders();
 
-    console.log(payload);
+
     return this.http.post(this.apiUrl + 'api/File/excel', payload, {
       responseType: 'blob',
     });
