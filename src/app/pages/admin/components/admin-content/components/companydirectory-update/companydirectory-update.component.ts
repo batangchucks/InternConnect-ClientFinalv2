@@ -21,6 +21,8 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   updateCompany!: FormGroup;
   createCompany!: FormGroup;
   UpdateStatusIndicator: boolean = false;
+  EditLogo: boolean = false;
+  EditCover: boolean = false;
 
   selectedFileLogo: File = null;
   imageSrc: string;
@@ -89,6 +91,14 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   }
   toCancelTwo() {
     this.UpdateIndicator = false;
+  }
+
+  editLogo() {
+    this.EditLogo = true;
+  }
+
+  editCoverPhoto() {
+    this.EditCover = true;
   }
 
   toUpdate(toUpdateCompany: CompanyModel) {

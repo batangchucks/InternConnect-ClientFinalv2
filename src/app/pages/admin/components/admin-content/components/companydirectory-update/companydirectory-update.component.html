@@ -584,19 +584,6 @@
           >
             <div class="mt-6">
               <div class="mt-4">
-
-                <a [href]="photoUrl+updateLogo"  target="_blank"  class="block font-semibold hover:text-green-700"
-                  >View icon</a
-                >
-              </div>
-
-              <div class="mt-4">
-
-                <a [href]="photoUrl+updateCoverPhoto" target="_blank" class="block font-semibold hover:text-green-700"
-                  >View header</a
-                >
-              </div>
-              <div class="mt-4">
                 <label for="email-address" class="sr-only" class="text-base"
                   >Name</label
                 >
@@ -818,12 +805,29 @@
                     rounded-md
                   ">
               </div>
-                <div class="mt-4">
+              <div class="mt-4 flex flex-row">
+
+                <a [href]="photoUrl+updateLogo"  target="_blank"  class="block font-semibold hover:text-green-700"
+                  >View icon</a
+                >
+                <div class="px-4">
+                  <a target="blank" class="flex-row px-4 bg-gray-200 hover:bg-gray-300 rounded-md cursor-pointer text-gray-900 py-1" (click)="editLogo()">Edit</a></div>
+              </div>
+
+              <div class="mt-4 flex flex-row">
+
+                <a [href]="photoUrl+updateCoverPhoto" target="_blank" class="block font-semibold hover:text-green-700"
+                  >View header</a
+                >
+                <div class="px-4">
+                  <a target="blank" class="flex-row px-4 bg-gray-200 hover:bg-gray-300 rounded-md cursor-pointer text-gray-900 py-1" (click)="editCoverPhoto()">Edit</a></div>
+              </div>
+                <div class="mt-4" *ngIf="EditLogo">
                   <p>Update logo</p>
                   <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="changeLogo($event)" />
                   <p class="text-gray-600 text-xs">Accepts PNG or JPEG</p>
                 </div>
-                <div class="mt-4">
+                <div class="mt-4" *ngIf="EditCover">
                   <p>Update coverphoto</p>
                   <input class="mt-4" type="file" accept=".png, .jpg, .jpeg" (change)="changeCoverPhoto($event)" />
                   <p class="text-gray-600 text-xs">Accepts PNG or JPEG</p>
