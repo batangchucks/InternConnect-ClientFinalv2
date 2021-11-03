@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { DatePipe } from '@angular/common';
-
+import { NgAnimatedCounterModule } from '@bugsplat/ng-animated-counter';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -112,7 +112,7 @@ import { ChangedeanComponent } from './pages/changedean/changedean.component';
     PolicyComponent,
     isoCodeFilter,
     reportFilter,
-    ChangedeanComponent
+    ChangedeanComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +121,7 @@ import { ChangedeanComponent } from './pages/changedean/changedean.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    NgAnimatedCounterModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

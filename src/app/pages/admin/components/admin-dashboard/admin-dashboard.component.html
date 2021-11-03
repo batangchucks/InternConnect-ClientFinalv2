@@ -60,7 +60,7 @@
       </svg>
     </div>
     <div>
-      <p class="mb-2 text-3xl font-bold">{{ studentList.length }}</p>
+      <ng-animated-counter class="mb-2 text-3xl font-bold" [params]="studentListparams"></ng-animated-counter>
       <p class="text-sm font-semibold">Students enrolled in practicum course</p>
     </div>
   </div>
@@ -93,7 +93,7 @@
       </svg>
     </div>
     <div>
-      <p class="mb-2 text-3xl font-bold">{{ studentsWithCompany }}</p>
+      <ng-animated-counter class="mb-2 text-3xl font-bold" [params]="studentEndorsedparams"></ng-animated-counter>
       <p class="text-sm text-justify font-semibold">Students endorsed to an accredited company</p>
     </div>
   </div>
@@ -126,7 +126,8 @@
       </svg>
     </div>
     <div>
-      <p class="mb-2 text-3xl font-bold">{{ studentsWithoutCompany }}</p>
+
+      <ng-animated-counter class="mb-2 text-3xl font-bold" [params]="studentWithoutparams"></ng-animated-counter>
       <p class="text-sm font-semibold">Students without endorsement to an accredited company</p>
     </div>
   </div>
@@ -159,7 +160,8 @@
       </svg>
     </div>
     <div>
-      <p class="mb-2 text-3xl font-bold">{{ studentsWithRequests }}</p>
+
+     <ng-animated-counter class="mb-2 text-3xl font-bold" [params]="studentWithparams"></ng-animated-counter>
       <p class="text-sm font-semibold">Students with endorsement requests</p>
     </div>
   </div>

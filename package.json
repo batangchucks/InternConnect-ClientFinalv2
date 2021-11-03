@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~12.2.2",
     "@angular/platform-browser-dynamic": "~12.2.2",
     "@angular/router": "~12.2.2",
+    "@bugsplat/ng-animated-counter": "^1.2.1",
     "@ngneat/tailwind": "^7.0.3",
     "chart.js": "^3.5.1",
     "ngx-pagination": "^5.1.1",

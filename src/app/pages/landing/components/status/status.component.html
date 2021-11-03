@@ -6,7 +6,12 @@
 
 
 <div class="mt-2 w-11/12 lg:w-2/6 mx-auto">
-  <img class="w-full h-auto" *ngIf="(student.adminResponse.acceptedByCoordinator||student.adminResponse.acceptedByChair) && !student.adminResponse.acceptedByDean && student.adminResponse.comments == null " alt="Acknowledged status"
+  <img class="w-full h-auto" *ngIf="
+  (!student.adminResponse.acceptedByCoordinator||!student.adminResponse.acceptedByChair)
+  ||(student.adminResponse.acceptedByCoordinator||student.adminResponse.acceptedByChair)
+   && !student.adminResponse.acceptedByDean
+    && student.adminResponse.comments == null"
+    alt="Acknowledged status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/acknowledged_fhsdqe.png">
   <img *ngIf="student.adminResponse.acceptedByCoordinator && student.adminResponse.acceptedByChair && student.adminResponse.acceptedByDean && !student.adminResponse.emailSentByCoordinator" alt="Signed endorsement letter status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/signed_kzsdeb.png">
