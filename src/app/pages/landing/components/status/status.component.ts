@@ -405,7 +405,7 @@ export class StatusComponent implements OnInit {
       this.PhotoFileNameC = data.toString();
       this.PhotoFilePathC = this.File.photoUrl + this.PhotoFileNameC;
 
-      console.log(this.PhotoFilePathC);
+
     },(err:Error)=> {
       alert("An error has occured");
       this.ngOnInit();
@@ -428,7 +428,7 @@ export class StatusComponent implements OnInit {
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.PhotoFileNameA = data.toString();
       this.PhotoFilePathA = this.File.photoUrl + this.PhotoFileNameA;
-      console.log(this.PhotoFilePathA);
+
     },(err:Error)=> {
       alert("An error has occured");
       this.ngOnInit();

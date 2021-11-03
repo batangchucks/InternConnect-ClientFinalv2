@@ -45,11 +45,11 @@ export class ChairComponent implements OnInit {
 
      this.Account.deleteChair(this.chairId).subscribe((deletedCh) => {
       this.DeleteIndicator = false;
-    
+
       this.ngOnInit();
       this.chairId = null;
     },err=> {
-     
+
        alert("An error has occured");
        this.ngOnInit();
     });
@@ -64,7 +64,7 @@ export class ChairComponent implements OnInit {
       this.modalAppear = false;
       this.ngOnInit();
     },err=> {
-     
+
       alert("An error has occured");
       this.ngOnInit();
    });
@@ -73,13 +73,13 @@ export class ChairComponent implements OnInit {
     this.program.getProgram().subscribe((eachP) => {
       this.Program = eachP;
     },err=> {
-     
+
       alert("An error has occured");
       this.ngOnInit();
    });
     this.Account.getChairs().subscribe((eachC) => {
       this.Chair = eachC;
-      console.log(this.Chair);
+
 
       this.Chair.map((eachChair) => {
         this.Program.map((eachP) => {
@@ -90,7 +90,7 @@ export class ChairComponent implements OnInit {
         });
       });
     },err=> {
-     
+
       alert("An error has occured");
       this.ngOnInit();
    });
@@ -107,7 +107,7 @@ export class ChairComponent implements OnInit {
       this.updatePayload = []
       this.ngOnInit();
     },err=> {
-     
+
       alert("An error has occured");
       this.ngOnInit();
    });
@@ -134,7 +134,7 @@ export class ChairComponent implements OnInit {
         return chair.id != selectedChair.id;
       });
     },(err)=> {
-     
+
       alert("An error has occured");
       this.ngOnInit();
    });

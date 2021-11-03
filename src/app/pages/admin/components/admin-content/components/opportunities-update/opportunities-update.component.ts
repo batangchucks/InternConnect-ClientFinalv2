@@ -41,7 +41,7 @@ export class OpportunitiesUpdateComponent implements OnInit {
       this.Company = eC.filter(comp => {
         return comp.status != CompanyStatusList[2]
       });
-      console.log(this.Company)
+
     },(err:Error)=> {
       alert("An error has occured");
       this.ngOnInit();
@@ -91,7 +91,7 @@ export class OpportunitiesUpdateComponent implements OnInit {
     this.UpdateIndicator = true;
 
     const title = eO.title;
-    console.log(eO.title, eO.position);
+
     const position = eO.position;
     const introduction = eO.introduction;
     const id = eO.id;

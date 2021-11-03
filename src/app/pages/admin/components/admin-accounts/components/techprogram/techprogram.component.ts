@@ -30,7 +30,7 @@ export class TechprogramComponent implements OnInit {
     this.modalAppear = true;
     f.value.email = f.value.email.replace(/\s/g, '');
     this.Account.POSTtechCoord(f.value).subscribe((cTechCoord) => {
-      console.log(cTechCoord);
+
       f.reset();
       this.modalAppear = false;
       this.ngOnInit();

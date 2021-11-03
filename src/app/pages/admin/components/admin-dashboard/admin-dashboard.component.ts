@@ -91,6 +91,7 @@ export class AdminDashboardComponent implements OnInit {
         .getCompanyWithHighestOccurence('program', this.user.admin.programId)
         .subscribe((resp) => {
           this.companyNameWithOccurence = resp;
+
           this.chart = document.getElementById('company_chart');
           Chart.register(...registerables);
           this.loadCompanyChart(resp);

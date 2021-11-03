@@ -62,7 +62,7 @@ export class AdminIsoComponent implements OnInit {
           this.isoFormRange.reset();
         },
         (error) => {
-          console.log(error);
+
           this.isoFormRange.reset();
         }
       );
@@ -90,10 +90,10 @@ export class AdminIsoComponent implements OnInit {
       .subscribe(
         (val) => {
           this.isoFormSingle.reset();
-          console.log('Iso code posted');
+
         },
         (error) => {
-          console.log(error);
+
           this.isoFormSingle.reset();
         }
       );

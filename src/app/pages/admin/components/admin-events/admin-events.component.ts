@@ -112,7 +112,7 @@ export class AdminEventsComponent implements OnInit {
 
   confirmDelete() {
     this.eventService.deleteEvent(this.deleteId).subscribe((resp) => {
-      console.log('Successfully deleted');
+
       this.DeleteIndicator = false;
       this.ngOnInit();
     },(err:Error)=> {

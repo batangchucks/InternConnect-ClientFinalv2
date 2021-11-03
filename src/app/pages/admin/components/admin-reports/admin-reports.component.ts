@@ -69,7 +69,7 @@ export class AdminReportsComponent implements OnInit {
     if (this.user.admin.authId == 2) {
       this.section.getSection(this.user.admin.programId).subscribe(
         (eachS) => {
-          console.log(eachS);
+
 
           this.Section = eachS;
         },
@@ -84,8 +84,7 @@ export class AdminReportsComponent implements OnInit {
           this.Submissions = eachSub;
           this.SubmissionsCopy = eachSub;
           this.filteredSubmit = eachSub;
-          console.log(this.Submissions);
-          console.log(this.filteredSubmit);
+
         }
       ),
         (err: Error) => {
@@ -97,7 +96,7 @@ export class AdminReportsComponent implements OnInit {
     if (this.user.admin.authId == 3) {
       this.section.getSection(this.user.admin.programId).subscribe(
         (eachS) => {
-          console.log(eachS);
+
           this.Section = eachS;
         },
         (err: Error) => {
@@ -113,7 +112,7 @@ export class AdminReportsComponent implements OnInit {
           this.Submissions = eachSub;
           this.SubmissionsCopy = eachSub;
           this.filteredSubmit = eachSub;
-          console.log(eachSub.length);
+
         },
         (err: Error) => {
           alert('An error has occured');
@@ -121,70 +120,9 @@ export class AdminReportsComponent implements OnInit {
         }
       );
     }
-    //  wrong
+
   }
-  // Status() {
-  //   this.modalAppear = true;
 
-  //   if (this.user.admin.authId == 1) {
-  //     this.Program.getSection(this.selectedProg).subscribe(
-  //       (eachS) => {
-  //         this.Section = eachS;
-  //       },
-  //       (err: Error) => {
-  //         alert('An error has occured');
-  //         this.ngOnInit();
-  //       }
-  //     );
-  //     this.Acc.filterSubmissionDean(
-  //       this.selectedSec,
-  //       this.status,
-  //       this.selectedProg
-  //     ).subscribe(
-  //       (eachP) => {
-  //         this.filteredSubmit = eachP;
-  //         this.modalAppear = false;
-  //         this.id = '';
-  //       },
-  //       (err: Error) => {
-  //         alert('An error has occured');
-  //         this.ngOnInit();
-  //       }
-  //     );
-  //   }
-  //   if (this.user.admin.authId == 2) {
-  //     this.Acc.filterSubmissionChair(
-  //       this.selectedSec,
-  //       this.status,
-  //       this.user.admin.programId
-  //     ).subscribe(
-  //       (eachSub) => {
-  //         this.filteredSubmit = eachSub;
-  //         console.log(this.filteredSubmit);
-  //         this.id = '';
-  //         this.modalAppear = false;
-  //       },
-  //       (err: Error) => {
-  //         alert('An error has occured');
-  //         this.ngOnInit();
-  //       }
-  //     );
-  //   }
-
-  //   if (this.user.admin.authId == 3) {
-  //     this.Acc.filterSubmissionCord(this.selectedSec, this.status).subscribe(
-  //       (eachS) => {
-  //         this.filteredSubmit = eachS;
-  //         this.id = '';
-  //         this.modalAppear = false;
-  //       },
-  //       (err: Error) => {
-  //         alert('An error has occured');
-  //         this.ngOnInit();
-  //       }
-  //     );
-  //   }
-  // }
 
   StatusProgram(filterId: number) {
 

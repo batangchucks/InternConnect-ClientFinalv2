@@ -8,7 +8,7 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
   styleUrls: ['./changedean.component.scss']
 })
 export class ChangedeanComponent implements OnInit {
-  
+
   oldemail:string;
   newemail: string = '1';
   resetKey: string;
@@ -34,14 +34,12 @@ export class ChangedeanComponent implements OnInit {
     });
   }
   initalizeForm() {
-    console.log(this.newemail);
-    console.log(this.resetKey);
-    console.log(this.oldemail);
+
     this.onboardForm = new FormGroup({
       email: new FormControl(this.newemail.toLowerCase()),
       resetkey: new FormControl(this.resetKey),
       password: new FormControl(''),
-      
+
     });
   }
   onSubmit() {
@@ -49,7 +47,7 @@ export class ChangedeanComponent implements OnInit {
 
     //   })
     const password = this.onboardForm.get('password').value;
-   
+
     if (password === this.confirmpassword) {
       this.isLoggedIn = true;
       this.account.onBoardNewDean(this.onboardForm.value,this.oldemail).subscribe(newAcc=> {

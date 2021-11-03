@@ -55,7 +55,7 @@ export class CoordinatorComponent implements OnInit {
     this.program.getSection(this.user.admin.programId).subscribe((sections) => {
       this.Section = sections;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -67,7 +67,7 @@ export class CoordinatorComponent implements OnInit {
         this.Coordinator.map((eachC) => {
           this.Section.map((eachS) => {
             if (eachC.sectionId == eachS.id) {
-              console.log(this.Section.indexOf(eachS));
+
 
               const index = this.Section.indexOf(eachS);
               this.Section.splice(index, 1);
@@ -75,14 +75,13 @@ export class CoordinatorComponent implements OnInit {
           });
         });
       },(err)=> {
-     
+
         alert("Something went wrong please try again! ");
         this.ngOnInit();
      });
   }
   removeDuplicate() {
-    console.log(this.Section);
-    console.log(this.Coordinator);
+
   }
 
   createCoordinator() {
@@ -94,7 +93,7 @@ export class CoordinatorComponent implements OnInit {
         this.modalAppear = false;
         this.ngOnInit();
       },(err)=> {
-     
+
         alert("Something went wrong please try again! ");
         this.ngOnInit();
      });
@@ -110,7 +109,7 @@ export class CoordinatorComponent implements OnInit {
       this.ngOnInit();
       this.DeleteIndicator = false;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -144,7 +143,7 @@ export class CoordinatorComponent implements OnInit {
       this.targetCoordinator = null;
       this.ngOnInit();
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -163,7 +162,7 @@ export class CoordinatorComponent implements OnInit {
           return coordinator.id != coord.id;
         });
       },(err)=> {
-     
+
         alert("Something went wrong please try again! ");
         this.ngOnInit();
      });

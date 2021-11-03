@@ -31,7 +31,7 @@ export class DeanComponent implements OnInit {
   }
   changeDean() {
 
-    console.log();
+
 
     var payload = {
       oldEmail:this.user.email.toLowerCase(),
@@ -42,7 +42,7 @@ export class DeanComponent implements OnInit {
 
     this.Acc.changeDean(payload).subscribe(changedDean=> {
       this.AssignIndicator = false;
-      console.log(changedDean);
+
       this.email= '';
       this.pass = '';
       this.ngOnInit();

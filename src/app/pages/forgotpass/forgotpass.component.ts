@@ -25,7 +25,7 @@ export class ForgotpassComponent implements OnInit {
   onSubmit(f: NgForm) {
     if(!re.test(f.value.email)){
       this.pwValidation = true;
-      console.log(f.value.email);
+
       return;
     }
     this.originalButton = false;

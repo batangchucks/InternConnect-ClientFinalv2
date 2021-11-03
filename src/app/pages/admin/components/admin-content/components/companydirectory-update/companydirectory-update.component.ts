@@ -52,7 +52,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.company.getCompany().subscribe((eC) => {
       this.Companies = eC;
-      console.log(this.Companies)
+
     });
     var dateGen = new Date();
     var today =
@@ -154,7 +154,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
       contactPersonDesignation: f.controls.contactPersonDesignation.value,
       expiration: f.controls.expirationDate.value,
     };
-    console.log(payload);
+
 
     this.company.createCompany(payload).subscribe((createdC) => {
       this.ngOnInit();
@@ -184,7 +184,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
     };
 
     this.company.updateCompany(payload).subscribe((eachC) => {
-      console.log(eachC);
+
       this.UpdateIndicator = false;
       this.ngOnInit();
     },(err:Error)=> {
@@ -208,7 +208,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.LogoFileName = data.toString();
-      console.log(this.LogoFileName);
+
     },(err:Error)=> {
       alert("An error has occured");
       this.ngOnInit();
@@ -234,7 +234,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.coverPhotoFileName = data.toString();
-      console.log(this.coverPhotoFileName);
+
     },(err:Error)=> {
       alert("An error has occured");
       this.ngOnInit();
@@ -260,7 +260,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.updateLogo = data.toString();
-      console.log(this.updateLogo);
+
     },(error:Error)=> {
       alert("An error has occured");
       this.ngOnInit();
@@ -285,7 +285,7 @@ export class CompanydirectoryUpdateComponent implements OnInit {
 
     this.File.uploadEndorsement(formData).subscribe((data: any) => {
       this.updateCoverPhoto = data.toString();
-      console.log(this.updateCoverPhoto);
+
     },(err:Error)=> {
       alert("An error has occured");
       this.ngOnInit();

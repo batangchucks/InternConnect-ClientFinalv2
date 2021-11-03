@@ -21,8 +21,7 @@ export class reportFilter implements PipeTransform {
         (eachSubmit) => eachSubmit.programId == programId
       );
     } else if (status == null && sectionId) {
-      console.log('when only section');
-      console.log(sectionId);
+
       return submissions.filter(
         (eachSubmit) => eachSubmit.sectionId == sectionId
       );

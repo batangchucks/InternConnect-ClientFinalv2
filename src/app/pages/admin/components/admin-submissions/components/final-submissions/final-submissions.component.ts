@@ -278,20 +278,13 @@ export class FinalSubmissionsComponent implements OnInit {
   }
 
   previewSub(id: number) {
-    // this.Acc.viewSubmission(id).subscribe(subm=> {
-    //   console.log(subm);
-    //   // var blob = new Blob([subm], { type: 'application/pdf' });
 
-    //   // let url = window.URL.createObjectURL(blob);
-    //   // console.log(url);
-    //   // window.open(url);
-    // })
 
     this.Acc.viewSubmission(id).subscribe((sub) => {
       var blob = new Blob([sub], { type: 'application/pdf' });
 
       let url = window.URL.createObjectURL(blob);
-      console.log(url);
+
       window.open(url);
     });
   }

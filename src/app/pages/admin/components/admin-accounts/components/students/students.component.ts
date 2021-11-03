@@ -289,7 +289,7 @@ export class StudentsComponent implements OnInit {
       };
 
       reader.onerror = function () {
-        console.log('error is occured while reading file!');
+
       };
     } else {
       alert('Please import valid .csv file.');

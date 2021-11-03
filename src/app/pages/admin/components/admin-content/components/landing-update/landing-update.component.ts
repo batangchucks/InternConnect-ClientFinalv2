@@ -35,7 +35,7 @@ export class LandingUpdateComponent implements OnInit {
       this.landingPagePath = this.File.photoUrlL + this.landingPagePhoto;
       this.logoPath = this.File.photoUrlL + this.logoPhoto;
       this.id = web.id;
-      console.log(this.id);
+
     });
   }
 
@@ -114,7 +114,7 @@ export class LandingUpdateComponent implements OnInit {
 
   deleteState(toDelete:string) {
       this.File.deleteWebState(this.id,toDelete).subscribe(delV=> {
-        console.log(delV);
+
           this.ngOnInit();
       })
   }

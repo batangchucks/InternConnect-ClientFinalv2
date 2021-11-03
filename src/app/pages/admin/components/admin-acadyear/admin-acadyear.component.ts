@@ -62,7 +62,7 @@ export class AdminAcadyearComponent implements OnInit {
       email: this.user.email,
       password: this._deanPassword,
     };
-    console.log(resetPayload);
+
     this.academicyear
       .resetYear(this._ayStartYear, this._ayEndYear, resetPayload)
       .subscribe(

@@ -92,7 +92,6 @@ export class NewSubmissionsComponent implements OnInit {
   isoChange() {
     this.iso = (<HTMLInputElement>document.getElementById('isoCode')).value;
 
-    console.log(this.iso);
   }
   approve(adminResponseId: number, isoCode: number) {
     var PostVal = {
@@ -162,23 +161,6 @@ export class NewSubmissionsComponent implements OnInit {
       comments: new FormControl(''),
     });
   }
-  rejectedSubmit() {
-    // this.DisapproveIndicator = false;
-    // this.onAcceptLoading = true;
-    // if(this.RejectForm.get('comments').value == '' || this.RejectForm.get('comments').value == null) {
-    //   this.RejectForm.get('comments').setValue('No Comment')
-    // }
-    // console.log("working");
-    // this.Acc.coordinatorApprove(
-    //   this.user.admin.id,0,
-    //   this.RejectForm.value
-    // ).subscribe((updatedVal) => {
-    //   console.log(updatedVal);
-    //   this.onAcceptLoading = false;
-    //   this.assignIso = null;
-    //   this.ngOnInit();
-    // });
-  }
 
   toDisapproveModal(id: number) {
     this.rejectModal = true;
@@ -217,32 +199,17 @@ export class NewSubmissionsComponent implements OnInit {
   }
 
   previewSub(id: number) {
-    // this.Acc.viewSubmission(id).subscribe(subm=> {
-    //   console.log(subm);
-    //   // var blob = new Blob([subm], { type: 'application/pdf' });
 
-    //   // let url = window.URL.createObjectURL(blob);
-    //   // console.log(url);
-    //   // window.open(url);
-    // })
 
     this.Acc.viewSubmission(id).subscribe((sub) => {
       var blob = new Blob([sub], { type: 'application/pdf' });
 
       let url = window.URL.createObjectURL(blob);
-      console.log(url);
+
       window.open(url);
     });
   }
-  // rejectedSubmit() {
-  //   this.Acc.coordinatorDisapprove(this.user.admin.id ,this.RejectForm.value).subscribe(
-  //     (updatedVal) => {
 
-  //       this.ngOnInit();
-  //     }
-  //   );
-  //   this.DisapproveIndicator = false;
-  // }
 
   // Cancelling approval modal
   toCancelOne() {

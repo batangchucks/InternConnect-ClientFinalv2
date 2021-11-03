@@ -62,7 +62,7 @@ export class CompanyService {
     return this.http.delete<any>(this.apiUrl + 'api/Company/'+eachId);
   }
   updateCompany(upCompany: any) {
-    console.log(upCompany);
+
     return this.http.put(
       this.apiUrl + 'api/Company',
       upCompany

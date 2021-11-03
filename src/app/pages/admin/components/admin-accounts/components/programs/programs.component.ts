@@ -206,7 +206,7 @@ export class ProgramsComponent implements OnInit {
 
   acceptDelete() {
     this.program.deleteProgram(this.programId).subscribe((delP) => {
-      console.log(delP);
+
          this.programId = null;
         this.DeleteProgramIndicator = false;
         this.ngOnInit();
@@ -220,7 +220,7 @@ export class ProgramsComponent implements OnInit {
   }
 
   trackDeleteAccepted() {
-    console.log(this.trackId);
+
     this.program.deleteTrack(this.trackId).subscribe((delTrack) => {
           this.trackId = null;
           this.DeleteTrackIndicator = false;
