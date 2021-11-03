@@ -6,13 +6,13 @@
 
 
 <div class="mt-2 w-11/12 lg:w-2/6 mx-auto">
-  <img class="w-full h-auto" *ngIf="responseType == 'acknowledged'" alt="Acknowledged status"
+  <img class="w-full h-auto" *ngIf="(student.adminResponse.acceptedByCoordinator||student.adminResponse.acceptedByChair) && !student.adminResponse.acceptedByDean && student.adminResponse.comments == null " alt="Acknowledged status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/acknowledged_fhsdqe.png">
-  <img *ngIf="responseType == 'dean'" alt="Signed endorsement letter status"
+  <img *ngIf="student.adminResponse.acceptedByCoordinator && student.adminResponse.acceptedByChair && student.adminResponse.acceptedByDean && !student.adminResponse.emailSentByCoordinator" alt="Signed endorsement letter status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/signed_kzsdeb.png">
-  <img *ngIf="responseType == 'emailed'" alt="Sent to company status"
+  <img *ngIf="student.adminResponse.emailSentByCoordinator && !student.adminResponse.companyAgrees" alt="Sent to company status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207043/Status/sent_ocovew.png">
-  <img *ngIf="responseType== 'agrees'" alt="Accepted status"
+  <img *ngIf="student.adminResponse.companyAgrees" alt="Accepted status"
   src="https://res.cloudinary.com/daljbo1q0/image/upload/v1632207474/Status/accepted_wfnrcv.png">
 </div>
 
@@ -44,12 +44,12 @@
                 proceed with other practicum requirements.
               </p>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
-                Remarks: <span></span>
+                Remarks: <span>{{student.adminResponse.comments}}</span>
               </p>
             </div>
           </div>
         </li>
-        <li *ngIf="comments">
+        <li *ngIf="student.adminResponse.comments != null">
           <div class="flex">
             <div class="flex-shrink-0">
               <div class="flex items-center justify-center h-12 w-12 -mt-2">
@@ -69,12 +69,12 @@
                 You probably missed out something or entered incorrect data required in the form.
               </p>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
-                Remarks: <span></span>
+                Remarks: <span>{{student.adminResponse.comments}}</span>
               </p>
             </div>
           </div>
         </li>
-        <li  *ngIf="responseType == 'emailed'">
+        <li  *ngIf="student.adminResponse.emailSentByCoordinator && !student.adminResponse.companyAgrees &&student.adminResponse.comments == null">
           <div class="flex">
             <div class="flex-shrink-0">
               <div class="flex items-center justify-center h-12 w-12 -mt-2">
@@ -95,7 +95,7 @@
                 Just one more step and you're ready to start your internship!
               </p>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
-                Remarks: <span></span>
+                Remarks: <span>{{student.adminResponse.comments}}</span>
               </p>
             </div>
           </div>
@@ -120,12 +120,12 @@
                 endorsement letter.
               </p>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
-                Remarks: <span></span>
+                Remarks: <span>{{student.adminResponse.comments}}</span>
               </p>
             </div>
           </div>
         </li>
-        <li *ngIf="responseType == 'acknowledged'">
+        <li *ngIf="responseType == 'acknowledged' && student.adminResponse.comments == null">
           <div class="flex">
             <div class="flex-shrink-0">
               <div class="flex items-center justify-center h-12 w-12 -mt-2">
@@ -145,7 +145,7 @@
                 After verifying, the practicum coordinator will forward the form to the IGAARP and Dean for signing.
               </p>
               <p class="mt-2 text-base leading-6 text-gray-500 dark:text-gray-300">
-                Remarks: <span></span>
+                Remarks: <span>{{student.adminResponse.comments}}</span>
               </p>
             </div>
           </div>
@@ -181,11 +181,11 @@
               <h1 class="px-2 text-sm">{{student.student.account.email.toLowerCase()}}</h1>
             </div>
             <div class="flex items-center justify-between gap-4 w-full mt-8">
-              <button type="button" (click)="toUpdate()" [disabled]="!comments || (student.adminResponse.companyAgrees == false && student.adminResponse.emailSentByCoordinator)"
+              <button type="button" (click)="toUpdate()" [disabled]="student.adminResponse.comments == null || (student.adminResponse.companyAgrees == false && student.adminResponse.emailSentByCoordinator)"
                 class="disabled:cursor-not-allowed py-2 px-4  bg-red-600 hover:bg-red-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                 Update Form
               </button>
-              <button type="button" *ngIf="student.adminResponse.companyAgrees || (student.adminResponse.companyAgrees == false && student.adminResponse.emailSentByCoordinator)"   (click)="toChange()"
+              <button type="button" *ngIf="student.adminResponse.emailSentByCoordinator && ((student.adminResponse.companyAgrees && student.adminResponse.comments ==null) || (!student.adminResponse.companyAgrees && student.adminResponse.comments !=null ))"   (click)="toChange()"
                 class="py-2 px-4  bg-white hover:bg-gray-100 focus:ring-green-500 focus:ring-offset-green-200 text-red-600 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                 Change Company
               </button>

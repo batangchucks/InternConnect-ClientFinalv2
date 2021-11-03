@@ -94,6 +94,7 @@ export class NewSubmissionsComponent implements OnInit {
 
   }
   approve(adminResponseId: number, isoCode: number) {
+        this.onAcceptLoading = true;
     var PostVal = {
       id: adminResponseId,
       acceptedByCoordinator: true,
