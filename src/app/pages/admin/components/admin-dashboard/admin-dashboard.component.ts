@@ -59,7 +59,7 @@ export class AdminDashboardComponent implements OnInit {
       this.dashboard.getStudentList('whole', 0).subscribe((resp) => {
         this.studentList = resp;
         this.studentListparams = {
-          start: 0,
+          start: -1,
           end: resp.length,
           interval: 10,
           increment: 1,
@@ -74,7 +74,7 @@ export class AdminDashboardComponent implements OnInit {
           );
         }).length;
         this.studentEndorsedparams = {
-          start: 0,
+          start: -1,
           end: this.studentsWithCompany,
           interval: 10,
           increment: 1,
@@ -83,7 +83,7 @@ export class AdminDashboardComponent implements OnInit {
           return student.submissions.length <= 0;
         }).length;
         this.studentWithoutparams = {
-          start: 0,
+          start: -1,
           end: this.studentsWithoutCompany,
           interval: 10,
           increment: 1,
@@ -106,7 +106,7 @@ export class AdminDashboardComponent implements OnInit {
           }
         ).length;
         this.studentWithparams = {
-          start: 0,
+          start: -1,
           end: this.studentsWithRequests,
           interval: 10,
           increment: 1,
@@ -142,7 +142,7 @@ export class AdminDashboardComponent implements OnInit {
           (resp) => {
             this.studentList = resp;
             this.studentListparams = {
-              start: 1,
+              start: -1,
               end: resp.length,
               interval: 10,
               increment: 1,
@@ -160,7 +160,7 @@ export class AdminDashboardComponent implements OnInit {
               }
             ).length;
                     this.studentEndorsedparams = {
-                      start: 0,
+                      start: -1,
                       end: this.studentsWithCompany,
                       interval: 10,
                       increment: 1,
@@ -169,7 +169,7 @@ export class AdminDashboardComponent implements OnInit {
               return student.submissions.length <= 0;
             }).length;
         this.studentWithoutparams = {
-          start: 0,
+          start: -1,
           end: this.studentsWithoutCompany,
           interval: 10,
           increment: 1,
@@ -191,7 +191,7 @@ export class AdminDashboardComponent implements OnInit {
               }
             ).length;
                     this.studentWithparams = {
-                      start: 0,
+                      start: -1,
                       end: this.studentsWithRequests,
                       interval: 10,
                       increment: 1,
@@ -230,7 +230,7 @@ export class AdminDashboardComponent implements OnInit {
           (resp) => {
             this.studentList = resp;
             this.studentListparams = {
-              start: 1,
+              start: -1,
               end: resp.length,
               interval: 10,
               increment: 1,
@@ -248,7 +248,7 @@ export class AdminDashboardComponent implements OnInit {
               }
             ).length;
                     this.studentEndorsedparams = {
-                      start: 0,
+                      start: -1,
                       end: this.studentsWithCompany,
                       interval: 10,
                       increment: 1,
@@ -257,7 +257,7 @@ export class AdminDashboardComponent implements OnInit {
               return student.submissions.length <= 0;
             }).length;
         this.studentWithoutparams = {
-          start: 0,
+          start: -1,
           end: this.studentsWithoutCompany,
           interval: 10,
           increment: 1,
@@ -279,7 +279,7 @@ export class AdminDashboardComponent implements OnInit {
               }
             ).length;
                     this.studentWithparams = {
-                      start: 0,
+                      start: -1,
                       end: this.studentsWithRequests,
                       interval: 10,
                       increment: 1,
