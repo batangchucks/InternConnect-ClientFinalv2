@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   ) {}
   @ViewChild('errContainer') divC;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   onSubmit(form: NgForm) {
 
     this.auth.login(form.value).subscribe(
@@ -32,15 +33,11 @@ export class LoginComponent implements OnInit {
           this.isLoggedIn = true;
           this.router.navigate(['/']);
           location.reload();
-
         }
+        console.log(val)
       },
-      (error: HttpErrorResponse) => {
-        if (error.status == 400) {
-          this.isLoggedIn = false;
-          this.ngOnInit();
-        }
-        this.ngOnInit();
+      (error) => {
+        this.isLoggedIn = false
       }
     );
   }
