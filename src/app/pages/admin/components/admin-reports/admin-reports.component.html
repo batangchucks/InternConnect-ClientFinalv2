@@ -306,7 +306,7 @@
 
 <div class="px-4 py-3 text-right sm:px-6 lg:px-8">
   <button
-  [disabled]= "filteredSubmit.length"
+  [disabled]= "Submissions.length == 0"
     (click)="download()"
     type="button"
     class="
