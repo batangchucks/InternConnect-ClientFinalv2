@@ -35,6 +35,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401) {
+        alert("Session Expired")
         this.authenticationService.logout();
         location.reload();
       }

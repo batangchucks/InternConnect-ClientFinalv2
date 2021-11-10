@@ -44,11 +44,7 @@ export class ApplicationComponent implements OnInit {
     });
     this.Acc.getSubmissionStudent(this.user.student.id).subscribe(student=> {
         this.submission = student;
-    },(err:Error)=> {
-      alert("Session Expired");
-      this.Auth.logout();
-      this.router.navigate(['/login']);
-      this.ngOnInit();
+    },(err)=> {
     });
 
 
