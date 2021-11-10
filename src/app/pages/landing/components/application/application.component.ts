@@ -39,7 +39,7 @@ export class ApplicationComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
     this.Acc.getSubmissionStudent(this.user.student.id).subscribe(student=> {

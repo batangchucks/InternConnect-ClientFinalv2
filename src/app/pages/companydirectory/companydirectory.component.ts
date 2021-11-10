@@ -32,7 +32,7 @@ export class CompanydirectoryComponent implements OnInit {
         );
       });
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }

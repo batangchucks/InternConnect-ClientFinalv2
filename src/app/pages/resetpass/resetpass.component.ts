@@ -30,7 +30,6 @@ export class ResetpassComponent implements OnInit {
 
       this.initalizeForm();
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -59,7 +58,6 @@ export class ResetpassComponent implements OnInit {
           alert("Password Successfully Resetted")
           this.router.navigate(['/login']);
         },(err:Error)=> {
-          alert("An error has occured");
           this.ngOnInit();
         });
     } else {

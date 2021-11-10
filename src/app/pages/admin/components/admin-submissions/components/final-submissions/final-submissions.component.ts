@@ -75,7 +75,7 @@ export class FinalSubmissionsComponent implements OnInit {
         this.stampFileName = admin.stampFileName;
       },
       (err: Error) => {
-        alert('An error has occured');
+
         this.ngOnInit();
       }
     );
@@ -86,7 +86,7 @@ export class FinalSubmissionsComponent implements OnInit {
         this.Submissions = appByCoord;
       },
       (err: Error) => {
-        alert('An error has occured');
+
         this.ngOnInit();
       }
     );
@@ -98,7 +98,7 @@ export class FinalSubmissionsComponent implements OnInit {
         this.deanSubmissions = eachS;
       },
       (err: Error) => {
-        alert('An error has occured');
+
         this.ngOnInit();
       }
     );
@@ -121,7 +121,7 @@ export class FinalSubmissionsComponent implements OnInit {
         this.ngOnInit();
       },
       (err: Error) => {
-        alert('An error has occured');
+
         this.ngOnInit();
       }
     );
@@ -227,7 +227,7 @@ export class FinalSubmissionsComponent implements OnInit {
         this.ngOnInit();
       },
       (err: Error) => {
-        alert('An error has occured');
+
         this.ngOnInit();
       }
     );
@@ -243,7 +243,7 @@ export class FinalSubmissionsComponent implements OnInit {
         this.ngOnInit();
       },
       (err: Error) => {
-        alert('An error has occured');
+
         this.ngOnInit();
       }
     );
@@ -304,7 +304,7 @@ export class FinalSubmissionsComponent implements OnInit {
         this.submissionLogs = resp;
       },
       (err: Error) => {
-        alert('An error has occured');
+
         this.ngOnInit();
       }
     );

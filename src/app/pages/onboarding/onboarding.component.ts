@@ -31,7 +31,6 @@ export class OnboardingComponent implements OnInit {
       this.resetKey = params['resetkey'];
       this.initalizeForm();
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -63,7 +62,6 @@ export class OnboardingComponent implements OnInit {
         .subscribe((resettedU) => {
           this.router.navigate(['/login']);
         },(err:Error)=> {
-          alert("An error has occured");
           this.ngOnInit();
         });
     } else {

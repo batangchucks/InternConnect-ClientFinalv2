@@ -31,7 +31,7 @@ export class AdminIsoComponent implements OnInit {
       .subscribe((val: [any]) => {
         this.coordinatorList = val;
       },(err:Error)=> {
-        alert("An error has occured");
+
         this.ngOnInit();
       });
   }

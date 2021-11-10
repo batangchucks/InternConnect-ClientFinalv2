@@ -37,7 +37,6 @@ export class ForgotpassComponent implements OnInit {
       this.loadingButton = false;
       this.doneButton = true;
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
 

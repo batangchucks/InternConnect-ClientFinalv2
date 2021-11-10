@@ -22,7 +22,7 @@ export class CompanyComponent implements OnInit {
     this.company.getCompany().subscribe((eachC) => {
       this.companies = eachC;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }

@@ -51,7 +51,7 @@ export class AdminDashboardComponent implements OnInit {
           this.loadCompanyChart(resp);
         },
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         }
       );
@@ -132,7 +132,7 @@ export class AdminDashboardComponent implements OnInit {
             this.loadCompanyChart(resp);
           },
           (err: Error) => {
-            alert('An error has occured');
+
             this.ngOnInit();
           }
         );
@@ -204,7 +204,7 @@ export class AdminDashboardComponent implements OnInit {
             );
           },
           (err: Error) => {
-            alert('An error has occured');
+
             this.ngOnInit();
           }
         );
@@ -220,7 +220,7 @@ export class AdminDashboardComponent implements OnInit {
             this.loadCompanyChart(resp);
           },
           (err: Error) => {
-            alert('An error has occured');
+
             this.ngOnInit();
           }
         );
@@ -292,7 +292,7 @@ export class AdminDashboardComponent implements OnInit {
             );
           },
           (err: Error) => {
-            alert('An error has occured');
+
             this.ngOnInit();
           }
         );

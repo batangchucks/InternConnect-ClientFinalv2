@@ -24,7 +24,7 @@ export class AdminLogsComponent implements OnInit {
           this.logs = profile;
         },
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         }
       );

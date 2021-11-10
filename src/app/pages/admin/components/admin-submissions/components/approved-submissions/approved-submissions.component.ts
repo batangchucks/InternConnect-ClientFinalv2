@@ -41,13 +41,13 @@ export class ApprovedSubmissionsComponent implements OnInit {
         this.Submission = eachS;
       }
     ),(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     };
     this.programService.getAllTracks().subscribe((resp) => {
       this.trackList = resp;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }
@@ -63,7 +63,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
       this.modalAppear = false;
       this.ngOnInit();
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }
@@ -82,7 +82,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
       this.modalAppear = false;
       this.ngOnInit();
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
 
@@ -118,7 +118,7 @@ export class ApprovedSubmissionsComponent implements OnInit {
     this.Acc.getLogsBySubmission(id).subscribe((resp) => {
       this.submissionLogs = resp;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }

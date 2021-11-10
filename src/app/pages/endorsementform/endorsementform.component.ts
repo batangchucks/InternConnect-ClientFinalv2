@@ -59,7 +59,6 @@ export class EndorsementformComponent implements OnInit {
       .subscribe((eachV) => {
         this.Program = eachV;
       },(err:Error)=> {
-        alert("An error has occured");
         this.ngOnInit();
       });
     this.company.getCompany().subscribe((eachC) => {
@@ -67,7 +66,7 @@ export class EndorsementformComponent implements OnInit {
         return company.status == CompanyStatusList[1] || company.status == CompanyStatusList[0]
       });
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
     this.initForm();
@@ -189,7 +188,7 @@ export class EndorsementformComponent implements OnInit {
       this.PhotoFileNameC = data.toString();
       this.PhotoFilePathC = this.File.photoUrl + this.PhotoFileNameC;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }
@@ -214,7 +213,7 @@ export class EndorsementformComponent implements OnInit {
       this.PhotoFileNameA = data.toString();
       this.PhotoFilePathA = this.File.photoUrl + this.PhotoFileNameA;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }

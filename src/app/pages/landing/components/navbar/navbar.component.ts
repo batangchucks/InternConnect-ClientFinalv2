@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit {
       this.logoPath = this.File.photoUrlL + this.logo;
       this.landingPath = this.File.photoUrlL + this.landingImg;
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
   }

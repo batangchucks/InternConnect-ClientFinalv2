@@ -69,7 +69,6 @@ export class StatusComponent implements OnInit {
     this.Company.getCompany().subscribe((c) => {
       this.company = c;
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
     this.eventService
@@ -77,7 +76,6 @@ export class StatusComponent implements OnInit {
       .subscribe((resp) => {
         this.eventList = resp;
       },(err:Error)=> {
-        alert("An error has occured");
         this.ngOnInit();
       });
 
@@ -85,7 +83,6 @@ export class StatusComponent implements OnInit {
       this.student = student;
       this.initStatus();
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
 
@@ -93,7 +90,6 @@ export class StatusComponent implements OnInit {
       (eachV) => {
         this.program = eachV;
       },(err:Error)=> {
-        alert("An error has occured");
         this.ngOnInit();
       }
     );
@@ -231,7 +227,6 @@ export class StatusComponent implements OnInit {
       this.ngOnInit();
       location.reload();
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -365,7 +360,6 @@ export class StatusComponent implements OnInit {
       this.CompanyEntry = false;
       this.ngOnInit();
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -407,7 +401,6 @@ export class StatusComponent implements OnInit {
 
 
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
   }
@@ -430,7 +423,6 @@ export class StatusComponent implements OnInit {
       this.PhotoFilePathA = this.File.photoUrl + this.PhotoFileNameA;
 
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
   }

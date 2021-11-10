@@ -64,7 +64,7 @@ export class NewSubmissionsComponent implements OnInit {
         this.isStamp = false;
       } else this.isStamp = true;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
 
@@ -72,20 +72,20 @@ export class NewSubmissionsComponent implements OnInit {
       (eStud) => {
         this.submission = eStud;
       },(err:Error)=> {
-        alert("An error has occured");
+
         this.ngOnInit();
       }
     );
     this.isoCode.getIsoById(this.user.admin.id).subscribe((eachIso) => {
       this.isoCodeValue = eachIso;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
     this.programService.getAllTracks().subscribe((resp) => {
       this.trackList = resp;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }
@@ -112,7 +112,7 @@ export class NewSubmissionsComponent implements OnInit {
       this.assignIso = null;
       this.onAcceptLoading = false;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }
@@ -136,7 +136,7 @@ export class NewSubmissionsComponent implements OnInit {
       this.assignIso = null;
       this.ngOnInit();
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }
@@ -193,7 +193,7 @@ export class NewSubmissionsComponent implements OnInit {
         this.onAcceptLoading = false;
         this.ngOnInit();
       },(err:Error)=> {
-        alert("An error has occured");
+
         this.ngOnInit();
       }
     );
@@ -248,7 +248,7 @@ export class NewSubmissionsComponent implements OnInit {
     this.Acc.getLogsBySubmission(id).subscribe((resp) => {
       this.submissionLogs = resp;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
   }

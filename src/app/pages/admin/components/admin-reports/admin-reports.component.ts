@@ -49,7 +49,7 @@ export class AdminReportsComponent implements OnInit {
           this.programs = eachP;
         },
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         }
       );
@@ -61,7 +61,7 @@ export class AdminReportsComponent implements OnInit {
           this.filteredSubmit = eachS;
         },
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         }
       );
@@ -74,7 +74,7 @@ export class AdminReportsComponent implements OnInit {
           this.Section = eachS;
         },
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         }
       );
@@ -88,7 +88,7 @@ export class AdminReportsComponent implements OnInit {
         }
       ),
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         };
     }
@@ -100,7 +100,7 @@ export class AdminReportsComponent implements OnInit {
           this.Section = eachS;
         },
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         }
       );
@@ -115,7 +115,7 @@ export class AdminReportsComponent implements OnInit {
 
         },
         (err: Error) => {
-          alert('An error has occured');
+
           this.ngOnInit();
         }
       );

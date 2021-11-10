@@ -39,14 +39,13 @@ export class CompanyprofileComponent implements OnInit {
         this.router.navigate(["/"]);
       }
     },(err:Error)=> {
-      alert("An error has occured");
       this.ngOnInit();
     });
 
     this.company.getOpportunityByCompany(this.index).subscribe((eachValue) => {
       this.opportunity = eachValue;
     },(err:Error)=> {
-      alert("An error has occured");
+
       this.ngOnInit();
     });
 
