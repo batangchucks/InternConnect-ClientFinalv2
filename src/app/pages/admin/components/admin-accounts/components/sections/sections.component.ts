@@ -13,6 +13,15 @@ export class SectionsComponent implements OnInit {
   CreateIndicator: boolean = false;
   UpdateIndicator: boolean = false;
   DeleteIndicator: boolean = false;
+  // Create loading
+  originalButtonC: boolean = true;
+  loadingButtonC: boolean = false;
+  // Update loading
+  originalButtonU: boolean = true;
+  loadingButtonU: boolean = false;
+  // Delete loading
+  originalButtonD: boolean = true;
+  loadingButtonD: boolean = false;
   createForm: FormGroup;
   updateForm: FormGroup;
   sectionId:number;
@@ -38,11 +47,15 @@ export class SectionsComponent implements OnInit {
   }
 
   createFormSubmit() {
+    this.originalButtonC = false;
+    this.loadingButtonC = true;
     this.account.POSTsection(this.createForm.value).subscribe((newSection) => {
+      this.loadingButtonC = false;
+      this.originalButtonC = true;
       this.ngOnInit();
       this.CreateIndicator = false;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -57,11 +70,15 @@ export class SectionsComponent implements OnInit {
     this.UpdateIndicator = true;
   }
   updateFormS() {
+    this.originalButtonU = false;
+    this.loadingButtonU = true;
     this.program.PUTsection(this.updateForm.value).subscribe((upSec) => {
+      this.loadingButtonU = false;
+      this.originalButtonU = true;
       this.ngOnInit();
       this.UpdateIndicator = false;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
@@ -71,7 +88,7 @@ export class SectionsComponent implements OnInit {
     this.sectionId = id;
     this.DeleteIndicator = true;
 
-   
+
   }
 
   toCancelTwo() {
@@ -89,20 +106,24 @@ export class SectionsComponent implements OnInit {
     this.account.getSection(this.user.admin.programId).subscribe((eachS) => {
       this.Section = eachS;
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
   }
 
   confirmDelete() {
+    this.originalButtonD = false;
+    this.loadingButtonD = true;
     this.program.deleteSection(this.sectionId).subscribe((delS) => {
+      this.loadingButtonD = false;
+      this.originalButtonD = true;
       this.sectionId = null;
       this.DeleteIndicator = false;
       this.ngOnInit();
-      
+
     },(err)=> {
-     
+
       alert("Something went wrong please try again! ");
       this.ngOnInit();
    });
