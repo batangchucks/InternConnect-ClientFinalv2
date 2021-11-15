@@ -21,6 +21,7 @@ export interface studentModel {
     programId: number;
   };
   sectionId: number;
+  withEndorsement: boolean
 }
 
 export interface studentDashboardModel {
