@@ -425,6 +425,7 @@
                 >
                   Department
                 </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                 <th *ngIf="user.admin.authId === 2" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
               </tr>
@@ -454,6 +455,9 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {{ student.program.name }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{ student.withEndorsement?'With Endorsement Request':'Without Endorsement Request'}}
                 </td>
                 <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
@@ -509,6 +513,9 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {{ students.section.name }}
+                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{ students.withEndorsement?'With Endorsement Request':'Without Endorsement Request'}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"><button
                     class="block h-8 px-4 text-black transition-colors duration-150 bg-gray-200 rounded-full focus:shadow-outline hover:bg-gray-300"
