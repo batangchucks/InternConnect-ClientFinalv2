@@ -14,7 +14,7 @@
   <label for="filter-program" class="block text-sm font-medium text-gray-700">Filter by program:</label>
   <select id="filter-proram" [(ngModel)]="selectedProg" (change)="StatusProgram(selectedProg)" (ngModelChange)="onFilterChange($event)"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-    <option selected disabled hidden>Filter by programs:</option>
+    <option [ngValue]="0">All</option>
     <option *ngFor="let program of programs" [ngValue]="program.id">{{ program.name }}</option>
   </select>
 </div>
@@ -23,7 +23,7 @@
   <label for="filter-section" class="block text-sm font-medium text-gray-700">Filter by section:</label>
   <select id="filter-section" [(ngModel)]="selectedSec" (change)="StatusSection(selectedSec)" (ngModelChange)="onFilterChange($event)" [disabled]="!selectedProg" class="disabled:cursor-not-allowed"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-    <option selected disabled hidden>Filter by sections:</option>
+    <option [ngValue]="0">All</option>
     <option *ngFor="let section of Section" [ngValue]="section.id">{{ section.name }}</option>
   </select>
 </div>
@@ -33,7 +33,7 @@
   <label for="filter-section" class="block text-sm font-medium text-gray-700">Filter by section:</label>
   <select id="filter-section" [(ngModel)]="selectedSec" (change)="StatusSection(selectedSec)" (ngModelChange)="onFilterChange($event)"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-    <option selected disabled hidden>Filter by section:</option>
+    <option [ngValue]="0">All</option>
     <option *ngFor="let section of Section" [ngValue]="section.id">{{ section.name }}</option>
   </select>
 </div>
@@ -41,9 +41,9 @@
 <!-- AuthID != 3 -->
 <div class="col-span-6 sm:col-span-3 lg:col-span-3 sm:px-6 lg:px-8">
   <label for="filter-status" class="block text-sm font-medium text-gray-700">Filter by status:</label>
-  <select id="filter-status" [disabled]="!selectedSec && user.admin.authId != 3" [(ngModel)]="status" (change)="StatusSubmission(status)" (ngModelChange)="onFilterChange($event)"
+  <select id="filter-status" [disabled]="!selectedSec && user.admin.authId != 3" [value]="'default'" [(ngModel)]="status" (change)="StatusSubmission(status)" (ngModelChange)="onFilterChange($event)"
     class="form-select disabled:cursor-not-allowed disabled:opacity-50 mt-1 mb-6 block w-64 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-    <option value="" selected disabled hidden>Filter by status:</option>
+    <option [ngValue]="'default'">All</option>
     <option [ngValue]="'NEW_SUBMISSION'">Acknowledged</option>
     <option [ngValue]="'ACCEPTEDBYCOORDINATOR'">Approved by Coordinator</option>
     <option [ngValue]="'ACCEPTEDBYCHAIR'">Approved by Chair</option>

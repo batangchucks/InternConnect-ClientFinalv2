@@ -27,6 +27,7 @@ export class AdminReportsComponent implements OnInit {
   changeSec: string;
 
 
+
   SubmissionsCopy: ReportsModel[] = [];
   SubmissionSectionCopy: ReportsModel[] = []
   SubmissionStatusCopy: ReportsModel[]=[]
@@ -120,7 +121,9 @@ export class AdminReportsComponent implements OnInit {
         }
       );
     }
-
+    this.status = 'default'
+    this.selectedSec = 0;
+    this.selectedProg = 0;
   }
 
 
@@ -132,7 +135,11 @@ export class AdminReportsComponent implements OnInit {
         return subs.programId == filterId;
       });
       this.SubmissionSectionCopy = this.Submissions;
-    } else {
+    }
+    else if (this.selectedProg == 0) {
+      this.Submissions = this.SubmissionsCopy;
+    }
+    else {
       this.Submissions = this.SubmissionsCopy.filter((subs) => {
         return subs.programId == filterId;
       });
@@ -141,8 +148,8 @@ export class AdminReportsComponent implements OnInit {
     this.Program.getSection(filterId).subscribe((resp) => {
       this.Section = resp;
     });
-    this.selectedSec = null;
-    this.status = null;
+    this.selectedSec = 0;
+    this.status = 'default';
   }
 
 
@@ -161,6 +168,7 @@ export class AdminReportsComponent implements OnInit {
             });
             this.SubmissionStatusCopy = this.Submissions;
       }
+      this.status = 'default';
       return
     }
 
@@ -178,7 +186,7 @@ export class AdminReportsComponent implements OnInit {
       });
             this.SubmissionSectionCopy = this.Submissions;
     }
-      this.status = null;
+      this.status = 'default';
   }
 
   StatusSubmission(status: string) {
@@ -188,6 +196,8 @@ export class AdminReportsComponent implements OnInit {
         this.Submissions = this.Submissions.filter((subs) => {
           return subs.submissionStatus == status;
         });
+      } else if (status == 'default') {
+        this.Submissions = this.SubmissionStatusCopy;
       } else {
         this.Submissions = this.SubmissionStatusCopy.filter((subs) => {
           return subs.submissionStatus == status;
@@ -200,6 +210,8 @@ export class AdminReportsComponent implements OnInit {
             this.Submissions = this.Submissions.filter((subs) => {
               return subs.submissionStatus == status;
             });
+          } else if (status == 'default') {
+            this.Submissions = this.SubmissionSectionCopy;
           } else {
             this.Submissions = this.SubmissionSectionCopy.filter((subs) => {
               return subs.submissionStatus == status;
@@ -212,6 +224,9 @@ export class AdminReportsComponent implements OnInit {
           this.Submissions = this.Submissions.filter(subs => {
             return subs.submissionStatus == status
           })
+        }
+        else if (status == 'default') {
+          this.Submissions = this.SubmissionsCopy;
         }
         else {
           this.Submissions = this.SubmissionsCopy.filter(subs => {
