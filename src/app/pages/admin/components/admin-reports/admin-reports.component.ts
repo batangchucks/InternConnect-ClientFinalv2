@@ -162,12 +162,14 @@ export class AdminReportsComponent implements OnInit {
               return subs.sectionId == filterId;
             });
             this.SubmissionStatusCopy = this.Submissions;
+          } else if (this.selectedSec == 0) {
+            this.Submissions = this.SubmissionSectionCopy;
           } else {
             this.Submissions = this.SubmissionSectionCopy.filter((subs) => {
               return subs.sectionId == filterId;
             });
             this.SubmissionStatusCopy = this.Submissions;
-      }
+          }
       this.status = 'default';
       return
     }
@@ -178,6 +180,9 @@ export class AdminReportsComponent implements OnInit {
                     return subs.sectionId == filterId;
                   });
       this.SubmissionSectionCopy = this.Submissions;
+    }
+    else if (this.selectedSec == 0) {
+      this.Submissions = this.SubmissionsCopy;
     }
     else {
       this.Submissions = this.SubmissionsCopy.filter((subs) => {

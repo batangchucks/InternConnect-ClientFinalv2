@@ -191,35 +191,35 @@
       </div>
 
       <div class="grid pt-3 md:grid-cols-2 gap-4 w-full flex-row">
-        <div class="border rounded-2xl p-4 h-full">
+        <div class="border rounded-2xl p-4 h-full" *ngIf="companyNameWithOccurence.length>=1">
           <div class="w-full">
             <div class="text-center">
-              <p class="block text-4xl font-bold text-gray-800">#</p>
-              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+              <p class="block text-4xl font-bold text-gray-800">{{companyNameWithOccurence[0].numberOfOccurence}}</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">{{companyNameWithOccurence[0].companyName}}</span>
           </div>
           </div>
         </div>
-        <div class="border rounded-2xl p-4 h-full">
+        <div class="border rounded-2xl p-4 h-full" *ngIf="companyNameWithOccurence.length>=2">
           <div class="w-full">
             <div class="mx-3 text-center">
-              <p class="block text-4xl font-bold text-gray-800">#</p>
-              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+              <p class="block text-4xl font-bold text-gray-800">{{companyNameWithOccurence[1].numberOfOccurence}}</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">{{companyNameWithOccurence[1].companyName}}</span>
           </div>
           </div>
         </div>
-        <div class="border rounded-2xl p-4 h-full">
+        <div class="border rounded-2xl p-4 h-full" *ngIf="companyNameWithOccurence.length>=3">
           <div class="w-full">
             <div class="mx-3 text-center">
-              <p class="block text-4xl font-bold text-gray-800">#</p>
-              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+              <p class="block text-4xl font-bold text-gray-800">{{companyNameWithOccurence[2].numberOfOccurence}}</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">{{companyNameWithOccurence[2].companyName}}</span>
           </div>
           </div>
         </div>
-        <div class="border rounded-2xl p-4 h-full">
+        <div class="border rounded-2xl p-4 h-full" *ngIf="companyNameWithOccurence.length>=4">
           <div class="w-full">
             <div class="mx-3 text-center">
-              <p class="block text-4xl font-bold text-gray-800">#</p>
-              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+              <p class="block text-4xl font-bold text-gray-800">{{companyNameWithOccurence[3].numberOfOccurence}}</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">{{companyNameWithOccurence[3].companyName}}</span>
           </div>
           </div>
         </div>

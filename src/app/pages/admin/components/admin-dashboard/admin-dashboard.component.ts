@@ -34,24 +34,12 @@ export class AdminDashboardComponent implements OnInit {
   public studentWithparams: NgAnimatedCounterParams;
 
   ngOnInit(): void {
-    // this.dashboard
-    //   .getCompanyWithHighestOccurence('whole', 0)
-    //   .subscribe((resp) => {
-    //     this.chart = document.getElementById('company_chart');
-    //     Chart.register(...registerables);
-    //     this.loadCompanyChart(resp);
-    //   });
-
     if (this.user.admin.authId == 1 || this.user.admin.authId == 4) {
       this.dashboard.getCompanyWithHighestOccurence('whole', 0).subscribe(
         (resp) => {
           this.companyNameWithOccurence = resp;
-          this.chart = document.getElementById('company_chart');
-          Chart.register(...registerables);
-          this.loadCompanyChart(resp);
         },
         (err: Error) => {
-
           this.ngOnInit();
         }
       );
@@ -126,13 +114,8 @@ export class AdminDashboardComponent implements OnInit {
         .subscribe(
           (resp) => {
             this.companyNameWithOccurence = resp;
-
-            this.chart = document.getElementById('company_chart');
-            Chart.register(...registerables);
-            this.loadCompanyChart(resp);
           },
           (err: Error) => {
-
             this.ngOnInit();
           }
         );
@@ -159,21 +142,21 @@ export class AdminDashboardComponent implements OnInit {
                 );
               }
             ).length;
-                    this.studentEndorsedparams = {
-                      start: -1,
-                      end: this.studentsWithCompany,
-                      interval: 10,
-                      increment: 1,
-                    };
+            this.studentEndorsedparams = {
+              start: -1,
+              end: this.studentsWithCompany,
+              interval: 10,
+              increment: 1,
+            };
             this.studentsWithoutCompany = resp.filter((student) => {
               return student.submissions.length <= 0;
             }).length;
-        this.studentWithoutparams = {
-          start: -1,
-          end: this.studentsWithoutCompany,
-          interval: 10,
-          increment: 1,
-        };
+            this.studentWithoutparams = {
+              start: -1,
+              end: this.studentsWithoutCompany,
+              interval: 10,
+              increment: 1,
+            };
             this.studentsWithRequests = studentsWithSubmissions.filter(
               (student) => {
                 return (
@@ -190,12 +173,12 @@ export class AdminDashboardComponent implements OnInit {
                 );
               }
             ).length;
-                    this.studentWithparams = {
-                      start: -1,
-                      end: this.studentsWithRequests,
-                      interval: 10,
-                      increment: 1,
-                    };
+            this.studentWithparams = {
+              start: -1,
+              end: this.studentsWithRequests,
+              interval: 10,
+              increment: 1,
+            };
             this.chart = document.getElementById('status_chart');
             Chart.register(...registerables);
             this.loadStudentsChart(
@@ -204,7 +187,6 @@ export class AdminDashboardComponent implements OnInit {
             );
           },
           (err: Error) => {
-
             this.ngOnInit();
           }
         );
@@ -215,12 +197,8 @@ export class AdminDashboardComponent implements OnInit {
         .subscribe(
           (resp) => {
             this.companyNameWithOccurence = resp;
-            this.chart = document.getElementById('company_chart');
-            Chart.register(...registerables);
-            this.loadCompanyChart(resp);
           },
           (err: Error) => {
-
             this.ngOnInit();
           }
         );
@@ -247,21 +225,21 @@ export class AdminDashboardComponent implements OnInit {
                 );
               }
             ).length;
-                    this.studentEndorsedparams = {
-                      start: -1,
-                      end: this.studentsWithCompany,
-                      interval: 10,
-                      increment: 1,
-                    };
+            this.studentEndorsedparams = {
+              start: -1,
+              end: this.studentsWithCompany,
+              interval: 10,
+              increment: 1,
+            };
             this.studentsWithoutCompany = resp.filter((student) => {
               return student.submissions.length <= 0;
             }).length;
-        this.studentWithoutparams = {
-          start: -1,
-          end: this.studentsWithoutCompany,
-          interval: 10,
-          increment: 1,
-        };
+            this.studentWithoutparams = {
+              start: -1,
+              end: this.studentsWithoutCompany,
+              interval: 10,
+              increment: 1,
+            };
             this.studentsWithRequests = studentsWithSubmissions.filter(
               (student) => {
                 return (
@@ -278,12 +256,12 @@ export class AdminDashboardComponent implements OnInit {
                 );
               }
             ).length;
-                    this.studentWithparams = {
-                      start: -1,
-                      end: this.studentsWithRequests,
-                      interval: 10,
-                      increment: 1,
-                    };
+            this.studentWithparams = {
+              start: -1,
+              end: this.studentsWithRequests,
+              interval: 10,
+              increment: 1,
+            };
             this.chart = document.getElementById('status_chart');
             Chart.register(...registerables);
             this.loadStudentsChart(
@@ -292,7 +270,6 @@ export class AdminDashboardComponent implements OnInit {
             );
           },
           (err: Error) => {
-
             this.ngOnInit();
           }
         );
@@ -318,41 +295,5 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  loadCompanyChart(companyNameWithOccurence: CompanyOccurence[]): void {
-    new Chart(this.chart, {
-      type: 'bar',
-      data: {
-        labels: [
-          companyNameWithOccurence[0].companyName,
-          companyNameWithOccurence[1].companyName,
-          companyNameWithOccurence[2].companyName,
-          companyNameWithOccurence[3].companyName,
-        ],
-        datasets: [
-          {
-            data: [
-              companyNameWithOccurence[0].numberOfOccurence,
-              companyNameWithOccurence[1].numberOfOccurence,
-              companyNameWithOccurence[2].numberOfOccurence,
-              companyNameWithOccurence[3].numberOfOccurence,
-            ],
-            label: 'Number of submissions',
-            backgroundColor: ['#FFE6E8', '#F2CCC3', '#E78F8E'],
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        indexAxis: 'y',
-        // Elements options apply to all of the options unless overridden in a dataset
-        // In this case, we are setting the border of each horizontal bar to be 2px wide
-        elements: {
-          bar: {
-            borderWidth: 2,
-          },
-        },
-      },
-    });
-  }
+
 }
