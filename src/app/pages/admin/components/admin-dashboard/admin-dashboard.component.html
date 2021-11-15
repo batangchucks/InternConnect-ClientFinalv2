@@ -169,25 +169,62 @@
 
 <div class="sm:px-6 lg:px-8">
   <div class="grid gap-6 mb-8 md:grid-cols-3">
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-sm">
+    <div class="min-w-0 p-4 bg-white rounded-lg shadow-md">
       <h4 class="mb-4 font-semibold text-gray-600">Internship status</h4>
       <canvas
         id="status_chart"
         style="position: relative; height: 10vh; width: 20vw"
       ></canvas>
     </div>
-    <div
-      class="min-w-0 col-span-2 p-4 bg-white rounded-lg shadow-sm"
-      *ngIf="companyNameWithOccurence.length >= 4 ? true : false"
-    >
-      <h4 class="mb-4 font-semibold text-gray-600">
-        Companies with the most number of interns
-      </h4>
-      <canvas
-        id="company_chart"
-        style="position: relative; height: 10vh; width: 20vw"
-      ></canvas>
+    <div class="w-full p-4 col-span-2 bg-white rounded-lg shadow-md">
+      <h4 class="mb-4 font-semibold text-gray-600">Companies with the most number of interns</h4>
+
+      <div class="border rounded-2xl p-4 h-24 relative overflow-hidden">
+        <img alt="header" src="https://res.cloudinary.com/daljbo1q0/image/upload/v1636964482/Saly-2_wk3jdx.svg" class="absolute -right-2 -bottom-12 h-40 w-40 mb-4"/>
+        <div class="w-full">
+            <p class="text-gray-800 font-bold text-lg mb-2">
+                Featured Companies
+            </p>
+            <p class="text-gray-600 font-normal text-lg mb-2">
+              Here are the top 4 companies that students are currently endorsed in
+        </div>
+      </div>
+
+      <div class="grid pt-3 md:grid-cols-2 gap-4 w-full flex-row">
+        <div class="border rounded-2xl p-4 h-full">
+          <div class="w-full">
+            <div class="text-center">
+              <p class="block text-4xl font-bold text-gray-800">#</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+          </div>
+          </div>
+        </div>
+        <div class="border rounded-2xl p-4 h-full">
+          <div class="w-full">
+            <div class="mx-3 text-center">
+              <p class="block text-4xl font-bold text-gray-800">#</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+          </div>
+          </div>
+        </div>
+        <div class="border rounded-2xl p-4 h-full">
+          <div class="w-full">
+            <div class="mx-3 text-center">
+              <p class="block text-4xl font-bold text-gray-800">#</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+          </div>
+          </div>
+        </div>
+        <div class="border rounded-2xl p-4 h-full">
+          <div class="w-full">
+            <div class="mx-3 text-center">
+              <p class="block text-4xl font-bold text-gray-800">#</p>
+              <span class="text-xl text-gray-700 dark:text-gray-200">CompanyName</span>
+          </div>
+          </div>
+        </div>
     </div>
+  </div>
   </div>
 </div>
 
