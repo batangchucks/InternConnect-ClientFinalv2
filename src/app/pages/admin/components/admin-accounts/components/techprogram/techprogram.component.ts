@@ -11,6 +11,9 @@ import { createAccount } from 'src/app/shared/services/createAcc.service';
 export class TechprogramComponent implements OnInit {
   DeleteIndicator: boolean = false;
   modalAppear: boolean = false;
+  // Delete loading
+  originalButtonD: boolean = true;
+  loadingButtonD: boolean = false;
   techCoordList: coordinatorModel[];
   toDeleteId: number = null
 
@@ -50,7 +53,11 @@ export class TechprogramComponent implements OnInit {
   }
 
   onDelete() {
+    this.originalButtonD = false;
+    this.loadingButtonD = true;
     this.Account.deleteCoordinator(this.toDeleteId).subscribe(resp => {
+      this.loadingButtonD = false;
+      this.originalButtonD = true;
       this.DeleteIndicator = false
       this.ngOnInit();
     },(err)=> {

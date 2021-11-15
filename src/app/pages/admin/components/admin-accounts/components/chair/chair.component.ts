@@ -15,6 +15,12 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 export class ChairComponent implements OnInit {
   UpdateIndicator: boolean = false;
   DeleteIndicator: boolean = false;
+  // Update loading
+  originalButtonU: boolean = true;
+  loadingButtonU: boolean = false;
+  // Delete loading
+  originalButtonD: boolean = true;
+  loadingButtonD: boolean = false;
   Program: programModel[] = [];
   Chair: chairModel[] = [];
   modalAppear: boolean = false;
@@ -42,8 +48,11 @@ export class ChairComponent implements OnInit {
   }
 
   deleteAccepted() {
-
-     this.Account.deleteChair(this.chairId).subscribe((deletedCh) => {
+    this.originalButtonD = false;
+    this.loadingButtonD = true;
+    this.Account.deleteChair(this.chairId).subscribe((deletedCh) => {
+      this.loadingButtonD = false;
+      this.originalButtonD = true;
       this.DeleteIndicator = false;
 
       this.ngOnInit();
@@ -101,7 +110,11 @@ export class ChairComponent implements OnInit {
       id: this.selectedChair.id,
       programId: this.selectedChair.program.id
     })
+    this.originalButtonU = false;
+    this.loadingButtonU = true;
     this.Account.SwitchChairProgram(this.updatePayload).subscribe(resp => {
+      this.loadingButtonU = false;
+      this.originalButtonU = true;
       this.UpdateIndicator = false;
       this.selectedChair = null;
       this.updatePayload = []

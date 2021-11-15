@@ -16,6 +16,12 @@ import { ProgramService } from 'src/app/shared/services/program.service';
 export class CoordinatorComponent implements OnInit {
   UpdateIndicator: boolean = false;
   DeleteIndicator: boolean = false;
+  // Update loading
+  originalButtonU: boolean = true;
+  loadingButtonU: boolean = false;
+  // Delete loading
+  originalButtonD: boolean = true;
+  loadingButtonD: boolean = false;
   user = JSON.parse(localStorage.getItem('user'));
   idSection: number;
   modalAppear: boolean = false;
@@ -105,7 +111,11 @@ export class CoordinatorComponent implements OnInit {
   }
 
   onDelete() {
+    this.originalButtonD = false;
+    this.loadingButtonD = true;
     this.accounts.deleteCoordinator(this.toDeleteId).subscribe((delC) => {
+      this.loadingButtonD = false;
+      this.originalButtonD = true;
       this.ngOnInit();
       this.DeleteIndicator = false;
     },(err)=> {
@@ -137,7 +147,11 @@ export class CoordinatorComponent implements OnInit {
       id: this.targetCoordinator.id,
       sectionId: this.targetCoordinator.section.id
     })
+    this.originalButtonU = false;
+    this.loadingButtonU = true;
     this.accounts.SwitchChairSection(this.updatePayload).subscribe((resp) => {
+      this.loadingButtonU = false;
+      this.originalButtonU = true;
       this.UpdateIndicator = false;
       this.updatePayload = [];
       this.targetCoordinator = null;

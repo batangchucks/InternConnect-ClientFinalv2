@@ -17,7 +17,13 @@ const re =
 export class StudentsComponent implements OnInit {
   DeleteIndicator: boolean = false;
   UpdateIndicator: boolean = false;
-  BatchUpload: boolean = false;
+  // Update loading
+  originalButtonU: boolean = true;
+  loadingButtonU: boolean = false;
+  // Delete loading
+  originalButtonD: boolean = true;
+  loadingButtonD: boolean = false;
+BatchUpload: boolean = false;
   originalButton: boolean = true;
   loadingButton: boolean = false;
   p: number = 1;
@@ -122,7 +128,11 @@ export class StudentsComponent implements OnInit {
     this.toDeleteStudentId = studentId;
   }
   deleteStudent() {
+    this.originalButtonD = false;
+    this.loadingButtonD = true;
     this.account.deleteStudent(this.toDeleteStudentId).subscribe((deletedS) => {
+      this.loadingButtonD = false;
+      this.originalButtonD = true;
       this.toDeleteStudentId = null;
       this.DeleteIndicator = false;
       this.ngOnInit();
@@ -175,11 +185,15 @@ export class StudentsComponent implements OnInit {
   }
 
   onUpdate() {
+    this.originalButtonU = false;
+    this.loadingButtonU = true;
     var payload: ChangeStudentSection = {
       id: this.selectedUpdate.id,
       sectionId: this.selectedSection.id,
     };
     this.account.ChangeStudentSection(payload).subscribe((resp) => {
+      this.loadingButtonU = false;
+      this.originalButtonU = true;
       this.UpdateIndicator = false;
       this.selectedUpdate = null;
       this.selectedSection = null;
