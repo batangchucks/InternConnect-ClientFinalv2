@@ -56,7 +56,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ApplicationComponent
+        component: ApplicationComponent,
       },
       {
         path: 'login',
@@ -110,7 +110,7 @@ const routes: Routes = [
       {
         path: 'changedean',
         component: ChangedeanComponent,
-        canActivate:[RouteGuardDean]
+        canActivate: [RouteGuardDean],
       },
     ],
   },
@@ -190,7 +190,7 @@ const routes: Routes = [
       {
         // dean pero nakasama track dito ayusin natin
         path: 'programs',
-        canActivate:[RouteGuardDean],
+        canActivate: [RouteGuardDean],
         component: ProgramsComponent,
       },
       {
@@ -202,19 +202,19 @@ const routes: Routes = [
       {
         path: 'reports',
         // can activate for everybody
-        canActivate:[RouteGuardAdmin],
+        canActivate: [RouteGuardAdmin],
         component: AdminReportsComponent,
       },
       {
         path: 'events',
         // everyone except dean?
-        canActivate:[RouteGuardChair],
+        canActivate: [RouteGuardChair],
         component: AdminEventsComponent,
       },
       {
         // chair or dean?
         path: 'iso',
-        canActivate:[RouteGuardChair],
+        canActivate: [RouteGuardChair],
         component: AdminIsoComponent,
       },
       {
@@ -236,6 +236,10 @@ const routes: Routes = [
       },
       { path: 'updateForm/:id', component: AdminLogsComponent },
     ],
+  },
+  {
+    path: '**',
+    redirectTo:''
   },
 ];
 
